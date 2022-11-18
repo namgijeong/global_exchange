@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DiaryController {
 
     // 일기 상세 페이지
-    @GetMapping("/info")
+    @GetMapping("/detail")
     public void main(){
 
     }
