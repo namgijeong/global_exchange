@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Global Exchange</title>
+    <title>공지사항</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
@@ -13,6 +13,10 @@
 </head>
 <body>
 <div>
+    <!-- header -->
+    <div th:replace="/main/header.html:: topHeader "></div>
+    <div th:replace="/main/header.html:: header "></div>
+
     <!-- section -->
     <div id="root">
         <h1>공지사항</h1>
@@ -227,6 +231,10 @@
             </div>
         </div>
     </div>
+
+    <!-- footer -->
+    <div th:replace="/main/footer.html:: footerFirst"></div>
+
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
