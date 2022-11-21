@@ -19,5 +19,10 @@ public class DiaryController {
     public void detail(){
 
     }
+    //새로운 교환일기 파트너 신청
+    @GetMapping("/newDiaryPartnerSignup")
+    public void newDiaryPartnerSignup(){
+
+    }
 
 }

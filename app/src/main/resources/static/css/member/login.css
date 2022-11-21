@@ -1,0 +1,103 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+#realLogin{
+    width:808px;
+    height:653px;
+
+    margin:0px auto;
+}
+#realLoginLogin{
+    width:60px;
+    height:50px;
+
+    margin:0 auto;
+    margin-top:20px;
+
+}
+#realLoginLogin>h3{
+    display:inline-block;
+
+    width:60px;
+    height:26px;
+
+    font-size:18px;
+}
+#putLoginInfo{
+    width:400px;
+    height:282px;
+
+    margin:0 204px 12px;
+    padding:24px 20px;
+}
+input{
+    width:100%;
+    height:50px;
+
+    margin:4px 0px 8px;
+    padding:14px 14px 12px;
+
+    background-color:#fafafa;
+    border-radius: 3px;
+    border: 1px solid rgb(238, 238, 238);
+
+    outline:none;
+}
+#goRealLogin{
+    width:100%;
+    height:56px;
+
+    color:#ffffff;
+    background-color:#0075ef;
+
+    margin:20px 0 0;
+    padding:16px;
+
+    font-size:16px;
+
+    border-radius: 10px;
+    border:1px solid #0075ef;
+}
+
+#otherLoginInfo{
+    width:100%;
+    height:170px;
+    padding:0 0 60px;
+
+    color:#cccccc;
+    font-size:14px;
+
+    text-align:center;
+}
+#otherLoginInfo>div{
+    width:100px;
+    height:100px;
+    margin: 0 auto;
+
+    padding:16px 0 0;
+
+}
+#goRealGoogleLogin{
+    width:70px;
+    height:70px;
+
+    margin:0 auto;
+    padding:1px 6px;
+
+    background-color:#ffffff;
+
+    border-radius: 10px;
+    border:1px solid rgb(238, 238, 238);
+}
+#goRealGoogleLogin>img{
+    width:48px;
+    height:48px;
+
+
+}

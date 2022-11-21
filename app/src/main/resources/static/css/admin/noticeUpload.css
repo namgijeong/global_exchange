@@ -1,0 +1,489 @@
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family: "Noto Sans KR",sans-serif;
+}
+body{-ms-overflow-style:none; }
+body::-webkit-scrollbar { display:none; }
+
+a{
+    text-decoration:none;
+    color:white;
+}
+
+/*hover 색깔이 적용되게 하려면 꼭밑에 쓰기-우선순위덮어씀*/
+a:hover{
+    color:skyblue;
+}
+
+/*로고박스가 없으면 브라우저 기준으로 지멋대로 자리잡음*/
+#logobox{
+    width:1474px;
+    margin:0 auto;
+    height:100px;
+    margin-top:50px;
+}
+#logo{
+
+    display:inline-block;
+    width:230px;
+    height:100px;
+    background-size:100%;
+    /*background-image: url("");*/
+    background-repeat:no-repeat;
+    /*background-color:#ffdb49;*/
+    position:fixed;
+    /*top:0을 하면 안된다. 그러면 브라우저 기준으로 됨*/
+    /*left:31px;*/
+
+}
+#logo a{
+    display:inline-block;
+    width:100%;
+    height:100%;
+}
+
+
+#main_body{
+    width:1474px;
+    height:1000px;
+
+    margin: 0 auto;
+
+
+    display:flex;
+
+    /*fixed고정요소 자리만큼 이동*/
+    /*margin-top:100px;*/
+    /*
+    overflow-y:scroll;
+    overflow:hidden;
+    */
+    overflow:scroll;
+}
+
+
+#subnavigation{
+    display:inline-block;
+    width:230px;
+    background-color:#293a50;
+    height:1000px;
+
+    color:white;
+
+    position:fixed;
+    overflow:scroll;
+}
+/*스크롤바안보이게 브라우저에서 숨기기*/
+#subnavigation{-ms-overflow-style:none; }
+#subnavigation::-webkit-scrollbar { display:none; }
+ul,li{
+    display:inline-block;
+    list-style:none;
+}
+#subnavigation>ul{
+    width:100%;
+
+}
+#subnavigation>ul>li{
+    width:100%;
+    text-align:left;
+}
+
+.menu>a{
+    cursor:pointer;
+    display:inline-block;
+    width:100%;
+    line-height:52px;
+    height:52px;
+
+    display:flex;
+
+
+}
+.menu>a:hover{
+    background-color:#3a495e;
+    color: #AB72EC;
+}
+
+.menu>a>span:first-child{
+    display:inline-block;
+    width:150px;
+    height: 52px;
+    margin-left:10px;
+    /*float를 주어야지만 인라인블록선언했어도 한줄안에 들어오는 기이한 현상*/
+    /*float:left;*/
+}
+.menu>a>span:nth-child(2){
+    display:inline-block;
+    width:20px;
+    height:20px;
+    margin-left:20px;
+    /*span영역자체를 가운데쯤에 놓아 배경이미지가 가운데 놓인것처럼*/
+    margin-top:15px;
+}
+/*
+.menu>a::after{
+    display:inline-block;
+    width:0;
+    height:0;
+    clear:both;
+}
+*/
+.rightarrow{
+
+    background-image:url("../../images/admin/blackRightArrowIcon.png");
+    background-repeat:no-repeat;
+    background-size:contain;
+}
+.downarrow{
+
+    background-image:url("../../images/admin/blackDownArrowIcon.png");
+    background-repeat:no-repeat;
+    background-size:contain;
+}
+.menu .hide{
+    display:none;
+    width:100%;
+    /*
+    margin-top:-70px;
+    */
+}
+
+.hide>li{
+    /*기본적으로 세팅을 해놨기때문에 아무리 눌러도 js바뀐게 적용이 안되었던 것이다*/
+    /*background-color:#2d3e53;*/
+    display:inline-block;
+    width:100%;
+    height:46px;
+}
+.hide li a{
+    display:inline-block;
+    margin-left:50px;
+    line-height:46px;
+}
+
+.hide li a:hover {
+    color: #AB72EC;
+}
+
+.clickcolor{
+    background-color:#5468e2;
+}
+.normalcolor{
+    background-color:#2d3e53;
+}
+#subnavigation_result{
+    width:1244px;
+    display:inline-block;
+    height:100%;
+
+    /*fixed고정요소 자리만큼 이동*/
+    margin-left:230px;
+
+    overflow:scroll;
+
+}
+/*스크롤바안보이게 브라우저에서 숨기기*/
+#subnavigation_result{-ms-overflow-style:none; }
+#subnavigation_result::-webkit-scrollbar { display:none; }
+#subnavigation_result_header{
+    width:100%;
+    height:262px;
+
+    padding: 0 0 30px 65px;
+    margin: 0 0 10px 0;
+
+    background-image: url("https://sportal.skuniv.ac.kr/img/sub-header-wave.38797bec.svg"),linear-gradient(90deg,#8521FF 0,#A250FF 35%,#AB72EC);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: cover;
+
+    /*box-shadow: 0 5px 10px 0 rgb(0 0 0 / 16%);*/
+
+
+}
+#subnavigation_result_title{
+    padding-top: 75px;
+    padding-bottom: 20px;
+    color: #fff;
+}
+#subnavigation_result_title>h2{
+    display:inline-block;
+    font-size: 38px;
+    letter-spacing: -2px;
+    font-weight: 400;
+}
+#subnavigation_result_title>span{
+    margin-left: 20px;
+    word-break: keep-all;
+    word-wrap: break-word;
+    font-size: 15px;
+    letter-spacing: -1px;
+}
+#subnavigation_how_array{
+    width:504px;
+    height:80px;
+    display:flex;
+}
+.subnavigation_how{
+    width:196px;
+    height:80px;
+    padding:12px;
+}
+#inquire{
+    width:112px;
+    height:80px;
+    padding:10px 12px 12px;
+}
+#inquire>button{
+    display:inline-block;
+    width:100%;
+    height:100%;
+
+    background-color:#5C3EA2;
+    color:white;
+
+    border:1px solid midnightblue;
+    border-radius:40px;
+}
+.subnavigation_how_title{
+    width:80px;
+    height:15px;
+    color:#ffffffb3;
+
+    font-family: Spoqa Han Sans,sans-serif;
+}
+.subnavigation_how_main{
+    width:173px;
+    height:40px;
+    padding-top:5px;
+}
+.subnavigation_how_main>select{
+    display:inline-block;
+    height:100%;
+    width:100%;
+
+    background:transparent;
+    border:0px;
+    border-bottom:1px solid white;
+
+    /*color:white;*/
+    font-family: Spoqa Han Sans,sans-serif;
+}
+.selectnormalcolor{
+    color:white;
+}
+.selectclickcolor{
+    color:#383838;
+}
+#subnavigation_result_body{
+    width:1244px;
+    height:600px;
+    margin:12px 0px 80px;
+    padding: 35px 65px;
+
+    background-color:white;
+}
+/*스크롤바안보이게 브라우저에서 숨기기*/
+#subnavigation_result_body{-ms-overflow-style:none; }
+#subnavigation_result_body::-webkit-scrollbar { display:none; }
+#subnavigation_search_and_delete{
+    width:100%;
+    height:80px;
+    padding-left:50px;
+    padding-right:50px;
+    padding-top:10px;
+}
+#subnavigation_search{
+    display:inline-block;
+    width:278px;
+    height:56px;
+    background-color:white;
+    border-bottom: 1px solid gray;
+
+    margin-left:750px;
+    font-size:16px;
+}
+#subnavigation_search>span{
+    /*background-image:url("");*/
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:30px;
+    height:30px;
+    /*그림과 옆요소 수직정렬 맞추기*/
+    vertical-align:bottom;
+}
+#subnavigation_search>input{
+    width:230px;
+    height:56px;
+
+    border:0px;
+    outline:none;
+    border-bottom:1px solid gray;
+
+    color:#383838;
+
+    vertical-align:bottom;
+    line-height:56px;
+}
+
+#subnavigation_list{
+    width:100%;
+    height:450px;
+
+    border-top:2px solid black;
+}
+#subnavigation_list_title{
+    padding-left:50px;
+    height:50px;
+    border-bottom:2px solid rgba(198, 231, 244, 0.5);
+
+    color:#383838;
+}
+#subnavigation_list_title>span{
+    display:inline-block;
+
+    padding-left:30px;
+
+    width:70px;
+    height:50px;
+
+    text-align:center;
+
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+
+
+
+    line-height:50px;
+}
+#subnavigation_list_title>span:nth-child(1){
+    font-size: 16px;
+    font-weight: 700;
+    color:#2c405a;
+
+    width:300px;
+}
+#subnavigation_list_title>input:nth-child(2){
+    display:inline-block;
+    /*input태그를 부모요소의 위에 맞춰주는 수직정렬*/
+    vertical-align:top;
+    width:700px;
+    height:100%;
+    padding-left:30px;
+    outline:none;
+    border:0;
+    /*border-left:2px solid rgba(198, 231, 244, 0.5);*/
+
+    font-size:16px;
+    color:#383838;
+}
+
+
+
+.subnavigation_list_detail{
+    padding-left:50px;
+    height:50px;
+
+    border-bottom:2px solid rgba(198, 231, 244, 0.5);
+    color:#383838;
+
+}
+
+/*.subnavigation_list_detail:nth-last-child {*/
+/*    padding-left:50px;*/
+/*    height:200px;*/
+
+/*    color:#383838;*/
+/*}*/
+
+.content {
+    margin-top: 10px;
+    padding-left:50px;
+    height:200px;
+
+    color:#383838;
+}
+
+.content > span {
+    height:200px;
+}
+
+
+.subnavigation_list_detail>span{
+    display:inline-block;
+
+    padding-left:30px;
+    width:70px;
+
+    text-align:center;
+
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+
+    line-height:50px;
+}
+.subnavigation_list_detail>span:nth-child(1){
+    font-size: 16px;
+    font-weight: 700;
+    color:#2c405a;
+
+    width:300px;
+}
+/*span 첫번째가 아니라 동일선상이니까 checkbox까지 포함한순서*/
+
+.subnavigation_list_detail>input:nth-child(2){
+    display:inline-block;
+    /*input태그를 부모요소의 위에 맞춰주는 수직정렬*/
+    vertical-align:top;
+    width:700px;
+    height:100%;
+    padding-left:30px;
+    outline:none;
+    border:0;
+
+    /*border-left:2px solid rgba(198, 231, 244, 0.5);*/
+
+    font-size:16px;
+    color:#383838;
+}
+
+
+
+
+.subnavigation_list_detail > textarea {
+    display: inline-block;
+    vertical-align:top;
+    width: 760px;
+    height: 200px;
+    resize: none;
+    border: 0;
+    border-bottom:2px solid rgba(198, 231, 244, 0.5);
+    outline: none;
+    padding-left: 30px;
+    font-size:16px;
+    color:#383838;
+}
+
+
+#back_and_submit{
+    width:100%;
+    height:100px;
+    text-align:center;
+}
+#back_and_submit>button{
+    margin: 0 5px 0 5px;
+    width:200px;
+    height:80px;
+
+    background-color:#5C3EA2;
+    color:white;
+
+    border:1px solid midnightblue;
+    border-radius:40px;
+}

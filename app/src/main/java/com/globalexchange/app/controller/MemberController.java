@@ -8,6 +8,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/member/*")
 public class MemberController {
 
+    @GetMapping("/join")
+    public void join(){
+
+    }
+
+    @GetMapping("/joinForm")
+    public void joinForm(){
+
+    }
+
+    @GetMapping("/login")
+    public void login(){
+
+    }
+
     // 마이페이지 메인
     @GetMapping("/mypage")
     public void mypage(){
@@ -25,5 +40,6 @@ public class MemberController {
     public void write(){
 
     }
+
 
 }

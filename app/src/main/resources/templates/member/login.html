@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+
+    <link href="/css/main/header.css" rel="stylesheet" type="text/css" />
+    <link href="/css/main/footer.css" rel="stylesheet" type="text/css" />
+    <link href="/css/member/login.css" rel="stylesheet" type="text/css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div th:replace="/main/header.html:: topHeader "></div>
+    <div th:replace="/main/header.html:: header "></div>
+    <section id="realLogin">
+        <div id="realLoginLogin"><h3>로그인</h3></div>
+        <div id="putLoginInfo">
+            <input type="text" placeholder="아이디(이메일)"/>
+            <input type="password" placeholder="비밀번호"/>
+            <button id="goRealLogin">로그인</button>
+        </div>
+        <div id="otherLoginInfo">
+            <p>다른방식으로 로그인</p>
+            <div><button id="goRealGoogleLogin"><img src="/images/member/googleLoginIcon.png"/></button></div>
+        </div>
+    </section>
+    <div th:replace="/main/footer.html:: footerFirst"></div>
+</body>
+</html>

@@ -509,7 +509,7 @@ button {
     cursor: pointer;
     justify-content: center;
     align-items: center;
-    background-image: url(/images/modal/circle.svg);
+    background-image: url(/images/modal/modalInputBtn.svg);
 }
 .modal-radio-circle{
     width:13px;
