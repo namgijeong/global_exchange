@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Global Exchange</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+          rel="stylesheet">
+
+    <link href="/css/admin/noticeDetail.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="logobox"><div id="logo"><a href="#"></a></div></div>
+
+<div id="main_body">
+    <div id="subnavigation">
+        <ul>
+            <li class="menu"> 
+                <a><span>사용자 관리</span><span class="rightarrow"></span></a>
+                <ul class="hide">
+                    <li class="normalcolor"><a>회원 관리</a></li>
+
+                </ul>
+            </li>
+            <li class="menu"> 
+                <a><span>컨텐츠 관리</span><span class="rightarrow"></span></a>
+                <ul class="hide">
+                    <li class="normalcolor"><a>만남과 도움 관리</a></li>
+                    <li class="normalcolor"><a>숙소가 필요해 관리</a></li>
+                </ul>
+            </li>
+            <li class="menu"> 
+                <a><span>공지사항 관리</span><span class="rightarrow"></span></a>
+                <ul class="hide">
+                    <li class="normalcolor"><a>공지사항 관리</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div id="subnavigation_result">
+        <div id="subnavigation_result_header">
+            <div id="subnavigation_result_title">
+                <h2>공지사항 상세보기</h2>
+                <span>공지사항 상세보기 입니다</span>
+            </div>
+
+        </div>
+
+        <div id="subnavigation_result_body">
+            <div id="subnavigation_search_and_delete">
+                <div id="subnavigation_search">
+                    <span></span>
+                    <input type="text" name="search_member" placeholder="검색"/>
+                </div>
+
+            </div>
+            <div id="subnavigation_list">
+                <div id="subnavigation_list_title">
+                    <!--<input type="checkbox" />-->
+                    <span>공지사항 번호</span>
+                    <input type="text" value="1"/>
+
+                </div>
+                <div class="subnavigation_list_detail">
+                    <!--<input type="checkbox" name="select_member"/>-->
+                    <span>제목</span>
+                    <input type="text" value="사용자 이용수칙"/>
+                </div>
+                <div class="subnavigation_list_detail">
+                    <!--<input type="checkbox" name="select_member"/>-->
+                    <span>작성 일자</span>
+                    <input type="text" value="2022-10-23"/>
+
+                </div>
+                <div class="subnavigation_list_detail">
+                    <!--<input type="checkbox" name="select_member"/>-->
+                    <span>내용</span>
+                    <input type="text" value="욕설과 비속어는 사용불가입니다."/>
+
+                </div>
+
+            </div>
+
+            <div id="back_and_submit">
+                <button >목록으로</button>
+                <button type="submit">수정하기</button>
+                <button type="submit">삭제하기</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/admin/admin.js"></script>
+</html>
