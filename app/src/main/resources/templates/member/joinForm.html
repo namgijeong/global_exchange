@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <link href="/css/main/header.css" rel="stylesheet" type="text/css" />
+    <link href="/css/main/footer.css" rel="stylesheet" type="text/css" />
+    <link href="/css/member/joinForm.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/css/member/dd.css" type="text/css"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div th:replace="/main/header.html:: topHeader "></div>
+    <div th:replace="/main/header.html:: header "></div>
+
+    <section id="loginBox">
+        <div id="loginBoxTitle"><h3>회원가입</h3></div>
+        <form name="loginInfo" id="loginInfo">
+            <input name="memberId" id="memberId" class="loginInput" type="text" placeholder="아이디(이메일)"/>
+            <!--<p id="memberIdResult" class="loginAlertText">중복된 아이디입니다.</p>-->
+            <p id="memberIdResult" class="loginAlertText"></p>
+            <input name="memberPw" id="memberPw" class="loginInput" type="password" placeholder="비밀번호"/>
+            <p id="memberPwResult" class="loginAlertText">대/소문자,숫자,특수문자  3가지 이상의 조합으로 10자 이상</p>
+            <input name="memberDoublePw" id="memberDoublePw" class="loginInput" type="password" placeholder="비밀번호 한번 더"/>
+            <p id="memberPwDoubleResult" class="loginAlertText">비밀번호와 일치하지 않습니다.</p>
+            <p class="selectTitle">모국어</p>
+            <select class="selectBox" name="motherTongue">
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" /><span>영어</span></div></option>
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" src="/images/main/spainIcon.png"/><span>스페인어</span></div></option>
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" src="/images/main/franceIcon.png"/><span>프랑스어</span></div></option>
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" src="/images/main/germanyIcon.png"/><span>독일어</span></div></option>
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" src="/images/main/italyIcon.png"/><span>이탈리아어</span></div></option>
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" src="/images/main/portugalIcon.png"/><span>포르투갈어</span></div></option>
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" src="/images/main/russiaIcon.png"/><span>러시아어</span></div></option>
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" src="/images/main/japanIcon.png"/><span>일본어</span></div></option>
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" src="/images/main/chinaIcon.png"/><span>중국어</span></div></option>
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" src="/images/main/southKoreaIcon.png"/><span>한국어</span></div></option>
+            </select>
+            <p class="selectTitle">배우고 싶은 언어</p>
+            <select class="selectBox" name="motherTongue">
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" /><span>영어</span></div></option>
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" src="/images/main/spainIcon.png"/><span>스페인어</span></div></option>
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" src="/images/main/franceIcon.png"/><span>프랑스어</span></div></option>
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" src="/images/main/germanyIcon.png"/><span>독일어</span></div></option>
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" src="/images/main/italyIcon.png"/><span>이탈리아어</span></div></option>
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" src="/images/main/portugalIcon.png"/><span>포르투갈어</span></div></option>
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" src="/images/main/russiaIcon.png"/><span>러시아어</span></div></option>
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" src="/images/main/japanIcon.png"/><span>일본어</span></div></option>
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" src="/images/main/chinaIcon.png"/><span>중국어</span></div></option>
+                <option><div class="selectBoxDiv"><div class="selectBoxImg" src="/images/main/southKoreaIcon.png"/><span>한국어</span></div></option>
+            </select>
+            <p class="selectTitle">관심사</p>
+            <input  name="interestingInput" id="interestingInput" class="loginInput" type="text" placeholder="관심사 입력"/>
+            <p class="selectTitle">성별</p>
+            <div id="radioSelect">
+                <div><input id="radio1" type="radio" name="gender" value="woman" /><label for="radio1">여성</label></div>
+                <div><input id="radio2" type="radio" name="gender" value="man" /><label for="radio2">남성</label></div>
+            </div>
+            <button type="submit">가입하기</button>
+            <!--<select id="msComboTest">
+                <option value="" data-image="/images/main/americaIcon.png" data-title="NULL">영어</option>
+                <option value="0" data-image="/images/main/spainIcon.png" data-title="BLANK">스페인어</option>
+            </select>-->
+
+        </form>
+    </section>
+
+    <div th:replace="/main/footer.html:: footerFirst"></div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!--<script  src="/js/member/dd.min.js"></script>
+<script  src="/js/member/ddmaker.js"></script>
+<script  src="/js/member/dd-webcomponent.js"></script>-->
+
+<script src="/js/member/joinForm.js" th:inline="javascript"></script>
+
+</html>
