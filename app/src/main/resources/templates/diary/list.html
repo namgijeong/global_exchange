@@ -8,202 +8,542 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    <link href="/css/diary/info.css" rel="stylesheet" type="text/css" />
+    <link href="/css/diary/list.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="app">
         <div class="appWrapper">
             <!-- header -->
+            <div th:replace="/main/header.html:: topHeader "></div>
+            <div th:replace="/main/header.html:: header "></div>
 
             <!-- main -->
             <div class="wrapper">
-                <div class="content-wrapper">
-                    <div class="diary-detail-container">
-                        <div class="header-section-wrapper">
-<!--                            <div class="image-wrapper">
-                                <img class="image" src="/images/bread.jpg" width="375">
-                            </div>-->
-
-                            <div class="image-input-box">
-                                <div class="files">
-                                    <div>
-                                        <label for="board_file1" style="display:inline;">
-                                            <img id="board_file1Img" src="/images/plusImage.png" width="110px" height="110px" style="display:inline;">
-                                        </label>
-                                    </div>
-                                    <input id="board_file1" name="board_file1" type="file" hidden>
-                                    <input type="button" onclick="cancelFile('board_file1')" value="첨부 삭제">
+                <div class="header">
+                    <span class="title">
+                        교환 일기
+                    </span>
+                </div>
+                <div class="category-filter-wrapper">
+                    <div class="category-list-wrapper">
+                        <a href="javscript:void(0)" class="category">
+                            교환 일기 목록
+                        </a>
+                        <a href="javscript:void(0)" class="category not-selected-category">
+                            교환 일기 파트너 찾기
+                        </a>
+                    </div>
+                    <div class="filter-button-wrapper">
+                        <div class="filter-open-button-wrapper">
+                            <button class="filter-button">
+                                필터
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="diary-list-wrapper">
+                    <div>
+                        <div class="profile-wrapper">
+                            <div class="partner-profile-wrapper">
+                                <div class="profile-image-wrapper">
+                                    <a href="javascript:void(0)">
+                                        <img src="/images/member/sample4.png" alt="교환일기 파트너 프로필 사진" class="profile-image">
+                                    </a>
+                                </div>
+                                <div class="member-text-wrapper">
+                                    <a href="javscript:void(0)">
+                                        <p class="name">John</p>
+                                    </a>
+                                    <div class="time">2022-11-20</div>
                                 </div>
                             </div>
-
-                            <div class="info-wrapper">
-                                <section class="date-info-section">
-                                    <div class="date-wrapper">
-                                        <input class="date-selector" id="dateSelector">
-                                    </div>
-                                </section>
-                                <section class="partner-profile-section">
-                                    <div class="profile-wrapper">
-                                        <div class="profile">
-                                            <div class="profile-info">
-                                                <div class="profile-image">
-                                                    <a href="javascript:void(0)">
-                                                        <div class="image-wrapper">
-                                                            <img class="profile-img-style" src="/images/defaultProfileImg.png">
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <div class="profile-content">
-                                                    <div class="partner-name-wrapper">
-                                                        <a href="javascript:void(0)">
-                                                            <span class="partner-nickname">
-                                                                Tom Cruise
-                                                            </span>
-                                                        </a>
-                                                    </div>
-                                                    <span class="partner-nation">
-                                                        미국
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <a href="javascript:void(0)">
-                                                <img class="nation-img-style" src="/images/americaIcon.png">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </section>
+                        </div>
+                        <div class="image-banner-wrapper">
+                            <img src="/images/member/bread.jpg" alt="일기 대표 사진" class="diary-image">
+                        </div>
+                        <a href="javascript:void(0)" class="diary-title-wrapper">
+                            <div class="diary-title-container">
+                                No Bread Day
+                            </div>
+                        </a>
+                        <div class="diary-content-wrapper">
+                            <span class="diary-content">
+                                Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (
+                            </span>
+                            <button class="expand-button">
+                                더보기
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="profile-wrapper">
+                            <div class="partner-profile-wrapper">
+                                <div class="profile-image-wrapper">
+                                    <a href="javascript:void(0)">
+                                        <img src="/images/member/sample4.png" alt="교환일기 파트너 프로필 사진" class="profile-image">
+                                    </a>
+                                </div>
+                                <div class="member-text-wrapper">
+                                    <a href="javscript:void(0)">
+                                        <p class="name">John</p>
+                                    </a>
+                                    <div class="time">2022-11-20</div>
+                                </div>
                             </div>
                         </div>
-                        <section class="section-container">
-                            <div class="section-title">
-                                <h2>교환 일기</h2>
+                        <div class="image-banner-wrapper">
+                            <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">
+                        </div>
+                        <a href="javascript:void(0)" class="diary-title-wrapper">
+                            <div class="diary-title-container">
+                                No Bread Day
                             </div>
-                            <div class="form-container">
-                                <form name="diaryForm">
-                                    <div class="input-container">
-                                        <div class="row">
-                                            <div class="col-left">
-                                                <div class="input-label-style">
-                                                    <span class="text-danger">*</span>
-                                                    <span class="input-subject">제목</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-right">
-                                                <div class="input-group">
-                                                    <input type="text" maxlength="40" required="required"
-                                                           placeholder="일기의 제목을 작성해주세요." class="input-text">
-                                                    </input>
-                                                    <div class="input-text-append">
-                                                        <span class="text-muted-container">
-                                                            <small class="text-muted"> 10 / 40</small>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="input-container">
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-left">
-                                                <div class="input-label-style">
-                                                    <span class="text-danger">*</span>
-                                                    <span class="input-subject">내용</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-right">
-                                                <div class="input-group">
-                                                    <textarea id="summernote" name="diaryContent"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="input-container">
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-left">
-                                                <div class="input-label-style">
-                                                    <span class="text-danger">*</span>
-                                                    <span class="input-subject">제목</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-right">
-                                                <div class="input-group">
-                                                    <input type="text" maxlength="40" required="required"
-                                                           placeholder="일기의 제목을 작성해주세요." class="input-text">
-                                                    </input>
-                                                    <div class="input-text-append">
-                                                        <span class="text-muted-container">
-                                                            <small class="text-muted"> 10 / 40</small>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </section>
+                        </a>
+                        <div class="diary-content-wrapper">
+                            <span class="diary-content">
+                                Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (
+                            </span>
+                            <button class="expand-button">
+                                더보기
+                            </button>
+                        </div>
                     </div>
+                    <div>
+                        <div class="profile-wrapper">
+                            <div class="partner-profile-wrapper">
+                                <div class="profile-image-wrapper">
+                                    <a href="javascript:void(0)">
+                                        <img src="/images/member/sample4.png" alt="교환일기 파트너 프로필 사진" class="profile-image">
+                                    </a>
+                                </div>
+                                <div class="member-text-wrapper">
+                                    <a href="javscript:void(0)">
+                                        <p class="name">Tom Cruse</p>
+                                    </a>
+                                    <div class="time">2022-11-20</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="image-banner-wrapper">
+                            <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">
+                        </div>
+                        <a href="javascript:void(0)" class="diary-title-wrapper">
+                            <div class="diary-title-container">
+                                No Bread Day
+                            </div>
+                        </a>
+                        <div class="diary-content-wrapper">
+                            <span class="diary-content">
+                                Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (
+                            </span>
+                            <button class="expand-button">
+                                더보기
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="profile-wrapper">
+                            <div class="partner-profile-wrapper">
+                                <div class="profile-image-wrapper">
+                                    <a href="javascript:void(0)">
+                                        <img src="/images/member/sample4.png" alt="교환일기 파트너 프로필 사진" class="profile-image">
+                                    </a>
+                                </div>
+                                <div class="member-text-wrapper">
+                                    <a href="javscript:void(0)">
+                                        <p class="name">Alisa Brown</p>
+                                    </a>
+                                    <div class="time">2022-11-20</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="image-banner-wrapper">
+                            <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">
+                        </div>
+                        <a href="javascript:void(0)" class="diary-title-wrapper">
+                            <div class="diary-title-container">
+                                No Bread Day
+                            </div>
+                        </a>
+                        <div class="diary-content-wrapper">
+                            <span class="diary-content">
+                                Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (
+                            </span>
+                            <button class="expand-button">
+                                더보기
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="profile-wrapper">
+                            <div class="partner-profile-wrapper">
+                                <div class="profile-image-wrapper">
+                                    <a href="javascript:void(0)">
+                                        <img src="/images/member/sample4.png" alt="교환일기 파트너 프로필 사진" class="profile-image">
+                                    </a>
+                                </div>
+                                <div class="member-text-wrapper">
+                                    <a href="javscript:void(0)">
+                                        <p class="name">Alisa Brown</p>
+                                    </a>
+                                    <div class="time">2022-11-20</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="image-banner-wrapper">
+                            <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">
+                        </div>
+                        <a href="javascript:void(0)" class="diary-title-wrapper">
+                            <div class="diary-title-container">
+                                No Bread Day
+                            </div>
+                        </a>
+                        <div class="diary-content-wrapper">
+                            <span class="diary-content">
+                                Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (
+                            </span>
+                            <button class="expand-button">
+                                더보기
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="profile-wrapper">
+                            <div class="partner-profile-wrapper">
+                                <div class="profile-image-wrapper">
+                                    <a href="javascript:void(0)">
+                                        <img src="/images/member/sample4.png" alt="교환일기 파트너 프로필 사진" class="profile-image">
+                                    </a>
+                                </div>
+                                <div class="member-text-wrapper">
+                                    <a href="javscript:void(0)">
+                                        <p class="name">Alisa Brown</p>
+                                    </a>
+                                    <div class="time">2022-11-20</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="image-banner-wrapper">
+                            <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">
+                        </div>
+                        <a href="javascript:void(0)" class="diary-title-wrapper">
+                            <div class="diary-title-container">
+                                No Bread Day
+                            </div>
+                        </a>
+                        <div class="diary-content-wrapper">
+                            <span class="diary-content">
+                                Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (
+                            </span>
+                            <button class="expand-button">
+                                더보기
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="profile-wrapper">
+                            <div class="partner-profile-wrapper">
+                                <div class="profile-image-wrapper">
+                                    <a href="javascript:void(0)">
+                                        <img src="/images/member/sample4.png" alt="교환일기 파트너 프로필 사진" class="profile-image">
+                                    </a>
+                                </div>
+                                <div class="member-text-wrapper">
+                                    <a href="javscript:void(0)">
+                                        <p class="name">Alisa Brown</p>
+                                    </a>
+                                    <div class="time">2022-11-20</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="image-banner-wrapper">
+                            <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">
+                        </div>
+                        <a href="javascript:void(0)" class="diary-title-wrapper">
+                            <div class="diary-title-container">
+                                No Bread Day
+                            </div>
+                        </a>
+                        <div class="diary-content-wrapper">
+                            <span class="diary-content">
+                                Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (
+                            </span>
+                            <button class="expand-button">
+                                더보기
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="profile-wrapper">
+                            <div class="partner-profile-wrapper">
+                                <div class="profile-image-wrapper">
+                                    <a href="javascript:void(0)">
+                                        <img src="/images/member/sample4.png" alt="교환일기 파트너 프로필 사진" class="profile-image">
+                                    </a>
+                                </div>
+                                <div class="member-text-wrapper">
+                                    <a href="javscript:void(0)">
+                                        <p class="name">Alisa Brown</p>
+                                    </a>
+                                    <div class="time">2022-11-20</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="image-banner-wrapper">
+                            <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">
+                        </div>
+                        <a href="javascript:void(0)" class="diary-title-wrapper">
+                            <div class="diary-title-container">
+                                No Bread Day
+                            </div>
+                        </a>
+                        <div class="diary-content-wrapper">
+                            <span class="diary-content">
+                                Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (
+                            </span>
+                            <button class="expand-button">
+                                더보기
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination-wrapper">
+                    <a class="change-page" href="javscript:void(0)">
+                        <code><</code>
+                    </a>
+                    <a class="change-page page-number" href="javascript:void(0)">
+                        <code>1</code>
+                    </a>
+                    <a class="change-page page-number not-selected" href="javascript:void(0)">
+                        <code>2</code>
+                    </a>
+                    <a class="change-page page-number not-selected" href="javascript:void(0)">
+                        <code>3</code>
+                    </a>
+                    <a class="change-page page-number not-selected" href="javascript:void(0)">
+                        <code>4</code>
+                    </a>
+                    <a class="change-page page-number not-selected" href="javascript:void(0)">
+                        <code>5</code>
+                    </a>
+                    <a class="change-page page-number not-selected" href="javascript:void(0)">
+                        <code>6</code>
+                    </a>
+                    <a class="change-page page-number not-selected" href="javascript:void(0)">
+                        <code>7</code>
+                    </a>
+                    <a class="change-page page-number not-selected" href="javascript:void(0)">
+                        <code>8</code>
+                    </a>
+                    <a class="change-page page-number not-selected" href="javascript:void(0)">
+                        <code>9</code>
+                    </a>
+                    <a class="change-page page-number not-selected" href="javascript:void(0)">
+                        <code>10</code>
+                    </a>
+                    <a class="change-page" href="javscript:void(0)">
+                        <code>></code>
+                    </a>
                 </div>
             </div>
 
             <!-- footer -->
+            <div th:replace="/main/footer.html:: footerFirst"></div>
         </div>
+    </div>
+
+    <div class="modal-container modal-overlay">
+        <div class="modal-flex">
+            <div class="modal-wrapper">
+                <header class="modal-header-wrapper">
+                    <div class="modal-country-header">
+                        <span class="modal-title">필터</span>
+                    </div>
+                    <button class="close-btn">
+                        <img src="/images/modal/x.svg" alt="닫기 버튼">
+                    </button>
+                </header>
+                <div class="modal-div-wrapper">
+                    <div class="modal-country-section">
+                        <div class="modal-country-select">
+                            <div>
+                                <div class="modal-country-name">정렬</div>
+                                <div class="modal-country-box">
+                                    <div class="modal-radio-input-wrapper">
+                                        <div class="modal-radio-input">
+                                            <label for="radioLatest" class="modal-label">
+                                                최신순
+                                                <div class="modal-radio">
+                                                    <div class="modal-radio-circle"></div>
+                                                </div>
+                                                <input name="filter" value="latest" type="radio" class="modal-input" id="radioLatest" checked>
+                                            </label>
+                                        </div>
+                                        <div class="modal-radio-input">
+                                            <label for="radioOldest" class="modal-label">
+                                                오래된순
+                                                <div class="modal-radio">
+                                                    <div class="modal-radio-circle"></div>
+                                                </div>
+                                                <input name="filter" value="oldest" type="radio" class="modal-input" id="radioOldest">
+                                            </label>
+                                        </div>
+                                        <div class="modal-radio-input">
+                                            <label for="radioComments" class="modal-label">
+                                                코멘트 많은 순
+                                                <div class="modal-radio">
+                                                    <div class="modal-radio-circle"></div>
+                                                </div>
+                                                <input name="filter" value="comments" type="radio" class="modal-input" id="radioComments">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="filter-title">
+                                    교환일기 파트너명
+                                </div>
+                                <div class="include-filter">
+                                    <label for="partnerNickname1" class="input-label">
+                                        John
+                                        <label for="partnerNickname1" class="checkbox-item-wrapper">
+                                            <div class="checkbox-item-box"></div>
+                                            <input type="checkbox" id="partnerNickname1" name="partnerNickname" value="John" class="checkbox-item" checked>
+                                        </label>
+                                    </label>
+                                </div>
+                                <div class="include-filter">
+                                    <label for="partnerNickname2" class="input-label">
+                                        Tom Cruse
+                                        <label for="partnerNickname2" class="checkbox-item-wrapper">
+                                            <div class="checkbox-item-box"></div>
+                                            <input type="checkbox" id="partnerNickname2" name="partnerNickname" value="Tom Cruse" class="checkbox-item" checked>
+                                        </label>
+                                    </label>
+                                </div>
+                                <div class="include-filter">
+                                    <label for="partnerNickname3" class="input-label">
+                                        Alisa Brown
+                                        <label for="partnerNickname3" class="checkbox-item-wrapper">
+                                            <div class="checkbox-item-box"></div>
+                                            <input type="checkbox" id="partnerNickname3" name="partnerNickname" value="Alisa Brown" class="checkbox-item" checked>
+                                        </label>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="modal-footer-wrapper">
+                    <button class="modal-footer-btn">적용하기</button>
+                </footer>
+            </div>
+        </div>
+        <div class="modal-color"></div>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-
-<!-- flatpickr -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
-<script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
-
-<!-- summernote -->
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-
 <script>
-    var dateSelector = document.querySelector('#dateSelector');
-    dateSelector.flatpickr();
+    // 더보기 버튼 클릭시 일기 전체 내용 보이기
+    const $expandButtons = $('.expand-button');
 
-    flatpickr.localize(flatpickr.l10ns.ko);
-    flatpickr(dateSelector);
+    $expandButtons.on('click', function () {
+        var content = $(this).prev().text();
+        var wrapper = $(this).closest('div');
 
-    dateSelector.flatpickr({
-        local: 'ko',
-        inline: true,
-        /* defaultDate: "2022-11-18", */
-/*        enable:[
-            "2022-11-18"
-        ]*/
-        maxDate: "2022-11-18"
+        wrapper.html(content);
     });
 
-    $('#summernote').summernote({
-        height: 300,                 // 에디터 높이
-        width: 700,
-        minHeight: 500,             // 최소 높이
-        maxHeight: null,             // 최대 높이
-        focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
-        lang: "ko-KR",					// 한글 설정
-        placeholder: '일기 내용을 작성해주세요.',	//placeholder 설정
-        toolbar: [
-            ['style', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
-            ['fontsize', ['fontsize']],
-            ['color', ['forecolor','backcolor', 'clear']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['view', ['help']]
-        ]
+    const modalContainer = document.querySelector(".modal-container");
+    const btnModal = document.querySelector(".filter-button");
+    const btnsRadio=document.querySelectorAll(".modal-input");
+    const CirclesRadio=document.querySelectorAll(".modal-radio-circle");
+
+    // 페이지네이션 마우스 올렸을 때 이벤트
+    const $pagenationAtags = $('.change-page');
+
+    $pagenationAtags.hover(function () {
+        $(this).css("background-color", 'rgb(229, 231, 234)');
+    }, function () {
+        $(this).css("background-color", 'transparent');
     });
 
-    // $('#summernote').summernote('disable');
 
-    // $('#summernote').summernote('enable');
+    // 모달창
+    // 부모스크롤 비활성화
+    const openModal = () => {
+        document.body.style.overflow = "hidden";
+    };
 
-/*    if ($('#summernote').summernote('isEmpty')) {
-        alert('editor content is empty');
-    }*/
+    // 부모스크롤 활성화
+    const closeModal = () => {
+        document.body.style.overflow = "unset";
+    };
 
-    // $('#summernote').summernote('reset');
+    btnModal.addEventListener("click", e => {
+        modalContainer.style.display = "flex";
+        openModal();
+    });
+
+    const closeBtn = modalContainer.querySelector(".close-btn")
+    closeBtn.addEventListener("click", e => {
+        modalContainer.style.display = "none";
+        closeModal();
+    });
+
+
+    // 필터 라디오
+    CirclesRadio[0].style.backgroundColor="#3377FF";
+
+    let prev;
+    btnsRadio.forEach((btnRadio,index)=>{
+        btnRadio.addEventListener("click",function(){
+
+            CirclesRadio[0].style.backgroundColor="white";
+
+            if(prev!=null){
+                prev.style.backgroundColor="white";
+            }
+
+            CirclesRadio[index].style.backgroundColor="#3377FF";
+            prev=CirclesRadio[index];
+        });
+    });
+
+
+    // 파트너 이름 체크박스
+    const $checkboxes = $('input[name=partnerNickname]');
+    const $checkboxItemBoxes = $('.checkbox-item-box');
+
+    $checkboxItemBoxes.css("background-image", 'url(/images/modal/checkboxFull.svg)');
+
+    $checkboxes.on("change", function () {
+        $checkboxes.each(function (index, item) {
+            if($(item).prop('checked')){
+                $(item).prev().css("background-image", 'url(/images/modal/checkboxFull.svg)');
+            } else{
+                $(item).prev().css("background-image", 'url(/images/modal/checkboxEmpty.svg)');
+            }
+        });
+    });
 </script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

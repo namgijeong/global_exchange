@@ -114,7 +114,7 @@ hr {
     -webkit-box-pack: justify;
     justify-content: space-between;
     max-width: 768px;
-    padding-bottom: 24px;
+    padding-bottom: 15px;
 }
 
 .header-section-wrapper > * {
@@ -135,7 +135,7 @@ hr {
     object-fit: cover;
 }
 
-.image-input-box {
+/*.image-input-box {
     width: 375px;
     height: 375px;
     background-color: transparent;
@@ -144,7 +144,7 @@ hr {
     align-items: center;
     min-height: 15rem;
     border-radius: 5px;
-}
+}*/
 
 .image-text-container {
     position: absolute;
@@ -166,7 +166,7 @@ hr {
 .date-info-section {
     height: 100%;
     position: relative;
-    padding: 0px 0px 12px;
+    padding: 0px 0px 18px;
     border-bottom: initial;
 }
 
@@ -182,9 +182,9 @@ hr {
 }
 
 .partner-profile-section {
-    border-top: 1px solid red /*rgb(238, 238, 238)*/;
+    border-top: 1px solid rgb(238, 238, 238);
     padding-right: 12px;
-/*    padding-top: 24px;*/
+    padding-top: 10px;
     line-height: 1.8;
     font-size: 14px;
     background-color: rgb(255, 255, 255);
@@ -268,7 +268,7 @@ hr {
 
 .section-container {
     padding: 40px 0px;
-    border-top: 1px solid red /* rgb(238, 238, 238)*/;
+    border-top: 1px solid rgb(238, 238, 238);
     border-bottom: none;
 }
 

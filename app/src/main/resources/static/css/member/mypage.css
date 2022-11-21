@@ -234,14 +234,11 @@ button, input, optgroup, select, textarea {
     font-size: 10px;
 }
 
-.frip-button:not(:last-child) {
-    margin-right: 0.5rem;
-}
-
 .frip-button:hover {
     box-shadow: none;
     transform: translateY(-1px);
     text-decoration: none;
+    cursor: pointer;
 }
 
 .frip-button {
@@ -252,25 +249,11 @@ button, input, optgroup, select, textarea {
     text-align: center;
     vertical-align: middle;
     border: 1px solid transparent;
-    padding: 0.875rem 2rem;
+    padding: 0.875rem 1rem;
     line-height: 1.5;
     border-radius: 0.375rem;
+    margin-right: 0.5rem;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .table-base {
     width: auto;

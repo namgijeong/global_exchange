@@ -8,9 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/diary/*")
 public class DiaryController {
 
+    // 일기 목록 페이지
+    @GetMapping("/list")
+    public void list(){
+
+    }
+
     // 일기 상세 페이지
     @GetMapping("/detail")
-    public void main(){
+    public void detail(){
 
     }
 

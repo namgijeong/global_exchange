@@ -12,15 +12,17 @@
     <div id="app">
         <div class="appWrapper">
             <!-- header -->
+            <div th:replace="/main/header.html:: topHeader "></div>
+            <div th:replace="/main/header.html:: header "></div>
 
             <!-- main -->
             <div class="page-wrapper">
                 <div class="mypage-user-info-wrapper">
                     <a href="javascript:void(0)" class="user-info-wrapper">
-                        <img class="user-info-image" src="/images/defaultProfileImg.png" alt="프로필 이미지">
+                        <img class="user-info-image" src="/images/member/sample5.png" alt="프로필 이미지">
                         <div class="user-info-text-wrapper">
                             <div id="memberNickName" class="user-info-nickname">
-                                제이슨
+                                Jason Me
                             </div>
                             <div id="memberAccountType" class="user-info-account">
                                 구글 계정
@@ -60,12 +62,16 @@
                         <div class="partner-info-wrapper">
                             <div class="partner-info-container">
                                 <div class="partner-profile-image-wrapper">
-                                    <img class="partner-profile-image" src="/images/defaultProfileImg.png" alt="파트너 프로필 이미지">
+                                    <a href="javascript:void(0)">
+                                        <img class="partner-profile-image" src="/images/member/sample2.png" alt="파트너 프로필 이미지">
+                                    </a>
                                 </div>
                                 <div class="partner-meta-data">
-                                    <div id="partnerNickname" class="partner-meta-data-title">
-                                        Tom Cruse
-                                    </div>
+                                    <a href="javascript:void(0)">
+                                        <div id="partnerNickname" class="partner-meta-data-title">
+                                            Tom Cruse
+                                        </div>
+                                    </a>
                                     <div class="partner-meta-data-row">
                                         <div class="partner-meta-data-nation">
                                             미국
@@ -78,15 +84,19 @@
                         <div class="partner-info-wrapper">
                             <div class="partner-info-container">
                                 <div class="partner-profile-image-wrapper">
-                                    <img class="partner-profile-image" src="/images/defaultProfileImg.png" alt="파트너 프로필 이미지">
+                                    <a href="javascript:void(0)">
+                                        <img class="partner-profile-image" src="/images/member/sample3.png" alt="파트너 프로필 이미지">
+                                    </a>
                                 </div>
                                 <div class="partner-meta-data">
-                                    <div id="partnerNickname" class="partner-meta-data-title">
-                                        Tom Cruse
-                                    </div>
+                                    <a href="javascript:void(0)">
+                                        <div id="partnerNickname" class="partner-meta-data-title">
+                                            John
+                                        </div>
+                                    </a>
                                     <div class="partner-meta-data-row">
                                         <div class="partner-meta-data-nation">
-                                            미국
+                                            영국
                                         </div>
                                     </div>
                                 </div>
@@ -96,15 +106,19 @@
                         <div class="partner-info-wrapper">
                             <div class="partner-info-container">
                                 <div class="partner-profile-image-wrapper">
-                                    <img class="partner-profile-image" src="/images/defaultProfileImg.png" alt="파트너 프로필 이미지">
+                                    <a href="javascript:void(0)">
+                                        <img class="partner-profile-image" src="/images/member/sample1.png" alt="파트너 프로필 이미지">
+                                    </a>
                                 </div>
                                 <div class="partner-meta-data">
-                                    <div id="partnerNickname" class="partner-meta-data-title">
-                                        Tom Cruse
-                                    </div>
+                                    <a href="javascript:void(0)">
+                                        <div id="partnerNickname" class="partner-meta-data-title">
+                                            Alice Brown
+                                        </div>
+                                    </a>
                                     <div class="partner-meta-data-row">
                                         <div class="partner-meta-data-nation">
-                                            미국
+                                            뉴질랜드
                                         </div>
                                     </div>
                                 </div>
@@ -135,11 +149,23 @@
             </div>
 
             <!-- footer -->
+            <div th:replace="/main/footer.html:: footerFirst"></div>
         </div>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
+    const $buttons = $('.frip-button');
+
+    $buttons.on("click", function () {
+        var result = confirm('교환일기 파트너를 끊으시겠습니까?');
+
+        if(result){
+            location.href='#';
+        }else{
+            return;
+        }
+    })
 </script>
 </html>
 

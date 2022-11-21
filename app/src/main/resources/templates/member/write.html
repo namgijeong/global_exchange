@@ -6,12 +6,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link href="/css/member/detail.css" rel="stylesheet" type="text/css" />
+    <link href="/css/member/write.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="app">
         <div class="appWrapper">
             <!-- header -->
+            <div th:replace="/main/header.html:: topHeader "></div>
+            <div th:replace="/main/header.html:: header "></div>
 
             <!-- main -->
             <header class="header-container">
@@ -29,70 +31,70 @@
                         <div class="top">
                             <article class="image-container">
                                 <label for="profileImage">
-                                    <img src="/images/sample5.png" alt="프로필 이미지" class="profile-image">
+                                    <img src="/images/member/sample5.png" alt="프로필 이미지" class="profile-image">
                                     <div class="image-camera-container">
-                                        <img src="/images/camera.png" class="camera-image">
+                                        <img src="/images/member/camera.png" class="camera-image">
                                     </div>
                                 </label>
                                 <input type="file" name="profileImage" id="profileImage" class="file-input" disabled>
                             </article>
-                            <button class="save-button">수정</button>
+                            <button class="save-button">저장</button>
                         </div>
                         <article class="input-container">
                             <div>
                                 <label for="memberNickname" class="input-label">닉네임</label>
-                                <input type="text" id="memberNickname" name="memberNickname" class="input-style" value="Jason" disabled>
+                                <input type="text" id="memberNickname" name="memberNickname" class="input-style" value="Jason Me">
                             </div>
                             <div>
                                 <label for="memberPhoneNumber" class="input-label">휴대폰 번호</label>
-                                <input type="text" id="memberPhoneNumber" name="memberPhoneNumber" class="input-style" value="010-1111-2222" disabled>
+                                <input type="text" id="memberPhoneNumber" name="memberPhoneNumber" class="input-style" value="010-1111-2222">
                             </div>
                             <div>
                                 <label for="memberEmail" class="input-label">이메일</label>
-                                <input type="text" id="memberEmail" name="memberEmail" class="input-style" value="abc@google.com" disabled>
+                                <input type="text" id="memberEmail" name="memberEmail" class="input-style" value="abc@google.com">
                             </div>
                             <div>
                                 <label for="memberBirthday" class="input-label">생년월일</label>
-                                <input type="text" id="memberBirthday" name="memberBirthday" class="input-style" value="901010"disabled>
+                                <input type="text" id="memberBirthday" name="memberBirthday" class="input-style" value="901010">
                             </div>
                             <div>
                                 <label for="memberMotherTongue" class="input-label">모국어</label>
-                                <select name="memberMotherTongue" id="memberMotherTongue" class="input-style" disabled>
-                                    <option value="영어">영어</option>
-                                    <option value="스페인어">스페인어</option>
-                                    <option value="프랑스어">프랑스어</option>
-                                    <option value="독일어">독일어</option>
-                                    <option value="이탈리아어">이탈리아어</option>
-                                    <option value="포르투갈어">포르투갈어</option>
-                                    <option value="러시아어">러시아어</option>
-                                    <option value="일본어">일본어</option>
-                                    <option value="중국어">중국어</option>
-                                    <option value="한국어" selected>한국어</option>
+                                <select name="memberMotherTongue" id="memberMotherTongue" class="input-style">
+                                    <option value="eng">영어</option>
+                                    <option value="spain">스페인어</option>
+                                    <option value="france">프랑스어</option>
+                                    <option value="germany">독일어</option>
+                                    <option value="italy">이탈리아어</option>
+                                    <option value="portugal">포르투갈어</option>
+                                    <option value="russia">러시아어</option>
+                                    <option value="japan">일본어</option>
+                                    <option value="china">중국어</option>
+                                    <option value="korea" selected>한국어</option>
                                 </select>
                             </div>
                             <div>
                                 <label for="memberWantToLearnLanguage" class="input-label">배우고 싶은 언어</label>
-                                <select name="memberWantToLearnLanguage" id="memberWantToLearnLanguage" class="input-style" disabled>
-                                    <option value="영어" selected>영어</option>
-                                    <option value="스페인어">스페인어</option>
-                                    <option value="프랑스어">프랑스어</option>
-                                    <option value="독일어">독일어</option>
-                                    <option value="이탈리아어">이탈리아어</option>
-                                    <option value="포르투갈어">포르투갈어</option>
-                                    <option value="러시아어">러시아어</option>
-                                    <option value="일본어">일본어</option>
-                                    <option value="중국어">중국어</option>
-                                    <option value="한국어">한국어</option>
+                                <select name="memberWantToLearnLanguage" id="memberWantToLearnLanguage" class="input-style">
+                                    <option value="eng" selected>영어</option>
+                                    <option value="spain">스페인어</option>
+                                    <option value="france">프랑스어</option>
+                                    <option value="germany">독일어</option>
+                                    <option value="italy">이탈리아어</option>
+                                    <option value="portugal">포르투갈어</option>
+                                    <option value="russia">러시아어</option>
+                                    <option value="japan">일본어</option>
+                                    <option value="china">중국어</option>
+                                    <option value="korea">한국어</option>
                                 </select>
                             </div>
                             <div>
                                 <label for="memberInterest" class="input-label">관심사</label>
-                                <input type="text" id="memberInterest" name="memberInterest" class="input-style" value="등산"disabled>
+                                <input type="text" id="memberInterest" name="memberInterest" class="input-style" value="등산">
                             </div>
                             <div>
                                 <label for="memberIntroduction" class="input-label">자기소개</label>
                                 <textarea id="memberIntroduction" name="memberIntroduction" placeholder="간단한 자기 소개를 작성해주세요."
-                                wrap="soft" maxlength="500" class="text-area-style input-style" disabled>
+                                wrap="soft" maxlength="500" class="text-area-style input-style">
 안녕하세요 전 서울에 사는 Jason입니다. Hello I'm Jason.
                                 </textarea>
                                 <small class="character-count">0/500</small>
@@ -108,12 +110,13 @@
             </section>
 
             <!-- footer -->
+            <div th:replace="/main/footer.html:: footerFirst"></div>
         </div>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
-    $("input[type=file]").change(function(e){
+/*    $("input[type=file]").change(function(e){
         var file = this;
         var image = document.querySelector('.profile-image');
         var reader = new FileReader();
@@ -130,7 +133,7 @@
                 return;
             }
         }
-    });
+    });*/
 
 /*    $(".files").change(function(e){
         var file = e.target.files[0];
