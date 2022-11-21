@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Global Exchange</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+          rel="stylesheet">
+    <link href="/css/aaa/bbb.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/main/header.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/main/footer.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/notice/notice.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div>
+    <!-- header -->
+    <header>
+        <div id="topHeader">
+            <div>
+                <div id="topHeaderText">
+                    <span class="top-header-button" id="joinMember">회원가입</span>
+                    <span class="top-header-button" id="login">로그인</span>
+                    <span class="top-header-button">자주 묻는 질문</span>
+                    <span class="top-header-button">공지사항</span>
+                    <span class="top-header-button">마이페이지</span>
+                </div>
+            </div>
+        </div>
+        <div id="header">
+            <div>
+                <a id="logo"><img
+                        src="data:image/svg+xml,%3Csvg width='850' height='203' viewBox='0 0 850 203' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cg clip-path='url(%23clip0_2463_9412)'%3E %3Cpath d='M67.33 129.28L54.5 202.02H0L35.63 0.0200195H253.06L245.91 40.6H83L74.41 89.3H237.29L230.29 129.3L67.33 129.28Z' fill='%238521FF'/%3E %3Cpath d='M507.63 202.02L543.22 0.0200195H597.71L562.13 202.02H507.63Z' fill='%238521FF'/%3E %3Cpath d='M725.64 129.28H660.77L648 202.02H594.37L630 0.0200195H799.89C835.55 0.0200195 850.04 5.82002 850.04 27.27C849.934 32.1452 849.351 36.9983 848.3 41.76L839.6 87.27C832.6 121.77 818.15 129.01 783.37 129.27L725.64 129.28ZM794.34 44.93C794.509 44.2759 794.607 43.6053 794.63 42.93C794.63 40.03 792.89 39.45 788.84 39.45H676.63L667.85 89.31H779.27C784.2 89.31 785.94 88.44 786.81 83.51L794.34 44.93Z' fill='%238521FF'/%3E %3Cpath d='M455.2 0.0200195H285.31L249.68 202.02H303.31L316.12 129.26H381L429.11 202.02H489.41L438.68 129.26C473.46 128.97 487.96 121.73 494.91 87.26L503.61 41.75C504.662 36.9884 505.245 32.1352 505.35 27.26C505.35 5.80001 490.85 0.0200195 455.2 0.0200195ZM449.69 44.95L442.16 83.5C441.29 88.43 439.55 89.3 434.62 89.3H341.73L318.26 117.3L323.2 89.3L332 39.42H444.19C448.19 39.42 449.98 40 449.98 42.9C449.959 43.5853 449.862 44.2662 449.69 44.93V44.95Z' fill='%238521FF'/%3E %3C/g%3E %3Cdefs%3E %3CclipPath id='clip0_2463_9412'%3E %3Crect width='850' height='202.04' fill='white'/%3E %3C/clipPath%3E %3C/defs%3E %3C/svg%3E"/></a>
+                <form id="searchSection">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23AAA' stroke-width='2' d='M11 17c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zM15 15l4.95 4.95'/%3E %3C/svg%3E"/>
+                    <input name="searchKeyWord" placeholder="어떤 게시글을 찾으시나요?"/>
+                </form>
+                <a id="diary">
+                    <div class="header-icon"><img src="/images/diaryIcon.png"/></div>
+                    <span class="header-icon-text">교환일기</span></a>
+                <a id="meetAndHelp">
+                    <div class="header-icon"><img src="/images/meetIcon.png"/></div>
+                    <span class="header-icon-text">만남과 도움</span></a>
+                <a id="guestHouse">
+                    <div class="header-icon"><img src="/images/accomodationIcon.png"/></div>
+                    <span class="header-icon-text">숙소가 필요해</span></a>
+            </div>
+        </div>
+    </header>
+    <!-- section -->
+    <div id="root">
+        <h1>공지사항</h1>
+        <div id="noticeAll">
+            <span>전체</span>
+        </div>
+        <ul id="noticeList">
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">프립톡 서비스 종료 안내(11/23 종료)
+                        <span>New</span>
+                    </div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content">
+                    <div class="notice-content-text">
+                        안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요
+                        안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">고객센터 상담 서비스 일부 변경 안내</div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content">
+                    <div class="notice-content-text">
+                        안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요
+                        안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">카카오톡 연계 서비스 장애 관련 안내 (10/17 18:00 정상화)</div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content">
+                    <div class="notice-content-text">
+                        안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요
+                        안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">10월 공휴일 (10/3,9,10) 고객센터 운영시간 안내</div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content"></div>
+            </li>
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">iOS 최소 지원 버전 업데이트 안내</div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content"></div>
+            </li>
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">프립톡 서비스 종료 안내(11/23 종료)</div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content"></div>
+            </li>
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">고객센터 상담 서비스 일부 변경 안내</div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content"></div>
+            </li>
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">카카오톡 연계 서비스 장애 관련 안내 (10/17 18:00 정상화)</div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content"></div>
+            </li>
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">10월 공휴일 (10/3,9,10) 고객센터 운영시간 안내</div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content"></div>
+            </li>
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">iOS 최소 지원 버전 업데이트 안내</div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content"></div>
+            </li>
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">프립톡 서비스 종료 안내(11/23 종료)</div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content"></div>
+            </li>
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">고객센터 상담 서비스 일부 변경 안내</div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content"></div>
+            </li>
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">카카오톡 연계 서비스 장애 관련 안내 (10/17 18:00 정상화)</div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content"></div>
+            </li>
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">10월 공휴일 (10/3,9,10) 고객센터 운영시간 안내</div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content"></div>
+            </li>
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">iOS 최소 지원 버전 업데이트 안내</div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content"></div>
+            </li>
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">프립톡 서비스 종료 안내(11/23 종료)</div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content"></div>
+            </li>
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">고객센터 상담 서비스 일부 변경 안내</div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content"></div>
+            </li>
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">카카오톡 연계 서비스 장애 관련 안내 (10/17 18:00 정상화)</div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content"></div>
+            </li>
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">10월 공휴일 (10/3,9,10) 고객센터 운영시간 안내</div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content"></div>
+            </li>
+            <li>
+                <div class="notice-wrapper">
+                    <div class="notice-mark">공지</div>
+                    <div class="notice-title">iOS 최소 지원 버전 업데이트 안내</div>
+                    <div class="notice-date">2022-11-17 16:22</div>
+                </div>
+                <div class="notice-content"></div>
+            </li>
+        </ul>
+        <div id="pageNation">
+            <div class="prev-button-group">
+                <button class="arrow-button">
+                    <img src="/images/notice/firstPageArrow.svg" class="arrow-img">
+                </button>
+                <button class="arrow-button">
+                    <img src="/images/notice/prevArrow.svg" class="arrow-img">
+                </button>
+            </div>
+            <button class="page-button first-page">1</button>
+            <button class="page-button">2</button>
+            <button class="page-button">3</button>
+            <button class="page-button">4</button>
+            <button class="page-button">5</button>
+            <button class="page-button">6</button>
+            <button class="page-button">7</button>
+            <button class="page-button">8</button>
+            <button class="page-button">9</button>
+            <button class="page-button">10</button>
+            <div class="next-button-group">
+                <button class="arrow-button">
+                    <img src="/images/notice/nextArrow.svg" class="arrow-img">
+                </button>
+                <button class="arrow-button">
+                    <img src="/images/notice/lastPageArrow.svg" class="arrow-img">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <div id="footerFirst">
+            <div id="footerSecond">
+                <div id="footerBig">
+                    <div>문의사항</div>
+                    <div>관리자이메일:kjnam2009@naver.com</div>
+                </div>
+                <div id="footerMiddle">
+                    <div>운영시간:평일/주말10:00~17:00(점심:12:00-13:00)</div>
+                </div>
+                <div id="footerSmall">
+                    <div id="footerSmallTitle">
+                        <div>Spring봄</div>
+                    </div>
+                    <div>(주)스프링봄</div>
+                    <div>통신판매업신고번호:2016-서울강남</div>
+                    <div>서울시 역삼역 코리아 it아카데미 강남</div>
+                    <div>(주)스프링봄은 영리를 목적으로 하는게 아니며 통신중개자입니다.</div>
+                    <div>(주)스프링봄은 행복한 it업계를 지향합니다.</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/notice/notice.js"></script>
+</html>
