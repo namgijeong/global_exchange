@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>diary detail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="/css/member/mypage.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="app">
+        <div class="appWrapper">
+            <!-- header -->
+
+            <!-- main -->
+            <div class="page-wrapper">
+                <div class="mypage-user-info-wrapper">
+                    <a href="javascript:void(0)" class="user-info-wrapper">
+                        <img class="user-info-image" src="/images/defaultProfileImg.png" alt="프로필 이미지">
+                        <div class="user-info-text-wrapper">
+                            <div id="memberNickName" class="user-info-nickname">
+                                제이슨
+                            </div>
+                            <div id="memberAccountType" class="user-info-account">
+                                구글 계정
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="mypage-user-property-container">
+                    <div>
+                        <div class="user-property-title">
+                            파트너와 나누고 있는 교환일기 수
+                        </div>
+                        <div class="user-property-value">
+                            3
+                        </div>
+                    </div>
+                    <div>
+                        <div class="user-property-title">
+                            내가 작성한<br> 게시글 수
+                        </div>
+                        <div class="user-property-value">
+                            10
+                        </div>
+                    </div>
+                    <div>
+                        <div class="user-property-title">
+                            내가 작성한<br> 답글 수
+                        </div>
+                        <div class="user-property-value">
+                            9
+                        </div>
+                    </div>
+                </div>
+                <div class="mypage-domain-wrapper">
+                    <header>교환일기 파트너 목록</header>
+                    <div class="mypage-partner-list-wrapper">
+                        <div class="partner-info-wrapper">
+                            <div class="partner-info-container">
+                                <div class="partner-profile-image-wrapper">
+                                    <a href="javascript:void(0)">
+                                        <img class="partner-profile-image" src="/images/defaultProfileImg.png" alt="파트너 프로필 이미지">
+                                    </a>
+                                </div>
+                                <div class="partner-meta-data">
+                                    <a href="javascript:void(0)">
+                                        <div id="partnerNickname" class="partner-meta-data-title">
+                                            Tom Cruse
+                                        </div>
+                                    </a>
+                                    <div class="partner-meta-data-row">
+                                        <div class="partner-meta-data-nation">
+                                            미국
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="frip-button">파트너 끊기</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="mypage-domain-wrapper">
+                    <header>고객센터</header>
+                    <a href="javascript:void(0)">
+                        <div class="table-base">
+                            <div class="table-row-content-wrapper">
+                                <div class="table-row-title">공지사항</div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <div class="table-base">
+                            <div class="table-row-content-wrapper">
+                                <div class="table-row-title">문의사항 작성하기</div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- footer -->
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    const $buttons = $('.frip-button');
+
+    $buttons.on("click", function () {
+        var result = confirm('교환일기 파트너를 끊으시겠습니까?');
+
+        if(result){
+            location.href='#';
+        }else{
+            return;
+        }
+    })
+</script>
+</html>
+
+
+
+
+
