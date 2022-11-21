@@ -1,4 +1,3 @@
-
 package com.globalexchange.app.controller;
 
 import org.springframework.stereotype.Controller;
@@ -13,12 +12,34 @@ public class MemberController {
     public void join(){
 
     }
+
     @GetMapping("/joinForm")
     public void joinForm(){
 
     }
+
     @GetMapping("/login")
     public void login(){
 
     }
+
+    // 마이페이지 메인
+    @GetMapping("/mypage")
+    public void mypage(){
+
+    }
+
+    // 마이페이지 상세보기
+    @GetMapping("/detail")
+    public void detail(){
+
+    }
+
+    // 마이페이지 수정
+    @GetMapping("/write")
+    public void write(){
+
+    }
+
+
 }

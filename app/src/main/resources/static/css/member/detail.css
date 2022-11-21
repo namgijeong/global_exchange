@@ -1,0 +1,260 @@
+html, body {
+    width: 100%;
+    font-size: 14px;
+    color: black;
+    word-break: normal;
+    overflow-wrap: break-word;
+}
+
+html {
+    box-sizing: border-box;
+    cursor: default;
+    font-family: sans-serif;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    -webkit-locale: "ko";
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+/*    overflow-x:hidden;
+    overflow-y:auto;*/
+}
+
+* {
+    outline: none;
+    font-family: inherit;
+}
+
+*, ::before, ::after {
+    background-repeat: no-repeat;
+    box-sizing: inherit;
+}
+
+img {
+    border-style: none;
+
+}
+
+audio, canvas, iframe, img, svg, video {
+    vertical-align: middle;
+}
+
+article, aside, details, figcaption, figure, footer, header, main, menu, nav, section, summary {
+    display: block;
+}
+
+div {
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+form {
+    display: block;
+    margin-top: 0em;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+    padding-bottom: 3rem;
+}
+
+button, input {
+    overflow: visible;
+}
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+}
+
+select:disabled {
+    opacity: inherit;
+}
+
+#app {
+    background-color: white;
+    min-height: 100%;
+    min-width: 100%;
+}
+
+.appWrapper {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    min-height: 100vh;
+}
+
+.header-container {
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.page-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    align-content: flex-start;
+    margin: 0px auto;
+    max-width: 808px;
+    width: 100%;
+    padding: 0px 20px;
+    min-height: 1px;
+}
+
+.page-between-title-container {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    margin: 20px 0px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+.title {
+    color: rgb(51, 51, 51);
+    font-size: 24px;
+    line-height: 24px;
+}
+
+.info-container {
+    margin: 24px 0px 0px;
+}
+
+.top {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    line-height: 24px;
+}
+
+.image-container {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    margin: 0px 0px 16px;
+    border-radius: 100%;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.image-camera-container {
+    position: absolute;
+    bottom: 0px;
+    right: -3px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+/*    border: 1px solid rgb(51, 51, 51);*/
+    background-color: white;
+    cursor: pointer;
+}
+
+.camera-image {
+    width: 18px;
+    height: 16px;
+}
+
+.file-input {
+    display: none;
+}
+
+.save-button {
+    color: rgb(0, 117, 239);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    background-color: transparent;
+    border-style: none;
+    margin: 0;
+    cursor: pointer;
+}
+
+.input-container > div {
+    margin: 0px 0px 16px;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: 6px;
+    color: rgb(102, 102, 102);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: -0.03em;
+    text-align: left;
+}
+
+.input-style {
+    width: 100%;
+    border: 1px solid rgb(238, 238, 238);
+    box-sizing: border-box;
+    border-radius: 3px;
+    padding: 14px 14px 12px;
+    background: rgb(250, 250, 250);
+    color: rgb(17, 17, 17);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.03em;
+    text-align: left;
+}
+
+.input-style:disabled {
+    background: rgb(238, 238, 238);
+    color: rgb(170, 170, 170);
+}
+
+.text-area-style {
+    resize: none;
+    overflow-y: scroll;
+    height: 150px;
+}
+
+.character-count {
+    color: #999;
+    display: block;
+    margin-top: 0.25rem;
+}
+
+.member-delete {
+    display: block;
+    margin-bottom: 6px;
+    color: rgb(102, 102, 102);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: -0.03em;
+    text-align: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
