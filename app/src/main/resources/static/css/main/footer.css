@@ -6,7 +6,8 @@
 }
 
 #footerFirst{
-    width:1519px;
+    width:100%;
+    /*width:1519px;*/
     height:500px;
 
     padding:40px 20px 96px;

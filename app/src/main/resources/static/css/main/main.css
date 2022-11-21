@@ -1,0 +1,194 @@
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#home{
+
+    width: 808px;
+
+    margin: 0 auto;
+    padding: 0 20px;
+    /*background-color: beige;*/
+}
+
+section.container{
+    position:relative;
+    width:768px;
+    height:307px;
+    margin:0 auto;
+
+
+   overflow:hidden;
+}
+div.banner{
+    width:6144px;
+    height:100%;
+}
+div.banner div{
+    width:768px;
+    /*display:flex;해도 된다*/
+    float:left;
+    /*transition:transform 0.5s;*/
+}
+.arrow{
+    position:absolute;
+    width:80px;
+    height:80px;
+
+    transform: translateY(-50%);
+
+    font-size:3rem;
+    background-color:#0000002e;
+
+    cursor:pointer;
+    border-radius:50%;
+    text-align:center;
+
+    top:43%;
+    line-height:72px;
+    z-index:1;
+}
+
+.prev{
+    left:80px;
+}
+.next{
+    right:80px;
+}
+
+#nationalIconList{
+    width:768px;
+    height:103px;
+
+    margin:0 0 12px;
+
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+}
+
+#nationalIconList>div{
+    width:60px;
+    height:83px;
+}
+#nationalIconList>div>img{
+    width:60px;
+    height:60px;
+
+    border-style: none;
+    border-radius: 5px;
+}
+#nationalIconList>div>span{
+    display:inline-block;
+    width:60px;
+    height:16px;
+
+    margin-top:7px;
+
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+
+    font-size: 8px;
+    line-height: 16px;
+    color: rgb(170, 170, 170);
+}
+
+.previewContents{
+    width:768px;
+    height:400px;
+
+    padding:0 0 18px;
+}
+.previewContentsHeader{
+    width:768px;
+    height:22px;
+
+    margin:0 0 30px;
+
+    display:flex;
+}
+.previewContentsHeaderTitle{
+    display:inline-block;
+
+    width:250px;
+    height:22px;
+}
+.previewContentsHeaderTitleText{
+    width:250px;
+    height:22px;
+
+    font-size:18px;
+    font-weight: bold;
+    color: black;
+    text-overflow: ellipsis;
+}
+.previewContentsLink{
+    margin-left:450px;
+
+    width:53px;
+    height:17px;
+
+    color:black;
+    font-size:14px;
+
+}
+.previewContentsMain{
+    width:768px;
+    height:323px;
+
+    display:flex;
+}
+.previewContentMain{
+    width:192px;
+    height:323px;
+
+}
+.previewContentImage{
+    width:180px;
+    height:180px;
+}
+.previewContentText{
+    width:180px;
+    height:106px;
+
+    padding:10px 13px 0px 11px;
+}
+.previewContentHelp{
+    color: rgb(119, 119, 119);
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 14px;
+    margin: 0px 0px 8px;
+}
+.previewContentTitle{
+    width:156px;
+    height:40px;
+
+    margin:0px 0px 9px;
+
+    font-size:14px;
+    color:black;
+
+
+    overflow:hidden;
+    text-overflow: ellipsis;
+    /*블록컨테이너의 콘텐츠를 지정한 줄 수만큼 제한*/
+    -webkit-line-clamp: 2;
+    /*문자쌍따옴표사이는 줄바꿈안하기*/
+    word-break: keep-all;
+    /*크기를 벗어나면 글자가 줄바꿈*/
+    overflow-wrap: break-word;
+
+
+}
+.previewContentAnswerCount{
+    width:156px;
+    height:16px;
+
+
+}
+.previewContentAnswerCount span{
+    font-size:10px;
+    color:#333333;
+}

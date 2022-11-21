@@ -1,0 +1,122 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+#selectJoin{
+    width:360px;
+    margin:70px auto;
+    padding: 30px 50px;
+}
+#selectJoin>div:nth-child(1){
+    width:100%;
+    height:36px;
+
+    color:#333333;
+    font-size:24px;
+    font-weight:bold;
+
+    text-align:center;
+}
+
+#selectJoin>div:nth-child(2){
+    width:100%;
+    height:40px;
+    margin:5px 0px 0px;
+
+    color:#999999;
+    font-size:14px;
+    font-weight:bold;
+
+    text-align:center;
+}
+#startGoogle{
+    width:100%;
+    height:48px;
+
+    margin:20px 0px;
+    padding:0px 13px;
+
+    color:#333333;
+    font-size:16px;
+
+    border:1px solid rgb(238, 238, 238);
+    background-color:#ffffff;
+    border-radius: 10px;
+
+    text-align:center;
+}
+#startGoogle>img{
+    width:30px;
+    height:30px;
+
+    vertical-align:middle;
+}
+#startGoogle>span{
+    margin-left:10px;
+    width:100px;
+    height:30px;
+    line-height:30px;
+
+    vertical-align:middle;
+}
+#selectJoin>div:nth-child(4){
+    width:260px;
+    height:48px;
+
+    display:flex;
+}
+
+#startEmail{
+    width:130px;
+    height:100%;
+
+    text-align: center;
+    cursor: pointer;
+
+    border: 1px solid rgb(238, 238, 238);
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    background-color:white;
+}
+
+#startEmail>img{
+    width:18px;
+    height:14px;
+
+    vertical-align:middle;
+}
+#startEmail>span{
+
+
+    display:inline-block;
+    width:100px;
+    height:14px;
+
+    font-size:12px;
+
+    vertical-align:middle;
+}
+#goLogin{
+    margin-left:10px;
+    width:120px;
+    height:48px;
+
+    font-size:14px;
+
+    vertical-align:middle;
+    text-align:center;
+
+    cursor: pointer;
+
+    border: 1px solid rgb(238, 238, 238);
+    border-radius: 10px;
+
+    background-color:white;
+}
