@@ -10,8 +10,13 @@ public class MeetingAndHelpController {
 
     // 만남과 도움 상세 페이지
     @GetMapping("/detail")
-    public void main(){
+    public void detail(){
 
     }
 
+    // 만남과 도움 목록 페이지
+    @GetMapping("/list")
+    public void list(){
+
+    }
 }
