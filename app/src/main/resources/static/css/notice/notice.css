@@ -15,7 +15,7 @@ body {
     max-width: 808px;
     margin: 0 auto;
     padding: 0 20px;
-    background-color: beige;
+
 }
 
 #root > h1 {
@@ -23,7 +23,7 @@ body {
     line-height: 24px;
     font-size: 24px;
     font-weight: bold;
-    background-color: aliceblue;
+
 }
 
 #noticeAll {
@@ -31,7 +31,7 @@ body {
     padding: 20px 0px;
     white-space: nowrap;
     overflow: auto;
-    background-color: antiquewhite;
+
 }
 
 #noticeAll > span {
@@ -99,7 +99,13 @@ body {
     display: none;
 }
 
-
+.notice-content-text {
+    padding: 10px;
+    background-color: rgb(239, 247, 255);
+    color: rgb(74, 74, 74);
+    font-size: 14px;
+    line-height: 24px;
+}
 
 
 
