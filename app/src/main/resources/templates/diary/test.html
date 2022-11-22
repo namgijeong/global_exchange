@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>diary detail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <link href="/css/main/header.css" rel="stylesheet" type="text/css" />
+    <link href="/css/main/footer.css" rel="stylesheet" type="text/css" />
+    <link href="/css/diary/write.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="app">
+    <div class="appWrapper">
+        <!-- main -->
+        <div class="wrapper">
+            <div class="content-wrapper">
+                <div class="diary-detail-container">
+                    <section class="section-container">
+                        <div class="section-title">
+                            <h2>교환 일기</h2>
+                            <button class="frip-button">수정하기</button>
+                        </div>
+                        <div class="form-container">
+                            <form name="diaryForm">
+                                <div class="input-container">
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-left">
+                                            <div class="input-label-style">
+                                                <span class="text-danger">*</span>
+                                                <span class="input-subject">내용</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-right">
+                                            <div class="input-group">
+                                                    <textarea id="summernote" name="diaryContent">
+Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (
+                                                    </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+<!-- summernote -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+<script>
+    $('#summernote').summernote({
+        height: 300,                 // 에디터 높이
+        width: 700,
+        minHeight: 500,             // 최소 높이
+        maxHeight: null,             // 최대 높이
+        lang: "ko-KR",					// 한글 설정
+        placeholder: '일기 내용을 작성해주세요.',	//placeholder 설정
+        toolbar: [
+            ['style', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+            ['fontsize', ['fontsize']],
+            ['color', ['forecolor','backcolor', 'clear']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['view', ['help']]
+        ],
+        disableDragAndDrop: true
+    });
+
+    $('#summernote').summernote('enable');
+</script>
+</html>

@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <link href="/css/main/header.css" rel="stylesheet" type="text/css" />
     <link href="/css/main/footer.css" rel="stylesheet" type="text/css" />
-    <link href="/css/diary/detail.css" rel="stylesheet" type="text/css" />
+    <link href="/css/diary/write.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="app">
@@ -27,19 +27,6 @@
                             <div class="image-wrapper">
                                 <img class="image" src="/images/diary/bread.jpg" width="375">
                             </div>
-
-<!--                            <div class="image-input-box">
-                                <div class="files">
-                                    <div>
-                                        <label for="board_file1" style="display:inline;">
-                                            <img id="board_file1Img" src="/images/diary/plusImage.png" width="110px" height="110px" style="display:inline;">
-                                        </label>
-                                    </div>
-                                    <input id="board_file1" name="board_file1" type="file" hidden>
-                                    <input type="button" onclick="cancelFile('board_file1')" value="첨부 삭제">
-                                </div>
-                            </div>-->
-
                             <div class="info-wrapper">
                                 <section class="date-info-section">
                                     <div class="date-wrapper">
@@ -70,8 +57,11 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <a href="javascript:void(0)">
-                                                <img class="nation-img-style" src="/images/main/americaIcon.png">
+                                            <div>
+                                                <a href="javascript:void(0)">
+                                                    <img class="nation-img-style" src="/images/main/americaIcon.png">
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </section>
@@ -80,7 +70,7 @@
                         <section class="section-container">
                             <div class="section-title">
                                 <h2>교환 일기</h2>
-                                <button class="frip-button">수정하기</button>
+                                <button id="saveBtn" class="frip-button">저장하기</button>
                             </div>
                             <div class="form-container">
                                 <form name="diaryForm">
@@ -94,8 +84,8 @@
                                             </div>
                                             <div class="col-right">
                                                 <div class="input-group">
-                                                    <input type="text" maxlength="40" required="required"
-                                                           placeholder="일기의 제목을 작성해주세요." class="input-text" value="No Bread Day" disabled>
+                                                    <input name="diaryTitle" id="diaryTitle" type="text" maxlength="40" required="required"
+                                                           placeholder="일기의 제목을 작성해주세요." class="input-text">
                                                     </input>
                                                     <div class="input-text-append">
                                                         <span class="text-muted-container">
@@ -117,64 +107,9 @@
                                             </div>
                                             <div class="col-right">
                                                 <div class="input-group">
-                                                    <textarea id="summernote" name="diaryContent">
-Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (
-                                                    </textarea>
+                                                    <textarea id="summernote" name="diaryContent"></textarea>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="section-title">
-                                <h2>코멘트</h2>
-                            </div>
-                            <div class="comment-wrapper">
-                                <form name="commentForm">
-                                    <div class="comment-form-wrapper">
-                                        <div class="comment-header">
-                                            <div class="comment-profile-image-wrapper">
-                                                <img src="/images/member/sample5.png" alt="답글 프로필 사진" class="comment-profile-image-style">
-                                            </div>
-                                            <div class="comment-profile-metadata">
-                                                <div class="comment-nickname">
-                                                    Jason Me
-                                                </div>
-                                                <div class="comment-created-date">
-                                                    2022-10-10 15:30
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <textarea name="commentContent" class="comment-body" placeholder="코멘트를 입력해주세요." wrap="soft" maxlength="500"></textarea>
-                                        <div class="comment-btn-wrapper">
-                                            <input type="button" value="코멘트 작성하기" class="frip-button">
-                                        </div>
-                                    </div>
-                                </form>
-                                <!-- 아래코드는 controller에서 가져온 코멘트 리스트를 뿌릴 때 사용한다. -->
-                                <form id="comments" action="javascript:void(0)">
-                                    <div class="comment-form-wrapper">
-                                        <div class="comment-header">
-                                            <div class="comment-profile-image-wrapper">
-                                                <img src="/images/member/sample2.png" alt="답글 프로필 사진" class="comment-profile-image-style">
-                                            </div>
-                                            <div class="comment-profile-metadata">
-                                                <div class="comment-nickname">
-                                                    Tom Cruise
-                                                </div>
-                                                <div class="comment-created-date">
-                                                    2022-09-30 12:30
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <textarea name="commentContent" class="comment-body" placeholder="코멘트를 입력해주세요." wrap="soft" maxlength="300" disabled>Hey Jason Me!
-Your English is very good!
-Be Confident!
-                                        </textarea>
-                                        <div class="comment-btn-wrapper">
-                                            <input type="button" value="코멘트 수정하기" class="frip-button">
-                                            <input type="button" value="코멘트 삭제하기" class="frip-button">
-                                            <input type="button" value="취소" class="frip-button">
                                         </div>
                                     </div>
                                 </form>
@@ -188,6 +123,30 @@ Be Confident!
             <div th:replace="/main/footer.html:: footerFirst"></div>
         </div>
     </div>
+
+    <div class="modal-container modal-overlay">
+        <div class="modal-flex">
+            <div class="modal-wrapper">
+                <div class="modal-body">
+                    <h2 class="modal-title">일기 내용을 저장하시겠습니까?</h2>
+                    <div >
+                        일기를 저장합니다.
+                    </div>
+                </div>
+                <footer class="modal-footer">
+                    <div class="btn-container">
+                        <button id="yesBtn" class="warning-btn">
+                            네
+                        </button>
+                        <button id="noBtn" class="secondary-btn">
+                            아니오
+                        </button>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <div class="modal-color"></div>
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
@@ -200,6 +159,7 @@ Be Confident!
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 <script>
+    // 날짜
     var dateSelector = document.querySelector('#dateSelector');
     dateSelector.flatpickr();
 
@@ -209,11 +169,11 @@ Be Confident!
     dateSelector.flatpickr({
         local: 'ko',
         inline: true,
-        defaultDate: "2022-11-21",
-        enable:[
+/*        defaultDate: "2022-11-21",*/
+/*        enable:[
             "2022-11-21"
-        ]
-        /*maxDate: "2022-11-21"*/
+        ]*/
+        maxDate: "2022-11-22"
     });
 
 
@@ -221,7 +181,6 @@ Be Confident!
     $('.input-text').keyup(function (e) {
         let content = $(this).val();
 
-        // 글자수 세기
         if (content.length == 0 || content == '') {
             $('.text-muted').text('0 / 40');
         } else {
@@ -233,14 +192,14 @@ Be Confident!
     });
 
 
+    // 썸머 노트
    $('#summernote').summernote({
-        height: 300,                 // 에디터 높이
+        height: 300,
         width: 700,
-        minHeight: 500,             // 최소 높이
-        maxHeight: null,             // 최대 높이
-        focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
-        lang: "ko-KR",					// 한글 설정
-        placeholder: '일기 내용을 작성해주세요.',	//placeholder 설정
+        minHeight: 500,
+        maxHeight: null,
+        lang: "ko-KR",
+        placeholder: '일기 내용을 작성해주세요.',
         toolbar: [
             ['style', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
             ['fontsize', ['fontsize']],
@@ -250,17 +209,62 @@ Be Confident!
         ],
         disableDragAndDrop: true
     });
-
-    $('#summernote').summernote('disable');
-
     // $('#summernote').summernote('disable');
-
     // $('#summernote').summernote('enable');
-
-/*    if ($('#summernote').summernote('isEmpty')) {
-        alert('editor content is empty');
-    }*/
-
     // $('#summernote').summernote('reset');
+
+
+    // 유효성 검사
+    const $saveBtn = $('#saveBtn');
+
+    $saveBtn.on('click', function () {
+        var diaryTitle = $('input[name=diaryTitle]');
+
+        if(!diaryTitle.val()){
+            /* !diaryForm.diaryTitle이 먹히지 않는다. 왜 ?? */
+            alert('제목을 작성해주세요.');
+            return;
+        }
+
+        if ($('#summernote').summernote('isEmpty')) {
+            alert('일기 내용을 작성해주세요.');
+            return;
+        }
+
+        modal();
+    });
+
+
+    // 모달창
+    const modalContainer = document.querySelector(".modal-container");
+
+    function openModal() {
+        document.body.style.overflow = "hidden";
+    };
+
+    function closeModal() {
+        document.body.style.overflow = "unset";
+    }
+
+    function modal() {
+        modalContainer.style.display = "flex";
+        openModal();
+    }
+
+    const $yesBtn = $('#yesBtn');
+    const $noBtn = $('#noBtn');
+
+    $yesBtn.on('click', function () {
+        diaryForm.submit();
+        modalContainer.style.display = "none";
+        closeModal();
+    })
+
+    $noBtn.on('click', function () {
+        modalContainer.style.display = "none";
+        closeModal();
+    })
+
+    // ?? 날짜는 어떻게 보내지 ??
 </script>
 </html>

@@ -457,10 +457,6 @@
         wrapper.html(content);
     });
 
-    const modalContainer = document.querySelector(".modal-container");
-    const btnModal = document.querySelector(".filter-button");
-    const btnsRadio=document.querySelectorAll(".modal-input");
-    const CirclesRadio=document.querySelectorAll(".modal-radio-circle");
 
     // 페이지네이션 마우스 올렸을 때 이벤트
     const $pagenationAtags = $('.change-page');
@@ -473,6 +469,11 @@
 
 
     // 모달창
+    const modalContainer = document.querySelector(".modal-container");
+    const btnModal = document.querySelector(".filter-button");
+    const btnsRadio=document.querySelectorAll(".modal-input");
+    const CirclesRadio=document.querySelectorAll(".modal-radio-circle");
+
     // 부모스크롤 비활성화
     const openModal = () => {
         document.body.style.overflow = "hidden";
