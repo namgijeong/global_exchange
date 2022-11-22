@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Global Exchange</title>
-    <link href="/css/main/header.css" rel="stylesheet" type="text/css" />
+    <!--<link href="/css/main/header.css" rel="stylesheet" type="text/css" />-->
+    <link href="/css/main/loginAfterHeader.css" rel="stylesheet" type="text/css" />
     <link href="/css/main/footer.css" rel="stylesheet" type="text/css" />
     <link href="/css/main/main.css" rel="stylesheet" type="text/css" />
 
@@ -15,8 +16,10 @@
 <body>
 
         <!-- header -->
-        <div th:replace="/main/header.html:: topHeader "></div>
-        <div th:replace="/main/header.html:: header "></div>
+        <!--<div th:replace="/main/header.html:: topHeader "></div>
+        <div th:replace="/main/header.html:: header "></div>-->
+        <div th:replace="/main/loginAfterHeader.html:: topHeader "></div>
+        <div th:replace="/main/loginAfterHeader.html:: header "></div>
         <!-- home -->
         <div id="home" style="">
             <section class="container">
