@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+ul, li {
+  list-style: none;
+}
+
+img {
+  border-style: none;
+}
+
+.list-page {
+  display: flex;
+  flex-flow: column nowrap;
+  align-content: flex-start;
+  margin: 0px auto;
+  max-width: 808px;
+  width: 100%;
+  padding: 0px 20px;
+}
+
+.list-page-title{
+  padding: 30px 0px;
+  line-height: 24px;
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 1px solid rgb(230, 230, 230);
+}
+
+.post-button {
+  background-color: rgb(122, 41, 250);
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 12px;
+  width: 40px;
+  border-radius: 5px;
+  border: 0;
+  margin-top: 10px;
+}
+
+.list-content {
+  display: flex;
+  justify-content: space-between;
+  min-height: 60px;
+  line-height: 24px;
+  padding: 18px 0px;
+  font-size: 14px;
+  cursor: pointer;
+  border-bottom: 1px solid rgb(230, 230, 230);
+  align-items: center;
+}
+
+.list-number {
+  line-height: 20px;
+  width: 48px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.list-title {
+  flex: 1 1 auto;
+}
+
+.list-date {
+  flex: 0 0 auto;
+  margin-left: 10px;
+  color: rgb(155, 155, 155);
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.list-pagination {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 30px 0px;
+  background-color: white;
+}
+
+.prev-button-wrapper {
+  display: flex;
+  margin-right: 10px;
+}
+
+.arrow-button {
+  width: 40px;
+  height: 40px;
+  line-height: normal;
+  background-color: white;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.button-number {
+  width: 40px;
+  height: 40px;
+  line-height: normal;
+  background-color: white;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50%;
+  color: black;
+  font-size: 18px;
+  font-weight: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+}
+
+.next-button-wrapper {
+  display: flex;
+  margin-left: 10px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+.arrow-button:hover {
+  background-color: rgb(244,244,244);
+}
+
+.button-number:hover {
+  background-color: rgb(244,244,244);
+}
+
+.number-check {
+  color: rgb(51, 151, 255);
+  font-weight: bold;
+}
