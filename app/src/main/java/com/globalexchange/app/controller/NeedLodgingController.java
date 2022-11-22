@@ -5,22 +5,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/meetingAndHelp/*")
-public class MeetingAndHelpController {
+@RequestMapping("/needLodging/*")
+public class NeedLodgingController {
 
-    // 만남과 도움 상세 페이지
+    // 숙소가 필요해 상세 페이지
     @GetMapping("/detail")
     public void detail(){
 
     }
 
-    // 만남과 도움 목록 페이지
+    // 숙소가 필요해 목록 페이지
     @GetMapping("/list")
     public void list(){
 
     }
 
-    // 만남과 도움 작성 페이지
+    // 숙소가 필요해 작성 페이지
     @GetMapping("/write")
     public void write(){
 
