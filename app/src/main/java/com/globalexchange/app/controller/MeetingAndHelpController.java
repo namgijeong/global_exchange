@@ -19,4 +19,10 @@ public class MeetingAndHelpController {
     public void list(){
 
     }
+
+    // 만남과 도움 작성 페이지
+    @GetMapping("/write")
+    public void write(){
+
+    }
 }

@@ -79,6 +79,13 @@ img {
   flex: 1 1 auto;
 }
 
+.list-title-wrapper{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .list-date {
   flex: 0 0 auto;
   margin-left: 10px;

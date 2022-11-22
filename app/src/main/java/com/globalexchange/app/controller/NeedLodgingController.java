@@ -19,4 +19,10 @@ public class NeedLodgingController {
     public void list(){
 
     }
+
+    // 숙소가 필요해 작성 페이지
+    @GetMapping("/write")
+    public void write(){
+
+    }
 }
