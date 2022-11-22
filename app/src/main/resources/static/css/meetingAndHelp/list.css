@@ -139,3 +139,20 @@ img {
   display: flex;
   margin-left: 10px;
 }
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+.arrow-button:hover {
+  background-color: rgb(244,244,244);
+}
+
+.button-number:hover {
+  background-color: rgb(244,244,244);
+}
+
+.number-check {
+  color: rgb(51, 151, 255);
+  font-weight: bold;
+}
