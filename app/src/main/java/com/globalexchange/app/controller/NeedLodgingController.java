@@ -50,11 +50,11 @@ public class NeedLodgingController {
 
     }
 
-    // 숙소가 필요해 답글 쓰기 페이지 이동
-    @GetMapping("/answerWrite")
-    public void answerWrite(){
-
-    }
+//    // 숙소가 필요해 답글 쓰기 페이지 이동
+//    @GetMapping("/answerWrite")
+//    public void answerWrite(){
+//
+//    }
 
     // 숙소가 필요해 답글 쓰기 완료
     @GetMapping("/answerWriteOk")
@@ -62,7 +62,7 @@ public class NeedLodgingController {
 
     }
 
-    // 숙소가 필요해 답글 수정 페이지 이동
+    // 숙소가 필요해 답글 수정 활성화
     @GetMapping("/answerUpdate")
     public void answerUpdate(){
 
@@ -80,11 +80,11 @@ public class NeedLodgingController {
 
     }
 
-    // 숙소가 필요해 댓글 작성 페이지 이동
-    @GetMapping("/answerCommentWrite")
-    public void answerCommentWrite(){
-
-    }
+//    // 숙소가 필요해 댓글 작성 페이지 이동
+//    @GetMapping("/answerCommentWrite")
+//    public void answerCommentWrite(){
+//
+//    }
 
     // 숙소가 필요해 댓글 작성 완료
     @GetMapping("/answerCommentWriteOk")
@@ -92,7 +92,7 @@ public class NeedLodgingController {
 
     }
 
-    // 숙소가 필요해 댓글 수정 페이지 이동
+    // 숙소가 필요해 댓글 수정 활성화
     @GetMapping("/answerCommentUpdate")
     public void answerCommentUpdate(){
 
