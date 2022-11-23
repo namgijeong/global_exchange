@@ -40,7 +40,32 @@ img {
   line-height: 24px;
   font-size: 24px;
   font-weight: bold;
+  /*border-bottom: 1px solid rgb(230, 230, 230);*/
+}
+
+#mainFilter{
+  width:100%;
+  height:70px;
   border-bottom: 1px solid rgb(230, 230, 230);
+  padding:5px 0 40px;
+}
+
+#mainFilter>button{
+  width:66px;
+  height:38px;
+
+  padding: 11px 10px;
+
+  text-align: center;
+
+  background-color: transparent;
+  cursor: pointer;
+  border: 1px solid rgb(238, 238, 238);
+  border-radius: 5px;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 14px;
 }
 
 .modal-container {
@@ -172,7 +197,15 @@ img {
   align-items: center;
   background-image: url("../../images/modal/modalInputBtn.svg");
 }
-.modal-radio-circle{
+.modal-radio-circle1{
+  width:13px;
+  height:13px;
+  border-radius:50%;
+  border:1px solid white;
+  background-color:white;
+}
+
+.modal-radio-circle2{
   width:13px;
   height:13px;
   border-radius:50%;
