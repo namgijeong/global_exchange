@@ -81,7 +81,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="frip-button">파트너 끊기</button>
+                            <button onclick="modal()" class="partner-off-btn">파트너 끊기</button>
                         </div>
                         <div class="partner-info-wrapper">
                             <div class="partner-info-container">
@@ -103,7 +103,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="frip-button">파트너 끊기</button>
+                            <button onclick="modal()" class="partner-off-btn">파트너 끊기</button>
                         </div>
                         <div class="partner-info-wrapper">
                             <div class="partner-info-container">
@@ -125,7 +125,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="frip-button">파트너 끊기</button>
+                            <button onclick="modal()" class="partner-off-btn">파트너 끊기</button>
                         </div>
                     </div>
                 </div>
@@ -154,19 +154,63 @@
             <div th:replace="/main/footer.html:: footerFirst"></div>
         </div>
     </div>
+
+    <!-- modal -->
+    <div class="modal-container modal-overlay">
+        <div class="modal-flex">
+            <div class="modal-wrapper">
+                <div class="modal-body">
+                    <h2 class="modal-title">교환일기 파트너를 끊으시겠습니까?</h2>
+                    <div >
+                        교환일기 파트너를 끊습니다.
+                    </div>
+                </div>
+                <footer class="modal-footer">
+                    <div class="btn-container">
+                        <button id="yesBtn" class="warning-btn">
+                            네
+                        </button>
+                        <button id="noBtn" class="secondary-btn">
+                            아니오
+                        </button>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <div class="modal-color"></div>
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
-    const $buttons = $('.frip-button');
+    // 모달창
+    const modalContainer = document.querySelector(".modal-container");
 
-    $buttons.on("click", function () {
-        var result = confirm('교환일기 파트너를 끊으시겠습니까?');
+    function openModal() {
+        document.body.style.overflow = "hidden";
+    };
 
-        if(result){
-            location.href='#';
-        }else{
-            return;
-        }
+    function closeModal() {
+        document.body.style.overflow = "unset";
+    }
+
+    function modal() {
+        modalContainer.style.display = "flex";
+        openModal();
+    }
+
+    const $yesBtn = $('#yesBtn');
+    const $noBtn = $('#noBtn');
+
+    $yesBtn.on('click', function () {
+        /* 해당 파트너를 삭제한다. */
+        console.log('파트너를 삭제합니다.');
+        modalContainer.style.display = "none";
+        closeModal();
+    })
+
+    $noBtn.on('click', function () {
+        modalContainer.style.display = "none";
+        closeModal();
     })
 </script>
 </html>
