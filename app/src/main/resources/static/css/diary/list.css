@@ -486,11 +486,15 @@ button {
 }
 
 .modal-label {
-    font-family: inherit;
     cursor: pointer;
     width: 100%;
     display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
     align-items: center;
+    height: 50px;
+    font-size: 13px;
 }
 
 .modal-radio {
@@ -561,6 +565,8 @@ button {
 }
 
 .input-label {
+    cursor: pointer;
+    width: 100%;
     display: flex;
     -webkit-box-pack: justify;
     justify-content: space-between;
