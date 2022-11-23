@@ -80,26 +80,26 @@ public class DiaryController {
 
     }
 
-    //새로운 교환일기 파트너 리스트 이동
-    @GetMapping("/newDiaryPartnerList")
+    //교환일기 파트너 리스트 이동
+    @GetMapping("/partnerList")
     public void newDiaryPartnerList(){
 
     }
 
-    //새로운 교환일기 파트너 상세보기 이동
-    @GetMapping("/newDiaryPartnerDetail")
+    // 교환일기 파트너 상세보기 이동
+    @GetMapping("/partnerDetail")
     public void newDiaryPartnerDetail(){
 
     }
 
     //새로운 교환일기 파트너 신청
-    @GetMapping("/newDiaryPartnerSignup")
+    @GetMapping("/partnerSignup")
     public void newDiaryPartnerSignup(){
 
     }
 
     //새로운 교환일기 파트너 신고
-    @GetMapping("/newDiaryPartnerReport")
+    @GetMapping("/pertnerReport")
     public void newDiaryPartnerReport(){
 
     }
