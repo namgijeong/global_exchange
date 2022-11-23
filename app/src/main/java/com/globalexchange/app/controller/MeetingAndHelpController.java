@@ -32,7 +32,7 @@ public class MeetingAndHelpController {
 
     }
 
-    // 만남과 도움 수정 페이지 이동
+    // 만남과 도움 수정 활성화
     @GetMapping("/writeUpdate")
     public void writeUpdate(){
 
@@ -50,11 +50,11 @@ public class MeetingAndHelpController {
 
     }
 
-    // 만남과 도움 답글 쓰기 페이지 이동
-    @GetMapping("/answerWrite")
-    public void answerWrite(){
-
-    }
+//    // 만남과 도움 답글 쓰기 페이지 이동
+//    @GetMapping("/answerWrite")
+//    public void answerWrite(){
+//
+//    }
 
     // 만남과 도움 답글 쓰기 완료
     @GetMapping("/answerWriteOk")
@@ -62,7 +62,7 @@ public class MeetingAndHelpController {
 
     }
 
-    // 만남과 도움 답글 수정 페이지 이동
+    // 만남과 도움 답글 수정 활성화
     @GetMapping("/answerUpdate")
     public void answerUpdate(){
 
@@ -80,11 +80,11 @@ public class MeetingAndHelpController {
 
     }
 
-    // 만남과 도움 댓글 작성 페이지 이동
-    @GetMapping("/answerCommentWrite")
-    public void answerCommentWrite(){
-
-    }
+//    // 만남과 도움 댓글 작성 페이지 이동
+//    @GetMapping("/answerCommentWrite")
+//    public void answerCommentWrite(){
+//
+//    }
 
     // 만남과 도움 댓글 작성 완료
     @GetMapping("/answerCommentWriteOk")
