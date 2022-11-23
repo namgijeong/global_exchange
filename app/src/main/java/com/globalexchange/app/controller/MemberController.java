@@ -8,18 +8,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/member/*")
 public class MemberController {
 
+    //회원가입 선택 페이지 이동
     @GetMapping("/join")
     public void join(){
 
     }
 
+    //이메일 회원가입
     @GetMapping("/joinForm")
     public void joinForm(){
 
     }
 
+    //구글 회원가입
+    @GetMapping("/joinGoogle")
+    public void joinGoogle(){
+
+    }
+
+
+    //로그인 선택 페이지 이동
     @GetMapping("/login")
     public void login(){
+
+    }
+
+    //이메일 로그인
+    @GetMapping("/emailLogin")
+    public void emailLogin(){
+
+    }
+
+    //구글 로그인
+    @GetMapping("/googleLogin")
+    public void googleLogin(){
 
     }
 
@@ -41,5 +63,16 @@ public class MemberController {
 
     }
 
+    // 마이페이지 수정완료
+    @GetMapping("/writeOk")
+    public void writeOk(){
+
+    }
+
+    // 마이페이지 교환일기 상대 끊기
+    @GetMapping("/partnerCancel")
+    public void partnerCancel(){
+
+    }
 
 }

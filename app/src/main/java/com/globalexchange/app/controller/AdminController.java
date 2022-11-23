@@ -20,6 +20,12 @@ public class AdminController {
 
     }
 
+    // 관리자 멤버 삭제
+    @GetMapping("/memberRemove")
+    public void memberRemove(){
+
+    }
+
     // 관리자 공지사항 리스트 페이지
     @GetMapping("/noticeList")
     public void noticeList(){
@@ -33,9 +39,27 @@ public class AdminController {
     }
 
 
-    // 관리자 공지사항 업로드 상세보기 페이지
+    // 관리자 공지사항 쓰기 페이지
     @GetMapping("/noticeUpload")
     public void noticeUpload(){
+
+    }
+
+    // 관리자 공지사항 쓰기 완료
+    @GetMapping("/noticeUploadOk")
+    public void noticeUploadOk(){
+
+    }
+
+    // 관리자 공지사항 수정 페이지 이동
+    @GetMapping("/noticeUpdate")
+    public void noticeUpdate(){
+
+    }
+
+    // 관리자 공지사항 수정 완료
+    @GetMapping("/noticeUpdateOk")
+    public void noticeUpdateOk(){
 
     }
 
@@ -51,6 +75,12 @@ public class AdminController {
 
     }
 
+    // 삭제
+    @GetMapping("/meetingAndHelpRemove")
+    public void meetingAndHelpRemove(){
+
+    }
+
     // 관리자 숙소가 필요해 리스트 페이지
     @GetMapping("/needLodgingList")
     public void needLodgingList(){
@@ -60,6 +90,12 @@ public class AdminController {
     // 관리자 숙소가 필요해 상세보기 페이지
     @GetMapping("/needLodgingDetail")
     public void needLodgingDetail(){
+
+    }
+    
+    // 삭제
+    @GetMapping("/needLodgingRemove")
+    public void needLodgingRemove(){
 
     }
 }

@@ -8,9 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/question/*")
 public class QuestionController {
 
-    // 메인 페이지
+    // 문의사항 작성 페이지 이동
     @GetMapping("/question")
     public void question(){
 
     }
+
+    // 문의사항 작성 완료
+    @GetMapping("/questionWriteOk")
+    public void questionWriteOk(){
+
+    }
+
 }
