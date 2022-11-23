@@ -12,17 +12,205 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link href="/css/main/header.css" rel="stylesheet" type="text/css"/>
   <link href="/css/main/footer.css" rel="stylesheet" type="text/css"/>
-  <link href="/css/meetingAndHelp/list.css" rel="stylesheet" type="text/css"/>
+  <link href="/css/needLodging/list.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <header th:replace="/main/header.html :: #topHeader"></header>
 <header th:replace="/main/header.html :: #header"></header>
+
+<div class="modal-container modal-overlay">
+  <div class="modal-flex">
+    <div class="modal-wrapper">
+      <header class="modal-header-wrapper">
+        <div class="modal-country-header">
+          <span class="modal-title">국가</span>
+        </div>
+        <button class="close-btn">
+          <img src="/images/modal/modalCloseBtn.svg" alt="닫기 버튼">
+        </button>
+      </header>
+      <div class="modal-div-wrapper">
+        <div class="modal-country-section">
+          <div class="modal-country-select">
+            <div>
+              <div class="modal-country-name">나의 국가</div>
+              <div class="modal-country-box">
+                <div class="modal-radio-input-wrapper">
+                  <div class="modal-radio-input">
+                    <label for="modalInputEnglish-1" class="modal-label">
+                      영어
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>-->
+                      <input name="nation1" value="eng" type="radio" class="modal-input1" id="modalInputEnglish-1">
+                    </label>
+                  </div>
+                  <div class="modal-radio-input">
+                    <label for="modalInputSpanish-1" class="modal-label">
+                      스페인어
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>-->
+                      <input name="nation1" value="spain" type="radio" class="modal-input1" id="modalInputSpanish-1">
+                    </label>
+                  </div>
+                  <div class="modal-radio-input">
+                    <label for="modalInputFrench-1" class="modal-label">
+                      프랑스어
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>-->
+                      <input name="nation1" value="france" type="radio" class="modal-input1" id="modalInputFrench-1">
+                    </label>
+                  </div>
+                  <div class="modal-radio-input">
+                    <label for="modalInputGerman-1" class="modal-label">
+                      독일어
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>-->
+                      <input name="nation1" value="germany" type="radio" class="modal-input1" id="modalInputGerman-1">
+                    </label>
+                  </div>
+                  <div class="modal-radio-input">
+                    <label for="modalInputItalian-1" class="modal-label">
+                      이탈리아어
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>-->
+                      <input name="nation1" value="italy" type="radio" class="modal-input1" id="modalInputItalian-1">
+                    </label>
+                  </div>
+                  <div class="modal-radio-input">
+                    <label for="modalInputPortuguese-1" class="modal-label">
+                      포르투갈어
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>-->
+                      <input name="nation1" value="portugal" type="radio" class="modal-input1" id="modalInputPortuguese-1">
+                    </label>
+                  </div>
+                  <div class="modal-radio-input">
+                    <label for="modalInputRussian-1" class="modal-label">
+                      러시아
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>-->
+                      <input name="nation1" value="russia" type="radio" class="modal-input1" id="modalInputRussian-1">
+                    </label>
+                  </div>
+                  <div class="modal-radio-input">
+                    <label for="modalInputJapanese-1" class="modal-label">
+                      일본
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>-->
+                      <input name="nation1" value="japan" type="radio" class="modal-input1" id="modalInputJapanese-1">
+                    </label>
+                  </div>
+                  <div class="modal-radio-input">
+                    <label for="modalInputChinese-1" class="modal-label">
+                      중국
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>-->
+                      <input name="nation1" value="china" type="radio" class="modal-input1" id="modalInputChinese-1">
+                    </label>
+                  </div>
+                  <div class="modal-radio-input">
+                    <label for="modalInputKorean-1" class="modal-label">
+                      한국
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>-->
+                      <input name="nation1" value="korea" type="radio" class="modal-input1" id="modalInputKorean-1">
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-div-wrapper">
+        <div class="modal-country-section">
+          <div class="modal-country-select">
+            <div>
+              <div class="modal-country-name">숙소를 찾고 싶은 국가</div>
+              <div class="modal-country-box">
+                <div class="modal-radio-input-wrapper">
+                  <div class="modal-radio-input">
+                    <label for="modalInputEnglish-2" class="modal-label">
+                      영어
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                      <input name="nation2" value="eng" type="radio" class="modal-input2" id="modalInputEnglish-2">
+                    </label>
+                  </div>
+                  <div class="modal-radio-input">
+                    <label for="modalInputSpanish-2" class="modal-label">
+                      스페인어
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                      <input name="nation2" value="spain" type="radio" class="modal-input2" id="modalInputSpanish-2">
+                    </label>
+                  </div>
+                  <div class="modal-radio-input">
+                    <label for="modalInputFrench-2" class="modal-label">
+                      프랑스어
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                      <input name="nation2" value="france" type="radio" class="modal-input2" id="modalInputFrench-2">
+                    </label>
+                  </div>
+                  <div class="modal-radio-input">
+                    <label for="modalInputGerman-2" class="modal-label">
+                      독일어
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                      <input name="nation2" value="germany" type="radio" class="modal-input2" id="modalInputGerman-2">
+                    </label>
+                  </div>
+                  <div class="modal-radio-input">
+                    <label for="modalInputItalian-2" class="modal-label">
+                      이탈리아어
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                      <input name="nation2" value="italy" type="radio" class="modal-input2" id="modalInputItalian-2">
+                    </label>
+                  </div>
+                  <div class="modal-radio-input">
+                    <label for="modalInputPortuguese-2" class="modal-label">
+                      포르투갈어
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                      <input name="nation2" value="portugal" type="radio" class="modal-input2" id="modalInputPortuguese-2">
+                    </label>
+                  </div>
+                  <div class="modal-radio-input">
+                    <label for="modalInputRussian-2" class="modal-label">
+                      러시아
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                      <input name="nation2" value="russia" type="radio" class="modal-input2" id="modalInputRussian-2">
+                    </label>
+                  </div>
+                  <div class="modal-radio-input">
+                    <label for="modalInputJapanese-2" class="modal-label">
+                      일본
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                      <input name="nation2" value="japan" type="radio" class="modal-input2" id="modalInputJapanese-2">
+                    </label>
+                  </div>
+                  <div class="modal-radio-input">
+                    <label for="modalInputChinese-2" class="modal-label">
+                      중국
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                      <input name="nation2" value="china" type="radio" class="modal-input2" id="modalInputChinese-2">
+                    </label>
+                  </div>
+                  <div class="modal-radio-input">
+                    <label for="modalInputKorean-2" class="modal-label">
+                      한국
+                      <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                      <input name="nation2" value="korea" type="radio" class="modal-input2" id="modalInputKorean-2">
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="modal-footer-wrapper">
+        <button class="modal-footer-btn">적용하기</button>
+      </footer>
+    </div>
+  </div>
+  <div class="modal-color"></div>
+</div>
 
 <div class="list-page">
   <div class="list-title-wrapper">
     <h1 class="list-page-title">숙소가 필요해</h1>
     <button class="post-button">작성</button>
   </div>
+
+  <div id="mainFilter"><button>국가</button></div>
+
   <ul>
     <li>
       <div class="list-content">
@@ -132,5 +320,33 @@
 
 <footer th:replace="/main/footer.html :: #footerFirst"></footer>
 </body>
-<script></script>
+<script>
+    const modalContainer = document.querySelector(".modal-container");
+    const btnModal = document.querySelector("#mainFilter>button");
+    // const btnsRadio1=document.querySelectorAll(".modal-input1");
+    // const btnsRadio2=document.querySelectorAll(".modal-input2");
+    // const CirclesRadio1=document.querySelectorAll(".modal-radio-circle1");
+    // const CirclesRadio2=document.querySelectorAll(".modal-radio-circle2");
+
+    // 부모스크롤 비활성화
+    const openModal = () => {
+        document.body.style.overflow = "hidden";
+    };
+
+    // 부모스크롤 활성화
+    const closeModal = () => {
+        document.body.style.overflow = "unset";
+    };
+
+    btnModal.addEventListener("click", e => {
+        modalContainer.style.display = "flex";
+        openModal();
+    });
+
+    const closeBtn = modalContainer.querySelector(".close-btn")
+    closeBtn.addEventListener("click", e => {
+        modalContainer.style.display = "none";
+        closeModal();
+    });
+</script>
 </html>
