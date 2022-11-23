@@ -40,7 +40,7 @@
                                 </label>
                                 <input type="file" name="profileImage" id="profileImage" class="file-input" disabled>
                             </article>
-                            <button class="save-button">저장</button>
+                            <button type="submit" class="save-button">저장</button>
                         </div>
                         <article class="input-container">
                             <div>
@@ -96,18 +96,11 @@
                             <div>
                                 <label for="memberIntroduction" class="input-label">자기소개</label>
                                 <textarea id="memberIntroduction" name="memberIntroduction" placeholder="간단한 자기 소개를 작성해주세요."
-                                wrap="soft" maxlength="500" class="text-area-style input-style">
-안녕하세요 전 서울에 사는 Jason입니다. Hello I'm Jason.
-                                </textarea>
+                                wrap="soft" maxlength="500" class="text-area-style input-style">안녕하세요 전 서울에 사는 Jason입니다. Hello I'm Jason.</textarea>
                                 <small class="character-count">0/500</small>
                             </div>
                         </article>
                     </form>
-                    <div>
-                        <a class="member-delete" href="javascript:void(0)">
-                            회원 탈퇴
-                        </a>
-                    </div>
                 </section>
             </section>
 
@@ -118,7 +111,31 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
-/*    $("input[type=file]").change(function(e){
+    // input 태그 포커스 시 색 변화
+    $inputs = $('.input-style');
+
+    $inputs.on('focus', function () {
+        $(this).css('border-color', '#7a29fa');
+    })
+
+    $inputs.on('blur', function () {
+        $(this).css('border-color', 'rgb(238, 238, 238)');
+    })
+
+    // 글자 수 카운트
+    $('#memberIntroduction').keyup(function (e) {
+        var content = $(this).val();
+
+        if (content.length == 0 || content == '') {
+            $('.text-muted').text('0 / 500');
+        } else {
+            $('.character-count').text(content.length + ' / 500');
+        }
+    });
+
+
+
+    /*    $("input[type=file]").change(function(e){
         var file = this;
         var image = document.querySelector('.profile-image');
         var reader = new FileReader();
@@ -137,34 +154,22 @@
         }
     });*/
 
-/*    $(".files").change(function(e){
-        var file = e.target.files[0];
-        var img = $(this).find("img");
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
+    /*    $(".files").change(function(e){
+            var file = e.target.files[0];
+            var img = $(this).find("img");
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
 
-        reader.onload = function(e){
-            // 파일이 image일 경우
-            if(e.target.result.indexOf("image") != -1){
-                img.attr("src", e.target.result)
-                // 파일이 image가 아닐 경우
-            }else{
-                img.attr("src", "${pageContext.request.contextPath}/assets/images/no_img.jpg");
+            reader.onload = function(e){
+                // 파일이 image일 경우
+                if(e.target.result.indexOf("image") != -1){
+                    img.attr("src", e.target.result)
+                    // 파일이 image가 아닐 경우
+                }else{
+                    img.attr("src", "${pageContext.request.contextPath}/assets/images/no_img.jpg");
+                }
             }
-        }
-    });*/
-
-    const $memberDelete = $('.member-delete');
-
-    $memberDelete.on("click", function () {
-        var result = confirm('회원 탈퇴를 하시겠습니까?');
-
-        if(result){
-            location.href='#';
-        }else{
-            return;
-        }
-    })
+        });*/
 </script>
 </html>
 

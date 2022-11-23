@@ -216,11 +216,7 @@ select:disabled {
     line-height: 22px;
     letter-spacing: -0.03em;
     text-align: left;
-}
-
-.input-style:disabled {
-    background: rgb(238, 238, 238);
-    color: rgb(170, 170, 170);
+    transition: all .15s ease-in-out;
 }
 
 .text-area-style {
@@ -235,16 +231,6 @@ select:disabled {
     margin-top: 0.25rem;
 }
 
-.member-delete {
-    display: block;
-    margin-bottom: 6px;
-    color: rgb(102, 102, 102);
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 22px;
-    letter-spacing: -0.03em;
-    text-align: left;
-}
 
 
 

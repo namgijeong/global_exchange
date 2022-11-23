@@ -40,7 +40,7 @@
                                 </label>
                                 <input type="file" name="profileImage" id="profileImage" class="file-input" disabled>
                             </article>
-                            <button class="save-button">수정</button>
+                            <button type="button" onclick="javascript:void(0)" class="save-button">수정</button>
                         </div>
                         <article class="input-container">
                             <div>
@@ -61,7 +61,7 @@
                             </div>
                             <div>
                                 <label for="memberMotherTongue" class="input-label">모국어</label>
-                                <select name="memberMotherTongue" id="memberMotherTongue" class="input-style">
+                                <select name="memberMotherTongue" id="memberMotherTongue" class="input-style" disabled>
                                     <option value="eng">영어</option>
                                     <option value="spain">스페인어</option>
                                     <option value="france">프랑스어</option>
@@ -99,12 +99,11 @@
                                 wrap="soft" maxlength="500" class="text-area-style input-style" disabled>
 안녕하세요 전 서울에 사는 Jason입니다. Hello I'm Jason.
                                 </textarea>
-                                <small class="character-count">0/500</small>
                             </div>
                         </article>
                     </form>
                     <div>
-                        <a class="member-delete" href="javascript:void(0)">
+                        <a id="deleteBtn" class="member-delete" href="javascript:void(0)">
                             회원 탈퇴
                         </a>
                     </div>
@@ -115,55 +114,66 @@
             <div th:replace="/main/footer.html:: footerFirst"></div>
         </div>
     </div>
+
+    <!-- modal -->
+    <div class="modal-container modal-overlay">
+        <div class="modal-flex">
+            <div class="modal-wrapper">
+                <div class="modal-body">
+                    <h2 class="modal-title">회원 탈퇴를 하시겠습니까?</h2>
+                    <div >
+                        회원 탈퇴를 합니다.
+                    </div>
+                </div>
+                <footer class="modal-footer">
+                    <div class="btn-container">
+                        <button id="yesBtn" class="warning-btn">
+                            네
+                        </button>
+                        <button id="noBtn" class="secondary-btn">
+                            아니오
+                        </button>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <div class="modal-color"></div>
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
-/*    $("input[type=file]").change(function(e){
-        var file = this;
-        var image = document.querySelector('.profile-image');
-        var reader = new FileReader();
-        reader.readAsDataURL()
-        reader.readAsDataURL(file);
+    // 모달창
+    const modalContainer = document.querySelector(".modal-container");
 
-        reader.onload = function(e){
-            // 파일이 image일 경우
-            if(e.target.result.indexOf("image") != -1){
-                img.attr("src", e.target.result)
-                // 파일이 image가 아닐 경우
-            }else{
-                alert('이미지 파일을 첨부해주세요.');
-                return;
-            }
-        }
-    });*/
+    function openModal() {
+        document.body.style.overflow = "hidden";
+    };
 
-/*    $(".files").change(function(e){
-        var file = e.target.files[0];
-        var img = $(this).find("img");
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
+    function closeModal() {
+        document.body.style.overflow = "unset";
+    }
 
-        reader.onload = function(e){
-            // 파일이 image일 경우
-            if(e.target.result.indexOf("image") != -1){
-                img.attr("src", e.target.result)
-                // 파일이 image가 아닐 경우
-            }else{
-                img.attr("src", "${pageContext.request.contextPath}/assets/images/no_img.jpg");
-            }
-        }
-    });*/
+    const $deleteBtn = $('#deleteBtn');
 
-    const $memberDelete = $('.member-delete');
+    $deleteBtn.on('click', function (e) {
+        e.preventDefault();
+        modalContainer.style.display = "flex";
+        openModal();
+    })
 
-    $memberDelete.on("click", function () {
-        var result = confirm('회원 탈퇴를 하시겠습니까?');
+    const $yesBtn = $('#yesBtn');
+    const $noBtn = $('#noBtn');
 
-        if(result){
-            location.href='#';
-        }else{
-            return;
-        }
+    $yesBtn.on('click', function () {
+        /* 해당 회원 정보를 삭제한다. */
+        console.log('회원정보를 삭제합니다.');
+        modalContainer.style.display = "none";
+        closeModal();
+    })
+
+    $noBtn.on('click', function () {
+        modalContainer.style.display = "none";
+        closeModal();
     })
 </script>
 </html>

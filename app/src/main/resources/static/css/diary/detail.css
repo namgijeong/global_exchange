@@ -283,14 +283,14 @@ textarea:disabled {
     align-items: center;
 }
 
-.frip-button:hover {
+.frip-btn:hover {
     box-shadow: none;
     transform: translateY(-1px);
     text-decoration: none;
     cursor: pointer;
 }
 
-.frip-button {
+.frip-btn {
     color: #fff;
     background-color: #7a29fa;
     font-size: .8125rem;
