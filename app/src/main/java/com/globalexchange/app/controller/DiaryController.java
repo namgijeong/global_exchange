@@ -32,7 +32,7 @@ public class DiaryController {
 
     }
 
-    // 일기 수정 페이지 이동
+    // 일기 수정 활성화
     @GetMapping("/listUpdate")
     public void listUpdate(){
 
@@ -62,11 +62,11 @@ public class DiaryController {
 
     }
 
-//    // 일기 코멘트 수정 페이지 이동
-//    @GetMapping("/commentUpdate")
-//    public void commentUpdate(){
-//
-//    }
+    // 일기 코멘트 수정 활성화
+    @GetMapping("/commentUpdate")
+    public void commentUpdate(){
+
+    }
 
     // 일기 코멘트 수정 완료
     @GetMapping("/commentUpdateOk")
