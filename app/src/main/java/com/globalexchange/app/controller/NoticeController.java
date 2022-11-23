@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/notice/*")
 public class NoticeController {
 
-    // 공지사항 페이지
+    // 공지사항 리스트 페이지 이동
     @GetMapping("/notice")
     public void notice(){
 
     }
+
 }
