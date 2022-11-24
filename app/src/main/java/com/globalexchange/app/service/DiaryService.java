@@ -5,10 +5,8 @@ package com.globalexchange.app.service;
 //import com.example.app.domain.vo.Criteria;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public interface BoardService {
+public interface DiaryService {
 //    //    추가
 //    public void register(BoardDTO boardDTO);
 //    //    수정
