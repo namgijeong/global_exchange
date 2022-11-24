@@ -10,7 +10,7 @@ body {
 
 #loginBox{
     width:808px;
-    height:800px;
+    height:850px;
 
     margin:0 auto;
     margin-top:20px;
@@ -76,6 +76,9 @@ body {
     line-height: 16px;
 }
 #memberIdResult{
+    display:none;
+}
+#memberNickResult{
     display:none;
 }
 #memberPwDoubleResult{
