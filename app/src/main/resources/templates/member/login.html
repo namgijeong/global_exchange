@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name ="google-signin-client_id" content="373673855497-8p67tihs4dtqcn7vvkfheuvurao2o7i1.apps.googleusercontent.com">
     <title>로그인</title>
 
     <link href="/css/main/header.css" rel="stylesheet" type="text/css" />
@@ -29,4 +30,7 @@
     </section>
     <div th:replace="/main/footer.html:: footerFirst"></div>
 </body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+<script src="/js/member/login.js" th:inline="javascript"></script>
 </html>
