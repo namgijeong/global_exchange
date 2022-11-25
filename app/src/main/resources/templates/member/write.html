@@ -11,111 +11,150 @@
     <link href="/css/member/write.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div id="app">
-        <div class="appWrapper">
-            <!-- header -->
-            <div th:replace="/main/header.html:: topHeader "></div>
-            <div th:replace="/main/header.html:: header "></div>
+<div id="app">
+    <div class="appWrapper">
+        <!-- header -->
+        <div th:replace="/main/header.html:: topHeader "></div>
+        <div th:replace="/main/header.html:: header "></div>
 
-            <!-- main -->
-            <header class="header-container">
-                <section class="page-wrapper">
-                    <article class="page-between-title-container">
-                        <h1 class="title">
-                            내 정보
-                        </h1>
-                    </article>
-                </section>
-            </header>
-            <section class="info-container">
-                <section class="page-wrapper">
-                    <form name="memberInfo">
-                        <div class="top">
-                            <article class="image-container">
-                                <label for="profileImage">
+        <!-- main -->
+        <header class="header-container">
+            <section class="page-wrapper">
+                <article class="page-between-title-container">
+                    <h1 class="title">
+                        내 정보
+                    </h1>
+                </article>
+            </section>
+        </header>
+        <section class="info-container">
+            <section class="page-wrapper">
+                <form name="memberInfo">
+                    <div class="top">
+                        <article class="image-container">
+                            <div id="profileInputStatus">
+                                <label id="profileImageLabel" for="profileImage">
                                     <img src="/images/member/sample5.png" alt="프로필 이미지" class="profile-image">
                                     <div class="image-camera-container">
                                         <img src="/images/member/camera.png" class="camera-image">
                                     </div>
                                 </label>
-                                <input type="file" name="profileImage" id="profileImage" class="file-input" disabled>
-                            </article>
-                            <button type="submit" class="save-button">저장</button>
-                        </div>
-                        <article class="input-container">
-                            <div>
-                                <label for="memberNickname" class="input-label">닉네임</label>
-                                <input type="text" id="memberNickname" name="memberNickname" class="input-style" value="Jason Me">
-                            </div>
-                            <div>
-                                <label for="memberPhoneNumber" class="input-label">휴대폰 번호</label>
-                                <input type="text" id="memberPhoneNumber" name="memberPhoneNumber" class="input-style" value="010-1111-2222">
-                            </div>
-                            <div>
-                                <label for="memberEmail" class="input-label">이메일</label>
-                                <input type="text" id="memberEmail" name="memberEmail" class="input-style" value="abc@google.com">
-                            </div>
-                            <div>
-                                <label for="memberBirthday" class="input-label">생년월일</label>
-                                <input type="text" id="memberBirthday" name="memberBirthday" class="input-style" value="901010">
-                            </div>
-                            <div>
-                                <label for="memberMotherTongue" class="input-label">모국어</label>
-                                <select name="memberMotherTongue" id="memberMotherTongue" class="input-style">
-                                    <option value="eng">영어</option>
-                                    <option value="spain">스페인어</option>
-                                    <option value="france">프랑스어</option>
-                                    <option value="germany">독일어</option>
-                                    <option value="italy">이탈리아어</option>
-                                    <option value="portugal">포르투갈어</option>
-                                    <option value="russia">러시아어</option>
-                                    <option value="japan">일본어</option>
-                                    <option value="china">중국어</option>
-                                    <option value="korea" selected>한국어</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="memberWantToLearnLanguage" class="input-label">배우고 싶은 언어</label>
-                                <select name="memberWantToLearnLanguage" id="memberWantToLearnLanguage" class="input-style">
-                                    <option value="eng" selected>영어</option>
-                                    <option value="spain">스페인어</option>
-                                    <option value="france">프랑스어</option>
-                                    <option value="germany">독일어</option>
-                                    <option value="italy">이탈리아어</option>
-                                    <option value="portugal">포르투갈어</option>
-                                    <option value="russia">러시아어</option>
-                                    <option value="japan">일본어</option>
-                                    <option value="china">중국어</option>
-                                    <option value="korea">한국어</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="memberInterest" class="input-label">관심사</label>
-                                <input type="text" id="memberInterest" name="memberInterest" class="input-style" value="등산">
-                            </div>
-                            <div>
-                                <label for="memberIntroduction" class="input-label">자기소개</label>
-                                <textarea id="memberIntroduction" name="memberIntroduction" placeholder="간단한 자기 소개를 작성해주세요."
-                                wrap="soft" maxlength="500" class="text-area-style input-style">안녕하세요 전 서울에 사는 Jason입니다. Hello I'm Jason.</textarea>
-                                <small class="character-count">0/500</small>
+                                <input type="file" name="profileImage" id="profileImage" class="file-input" accept="image/gif, image/png, image/bmp, image/jpeg">
                             </div>
                         </article>
-                    </form>
-                </section>
+                        <button id="saveBtn" type="button" class="save-button">저장</button>
+                    </div>
+                    <article class="input-container">
+                        <div>
+                            <label for="memberNickname" class="input-label">닉네임</label>
+                            <input type="text" id="memberNickname" name="memberNickname" class="input-style">
+                            <div class="warning-text">닉네임을 입력해주세요.</div>
+                        </div>
+                        <div>
+                            <label for="memberPhoneNumber" class="input-label">휴대폰 번호</label>
+                            <input type="text" id="memberPhoneNumber" name="memberPhoneNumber" class="input-style" placeholder="예) 010-1111-2222">
+                            <div class="warning-text">휴대폰 번호를 입력해주세요.</div>
+                        </div>
+                        <div>
+                            <label for="memberEmail" class="input-label">이메일</label>
+                            <!-- 이메일은 변경 불가하게 함. -->
+                            <input type="text" id="memberEmail" name="memberEmail" class="input-style" value="abc@naver.com" disabled>
+                            <div class="warning-text">이메일 주소를 입력해주세요.</div>
+                        </div>
+                        <div>
+                            <label for="memberBirthday" class="input-label">생년월일</label>
+                            <!-- 생년월일은 변경 불가하게 함. -->
+                            <input type="text" id="memberBirthday" name="memberBirthday" class="input-style" value="990101" disabled>
+                            <div class="warning-text">생년월일을 입력해주세요.</div>
+                        </div>
+                        <div>
+                            <label for="memberMotherTongue" class="input-label">모국어</label>
+                            <select name="memberMotherTongue" id="memberMotherTongue" class="input-style">
+                                <option value="영어">영어</option>
+                                <option value="스페인어">스페인어</option>
+                                <option value="프랑스어">프랑스어</option>
+                                <option value="독일어">독일어</option>
+                                <option value="이탈리아어">이탈리아어</option>
+                                <option value="포르투갈어">포르투갈어</option>
+                                <option value="러시아어">러시아어</option>
+                                <option value="일본어">일본어</option>
+                                <option value="중국어">중국어</option>
+                                <option value="한국어">한국어</option>
+                            </select>
+                            <div class="warning-text">가르치고 싶은 언어를 선택해주세요.</div>
+                        </div>
+                        <div>
+                            <label for="memberWantToLearnLanguage" class="input-label">배우고 싶은 언어</label>
+                            <select name="memberWantToLearnLanguage" id="memberWantToLearnLanguage" class="input-style">
+                                <option value="영어">영어</option>
+                                <option value="스페인어">스페인어</option>
+                                <option value="프랑스어">프랑스어</option>
+                                <option value="독일어">독일어</option>
+                                <option value="이탈리아어">이탈리아어</option>
+                                <option value="포르투갈어">포르투갈어</option>
+                                <option value="러시아어">러시아어</option>
+                                <option value="일본어">일본어</option>
+                                <option value="중국어">중국어</option>
+                                <option value="한국어">한국어</option>
+                            </select>
+                            <div class="warning-text">배우고 싶은 언어를 선택해주세요.</div>
+                        </div>
+                        <div>
+                            <label for="memberInterest" class="input-label">관심사</label>
+                            <input type="text" id="memberInterest" name="memberInterest" class="input-style">
+                            <div class="warning-text">관심사를 입력해주세요.</div>
+                        </div>
+                        <div>
+                            <label for="memberIntroduction" class="input-label">자기소개</label>
+                            <textarea id="memberIntroduction" name="memberIntroduction" placeholder="간단한 자기 소개를 작성해주세요."
+                                      wrap="soft" maxlength="500" class="text-area-style input-style"></textarea>
+                            <div class="warning-text">자기소개를 작성해주세요.</div>
+                            <small class="character-count">0/500</small>
+                        </div>
+                    </article>
+                </form>
             </section>
+        </section>
 
-            <!-- footer -->
-            <div th:replace="/main/footer.html:: footerFirst"></div>
-        </div>
+        <!-- footer -->
+        <div th:replace="/main/footer.html:: footerFirst"></div>
     </div>
+
+    <!-- modal -->
+    <div class="modal-container modal-overlay">
+        <div class="modal-flex">
+            <div class="modal-wrapper">
+                <div class="modal-body">
+                    <h2 class="modal-title">이미지 업로드 실패</h2>
+                    <div >
+                        jpg, png, bmp, gif 파일만 등록할 수 있습니다.
+                    </div>
+                </div>
+                <footer class="modal-footer">
+                    <div class="btn-container">
+                        <button id="confirmBtn" class="warning-btn">
+                            확인
+                        </button>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <div class="modal-color"></div>
+    </div>
+
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
     // input 태그 포커스 시 색 변화
-    $inputs = $('.input-style');
+    let flag = true;
+
+    const $inputs = $('.input-style');
 
     $inputs.on('focus', function () {
-        $(this).css('border-color', '#7a29fa');
+        if(flag){
+            $(this).css('border-color', '#7a29fa');
+        }
     })
 
     $inputs.on('blur', function () {
@@ -133,47 +172,119 @@
         }
     });
 
+    // 유효성 검사
+    $inputs.on('blur', function () {
+        validationCheck($(this));
+    })
 
-
-    /*    $("input[type=file]").change(function(e){
-        var file = this;
-        var image = document.querySelector('.profile-image');
-        var reader = new FileReader();
-        reader.readAsDataURL()
-        reader.readAsDataURL(file);
-
-        reader.onload = function(e){
-            // 파일이 image일 경우
-            if(e.target.result.indexOf("image") != -1){
-                img.attr("src", e.target.result)
-                // 파일이 image가 아닐 경우
-            }else{
-                alert('이미지 파일을 첨부해주세요.');
-                return;
-            }
+    function validationCheck(inputTag){
+        if(!inputTag.val()){
+            inputTag.next().show();
+            inputTag.css('border-color', '#eb385e');
+            flag = false;
+        } else{
+            inputTag.next().hide();
+            inputTag.css('border-color', 'rgb(238, 238, 238)');
+            flag = true;
         }
-    });*/
+    }
 
-    /*    $(".files").change(function(e){
-            var file = e.target.files[0];
-            var img = $(this).find("img");
-            var reader = new FileReader();
-            reader.readAsDataURL(file);
+    $('#saveBtn').on('click', function () {
+        if(!$("input[name='memberNickname']").val()){
+            $("input[name='memberNickname']").focus();
+            return;
+        }
 
-            reader.onload = function(e){
-                // 파일이 image일 경우
-                if(e.target.result.indexOf("image") != -1){
-                    img.attr("src", e.target.result)
-                    // 파일이 image가 아닐 경우
-                }else{
-                    img.attr("src", "${pageContext.request.contextPath}/assets/images/no_img.jpg");
-                }
-            }
-        });*/
+        if(!$("input[name='memberPhoneNumber']").val()){
+            $("input[name='memberPhoneNumber']").focus();
+            return;
+        }
+
+        if(!$("input[name='memberEmail']").val()){
+            $("input[name='memberEmail']").focus();
+            return;
+        }
+
+        if(!$("input[name='memberInterest']").val()){
+            $("input[name='memberInterest']").focus();
+            return;
+        }
+
+        if(!$('textarea').val()){
+            $('textarea').focus();
+            return;
+        }
+    });
+
+    // 모달창
+    const modalContainer = document.querySelector(".modal-container");
+
+    function openModal() {
+        document.body.style.overflow = "hidden";
+    };
+
+    function closeModal() {
+        document.body.style.overflow = "unset";
+    }
+
+    function modal() {
+        modalContainer.style.display = "flex";
+        openModal();
+    }
+
+    const $confirmBtn = $('#confirmBtn');
+
+    $confirmBtn.on('click', function () {
+        modalContainer.style.display = "none";
+        closeModal();
+    })
+
+    // 프로필 사진 업로드
+    $("input[type='file']").on('change', function(){
+
+        // 업로드한 파일이 이미지 파일이 아니면 모달창을 띄운다.
+        var extension = $(this).val().split(".")[1];
+        if( extension == 'gif' || extension == 'png' || extension == 'bmp' || extension == 'dib'
+            || extension == 'jfif' || extension == 'pjpeg' || extension == 'pjp' || extension == 'jpg'){
+
+            // Ajax 방식으로 파일을 controller로 전송한다.
+            // Ajax가 성공하면 showUploadResult 함수를 실행한다.
+            showUploadResult();
+        } else {
+            modal();
+        }
+    });
+
+    // 화면에 썸네일을 보여준다.
+    function showUploadResult() {
+        let text = "";
+        text += `<div class="thumbnail-container" data-file-size="" data-file-name="" data-file-upload-path="" data-file-uuid="">`;
+        text += '<span>';
+        text += '<img src="/images/diary/close.svg">';
+        text += '</span>';
+
+        /* 실제론 src에 controller로 가능 경로를 작성한다. */
+        /* 썸네일의 크기는 375 * 375로 한다. */
+        text += `<img src="/images/diary/bread.jpg" width="100%" height="100%" style="border-radius: 100%; cursor: pointer;">`;
+        text += `</div>`;
+
+        $('#profileInputStatus').hide();
+        $('.image-container').append(text);
+    };
+
+    // x를 누르면 업로드 되었던 파일을 삭제한다.
+    $('.image-container').on('click', 'span', function () {
+        $("input[type='file']").val("");
+        console.log($("input[type='file']").val());
+        const $div = $(this).closest('div');
+        let fileUploadPath = $div.data('fileUploadPath');
+        let fileName = $div.data('fileName') + "_" + $div.data('file-name');
+
+        // Ajax로 업로드했던 원본 파일과 관련된 데이터를 전송한다.
+        // Ajax 통신 성공시 화면을 초기상태로 되돌린다.
+        $div.remove();
+        $('#profileInputStatus').show();
+    });
+
 </script>
 </html>
-
-
-
-
-

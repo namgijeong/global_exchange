@@ -17,8 +17,8 @@ html {
 
 body {
     font-family: 'Noto Sans KR', sans-serif;
-/*    overflow-x:hidden;
-    overflow-y:auto;*/
+    /*    overflow-x:hidden;
+        overflow-y:auto;*/
 }
 
 * {
@@ -152,8 +152,8 @@ textarea:disabled {
 
 .thumbnail-container {
     position: relative;
-    width: 375px;
-    height: 375px;
+    width: 100%;
+    height: 100%;
 }
 
 .thumbnail-container span {
@@ -162,6 +162,13 @@ textarea:disabled {
     right: -7px;
     top: -3px;
     cursor: pointer;
+}
+
+.thumbnail-container img {
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .thumbnail-container span img {
@@ -381,8 +388,8 @@ textarea:disabled {
 
 .text-danger {
     color: #f5365c;
-/*    margin-left: -0.5rem;
-    position: absolute;*/
+    /*    margin-left: -0.5rem;
+        position: absolute;*/
 }
 
 .input-subject {
@@ -564,4 +571,3 @@ textarea:disabled {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
-
