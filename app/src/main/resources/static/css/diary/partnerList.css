@@ -16,6 +16,69 @@ section{
     padding:0 20px;
 }
 
+.title {
+    color: rgb(51, 61, 75);
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.filter-button-wrapper {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.filter-open-button-wrapper {
+    display: flex;
+    position: relative;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.filter-button {
+    width: auto;
+    height: auto;
+    line-height: 14px;
+    padding: 11px 20px;
+    background-color: transparent;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid rgb(238, 238, 238);
+    border-radius: 5px;
+    color: initial;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.category-filter-wrapper {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    padding: 0 20px 20px 20px;
+}
+
+
+.category-list-wrapper {
+    box-sizing: content-box;
+    font-size: 17px;
+    overflow: auto hidden;
+    white-space: nowrap;
+}
+
+.category {
+    margin-right: 20px;
+    font-weight: bold;
+    color: rgb(51, 151, 255);
+}
+
+.not-selected-category {
+    font-weight: normal;
+    color: black;
+}
+
 #bigTitle{
     width:768px;
     height:61px;
@@ -445,16 +508,3 @@ section{
     font-weight: bold;
     border: 0px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

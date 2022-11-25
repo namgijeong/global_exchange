@@ -24,8 +24,18 @@
                 <div class="content-wrapper">
                     <div class="diary-detail-container">
                         <div class="header-section-wrapper">
-                            <div class="image-wrapper">
-                                <img class="image" src="/images/diary/bread.jpg" width="375">
+                            <div class="image-input-box">
+                                <div class="plus-image-text-wrapper">
+                                    <div class="plus-image-text-container">
+                                        <label for="diaryFile" class="image-input-label">
+                                            <img src="/images/diary/plusImage.png" width="48px" height="48px">
+                                            <div>
+                                                이미지 추가하기
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <input type="file" id="diaryFile" name="upload" accept="image/jpeg ,image/bmp, image/png, image/gif" hidden>
                             </div>
                             <div class="info-wrapper">
                                 <section class="date-info-section">
@@ -35,7 +45,7 @@
                                 </section>
                                 <section class="partner-profile-section">
                                     <div class="partner-profile-wrapper">
-                                        <div class="partner-profile">
+                                        <!--<div class="partner-profile">
                                             <div class="partner-profile-info">
                                                 <div class="partner-profile-image">
                                                     <a href="javascript:void(0)">
@@ -57,11 +67,17 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <a href="javascript:void(0)">
-                                                    <img class="nation-img-style" src="/images/main/americaIcon.png">
-                                                </a>
-                                            </div>
+                                            <a href="javascript:void(0)">
+                                                <img class="nation-img-style" src="/images/main/americaIcon.png">
+                                            </a>
+                                        </div>-->
+                                        <div>
+                                            <label for="a" class="input-label">교환 일기 파트너</label>
+                                            <select name="diaryPartner" id="a" class="input-style">
+                                                <option value="Tom Crues" selected>Tom Crues</option>
+                                                <option value="John">John</option>
+                                                <option value="Alice Brown">Alice Brown</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </section>
@@ -73,7 +89,7 @@
                                 <button id="saveBtn" class="save-btn">저장하기</button>
                             </div>
                             <div class="form-container">
-                                <form name="diaryForm">
+                                <form method="post" id="diaryForm" enctype="multipart/form-data">
                                     <div class="input-container">
                                         <div class="row">
                                             <div class="col-left">
@@ -86,7 +102,6 @@
                                                 <div class="input-group">
                                                     <input name="diaryTitle" id="diaryTitle" type="text" maxlength="40" required="required"
                                                            placeholder="일기의 제목을 작성해주세요." class="input-text">
-                                                    </input>
                                                     <div class="input-text-append">
                                                         <span class="text-muted-container">
                                                             <small class="text-muted"></small>
@@ -159,6 +174,58 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 <script>
+    // 파일 업로드
+    $("input[type='file']").on('change', function(){
+        // 업로드한 파일이 이미지 파일이 아니면 모달창을 띄운다.
+
+        // Ajax 방식으로 파일을 controller로 전송한다.
+        // Ajax가 성공하면 showUploadResult 함수를 실행한다.
+        showUploadResult();
+    });
+
+    function fileCheck(file) {
+        console.log(file);
+
+/*        pathPoint = file.value.lastIndexOf('.');
+        filePoint = file.value.substring(pathPoint + 1, file.length);
+        fileType = filePoint.toLowerCase();
+        console.log(fileType);*/
+    }
+
+    // 화면에 썸네일을 보여준다.
+    function showUploadResult() {
+        var $imageInputBox = $('.image-input-box');
+
+        $imageInputBox.css('border', 'none');
+
+        let text = "";
+        text += `<div class="thumbnail-container" data-file-size="" data-file-name="" data-file-upload-path="" data-file-uuid="" data-file-image-check="">`;
+        text += '<span>';
+        text += '<img src="/images/diary/close.svg">';
+        text += '</span>';
+        /* 실제론 src에 controller로 가능 경로를 작성한다. */
+        /* 썸네일의 크기는 375 * 375로 한다. */
+        text += `<img src="/images/diary/bread.jpg" width="375px" style="border-radius: 5px;">`;
+        text += `</div>`;
+
+        $imageInputBox.append(text);
+    };
+
+    // x를 누르면 업로드 되었던 파일을 삭제한다.
+    $('.image-input-box').on('click', 'span', function () {
+        const $div = $(this).closest('div');
+        let fileUploadPath = $div.data('fileUploadPath');
+        let fileName = $div.data('fileName') + "_" + $div.data('file-name');
+
+        // Ajax로 업로드했던 원본 파일과 관련된 데이터를 전송한다.
+        // Ajax 통신 성공시 화면을 초기상태로 되돌린다.
+        $div.remove();
+
+        var $imageInputBox = $('.image-input-box');
+        $imageInputBox.css('border', '1px dashed #bfbfbf');
+
+    });
+
     // 날짜
     var dateSelector = document.querySelector('#dateSelector');
     dateSelector.flatpickr();
@@ -169,13 +236,12 @@
     dateSelector.flatpickr({
         local: 'ko',
         inline: true,
-/*        defaultDate: "2022-11-21",*/
-/*        enable:[
+/*        defaultDate: "2022-11-21",
+        enable:[
             "2022-11-21"
-        ]*/
-        maxDate: "2022-11-22"
+        ],
+        maxDate: "2022-11-22"*/
     });
-
 
     // 글자 수 카운트
     $('.input-text').keyup(function (e) {
@@ -187,7 +253,6 @@
             $('.text-muted').text(content.length + ' / 40');
         }
     });
-
 
     // 썸머 노트
    $('#summernote').summernote({
@@ -215,15 +280,16 @@
     const $saveBtn = $('#saveBtn');
 
     $saveBtn.on('click', function () {
-        var diaryTitle = $('input[name=diaryTitle]');
+        var $diaryTitle = $('input[name=diaryTitle]');
+        var $summernote = $('#summernote');
 
-        if(!diaryTitle.val()){
-            /* !diaryForm.diaryTitle이 먹히지 않는다. 왜 ?? */
+        if(!$diaryTitle.val()){
             alert('제목을 작성해주세요.');
+            $diaryTitle.focus();
             return;
         }
 
-        if ($('#summernote').summernote('isEmpty')) {
+        if ($summernote.summernote('isEmpty')) {
             alert('일기 내용을 작성해주세요.');
             return;
         }
@@ -252,7 +318,23 @@
     const $noBtn = $('#noBtn');
 
     $yesBtn.on('click', function () {
-        diaryForm.submit();
+/*        var $div = $('.image-input-box div');
+        let text = "";
+
+        let fileName = $div.data("file-name");
+        let fileUploadPath = $div.data("file-upload-path");
+        let fileUuid = $div.data("file-uuid");
+        let fileSize = $div.data("file-size");
+        let fileImageCheck = $div.data("file-image-check");
+
+        text += `<input type="hidden" name="file.fileName" value="` + fileName + `">`;
+        text += `<input type="hidden" name="file.fileUploadPath" value="` + fileUploadPath + `">`;
+        text += `<input type="hidden" name="file.fileUuid" value="` + fileUuid + `">`;
+        text += `<input type="hidden" name="file.fileSize" value="` + fileSize + `">`;
+        text += `<input type="hidden" name="file.fileImageCheck" value="` + fileImageCheck + `">`;
+
+        $("form#diaryForm").append(text).submit();*/
+        alert('submit');
         modalContainer.style.display = "none";
         closeModal();
     })

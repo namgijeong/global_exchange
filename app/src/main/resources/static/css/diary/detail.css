@@ -199,6 +199,25 @@ textarea:disabled {
     flex-flow: column nowrap;
 }
 
+
+
+
+.input-label {
+    display: block;
+    margin-bottom: 6px;
+    color: rgb(102, 102, 102);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: -0.03em;
+    text-align: left;
+}
+
+
+
+
+
+
 .partner-profile {
     display: flex;
     -webkit-box-pack: justify;
