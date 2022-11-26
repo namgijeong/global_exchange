@@ -264,7 +264,7 @@
         text += '</span>';
 
         /* 실제론 src에 controller로 가능 경로를 작성한다. */
-        /* 썸네일의 크기는 375 * 375로 한다. */
+        /* 썸네일의 크기는 64 * 64로 한다. */
         text += `<img src="/images/diary/bread.jpg" width="100%" height="100%" style="border-radius: 100%; cursor: pointer;">`;
         text += `</div>`;
 
@@ -275,7 +275,6 @@
     // x를 누르면 업로드 되었던 파일을 삭제한다.
     $('.image-container').on('click', 'span', function () {
         $("input[type='file']").val("");
-        console.log($("input[type='file']").val());
         const $div = $(this).closest('div');
         let fileUploadPath = $div.data('fileUploadPath');
         let fileName = $div.data('fileName') + "_" + $div.data('file-name');
