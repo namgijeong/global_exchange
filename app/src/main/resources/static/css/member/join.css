@@ -49,6 +49,8 @@ body {
     border-radius: 10px;
 
     text-align:center;
+
+    cursor:pointer;
 }
 #startGoogle>img{
     width:30px;

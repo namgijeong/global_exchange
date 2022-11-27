@@ -13,18 +13,19 @@
     <link href="/css/diary/write.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div id="app">
-        <div class="appWrapper">
-            <!-- header -->
-            <div th:replace="/main/header.html:: topHeader "></div>
-            <div th:replace="/main/header.html:: header "></div>
+<div id="app">
+    <div class="appWrapper">
+        <!-- header -->
+        <div th:replace="/main/header.html:: topHeader "></div>
+        <div th:replace="/main/header.html:: header "></div>
 
-            <!-- main -->
-            <div class="wrapper">
-                <div class="content-wrapper">
-                    <div class="diary-detail-container">
-                        <div class="header-section-wrapper">
-                            <div class="image-input-box">
+        <!-- main -->
+        <div class="wrapper">
+            <div class="content-wrapper">
+                <div class="diary-detail-container">
+                    <div class="header-section-wrapper">
+                        <div class="image-input-box">
+                            <div id="imageInputStatus">
                                 <div class="plus-image-text-wrapper">
                                     <div class="plus-image-text-container">
                                         <label for="diaryFile" class="image-input-label">
@@ -35,111 +36,112 @@
                                         </label>
                                     </div>
                                 </div>
-                                <input type="file" id="diaryFile" name="upload" accept="image/jpeg ,image/bmp, image/png, image/gif" hidden>
                             </div>
-                            <div class="info-wrapper">
-                                <section class="date-info-section">
-                                    <div class="date-wrapper">
-                                        <input class="date-selector" id="dateSelector">
-                                    </div>
-                                </section>
-                                <section class="partner-profile-section">
-                                    <div class="partner-profile-wrapper">
-                                        <!--<div class="partner-profile">
-                                            <div class="partner-profile-info">
-                                                <div class="partner-profile-image">
+                            <input type="file" id="diaryFile" name="upload" accept="image/gif, image/png, image/bmp, image/jpeg" hidden>
+                        </div>
+                        <div class="info-wrapper">
+                            <section class="date-info-section">
+                                <div class="date-wrapper">
+                                    <input class="date-selector" id="dateSelector">
+                                </div>
+                            </section>
+                            <section class="partner-profile-section">
+                                <div class="partner-profile-wrapper">
+                                    <!--<div class="partner-profile">
+                                        <div class="partner-profile-info">
+                                            <div class="partner-profile-image">
+                                                <a href="javascript:void(0)">
+                                                    <div class="partner-image-wrapper">
+                                                        <img class="partner-profile-img-style" src="/images/member/sample2.png">
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="profile-content">
+                                                <div class="partner-name-wrapper">
                                                     <a href="javascript:void(0)">
-                                                        <div class="partner-image-wrapper">
-                                                            <img class="partner-profile-img-style" src="/images/member/sample2.png">
-                                                        </div>
+                                                        <span class="partner-nickname">
+                                                            Tom Cruise
+                                                        </span>
                                                     </a>
                                                 </div>
-                                                <div class="profile-content">
-                                                    <div class="partner-name-wrapper">
-                                                        <a href="javascript:void(0)">
-                                                            <span class="partner-nickname">
-                                                                Tom Cruise
-                                                            </span>
-                                                        </a>
-                                                    </div>
-                                                    <span class="partner-nation">
-                                                        미국
-                                                    </span>
-                                                </div>
+                                                <span class="partner-nation">
+                                                    미국
+                                                </span>
                                             </div>
-                                            <a href="javascript:void(0)">
-                                                <img class="nation-img-style" src="/images/main/americaIcon.png">
-                                            </a>
-                                        </div>-->
-                                        <div>
-                                            <label for="a" class="input-label">교환 일기 파트너</label>
-                                            <select name="diaryPartner" id="a" class="input-style">
-                                                <option value="Tom Crues" selected>Tom Crues</option>
-                                                <option value="John">John</option>
-                                                <option value="Alice Brown">Alice Brown</option>
-                                            </select>
                                         </div>
+                                        <a href="javascript:void(0)">
+                                            <img class="nation-img-style" src="/images/main/americaIcon.png">
+                                        </a>
+                                    </div>-->
+                                    <div>
+                                        <label for="a" class="input-label">교환 일기 파트너</label>
+                                        <select name="diaryPartner" id="a" class="input-style">
+                                            <option value="Tom Crues" selected>Tom Crues</option>
+                                            <option value="John">John</option>
+                                            <option value="Alice Brown">Alice Brown</option>
+                                        </select>
                                     </div>
-                                </section>
-                            </div>
+                                </div>
+                            </section>
                         </div>
-                        <section class="section-container">
-                            <div class="section-title">
-                                <h2>교환 일기</h2>
-                                <button id="saveBtn" class="save-btn">저장하기</button>
-                            </div>
-                            <div class="form-container">
-                                <form method="post" id="diaryForm" enctype="multipart/form-data">
-                                    <div class="input-container">
-                                        <div class="row">
-                                            <div class="col-left">
-                                                <div class="input-label-style">
-                                                    <span class="text-danger">*</span>
-                                                    <span class="input-subject">제목</span>
-                                                </div>
+                    </div>
+                    <section class="section-container">
+                        <div class="section-title">
+                            <h2>교환 일기</h2>
+                            <button id="saveBtn" class="save-btn">저장하기</button>
+                        </div>
+                        <div class="form-container">
+                            <form method="post" id="diaryForm" enctype="multipart/form-data">
+                                <div class="input-container">
+                                    <div class="row">
+                                        <div class="col-left">
+                                            <div class="input-label-style">
+                                                <span class="input-subject">제목</span>
                                             </div>
-                                            <div class="col-right">
-                                                <div class="input-group">
-                                                    <input name="diaryTitle" id="diaryTitle" type="text" maxlength="40" required="required"
-                                                           placeholder="일기의 제목을 작성해주세요." class="input-text">
-                                                    <div class="input-text-append">
+                                        </div>
+                                        <div class="col-right">
+                                            <div class="input-group">
+                                                <input name="diaryTitle" id="diaryTitle" type="text" maxlength="40" required="required"
+                                                       placeholder="일기의 제목을 작성해주세요." class="input-text">
+                                                <div class="input-text-append">
                                                         <span class="text-muted-container">
                                                             <small class="text-muted"></small>
                                                         </span>
-                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="warning-text">일기 제목을 작성해주세요.</div>
                                         </div>
                                     </div>
-                                    <div class="input-container">
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-left">
-                                                <div class="input-label-style">
-                                                    <span class="text-danger">*</span>
-                                                    <span class="input-subject">내용</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-right">
-                                                <div class="input-group">
-                                                    <textarea id="summernote" name="diaryContent"></textarea>
-                                                </div>
+                                </div>
+                                <div class="input-container">
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-left">
+                                            <div class="input-label-style">
+                                                <span class="input-subject">내용</span>
                                             </div>
                                         </div>
+                                        <div class="col-right">
+                                            <div class="input-group">
+                                                <textarea id="summernote" name="diaryContent"></textarea>
+                                            </div>
+                                            <div class="warning-text">일기 내용을 작성해주세요.</div>
+                                        </div>
                                     </div>
-                                </form>
-                            </div>
-                        </section>
-                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
                 </div>
             </div>
-
-            <!-- footer -->
-            <div th:replace="/main/footer.html:: footerFirst"></div>
         </div>
+
+        <!-- footer -->
+        <div th:replace="/main/footer.html:: footerFirst"></div>
     </div>
 
-    <div class="modal-container modal-overlay">
+    <!-- modal -->
+    <div id="confirmModal" class="modal-container modal-overlay">
         <div class="modal-flex">
             <div class="modal-wrapper">
                 <div class="modal-body">
@@ -162,6 +164,29 @@
         </div>
         <div class="modal-color"></div>
     </div>
+
+    <!-- modal -->
+    <div id="imageVerifyModal" class="modal-container modal-overlay">
+        <div class="modal-flex">
+            <div class="modal-wrapper">
+                <div class="modal-body">
+                    <h2 class="modal-title">이미지 업로드 실패</h2>
+                    <div >
+                        jpg, png, bmp, gif 파일만 등록할 수 있습니다.
+                    </div>
+                </div>
+                <footer class="modal-footer">
+                    <div class="btn-container">
+                        <button id="confirmBtn" class="warning-btn">
+                            확인
+                        </button>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <div class="modal-color"></div>
+    </div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
@@ -174,28 +199,35 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 <script>
-    // 파일 업로드
-    $("input[type='file']").on('change', function(){
-        // 업로드한 파일이 이미지 파일이 아니면 모달창을 띄운다.
+    const $imageInputBox = $('.image-input-box');
+    const $file = $("input[type='file']");
+    const $diaryTitle = $('input[name=diaryTitle]');
+    const $summernote = $('#summernote');
+    const $saveBtn = $('#saveBtn');
+    const $confirmModal =  $('#confirmModal');
+    const $imageVerifyModal =  $('#imageVerifyModal');
+    const $yesBtn = $('#yesBtn');
+    const $noBtn = $('#noBtn');
+    const $confirmBtn = $('#confirmBtn');
 
-        // Ajax 방식으로 파일을 controller로 전송한다.
-        // Ajax가 성공하면 showUploadResult 함수를 실행한다.
-        showUploadResult();
+    // 파일 업로드
+    $file.on('change', function(){
+        // 업로드한 파일이 이미지 파일이 아니면 모달창을 띄운다.
+        var extension = $(this).val().split(".")[1];
+        if( extension == 'gif' || extension == 'png' || extension == 'bmp' || extension == 'dib'
+            || extension == 'jfif' || extension == 'pjpeg' || extension == 'pjp' || extension == 'jpg'){
+
+            // Ajax 방식으로 파일을 controller로 전송한다.
+            // Ajax가 성공하면 showUploadResult 함수를 실행한다.
+            showUploadResult();
+        } else {
+            imageVerifyModal();
+        }
     });
 
-    function fileCheck(file) {
-        console.log(file);
-
-/*        pathPoint = file.value.lastIndexOf('.');
-        filePoint = file.value.substring(pathPoint + 1, file.length);
-        fileType = filePoint.toLowerCase();
-        console.log(fileType);*/
-    }
 
     // 화면에 썸네일을 보여준다.
     function showUploadResult() {
-        var $imageInputBox = $('.image-input-box');
-
         $imageInputBox.css('border', 'none');
 
         let text = "";
@@ -205,14 +237,16 @@
         text += '</span>';
         /* 실제론 src에 controller로 가능 경로를 작성한다. */
         /* 썸네일의 크기는 375 * 375로 한다. */
-        text += `<img src="/images/diary/bread.jpg" width="375px" style="border-radius: 5px;">`;
+        text += `<img src="/images/diary/bread.jpg">`;
         text += `</div>`;
 
+        $('#imageInputStatus').hide();
         $imageInputBox.append(text);
     };
 
     // x를 누르면 업로드 되었던 파일을 삭제한다.
-    $('.image-input-box').on('click', 'span', function () {
+    $imageInputBox.on('click', 'span', function () {
+        $file.val("");
         const $div = $(this).closest('div');
         let fileUploadPath = $div.data('fileUploadPath');
         let fileName = $div.data('fileName') + "_" + $div.data('file-name');
@@ -220,10 +254,8 @@
         // Ajax로 업로드했던 원본 파일과 관련된 데이터를 전송한다.
         // Ajax 통신 성공시 화면을 초기상태로 되돌린다.
         $div.remove();
-
-        var $imageInputBox = $('.image-input-box');
+        $('#imageInputStatus').show();
         $imageInputBox.css('border', '1px dashed #bfbfbf');
-
     });
 
     // 날짜
@@ -236,11 +268,11 @@
     dateSelector.flatpickr({
         local: 'ko',
         inline: true,
-/*        defaultDate: "2022-11-21",
-        enable:[
-            "2022-11-21"
-        ],
-        maxDate: "2022-11-22"*/
+        /*        defaultDate: "2022-11-21",
+                enable:[
+                    "2022-11-21"
+                ],
+                maxDate: "2022-11-22"*/
     });
 
     // 글자 수 카운트
@@ -255,7 +287,7 @@
     });
 
     // 썸머 노트
-   $('#summernote').summernote({
+    $summernote.summernote({
         height: 300,
         width: 700,
         minHeight: 500,
@@ -271,17 +303,50 @@
         ],
         disableDragAndDrop: true
     });
-    // $('#summernote').summernote('disable');
-    // $('#summernote').summernote('enable');
-    // $('#summernote').summernote('reset');
 
+    // input[type='file'] 마우스 올렸을 때 색 변화
+    $imageInputBox.on('mouseover', function () {
+        if(!$file.val()) {
+            $imageInputBox.css('border-color', '#7a29fa');
+        }
+    })
+
+    $imageInputBox.on('mouseout', function () {
+        if(!$file.val()) {
+            $imageInputBox.css('border-color', '#bfbfbf');
+        }
+    })
+
+    // input 태그 포커스 시 색 변화
+    let flag = true;
+
+    $diaryTitle.on('focus', function () {
+        if(flag){
+            $(this).css('border-color', '#7a29fa');
+            $(this).next().children().css('border-color', '#7a29fa');
+        }
+    })
 
     // 유효성 검사
-    const $saveBtn = $('#saveBtn');
+    $diaryTitle.on('blur', function () {
+        if(!$(this).val()){
+            $(this).parent().next().show();
+            $(this).css('border-color', '#eb385e');
+            $(this).next().children().css('border-color', '#eb385e');
+            flag = false;
+        } else{
+            $(this).parent().next().hide();$(this).css('border-color', '#ddd');
+            $(this).next().children().css('border-color', '#ddd');
+            flag = true;
+        }
+    })
 
     $saveBtn.on('click', function () {
-        var $diaryTitle = $('input[name=diaryTitle]');
-        var $summernote = $('#summernote');
+
+        if(!$file.val()){
+            alert('이미지를 넣어주세요.');
+            return;
+        }
 
         if(!$diaryTitle.val()){
             alert('제목을 작성해주세요.');
@@ -294,56 +359,45 @@
             return;
         }
 
-        modal();
+        confirmModal();
     });
 
-
     // 모달창
-    const modalContainer = document.querySelector(".modal-container");
-
     function openModal() {
-        document.body.style.overflow = "hidden";
+        $('body').css('overflow', 'hidden');
     };
 
     function closeModal() {
-        document.body.style.overflow = "unset";
+        $('body').css('overflow', 'unset');
     }
 
-    function modal() {
-        modalContainer.style.display = "flex";
+    // 이미지 유효성 모달
+    function imageVerifyModal() {
+        $imageVerifyModal.css('display', 'flex');
         openModal();
     }
 
-    const $yesBtn = $('#yesBtn');
-    const $noBtn = $('#noBtn');
+    $confirmBtn.on('click', function () {
+        $imageVerifyModal.css('display', 'none');
+        closeModal();
+    })
+
+    // 저장 확인 모달
+    function confirmModal() {
+        $confirmModal.css('display', 'flex');
+        openModal();
+    }
 
     $yesBtn.on('click', function () {
-/*        var $div = $('.image-input-box div');
-        let text = "";
-
-        let fileName = $div.data("file-name");
-        let fileUploadPath = $div.data("file-upload-path");
-        let fileUuid = $div.data("file-uuid");
-        let fileSize = $div.data("file-size");
-        let fileImageCheck = $div.data("file-image-check");
-
-        text += `<input type="hidden" name="file.fileName" value="` + fileName + `">`;
-        text += `<input type="hidden" name="file.fileUploadPath" value="` + fileUploadPath + `">`;
-        text += `<input type="hidden" name="file.fileUuid" value="` + fileUuid + `">`;
-        text += `<input type="hidden" name="file.fileSize" value="` + fileSize + `">`;
-        text += `<input type="hidden" name="file.fileImageCheck" value="` + fileImageCheck + `">`;
-
-        $("form#diaryForm").append(text).submit();*/
-        alert('submit');
-        modalContainer.style.display = "none";
+        /* controller로 정보를 전달한다. */
+        // ?? 날짜는 어떻게 보내지 ??
+        $confirmModal.css('display', 'none');
         closeModal();
     })
 
     $noBtn.on('click', function () {
-        modalContainer.style.display = "none";
+        $confirmModal.css('display', 'none');
         closeModal();
     })
-
-    // ?? 날짜는 어떻게 보내지 ??
 </script>
 </html>

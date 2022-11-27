@@ -94,6 +94,7 @@ input{
 
     border-radius: 10px;
     border:1px solid rgb(238, 238, 238);
+    cursor:pointer;
 }
 #goRealGoogleLogin>img{
     width:48px;
