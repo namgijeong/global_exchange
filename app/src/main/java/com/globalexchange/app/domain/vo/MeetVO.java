@@ -16,7 +16,7 @@ public class MeetVO {
     private String meetAddress;
     private String meetDetailAddress;
 
-    private FileMeetVO fileMeetVO;
+
 
 //    public void create(String fileName, String fileUploadPath, String fileUuid, boolean fileImageCheck) {
 //        this.fileName = fileName;

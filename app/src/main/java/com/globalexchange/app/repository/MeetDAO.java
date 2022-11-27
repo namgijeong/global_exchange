@@ -1,27 +1,31 @@
-package com.globalexchange.app.repository;//package com.globalexchange.app.repository;
+package com.globalexchange.app.repository;
 //
-//import com.example.app.domain.vo.FileVO;
-//import com.example.app.mapper.FileMapper;
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.stereotype.Repository;
+
+import com.globalexchange.app.domain.vo.Criteria;
+import com.globalexchange.app.domain.vo.MeetVO;
+import com.globalexchange.app.mapper.MeetMapper;
+import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 //
-//import java.util.List;
+import java.util.List;
 //
-//@Repository
-//@RequiredArgsConstructor
-//public class FileDAO {
-//    private final FileMapper fileMapper;
-//
-//    //    파일 추가
-//    public void save(FileVO fileVO){
-//        fileMapper.insert(fileVO);
-//    }
-//    //    파일 삭제
-//    public void remove(Long boardNumber){
-//        fileMapper.delete(boardNumber);
-//    }
-//    //    파일 조회
-//    public List<FileVO> findAll(Long boardNumber){
-//        return fileMapper.selectAll(boardNumber);
-//    }
-//}
+@Repository
+@RequiredArgsConstructor
+public class MeetDAO{
+    private final MeetMapper meetMapper;
+
+    public List<MeetVO> meetSelectAll(Criteria criteria){
+        return meetMapper.meetSelectAll(criteria);
+    }
+    public List<MeetVO> categoryMeetSelectAll(Criteria criteria,String meetLearningLang){
+        return meetMapper.categoryMeetSelectAll(criteria, meetLearningLang);
+    }
+    public int getTotal(){
+        return meetMapper.getTotal();
+    }
+
+    public int categoryGetTotal(String meetLearningLang) {
+        return meetMapper.categoryGetTotal(meetLearningLang);
+    }
+}
