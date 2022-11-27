@@ -19,47 +19,8 @@ function checkId(memberId) {
         return;
     }
 
-    // $.ajax({
-    //     url: "/member/joincheckID",
-    //     data: {"memberId": memberId},
-    //     success: function(result){
-    //         let message, color;
-    //
-    //         if(result == "true"){
-    //             message = "사용 가능한 아이디입니다.";
-    //             color = "blue";
-    //             check = true;
-    //         }else{
-    //             message = "중복된 아이디입니다.";
-    //             color = "red";
-    //         }
-    //
-    //         $("#memberIdResult").css("color", color);
-    //         $("#memberIdResult").text(message);
-    //     },
-    //     error: function(a, b, c){
-    //         console.log(a, b, c);
-    //     }
-    // });
-
-}
-function checkNick(memberNick) {
-
-    if (!memberNick) {
-        $("#memberNickResult").text("닉네임을 입력해주세요.");
-        $("#memberNickResult").css("color", "red");
-        $("#memberNickResult").css("display", "block");
-        $("#memberNick").css("border", "1px solid red");
-        return;
-    } else {
-        $("#memberNickResult").text("");
-        $("#memberNickResult").css("display", "none");
-        $("#memberNick").css("border", "1px solid rgb(238, 238, 238)");
-        return;
-    }
-    /*
     $.ajax({
-        url: "/member/checkId.me",
+        url: "/member/join",
         data: {"memberId": memberId},
         success: function(result){
             let message, color;
@@ -80,7 +41,46 @@ function checkNick(memberNick) {
             console.log(a, b, c);
         }
     });
-    */
+
+}
+function checkNick(memberNick) {
+
+    if (!memberNick) {
+        $("#memberNickResult").text("닉네임을 입력해주세요.");
+        $("#memberNickResult").css("color", "red");
+        $("#memberNickResult").css("display", "block");
+        $("#memberNick").css("border", "1px solid red");
+        return;
+    } else {
+        $("#memberNickResult").text("");
+        $("#memberNickResult").css("display", "none");
+        $("#memberNick").css("border", "1px solid rgb(238, 238, 238)");
+        return;
+    }
+
+    $.ajax({
+        url: "/member/checkId",
+        data: {"memberId": memberId},
+        success: function(result){
+            let message, color;
+
+            if(result == "true"){
+                message = "사용 가능한 아이디입니다.";
+                color = "blue";
+                check = true;
+            }else{
+                message = "중복된 아이디입니다.";
+                color = "red";
+            }
+
+            $("#memberIdResult").css("color", color);
+            $("#memberIdResult").text(message);
+        },
+        error: function(a, b, c){
+            console.log(a, b, c);
+        }
+    });
+
 }
 
 function pwCheck(memberPw){

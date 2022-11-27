@@ -1,18 +1,37 @@
 package com.globalexchange.app.controller;
 
+import com.globalexchange.app.domain.vo.MemberVO;
+import com.globalexchange.app.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/member/*")
+@RequiredArgsConstructor
 public class MemberController {
+
+//    private final MemberService memberService;
 
     //회원가입 선택 페이지 이동
     @GetMapping("/join")
     public void join(){
 
     }
+
+    //중복검사
+//    @PostMapping("/checkId")
+//    public String checkId(MemberVO memberVO) {
+//        boolean i = memberService.checkId(memberVO);
+//        if (i) {
+//            return "no";
+//        }
+//
+//        return "ok";
+//
+//    }
 
     //이메일 회원가입
     @GetMapping("/joinForm")
@@ -30,13 +49,11 @@ public class MemberController {
     //로그인 선택 페이지 이동
     @GetMapping("/login")
     public void login(){
-
     }
 
     //이메일 로그인
     @GetMapping("/emailLogin")
     public void emailLogin(){
-
     }
 
     //구글 로그인
