@@ -2,7 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.globalexchange.app.mapper.TimeMapper">
     <select id="checkId" resultType="_int" >
-        SELECT member_number FROM tbl_member
-        WHERE member_id = #{memberId} and member_password = #{memberPassword}
+        SELECT count(member_number) FROM tbl_member
+        WHERE member_id = #{memberId}
     </select>
+
+<!--    <insert id="join">-->
+<!--        insert into tbl_member(member_id, member_password)-->
+<!--        values(#{memberId},#{memberPassword})-->
+<!--    </insert>-->
+
+<!--    <select id="login" resultType="MemberVO" >-->
+<!--        SELECT member_number FROM tbl_member-->
+<!--        WHERE member_id = #{memberId} and member_password = #{memberPassword}-->
+<!--    </select>-->
 </mapper>
