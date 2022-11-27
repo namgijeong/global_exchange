@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.globalexchange.app.mapper.MeetMapper">
+    <select id="meetSelectAll" resultType="meetVO">
+        SELECT meet_number,meet_title,member_number,meet_learning_lang,meet_content,meet_write_date,meet_update_date,meet_address,meet_detail_address
+        FROM
+        (
+            SELECT ROWNUM R, meet_number,meet_title,member_number,meet_learning_lang,meet_content,meet_write_date,meet_update_date,meet_address,meet_detail_address
+            FROM
+            (
+                SELECT meet_number,meet_title,member_number,meet_learning_lang,meet_content,meet_write_date,meet_update_date,meet_address,meet_detail_address
+                FROM tbl_meet
+                ORDER BY meet_number DESC
+            )
+    <![CDATA[
+            WHERE ROWNUM <= #{page} * #{amount}
+        )
+        WHERE R > (#{page} - 1) * #{amount}
+    ]]>
+    </select>
+    <select id="categoryMeetSelectAll" resultType="meetVO">
+        SELECT meet_number,meet_title,member_number,meet_learning_lang,meet_content,meet_write_date,meet_update_date,meet_address,meet_detail_address
+        FROM
+        (
+            SELECT ROWNUM R, meet_number,meet_title,member_number,meet_learning_lang,meet_content,meet_write_date,meet_update_date,meet_address,meet_detail_address
+            FROM
+            (
+                SELECT meet_number,meet_title,member_number,meet_learning_lang,meet_content,meet_write_date,meet_update_date,meet_address,meet_detail_address
+                FROM tbl_meet
+                WHERE meet_learning_lang = #{meetLearningLang}
+                ORDER BY meet_number DESC
+            )
+    <![CDATA[
+            WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+        )
+        WHERE R > (#{criteria.page} - 1) * #{criteria.amount}
+    ]]>
+    </select>
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(meet_number) FROM tbl_meet
+    </select>
+
+    <select id="categoryGetTotal" resultType="_int">
+        SELECT COUNT(meet_number) FROM tbl_meet
+        WHERE meet_learning_lang = #{meetLearningLang}
+    </select>
+
+</mapper>

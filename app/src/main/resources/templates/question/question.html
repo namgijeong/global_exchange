@@ -20,7 +20,7 @@
         <div class="question-content">
             <div>
                     <span>
-                        <form action="">
+                        <form th:action="@{/question/questionWriteOk}">
                             <div class="title-text">문의 사항</div>
                             <div class="input-form">
                                 <div class="writer-name">제목</div>
@@ -29,7 +29,7 @@
                                     <span >
                                         <fieldset class="fieldset-group">
                                             <div class="input-group">
-                                                <input type="text" class="input-text" placeholder="제목을 입력해주세요">
+                                                <input type="text" name="emailTitle" class="input-text" placeholder="제목을 입력해주세요">
                                             </div>
                                         </fieldset>
                                     </span>
@@ -42,7 +42,7 @@
                                     <span>
                                         <fieldset class="fieldset-group">
                                             <div class="input-group">
-                                                <input type="text" class="input-text" placeholder="010-1234-1234">
+                                                <input type="text" name="emailPhone" class="input-text" placeholder="010-1234-1234">
                                             </div>
                                         </fieldset>
                                     </span>
@@ -55,7 +55,7 @@
                                     <span>
                                         <fieldset class="fieldset-group">
                                             <div class="input-group">
-                                                <input type="text" class="input-text" placeholder="springBom@gmail.com">
+                                                <input type="text" name="clientEmail" class="input-text" placeholder="springBom@gmail.com">
                                             </div>
                                         </fieldset>
                                     </span>
@@ -68,7 +68,7 @@
                                     <span>
                                         <fieldset class="fieldset-group">
                                             <div class="input-group">
-                                                <textarea name="" id="textControl" placeholder="문의사항 있으시면 글을 작성 해주세요"></textarea>
+                                                <textarea name="emailContent" id="textControl" placeholder="문의사항 있으시면 글을 작성 해주세요"></textarea>
                                             </div>
                                         </fieldset>
                                     </span>
