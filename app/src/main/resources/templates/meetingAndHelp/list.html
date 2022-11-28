@@ -411,11 +411,16 @@
     });
     $("button.modal-footer-btn").on("click",function(e){
       e.preventDefault();
-      let nation2=$('input[name="nation2"]').val();
+      let nation2=$('input[name="nation2"]:checked').val();
       //얘는 form태그에 감싸서 보내는게 아니라서 이렇게 일일이 써줘야한다.
       //모달창으로 분류전 criteria를 리셋
-      location.href="/meetingAndHelp/categorylist?page=1&amount=10&nation2="+nation2;
-      //location.href="/meetingAndHelp/categorylist?nation2="+nation2;
-    })
+      //location.href="/meetingAndHelp/categorylist?page=1&amount=10&nation2="+nation2;
+      location.href="/meetingAndHelp/categorylist?nation2="+nation2;
+    });
+
+    $("button.post-button").on("click",function(e){
+      e.preventDefault();
+      location.href="/meetingAndHelp/write";
+    });
 </script>
 </html>

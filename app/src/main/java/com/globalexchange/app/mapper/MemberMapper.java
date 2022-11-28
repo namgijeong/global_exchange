@@ -12,4 +12,5 @@ public interface MemberMapper {
 
 //   public void MemberJoin(MemberVO memberVO);
 
+
 }

@@ -4,7 +4,9 @@ package com.globalexchange.app.service;
 //import com.example.app.domain.vo.BoardVO;
 //import com.example.app.domain.vo.Criteria;
 import com.globalexchange.app.domain.vo.Criteria;
+import com.globalexchange.app.domain.vo.FileProfileVO;
 import com.globalexchange.app.domain.vo.MeetVO;
+import com.globalexchange.app.domain.vo.MemberVO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +22,10 @@ public interface MeetService {
     public List<MeetVO> categoryMeetSelectAll(Criteria criteria, String meetLearningLang);
     //카테고리별 게시글 갯수
     public int categoryGetTotal(String meetLearningLang);
+    //작성자 정보 가져오기
+    public MemberVO writerInfo(Long memberNumber);
+    //작성자 프로필 이미지 가져오기
+    public FileProfileVO getMeetWriterImage(Long memberNumber);
 //    //    추가
 //    public void register(BoardDTO boardDTO);
 //    //    수정

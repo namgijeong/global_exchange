@@ -24,6 +24,7 @@
 
 
   <div class="detail-page-wrapper">
+    <form action="/meetingAndHelp/writeOk" method="post">
     <h2 class="write-title">만남과 도움</h2>
     <div class="detail-page">
       <div class="detail-page-container">
@@ -40,13 +41,13 @@
             <div class="header-info-basic">
               <div class="header-info-title">
                 <h1 class="title-content">제목</h1>
-                <input class="title-reg" placeholder="제목을 입력하세요">
+                <input name="meetTitle" class="title-reg" placeholder="제목을 입력하세요">
               </div>
             </div>
 
             <div class="select-box">
               <h1 class="title-content select-box-title">내가 익숙한 언어</h1>
-              <select name = "myCountry" class="select-box-size">
+              <select name = "mylearning" class="select-box-size">
                 <option value = "english" selected>영어</option>
                 <option value = "spanish">스페인어</option>
                 <option value = "french">프랑스어</option>
@@ -61,50 +62,66 @@
             </div>
             <div class="select-box">
               <h1 class="title-content select-box-title">도움을 원하는 언어</h1>
-              <select name = "helpCountry" class="select-box-size">
-                <option value = "english" selected>영어</option>
-                <option value = "spanish">스페인어</option>
-                <option value = "french">프랑스어</option>
-                <option value = "french">독일어</option>
-                <option value = "italian">이탈리아어</option>
-                <option value = "portuguese">포르투갈어</option>
-                <option value = "russian">러시아어</option>
-                <option value = "japanese">일본어</option>
-                <option value = "chinese">중국어</option>
-                <option value = "korean">한국어</option>
+              <select name = "meetLearningLang" class="select-box-size">
+                <option value = "ENGLISH" selected>영어</option>
+                <option value = "SPANISH">스페인어</option>
+                <option value = "FRENCH">프랑스어</option>
+                <option value = "GERMAN">독일어</option>
+                <option value = "ITALIAN">이탈리아어</option>
+                <option value = "PORTUGUESE">포르투갈어</option>
+                <option value = "RUSSIAN">러시아어</option>
+                <option value = "JAPANESE">일본어</option>
+                <option value = "CHINESE">중국어</option>
+                <option value = "KOREAN">한국어</option>
               </select>
             </div>
 
-            <div class="header-info-profile">
+            <div class="header-info-profile" >
               <div class="profile-content-section">
                 <div class="profile-image-section">
                   <a href="#">
-                    <div class="profile-image-wrapper">
-                      <img src="https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_56/576_blueguitar_1476154324950"
-                           class="profile-image" alt="프로필 이미지">
+                    <!--<div class="profile-image-wrapper" th:object="${file}">-->
+                    <div class="profile-image-wrapper" >
+                      <!--<img src="https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_56/576_blueguitar_1476154324950"
+                           class="profile-image" alt="프로필 이미지">-->
+
+                        <th:block th:if="${not #strings.isEmpty(file)}">
+                      <img th:if="${file.fileImageCheck}" th:src="@{/file/display(fileName=${file.fileUploadPath} + '/' + ${file.fileUuid} + '_' + ${file.fileName})}" class="profile-image">
+                      <img th:unless="${file.fileImageCheck}" src="/images/noImage/no-image.jpg" class="profile-image">
+                        </th:block>
+                      <th:block th:unless="${not #strings.isEmpty(file)}">
+
+                        <img src="/images/noImage/no-image.jpg"  class="profile-image">
+                      </th:block>
                     </div>
                   </a>
                 </div>
                 <div class="profile-content">
                   <div class="profile-name">
                     <a href="#">
-                      <span class="profile-name-content">
-                        <span>블루기타</span>
+                      <span class="profile-name-content" th:object="${memberVO}">
+                        <!--<span >블루기타</span>-->
+                        <span  th:if="*{memberNickname}" th:text="*{memberNickname}"></span>
+                        <span  th:unless="*{memberNickname}" >블루기타</span>
                         <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3E %3Cpath stroke='%23333' stroke-linecap='round' stroke-width='1.5' d='M6 3l5 5-5 5'/%3E %3C/svg%3E" alt="">
                       </span>
                     </a>
                   </div>
-                  <span class="profile-plus">작성자 나라..?</span>
+                  <!--<span class="profile-plus">작성자 나라..?</span>-->
+                  <span class="profile-plus"  th:if="${memberVO.memberTeachingLang}" th:text="${memberVO.memberTeachingLang}"></span>
+                  <span class="profile-plus"  th:unless="${memberVO.memberTeachingLang}" >작성자 나라..?</span>
                 </div>
               </div>
             </div>
+
+
           </div>
         </div>
 
         <section class="section">
           <article>
             <h2 class="article-title">내용</h2>
-            <textarea class="comment-reg" placeholder="내용을 입력하세요"></textarea>
+            <textarea name="meetContent" class="comment-reg" placeholder="내용을 입력하세요"></textarea>
 
           </article>
         </section>
@@ -112,26 +129,34 @@
         <section class="section">
           <h2 class="article-title">장소</h2>
           <div class="address-wrapper">
-            <input type="text" class="address" id="sample5_address" placeholder="주소">
+            <input name="meetAddress" type="text" class="address" id="sample5_address" placeholder="주소">
             <input type="button" class="address-search" onclick="sample5_execDaumPostcode()" value="주소 검색">
           </div>
 
-          <input type="text" class="address address-detail" placeholder="상세주소">
+          <input name="meetDetailAddress" type="text" class="address address-detail" placeholder="상세주소">
           <div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
         </section>
 
         <div class="comment-button">
-          <button class="post-button">등록</button>
+          <button class="post-button" type="submit">등록</button>
         </div>
 
       </div>
     </div>
+
+    </form>
   </div>
   <footer th:replace="/main/footer.html :: #footerFirst"></footer>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
+
+  let fileName;
+  let fileUploadPath;
+  let fileUuid;
+  let fileImageCheck;
+  let fileSize;
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
@@ -181,13 +206,53 @@
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('preview').src = e.target.result;
-            };
             reader.readAsDataURL(input.files[0]);
+            reader.onload = function(e) {
+
+
+              let url = e.target.result;
+
+              // 이미지 파일인지 검사
+              if(url.includes("image")){
+                // 기존 이미지에서 썸네일 이미지로 대체
+                //document.querySelector("label div").style.backgroundImage = "url(" + url +")";
+                document.getElementById('preview').src = e.target.result;
+              }else{
+                // 미리 준비해놓은 이미지로 대체
+                //document.querySelector("label div").style.backgroundImage = "url(no-image.jpg)";
+                document.getElementById('preview').src="/images/meetingAndHelp/filePlus.png";
+              }
+            };
+
         } else {
-            document.getElementById('preview').src = "";
+            document.getElementById('preview').src = "/images/meetingAndHelp/filePlus.png";
         }
+
+        let formData = new FormData();
+        let file = input.files[0];
+
+        /*$(files).each(function(i, file){
+          formData.append("upload", file);
+        });*/
+        formData.append("upload", file);
+        $.ajax({
+          url: "/fileMeet/upload",
+          type: "post",
+          data: formData,
+          contentType: false,
+          processData: false,
+          success:sendFileDB
+        });
+
+    }
+
+    function sendFileDB(file){
+      fileName=file.fileName;
+      fileUploadPath=file.fileUploadPath;
+      fileUuid=file.fileUuid;
+      fileImageCheck=file.fileImageCheck;
+      fileSize=file.fileSize;
+
     }
 </script>
 </html>

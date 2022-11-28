@@ -3,8 +3,10 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.globalexchange.app.domain.vo.MeetVO" alias="meetVO"/>
+        <typeAlias type="com.globalexchange.app.domain.vo.MemberVO" alias="memberVO"/>
 
         <typeAlias type="com.globalexchange.app.domain.vo.Criteria" alias="criteria"/>
+        <typeAlias type="com.globalexchange.app.domain.vo.FileProfileVO" alias="fileProfileVO"/>
 
     </typeAliases>
 </configuration>
