@@ -6,9 +6,10 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface MemberMapper {
-   int checkId(String checkId);
-   int join(MemberVO memberVO);
-   MemberVO login(MemberVO memberVO);
+   int checkId(String memberId);
+   int checkNick(String memberNick);
+   Long emailLogin(MemberVO memberVO);
+   int joinForm(MemberVO memberVO);
 
 //   public void MemberJoin(MemberVO memberVO);
 

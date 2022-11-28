@@ -18,6 +18,7 @@ public class MemberVO {
     private String memberBirthdate;
     private String memberIntroduce;
 
+
 //    public void create(String fileName, String fileUploadPath, String fileUuid, boolean fileImageCheck) {
 //        this.fileName = fileName;
 //        this.fileUploadPath = fileUploadPath;

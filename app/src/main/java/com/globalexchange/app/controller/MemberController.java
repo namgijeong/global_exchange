@@ -3,17 +3,21 @@ package com.globalexchange.app.controller;
 import com.globalexchange.app.domain.vo.MemberVO;
 import com.globalexchange.app.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/member/*")
 @RequiredArgsConstructor
+@Slf4j
 public class MemberController {
 
-//    private final MemberService memberService;
+    private final MemberService memberService;
 
     //회원가입 선택 페이지 이동
     @GetMapping("/join")
@@ -21,22 +25,17 @@ public class MemberController {
 
     }
 
-    //중복검사
-//    @PostMapping("/checkId")
-//    public String checkId(MemberVO memberVO) {
-//        boolean i = memberService.checkId(memberVO);
-//        if (i) {
-//            return "no";
-//        }
-//
-//        return "ok";
-//
-//    }
 
     //이메일 회원가입
-    @GetMapping("/joinForm")
-    public void joinForm(){
+//    @PostMapping("/joinForm")
+    @RequestMapping(value = "/joinForm")
+    public String joinForm(MemberVO memberVO){
 
+        if(memberVO==null){
+            return "member/joinForm";
+        }
+
+        return "member/login";
     }
 
     //구글 회원가입
@@ -51,10 +50,31 @@ public class MemberController {
     public void login(){
     }
 
-    //이메일 로그인
-    @GetMapping("/emailLogin")
-    public void emailLogin(){
+
+//    이메일 로그인
+//    @PostMapping("/emailLogin")
+    @RequestMapping(value = "/emailLogin")
+    public String emailLogin(MemberVO memberVO, HttpServletRequest request, RedirectAttributes attr) {
+            log.info(memberVO.getMemberId() + "들어옴"+ memberVO.getMemberPassword());
+        HttpSession session = request.getSession();
+
+        Long memberNumber = memberService.emailLogin(memberVO);
+
+
+        if(memberNumber == null){
+
+            return "member/login";
+        }else {
+            session.setAttribute("memberNumber" , memberNumber);
+
+            return "/main/main";
+        }
+
+
     }
+
+//    @PostMapping("/logout")
+//    public String logout(@RequestBody)
 
     //구글 로그인
     @GetMapping("/googleLogin")

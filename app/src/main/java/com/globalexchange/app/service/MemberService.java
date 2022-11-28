@@ -8,13 +8,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface MemberService {
-    int checkId(String checkId);
-
-
-
-
-//    int join(MemberVO memberVO);
-//    MemberVO login(MemberVO memberVO);
+    boolean checkId(String checkId);
+    boolean checkNick(String checkNick);
+    Long emailLogin(MemberVO memberVO);
+    void joinForm(MemberVO memberVO);
 }
 
 
