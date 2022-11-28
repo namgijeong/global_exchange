@@ -18,7 +18,8 @@
 
     <section id="loginBox">
         <div id="loginBoxTitle"><h3>회원가입</h3></div>
-        <form name="loginInfo" id="loginInfo" method="post">
+        <form name="loginInfo" id="loginInfo" method="post" action="/member/joinFormOk">
+            <input type="hidden" name="memberNationUrl">
             <input name="memberId" id="memberId" class="loginInput" type="text" placeholder="아이디(이메일)"/>
             <!--<p id="memberIdResult" class="loginAlertText">중복된 아이디입니다.</p>-->
             <p id="memberIdResult" class="loginAlertText"></p>

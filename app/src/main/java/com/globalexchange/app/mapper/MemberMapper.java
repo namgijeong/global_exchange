@@ -9,8 +9,8 @@ public interface MemberMapper {
    int checkId(String memberId);
    int checkNick(String memberNick);
    Long emailLogin(MemberVO memberVO);
-   int joinForm(MemberVO memberVO);
+   void joinForm(MemberVO memberVO);
 
-//   public void MemberJoin(MemberVO memberVO);
+
 
 }

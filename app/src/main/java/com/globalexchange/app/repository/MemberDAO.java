@@ -39,9 +39,10 @@ public class MemberDAO {
         return memberMapper.emailLogin(memberVO);
     }
 
-    public boolean joinForm(MemberVO memberVO){
-        int n = memberMapper.joinForm(memberVO);
-        return n > 0;
+    public void joinForm(MemberVO memberVO){
+
+              memberMapper.joinForm(memberVO);
+
     }
 
 

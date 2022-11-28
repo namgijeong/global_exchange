@@ -18,7 +18,7 @@
 
     <insert id="joinForm">
         insert into tbl_member(member_number, member_id, member_nickname, member_password, member_teaching_lang, member_learning_lang, member_interesting, member_gender)
-        values(#{MEMBER_SEQ.NEXTVAL}, #{memberId}, #{memberNickname}, #{memberPassword}, #{memberTeachingLang}, #{memberLearningLang}, #{memberInteresting}, #{memberGender})
+        values(MEMBER_SEQ.NEXTVAL, #{memberId}, #{memberNickname}, #{memberPassword}, #{memberTeachingLang}, #{memberLearningLang}, #{memberInteresting}, #{memberGender})
     </insert>
 
 </mapper>

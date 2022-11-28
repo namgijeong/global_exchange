@@ -29,11 +29,18 @@ public class MemberController {
     //이메일 회원가입
 //    @PostMapping("/joinForm")
     @RequestMapping(value = "/joinForm")
-    public String joinForm(MemberVO memberVO){
+    public String joinForm(){
 
-        if(memberVO==null){
-            return "member/joinForm";
-        }
+
+        return "member/joinForm";
+    }
+
+    //회원가입 완료 ( 디비 등록 )
+    @RequestMapping(value = "/joinFormOk")
+    public String joinFormOk(MemberVO memberVO){
+
+         memberService.joinForm(memberVO);
+
 
         return "member/login";
     }
