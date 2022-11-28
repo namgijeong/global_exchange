@@ -33,7 +33,10 @@ img {
   padding-bottom: 100px;
   position: relative;
 }
-
+.detail-page-wrapper> form{
+  width:100%;
+  height:100%;
+}
 .write-title {
   margin: 24.5px 30px 0 30px;
 }

@@ -46,4 +46,9 @@
         WHERE meet_learning_lang = #{meetLearningLang}
     </select>
 
+    <select id="writerInfo" resultType="memberVO">
+        SELECT member_number,member_id,member_password,member_teaching_lang,member_learning_lang,member_interesting,member_gender,member_nickname,member_phone_num,member_birthdate,member_introduce,member_nation_url
+        FROM tbl_member
+        WHERE member_number=#{memberNumber}
+    </select>
 </mapper>

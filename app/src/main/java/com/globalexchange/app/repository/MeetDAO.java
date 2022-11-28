@@ -3,6 +3,7 @@ package com.globalexchange.app.repository;
 
 import com.globalexchange.app.domain.vo.Criteria;
 import com.globalexchange.app.domain.vo.MeetVO;
+import com.globalexchange.app.domain.vo.MemberVO;
 import com.globalexchange.app.mapper.MeetMapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.annotations.Param;
@@ -27,5 +28,10 @@ public class MeetDAO{
 
     public int categoryGetTotal(String meetLearningLang) {
         return meetMapper.categoryGetTotal(meetLearningLang);
+    }
+
+    //작성자 정보 가져오기
+    public MemberVO writerInfo(Long memberNumber){
+        return meetMapper.writerInfo(memberNumber);
     }
 }

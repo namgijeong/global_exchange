@@ -7,4 +7,5 @@ public interface MemberMapper {
     public int checkId(String memberId, String memberPwd);
 
 
+
 }

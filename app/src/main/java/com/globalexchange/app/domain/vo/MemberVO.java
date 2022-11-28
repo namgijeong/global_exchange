@@ -17,6 +17,7 @@ public class MemberVO {
     private String memberPhoneNum;
     private String memberBirthdate;
     private String memberIntroduce;
+    private String memberNationalUrl;
 
 //    public void create(String fileName, String fileUploadPath, String fileUuid, boolean fileImageCheck) {
 //        this.fileName = fileName;

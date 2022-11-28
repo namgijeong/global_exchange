@@ -25,4 +25,22 @@ public class MemberDTO {
 //        this.fileUuid = fileUuid;
 //        this.fileImageCheck = fileImageCheck;
 //    }
+
+
+    public void create(MemberVO memberVO,FileProfileVO fileProfileVO) {
+        this.memberNumber = memberVO.getMemberNumber();
+        this.memberId = memberVO.getMemberId();
+        this.memberPassword = memberVO.getMemberPassword();
+        this.memberTeachingLang = memberVO.getMemberTeachingLang();
+        this.memberLearningLang = memberVO.getMemberLearningLang();
+        this.memberInteresting = memberVO.getMemberInteresting();
+        this.memberGender = memberVO.getMemberGender();
+        this.memberNickname = memberVO.getMemberNickname();
+        this.memberPhoneNum = memberVO.getMemberPhoneNum();
+        this.memberBirthdate = memberVO.getMemberBirthdate();
+        this.memberBirthdate = memberVO.getMemberBirthdate();
+        this.memberIntroduce = memberVO.getMemberIntroduce();
+        this.fileProfileVO = fileProfileVO;
+
+    }
 }
