@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
-public class MeetVO {
+public class MeetDTO {
     private Long meetNumber;
     private String meetTitle;
     private Long memberNumber;
@@ -16,7 +16,7 @@ public class MeetVO {
     private String meetAddress;
     private String meetDetailAddress;
 
-
+    private FileMeetVO fileMeetVO;
 
 //    public void create(String fileName, String fileUploadPath, String fileUuid, boolean fileImageCheck) {
 //        this.fileName = fileName;
