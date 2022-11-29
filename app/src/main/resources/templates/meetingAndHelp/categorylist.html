@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>만남과 도움 리스트 페이지</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="/css/main/header.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/main/footer.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/meetingAndHelp/list.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+<header th:replace="/main/header.html :: #topHeader"></header>
+<header th:replace="/main/header.html :: #header"></header>
+
+
+<div class="modal-container modal-overlay">
+    <div class="modal-flex">
+        <div class="modal-wrapper">
+            <header class="modal-header-wrapper">
+                <div class="modal-country-header">
+                    <span class="modal-title">언어</span>
+                </div>
+                <button class="close-btn">
+                    <img src="/images/modal/modalCloseBtn.svg" alt="닫기 버튼">
+                </button>
+            </header>
+            <!-- <div class="modal-div-wrapper">
+               <div class="modal-country-section">
+                 <div class="modal-country-select">
+                   &lt;!&ndash;<div>
+                     <div class="modal-country-name">내가 익숙한 언어</div>
+                     <div class="modal-country-box">
+                       <div class="modal-radio-input-wrapper">
+                         <div class="modal-radio-input">
+                           <label for="modalInputEnglish-1" class="modal-label">
+                             영어
+       &lt;!&ndash;                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>&ndash;&gt;
+                             <input name="nation1" value="eng" type="radio" class="modal-input1" id="modalInputEnglish-1">
+                           </label>
+                         </div>
+                         <div class="modal-radio-input">
+                           <label for="modalInputSpanish-1" class="modal-label">
+                             스페인어
+       &lt;!&ndash;                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>&ndash;&gt;
+                             <input name="nation1" value="spain" type="radio" class="modal-input1" id="modalInputSpanish-1">
+                           </label>
+                         </div>
+                         <div class="modal-radio-input">
+                           <label for="modalInputFrench-1" class="modal-label">
+                             프랑스어
+       &lt;!&ndash;                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>&ndash;&gt;
+                             <input name="nation1" value="france" type="radio" class="modal-input1" id="modalInputFrench-1">
+                           </label>
+                         </div>
+                         <div class="modal-radio-input">
+                           <label for="modalInputGerman-1" class="modal-label">
+                             독일어
+       &lt;!&ndash;                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>&ndash;&gt;
+                             <input name="nation1" value="germany" type="radio" class="modal-input1" id="modalInputGerman-1">
+                           </label>
+                         </div>
+                         <div class="modal-radio-input">
+                           <label for="modalInputItalian-1" class="modal-label">
+                             이탈리아어
+       &lt;!&ndash;                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>&ndash;&gt;
+                             <input name="nation1" value="italy" type="radio" class="modal-input1" id="modalInputItalian-1">
+                           </label>
+                         </div>
+                         <div class="modal-radio-input">
+                           <label for="modalInputPortuguese-1" class="modal-label">
+                             포르투갈어
+       &lt;!&ndash;                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>&ndash;&gt;
+                             <input name="nation1" value="portugal" type="radio" class="modal-input1" id="modalInputPortuguese-1">
+                           </label>
+                         </div>
+                         <div class="modal-radio-input">
+                           <label for="modalInputRussian-1" class="modal-label">
+                             러시아어
+       &lt;!&ndash;                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>&ndash;&gt;
+                             <input name="nation1" value="russia" type="radio" class="modal-input1" id="modalInputRussian-1">
+                           </label>
+                         </div>
+                         <div class="modal-radio-input">
+                           <label for="modalInputJapanese-1" class="modal-label">
+                             일본어
+       &lt;!&ndash;                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>&ndash;&gt;
+                             <input name="nation1" value="japan" type="radio" class="modal-input1" id="modalInputJapanese-1">
+                           </label>
+                         </div>
+                         <div class="modal-radio-input">
+                           <label for="modalInputChinese-1" class="modal-label">
+                             중국어
+       &lt;!&ndash;                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>&ndash;&gt;
+                             <input name="nation1" value="china" type="radio" class="modal-input1" id="modalInputChinese-1">
+                           </label>
+                         </div>
+                         <div class="modal-radio-input">
+                           <label for="modalInputKorean-1" class="modal-label">
+                             한국어
+       &lt;!&ndash;                      <div class="modal-radio"><div class="modal-radio-circle1"></div></div>&ndash;&gt;
+                             <input name="nation1" value="korea" type="radio" class="modal-input1" id="modalInputKorean-1">
+                           </label>
+                         </div>
+                       </div>
+                     </div>
+                   </div>&ndash;&gt;
+                 </div>
+               </div>
+             </div>-->
+            <div class="modal-div-wrapper">
+                <div class="modal-country-section">
+                    <div class="modal-country-select">
+                        <div>
+                            <div class="modal-country-name">도움을 원하는 언어</div>
+                            <div class="modal-country-box">
+                                <div class="modal-radio-input-wrapper">
+                                    <div class="modal-radio-input">
+                                        <label for="modalInputEnglish-2" class="modal-label">
+                                            영어
+                                            <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                                            <input name="nation2" value="ENGLISH" type="radio" class="modal-input2" id="modalInputEnglish-2">
+                                        </label>
+                                    </div>
+                                    <div class="modal-radio-input">
+                                        <label for="modalInputSpanish-2" class="modal-label">
+                                            스페인어
+                                            <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                                            <input name="nation2" value="SPANISH" type="radio" class="modal-input2" id="modalInputSpanish-2">
+                                        </label>
+                                    </div>
+                                    <div class="modal-radio-input">
+                                        <label for="modalInputFrench-2" class="modal-label">
+                                            프랑스어
+                                            <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                                            <input name="nation2" value="FRENCH" type="radio" class="modal-input2" id="modalInputFrench-2">
+                                        </label>
+                                    </div>
+                                    <div class="modal-radio-input">
+                                        <label for="modalInputGerman-2" class="modal-label">
+                                            독일어
+                                            <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                                            <input name="nation2" value="GERMAN" type="radio" class="modal-input2" id="modalInputGerman-2">
+                                        </label>
+                                    </div>
+                                    <div class="modal-radio-input">
+                                        <label for="modalInputItalian-2" class="modal-label">
+                                            이탈리아어
+                                            <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                                            <input name="nation2" value="ITALIAN" type="radio" class="modal-input2" id="modalInputItalian-2">
+                                        </label>
+                                    </div>
+                                    <div class="modal-radio-input">
+                                        <label for="modalInputPortuguese-2" class="modal-label">
+                                            포르투갈어
+                                            <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                                            <input name="nation2" value="PORTUGUESE" type="radio" class="modal-input2" id="modalInputPortuguese-2">
+                                        </label>
+                                    </div>
+                                    <div class="modal-radio-input">
+                                        <label for="modalInputRussian-2" class="modal-label">
+                                            러시아어
+                                            <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                                            <input name="nation2" value="RUSSIAN" type="radio" class="modal-input2" id="modalInputRussian-2">
+                                        </label>
+                                    </div>
+                                    <div class="modal-radio-input">
+                                        <label for="modalInputJapanese-2" class="modal-label">
+                                            일본어
+                                            <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                                            <input name="nation2" value="JAPANESE" type="radio" class="modal-input2" id="modalInputJapanese-2">
+                                        </label>
+                                    </div>
+                                    <div class="modal-radio-input">
+                                        <label for="modalInputChinese-2" class="modal-label">
+                                            중국어
+                                            <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                                            <input name="nation2" value="CHINESE" type="radio" class="modal-input2" id="modalInputChinese-2">
+                                        </label>
+                                    </div>
+                                    <div class="modal-radio-input">
+                                        <label for="modalInputKorean-2" class="modal-label">
+                                            한국어
+                                            <!--                      <div class="modal-radio"><div class="modal-radio-circle2"></div></div>-->
+                                            <input name="nation2" value="KOREAN" type="radio" class="modal-input2" id="modalInputKorean-2">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="modal-footer-wrapper">
+                <button class="modal-footer-btn">적용하기</button>
+            </footer>
+        </div>
+    </div>
+    <div class="modal-color"></div>
+</div>
+
+<div class="list-page">
+    <div class="list-title-wrapper">
+        <h1 class="list-page-title">만남과 도움</h1>
+        <button class="post-button">작성</button>
+    </div>
+
+    <div id="mainFilter"><button>언어</button></div>
+
+    <ul>
+
+        <th:block th:each="board:${boards}">
+            <div class="list-content"th:object="${board}">
+                <div class="list-number" th:text="*{meetNumber}"></div>
+                <div class="list-title" ><a class="read" th:text="*{meetTitle}" th:href="*{meetNumber}"></a></div>
+                <div class="list-date" th:text="*{meetUpdateDate}"></div>
+            </div>
+        </th:block>
+        <!--
+        <li>
+          <div class="list-content">
+            <div class="list-number">10</div>
+            <div class="list-title">드럼 원데이 클래스</div>
+            <div class="list-date">2022.11.18 4:56</div>
+          </div>
+        </li>
+        <li>
+          <div class="list-content">
+            <div class="list-number">9</div>
+            <div class="list-title">드럼 원데이 클래스</div>
+            <div class="list-date">2022.11.18 4:56</div>
+          </div>
+        </li>
+        <li>
+          <div class="list-content">
+            <div class="list-number">8</div>
+            <div class="list-title">드럼 원데이 클래스</div>
+            <div class="list-date">2022.11.18 4:56</div>
+          </div>
+        </li>
+        <li>
+          <div class="list-content">
+            <div class="list-number">7</div>
+            <div class="list-title">드럼 원데이 클래스</div>
+            <div class="list-date">2022.11.18 4:56</div>
+          </div>
+        </li>
+        <li>
+          <div class="list-content">
+            <div class="list-number">6</div>
+            <div class="list-title">드럼 원데이 클래스</div>
+            <div class="list-date">2022.11.18 4:56</div>
+          </div>
+        </li>
+        <li>
+          <div class="list-content">
+            <div class="list-number">5</div>
+            <div class="list-title">드럼 원데이 클래스</div>
+            <div class="list-date">2022.11.18 4:56</div>
+          </div>
+        </li>
+        <li>
+          <div class="list-content">
+            <div class="list-number">4</div>
+            <div class="list-title">드럼 원데이 클래스</div>
+            <div class="list-date">2022.11.18 4:56</div>
+          </div>
+        </li>
+        <li>
+          <div class="list-content">
+            <div class="list-number">3</div>
+            <div class="list-title">드럼 원데이 클래스</div>
+            <div class="list-date">2022.11.18 4:56</div>
+          </div>
+        </li>
+        <li>
+          <div class="list-content">
+            <div class="list-number">2</div>
+            <div class="list-title">드럼 원데이 클래스</div>
+            <div class="list-date">2022.11.18 4:56</div>
+          </div>
+        </li>
+        <li>
+          <div class="list-content">
+            <div class="list-number">1</div>
+            <div class="list-title">드럼 원데이 클래스</div>
+            <div class="list-date">2022.11.18 4:56</div>
+          </div>
+        </li>
+        -->
+
+    </ul>
+
+    <div class="list-pagination" th:object="${pagination}">
+        <div class="prev-button-wrapper">
+            <!--<button class="arrow-button" disabled>
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Crect width='40' height='40' fill='%23FFF' fill-opacity='0' fill-rule='nonzero' rx='20'/%3E %3Cg stroke='%23000' stroke-width='1.5'%3E %3Cpath d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E"
+                   class="rotate" alt="">
+            </button>-->
+            <button class="arrow-button"  th:href="*{startPage - 1}" th:if="*{prev}">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath d='M18 0H0v18h18z'/%3E %3Cpath stroke='%23000' stroke-width='1.5' d='M7 5l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E"
+                     class="rotate" alt="">
+            </button>
+        </div>
+        <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+            <button class="button-number" th:href="${page}" th:if="${pagination.criteria.page != page}" th:text="${page}"><!--<code th:text="${page}"></code>--></button>
+            <button class="button-number" disabled th:unless="${pagination.criteria.page != page}" th:text="${page}"></button>
+            <!--<button class="button-number number-check">1</button>
+            <button class="button-number">2</button>
+            <button class="button-number">3</button>
+            <button class="button-number">4</button>
+            <button class="button-number">5</button>
+            <button class="button-number">6</button>
+            <button class="button-number">7</button>
+            <button class="button-number">8</button>
+            <button class="button-number">9</button>
+            <button class="button-number">10</button>-->
+
+        </th:block>
+        <div class="next-button-wrapper">
+            <button class="arrow-button" th:href="*{endPage + 1}" th:if="*{next}">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath d='M18 0H0v18h18z'/%3E %3Cpath stroke='%23000' stroke-width='1.5' d='M7 5l4 4-4 4'/%3E %3C/g%3E %3C/svg%3E"
+                     alt="">
+            </button>
+            <!--<button class="arrow-button">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Crect width='40' height='40' fill='%23FFF' fill-opacity='0' fill-rule='nonzero' rx='20'/%3E %3Cg stroke='%23000' stroke-width='1.5'%3E %3Cpath d='M16 16l4 4-4 4M21 16l4 4-4 4'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E"
+                   alt="">
+            </button>-->
+        </div>
+
+        <form th:action="@{/meetingAndHelp/categorylist}" th:object="${criteria}" name="pageForm">
+            <input type="hidden" th:field="*{page}">
+            <input type="hidden" th:field="*{amount}">
+            <input type="hidden"  name="nation2" th:value="${nation2}">
+        </form>
+
+
+
+    </div>
+</div>
+
+<footer th:replace="/main/footer.html :: #footerFirst"></footer>
+</body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    const modalContainer = document.querySelector(".modal-container");
+    const btnModal = document.querySelector("#mainFilter>button");
+    // const btnsRadio1=document.querySelectorAll(".modal-input1");
+    // const btnsRadio2=document.querySelectorAll(".modal-input2");
+    // const CirclesRadio1=document.querySelectorAll(".modal-radio-circle1");
+    // const CirclesRadio2=document.querySelectorAll(".modal-radio-circle2");
+
+    // 부모스크롤 비활성화
+    const openModal = () => {
+        document.body.style.overflow = "hidden";
+    };
+
+    // 부모스크롤 활성화
+    const closeModal = () => {
+        document.body.style.overflow = "unset";
+    };
+
+    btnModal.addEventListener("click", e => {
+        modalContainer.style.display = "flex";
+        openModal();
+    });
+
+    const closeBtn = modalContainer.querySelector(".close-btn")
+    closeBtn.addEventListener("click", e => {
+        modalContainer.style.display = "none";
+        closeModal();
+    });
+
+    // let prev1;
+    // btnsRadio1.forEach((btnRadio1,index)=>{
+    //     btnRadio1.addEventListener("click",function(){
+    //         if(prev1!=null){
+    //             prev1.style.backgroundColor="white";
+    //         }
+    //         CirclesRadio1[index].style.backgroundColor="skyblue";
+    //         prev1=CirclesRadio1[index];
+    //         console.log(index);
+    //     });
+    // });
+    //
+    // let prev2;
+    // btnsRadio2.forEach((btnRadio2,index)=>{
+    //     btnRadio2.addEventListener("click",function(){
+    //         if(prev2!=null){
+    //             prev2.style.backgroundColor="white";
+    //         }
+    //         CirclesRadio2[index].style.backgroundColor="skyblue";
+    //         prev2=CirclesRadio2[index];
+    //         console.log(index);
+    //     });
+    // });
+    //let nation2 = [[${nation2}]];
+    $(".list-pagination").on("click",".button-number", function(e){
+        e.preventDefault();
+        $(document.pageForm.page).val($(this).attr("href"));
+        //$(document.pageForm.nation2).val(nation2);
+        document.pageForm.submit();
+    });
+    $("button.arrow-button").on("click", function(e){
+        e.preventDefault();
+        $(document.pageForm.page).val($(this).attr("href"));
+        //$(document.pageForm.nation2).val(nation2);
+        document.pageForm.submit();
+    });
+    $("button.modal-footer-btn").on("click",function(e){
+        e.preventDefault();
+        let nation2=$('input[name="nation2"]:checked').val();
+        //얘는 form태그에 감싸서 보내는게 아니라서 이렇게 일일이 써줘야한다.
+        //모달창으로 분류전 criteria를 리셋
+        //location.href="/meetingAndHelp/categorylist?page=1&amount=10&nation2="+nation2;
+        location.href="/meetingAndHelp/categorylist?nation2="+nation2;
+    });
+
+    $("button.post-button").on("click",function(e){
+        e.preventDefault();
+        location.href="/meetingAndHelp/write";
+    });
+</script>
+</html>

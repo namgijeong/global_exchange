@@ -19,15 +19,20 @@
     <section id="realLogin">
         <div id="realLoginLogin"><h3>로그인</h3></div>
         <div id="putLoginInfo">
-            <input type="text" placeholder="아이디(이메일)"/>
-            <input type="password" placeholder="비밀번호"/>
-            <button id="goRealLogin">로그인</button>
+            <input type="text" placeholder="아이디(이메일)" name="memberIdCheck"/>
+            <input type="password" placeholder="비밀번호" name="memberPasswordCheck"/>
+            <button id="goRealLogin" onclick="checkValue()">로그인</button>
         </div>
         <div id="otherLoginInfo">
             <p>다른방식으로 로그인</p>
             <div><button id="goRealGoogleLogin" onclick="init()"><img src="/images/member/googleLoginIcon.png"/></button></div>
         </div>
     </section>
+    <form action="/member/emailLogin" method="post">
+        <input type="hidden" name="memberId"  >
+        <input type="hidden" name="memberPassword"  >
+        <button type="submit" id="realSubmit" style="display:none;"></button>
+    </form>
     <div th:replace="/main/footer.html:: footerFirst"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

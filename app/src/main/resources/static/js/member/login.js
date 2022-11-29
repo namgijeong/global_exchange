@@ -32,3 +32,29 @@ function onSignIn(googleUser) {
 function onSignInFailure(t){
     console.log(t);
 }
+
+
+// $("#memberId").on("blur", function(){checkId($(this).val());});
+// $("#memberPw").on("blur", function(){checkNick($(this).val());});
+
+function checkValue()
+{
+    if($('input[name="memberIdCheck"]').val()==''){
+        alert("아이디를 입력하세요.");
+        return false;
+    }
+
+    if($('input[name="memberPasswordCheck"]').val()==''){
+        alert("비밀번호를 입력하세요.");
+        return false;
+    }
+    $('input[name="memberId"]').val($('input[name="memberIdCheck"]').val());
+    $('input[name="memberPassword"]').val($('input[name="memberPasswordCheck"]').val());
+    // $("#realSubmit").submit();
+    $("form").submit();
+
+    // location.href="/member/emailLogin";
+}
+
+
+

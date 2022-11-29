@@ -5,20 +5,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
-public class MemberVO {
+public class MeetDTO {
+    private Long meetNumber;
+    private String meetTitle;
     private Long memberNumber;
-    private String memberId;
-    private String memberPassword;
-    private String memberTeachingLang;
-    private String memberLearningLang;
-    private String memberInteresting;
-    private String memberGender;
-    private String memberNickname;
-    private String memberPhoneNum;
-    private String memberBirthdate;
-    private String memberIntroduce;
-    private String memberNationUrl;
+    private String meetLearningLang;
+    private String meetContent;
+    private String meetWriteDate;
+    private String meetUpdateDate;
+    private String meetAddress;
+    private String meetDetailAddress;
 
+    private FileMeetVO fileMeetVO;
 
 //    public void create(String fileName, String fileUploadPath, String fileUuid, boolean fileImageCheck) {
 //        this.fileName = fileName;

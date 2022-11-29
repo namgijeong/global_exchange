@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.globalexchange.app.mapper.TimeMapper">
+<mapper namespace="com.globalexchange.app.mapper.MemberMapper">
     <select id="checkId" resultType="_int" >
-        SELECT member_number FROM tbl_member
-        WHERE member_id = #{memberId} and member_password = #{memberPassword}
+        SELECT count(MEMBER_NUMBER) FROM tbl_member
+        WHERE MEMBER_ID = #{memberId}
     </select>
+
+    <select id="checkNick" resultType="_int" >
+        SELECT count(MEMBER_NUMBER) FROM tbl_member
+        WHERE MEMBER_NICKNAME = #{memberNickname}
+    </select>
+
+    <select id="emailLogin" resultType="long" >
+        SELECT MEMBER_NUMBER FROM tbl_member
+        WHERE MEMBER_ID = #{memberId} and MEMBER_PASSWORD = #{memberPassword}
+    </select>
+
+    <insert id="joinForm">
+        insert into tbl_member(member_number, member_id, member_nickname, member_password, member_teaching_lang, member_learning_lang, member_interesting, member_gender)
+        values(MEMBER_SEQ.NEXTVAL, #{memberId}, #{memberNickname}, #{memberPassword}, #{memberTeachingLang}, #{memberLearningLang}, #{memberInteresting}, #{memberGender})
+    </insert>
+
 </mapper>

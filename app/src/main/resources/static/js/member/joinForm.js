@@ -16,24 +16,54 @@ function checkId(memberId) {
         $("#memberIdResult").text("");
         $("#memberIdResult").css("display", "none");
         $("#memberId").css("border", "1px solid rgb(238, 238, 238)");
+
+        // var data = {memberId : memberId};
+        $.ajax({
+            url: "/memberJoinCheck/joinCheckId",
+            type:"post",
+            data: memberId,
+            contentType:"application/json; charset=utf-8",
+            success: function(result){
+                console.log(result);
+                let message, color;
+
+                if(result == true){
+                    message = "사용 가능한 아이디입니다.";
+                    color = "blue";
+
+                }else{
+                    message = "중복된 아이디입니다.";
+                    color = "red";
+                }
+                $("#memberIdResult").css("display", "block");
+                $("#memberIdResult").css("color", color);
+                $("#memberIdResult").text(message);
+            },
+            error: function(a, b, c){
+                console.log(a, b, c);
+            }
+        });
+
+
         return;
     }
 
     // $.ajax({
-    //     url: "/member/joincheckID",
+    //     url: "/memberJoinCheck/joinCheckId",
     //     data: {"memberId": memberId},
+    //     contentType:"application/json; charset=utf-8",
     //     success: function(result){
     //         let message, color;
     //
-    //         if(result == "true"){
+    //         if(result == true){
     //             message = "사용 가능한 아이디입니다.";
     //             color = "blue";
-    //             check = true;
+    //
     //         }else{
     //             message = "중복된 아이디입니다.";
     //             color = "red";
     //         }
-    //
+    //         $("#memberIdResult").css("display", "block");
     //         $("#memberIdResult").css("color", color);
     //         $("#memberIdResult").text(message);
     //     },
@@ -45,6 +75,7 @@ function checkId(memberId) {
 }
 function checkNick(memberNick) {
 
+    console.log(memberNick);
     if (!memberNick) {
         $("#memberNickResult").text("닉네임을 입력해주세요.");
         $("#memberNickResult").css("color", "red");
@@ -52,35 +83,41 @@ function checkNick(memberNick) {
         $("#memberNick").css("border", "1px solid red");
         return;
     } else {
-        $("#memberNickResult").text("");
-        $("#memberNickResult").css("display", "none");
-        $("#memberNick").css("border", "1px solid rgb(238, 238, 238)");
+        // $("#memberNickResult").text("");
+        // $("#memberNickResult").css("display", "none");
+        // $("#memberNick").css("border", "1px solid rgb(238, 238, 238)");
+
+
+        $.ajax({
+            url: "/memberJoinCheck/joinCheckNickname",
+            type:"post",
+            data: memberNick,
+            contentType:"application/json; charset=utf-8",
+            success: function(result){
+                console.log(result);
+                let message, color;
+
+                if(result == true){
+                    message = "사용 가능한 닉네임 입니다.";
+                    color = "blue";
+                }else{
+                    message = "중복된 닉네임 입니다.";
+                    color = "red";
+                }
+                $("#memberNickResult").css("display", "block");
+                $("#memberNickResult").css("color", color);
+                $("#memberNickResult").text(message);
+            },
+            error: function(a, b, c){
+                console.log(a, b, c);
+            }
+        });
+
         return;
     }
-    /*
-    $.ajax({
-        url: "/member/checkId.me",
-        data: {"memberId": memberId},
-        success: function(result){
-            let message, color;
 
-            if(result == "true"){
-                message = "사용 가능한 아이디입니다.";
-                color = "blue";
-                check = true;
-            }else{
-                message = "중복된 아이디입니다.";
-                color = "red";
-            }
 
-            $("#memberIdResult").css("color", color);
-            $("#memberIdResult").text(message);
-        },
-        error: function(a, b, c){
-            console.log(a, b, c);
-        }
-    });
-    */
+
 }
 
 function pwCheck(memberPw){
@@ -118,6 +155,51 @@ function pwDoubleCheck(memberDoublePw){
     }
 }
 
+
+if($('input[name="memberTeachingLang"]').val() == "ENGLISH") {
+
+    $('input[name="memberTeachingLang"]').val("/images/nation/america.png");
+}
+
+if($('input[name="memberTeachingLang"]').val() == "SPANISH") {
+
+    $('input[name="memberTeachingLang"]').val("/images/nation/spain.png");
+}
+if($('input[name="memberTeachingLang"]').val() == "FRENCH") {
+
+    $('input[name="memberTeachingLang"]').val("/images/nation/france.png");
+}
+if($('input[name="memberTeachingLang"]').val() == "GERMAN") {
+
+    $('input[name="memberTeachingLang"]').val("/images/nation/germany.png");
+}
+if($('input[name="memberTeachingLang"]').val() == "ITALIAN") {
+
+    $('input[name="memberTeachingLang"]').val("/images/nation/italy.png");
+}
+if($('input[name="memberTeachingLang"]').val() == "PORTUGUESE") {
+
+    $('input[name="memberTeachingLang"]').val("/images/nation/portugal.png");
+}
+if($('input[name="memberTeachingLang"]').val() == "RUSSIAN") {
+
+    $('input[name="memberTeachingLang"]').val("/images/nation/russia.png");
+}
+if($('input[name="memberTeachingLang"]').val() == "JAPANESE") {
+
+    $('input[name="memberTeachingLang"]').val("/images/nation/japan.png");
+}
+if($('input[name="memberTeachingLang"]').val() == "CHINESE") {
+
+    $('input[name="memberTeachingLang"]').val("/images/nation/china.png");
+}
+if($('input[name="memberTeachingLang"]').val() == "KOREAN") {
+
+    $('input[name="memberTeachingLang"]').val("/images/nation/southKorea.png");
+}
+
+
+
 $('#radio1').on('click',function(){
     //let radioValue=$('.radio-value:checked').val();
     $("#radioSelect>div:nth-child(1)>label").css("backgroundColor","#0075ef");
@@ -129,6 +211,9 @@ $('#radio2').on('click',function(){
     $("#radioSelect>div:nth-child(1)>label").css("backgroundColor","white");
     $("#radioSelect>div:nth-child(2)>label").css("backgroundColor","#0075ef");
 });
+
+
+
 /*$(function(){
     $('#msComboTest').msDropDown();
 });*/
