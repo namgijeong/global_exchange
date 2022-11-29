@@ -1,7 +1,7 @@
-package com.globalexchange.app.repository;//package com.globalexchange.app.repository;
+//package com.globalexchange.app.repository;
 //
-//import com.example.app.domain.vo.FileVO;
-//import com.example.app.mapper.FileMapper;
+//import com.globalexchange.app.domain.vo.DiaryVO;
+//import com.globalexchange.app.mapper.DiaryMapper;
 //import lombok.RequiredArgsConstructor;
 //import org.springframework.stereotype.Repository;
 //
@@ -9,7 +9,7 @@ package com.globalexchange.app.repository;//package com.globalexchange.app.repos
 //
 //@Repository
 //@RequiredArgsConstructor
-//public class FileDAO {
+//public class DiaryDAO {
 //    private final FileMapper fileMapper;
 //
 //    //    파일 추가

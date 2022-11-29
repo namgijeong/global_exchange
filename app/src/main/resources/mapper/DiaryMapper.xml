@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.globalexchange.app.mapper.DiaryMapper">
+    <insert id="insert">
+        INSERT INTO TBL_DIARY(DIARY_NUMBER, MEMBER_NUMBER, DIARY_PARTNER_NUMBER, DIARY_TITLE, DIARY_CONTENT)
+        VALUES (SEQ_DIARY.NEXTVAL, #{diaryNumber}, #{memberNumber}, #{diaryPartnerNumber}, #{diaryTitle}, #{diaryContent})
+    </insert>
+
+    <select id="diarySelectAll" resultType="boardVO"> <!--페이징처리-->
+        SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE
+        FROM
+        (
+            SELECT ROWNUM R, DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE
+            FROM
+            (
+                SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE
+                FROM TBL_DIARY B
+                ORDER BY DIARY_NUMBER DESC
+            ) D2
+        <![CDATA[
+            WHERE ROWNUM <= #{page} * #{amount}
+        ) WHERE R > (#{page} - 1) * #{amount}
+        ]]>
+    </select>
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(DIARY_NUMBER) FROM TBL_DIARY
+    </select>
+
+</mapper>
