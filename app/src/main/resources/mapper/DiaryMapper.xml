@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.globalexchange.app.mapper.DiaryMapper">
-    <insert id="insert">
+    <insert id="diaryInsert">
         INSERT INTO TBL_DIARY(DIARY_NUMBER, MEMBER_NUMBER, DIARY_PARTNER_NUMBER, DIARY_TITLE, DIARY_CONTENT)
-        VALUES (SEQ_DIARY.NEXTVAL, #{diaryNumber}, #{memberNumber}, #{diaryPartnerNumber}, #{diaryTitle}, #{diaryContent})
+        VALUES (DIARY_SEQ.NEXTVAL, #{memberNumber}, #{diaryPartnerNumber}, #{diaryTitle}, #{diaryContent})
     </insert>
 
-    <select id="diarySelectAll" resultType="boardVO"> <!--페이징처리-->
+    <update id="diaryUpdate">
+        UPDATE TBL_DIARY
+        SET DIARY_TITLE = #{diaryTitle}, DIARY_CONTENT = #{diaryContent}, DIARY_UPDATE_DATE = SYSDATE
+        WHERE DIARY_NUMBER = #{diaryNumber}
+    </update>
+
+    <delete id="diaryDelete">
+        DELETE FROM TBL_DIARY
+        WHERE DIARY_NUMBER = #{diaryNumber}
+    </delete>
+
+    <select id="diarySelect" resultType="diaryVO">
+        SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_PARTNER_NUMBER, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE
+        FROM TBL_DIARY
+        WHERE DIARY_NUMBER = #{diaryNumber}
+    </select>
+
+    <select id="diarySelectAll" resultType="diaryVO"> <!--페이징처리-->
         SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE
         FROM
         (
