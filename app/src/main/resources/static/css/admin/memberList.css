@@ -65,6 +65,11 @@ a:hover{
     height:100%;
 }
 
+#logo a img {
+    width: 220px;
+    height: 80px;
+}
+
 
 #main_body{
     width:1474px;
@@ -322,39 +327,39 @@ ul,li{
     padding-right:50px;
     padding-top:10px;
 }
-#subnavigation_search{
-    display:inline-block;
-    width:278px;
-    height:56px;
-    background-color:white;
-    border-bottom: 1px solid gray;
+/*#subnavigation_search{*/
+/*    display:inline-block;*/
+/*    width:278px;*/
+/*    height:56px;*/
+/*    background-color:white;*/
+/*    border-bottom: 1px solid gray;*/
 
-    margin-left:750px;
-    font-size:16px;
-}
-#subnavigation_search>span{
-    /*background-image:url("");*/
-    background-size:contain;
-    background-repeat:no-repeat;
-    display:inline-block;
-    width:30px;
-    height:30px;
-    /*그림과 옆요소 수직정렬 맞추기*/
-    vertical-align:bottom;
-}
-#subnavigation_search>input{
-    width:230px;
-    height:56px;
+/*    margin-left:750px;*/
+/*    font-size:16px;*/
+/*}*/
+/*#subnavigation_search>span{*/
+/*    !*background-image:url("");*!*/
+/*    background-size:contain;*/
+/*    background-repeat:no-repeat;*/
+/*    display:inline-block;*/
+/*    width:30px;*/
+/*    height:30px;*/
+/*    !*그림과 옆요소 수직정렬 맞추기*!*/
+/*    vertical-align:bottom;*/
+/*}*/
+/*#subnavigation_search>input{*/
+/*    width:230px;*/
+/*    height:56px;*/
 
-    border:0px;
-    outline:none;
-    border-bottom:1px solid gray;
+/*    border:0px;*/
+/*    outline:none;*/
+/*    border-bottom:1px solid gray;*/
 
-    color:#383838;
+/*    color:#383838;*/
 
-    vertical-align:bottom;
-    line-height:56px;
-}
+/*    vertical-align:bottom;*/
+/*    line-height:56px;*/
+/*}*/
 
 #subnavigation_list{
     width:100%;
