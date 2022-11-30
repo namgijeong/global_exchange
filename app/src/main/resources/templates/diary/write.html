@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>diary detail</title>
+    <title>diary write</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -91,7 +91,7 @@
                             <button id="saveBtn" class="save-btn">저장하기</button>
                         </div>
                         <div class="form-container">
-                            <form method="post" id="diaryForm" enctype="multipart/form-data">
+                            <form method="post" th:action="@{/diary/write}" th:object="${diary}" id="diaryForm" enctype="multipart/form-data">
                                 <div class="input-container">
                                     <div class="row">
                                         <div class="col-left">
@@ -101,7 +101,7 @@
                                         </div>
                                         <div class="col-right">
                                             <div class="input-group">
-                                                <input name="diaryTitle" id="diaryTitle" type="text" maxlength="40" required="required"
+                                                <input th:field="*{diaryTitle}" name="diaryTitle" id="diaryTitle" type="text" maxlength="40" required="required"
                                                        placeholder="일기의 제목을 작성해주세요." class="input-text">
                                                 <div class="input-text-append">
                                                         <span class="text-muted-container">
@@ -123,7 +123,7 @@
                                         </div>
                                         <div class="col-right">
                                             <div class="input-group">
-                                                <textarea id="summernote" name="diaryContent"></textarea>
+                                                <textarea th:field="*{diaryContent}" id="summernote" name="diaryContent"></textarea>
                                             </div>
                                             <div class="warning-text">일기 내용을 작성해주세요.</div>
                                         </div>

@@ -71,7 +71,7 @@
                                 <button class="frip-btn">수정하기</button>
                             </div>
                             <div class="form-container">
-                                <form name="diaryForm">
+                                <form name="diaryForm" th:object="${diary}">
                                     <div class="input-container">
                                         <div class="row">
                                             <div class="col-left">
@@ -82,8 +82,7 @@
                                             </div>
                                             <div class="col-right">
                                                 <div class="input-group">
-                                                    <input type="text" maxlength="40" required="required"
-                                                           placeholder="일기의 제목을 작성해주세요." class="input-text" value="No Bread Day" disabled>
+                                                    <input type="text" th:field="*{diaryTitle}" maxlength="40" class="input-text" readonly>
                                                     <div class="input-text-append">
                                                         <span class="text-muted-container">
                                                             <small class="text-muted"></small>
@@ -104,9 +103,7 @@
                                             </div>
                                             <div class="col-right">
                                                 <div class="input-group">
-                                                    <textarea id="summernote" name="diaryContent">
-Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (
-                                                    </textarea>
+                                                    <textarea id="summernote" name="diaryContent" th:field="*{diaryContent}"></textarea>
                                                 </div>
                                             </div>
                                         </div>

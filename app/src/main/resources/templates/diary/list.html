@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>diary detail</title>
+    <title>diary list</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -28,13 +28,13 @@
                 </div>
                 <div class="category-filter-wrapper">
                     <div class="category-list-wrapper">
-                        <a href="javscript:void(0)" class="category">
+                        <a class="category">
                             교환 일기
                         </a>
-                        <a href="javscript:void(0)" class="category not-selected-category">
+                        <a class="category not-selected-category write">
                             교환 일기 작성
                         </a>
-                        <a href="javscript:void(0)" class="category not-selected-category">
+                        <a class="category not-selected-category partner-list">
                             교환 일기 파트너
                         </a>
                     </div>
@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="diary-list-wrapper">
-                    <div>
+                    <div th:each="diary:${diaries}" th:object="${diary}">
                         <div class="profile-wrapper">
                             <div class="partner-profile-wrapper">
                                 <div class="profile-image-wrapper">
@@ -59,297 +59,103 @@
                                     <a href="javscript:void(0)">
                                         <p class="name">John</p>
                                     </a>
-                                    <div class="time">2022-11-20</div>
+                                    <div class="time" th:text="*{diaryWriteDate}"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="image-banner-wrapper">
                             <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">
                         </div>
-                        <a href="javascript:void(0)" class="diary-title-wrapper">
-                            <div class="diary-title-container">
-                                No Bread Day
+                        <a th:href="*{diaryNumber}" class="diary-title-wrapper detail">
+                            <div class="diary-title-container diaryTitle" th:text="*{diaryTitle}">
+
                             </div>
                         </a>
                         <div class="diary-content-wrapper">
-                            <span class="diary-content">
-                                Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (
+                            <span class="diary-content diaryContent" th:text="*{diaryContent}">
+
                             </span>
                             <button class="expand-button">
                                 더보기
                             </button>
                         </div>
                     </div>
-                    <div>
-                        <div class="profile-wrapper">
-                            <div class="partner-profile-wrapper">
-                                <div class="profile-image-wrapper">
-                                    <a href="javascript:void(0)">
-                                        <img src="/images/member/sample4.png" alt="교환일기 파트너 프로필 사진" class="profile-image">
-                                    </a>
-                                </div>
-                                <div class="member-text-wrapper">
-                                    <a href="javscript:void(0)">
-                                        <p class="name">John</p>
-                                    </a>
-                                    <div class="time">2022-11-20</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="image-banner-wrapper">
-                            <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">
-                        </div>
-                        <a href="javascript:void(0)" class="diary-title-wrapper">
-                            <div class="diary-title-container">
-                                No Bread Day
-                            </div>
-                        </a>
-                        <div class="diary-content-wrapper">
-                            <span class="diary-content">
-                                Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (
-                            </span>
-                            <button class="expand-button">
-                                더보기
-                            </button>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="profile-wrapper">
-                            <div class="partner-profile-wrapper">
-                                <div class="profile-image-wrapper">
-                                    <a href="javascript:void(0)">
-                                        <img src="/images/member/sample4.png" alt="교환일기 파트너 프로필 사진" class="profile-image">
-                                    </a>
-                                </div>
-                                <div class="member-text-wrapper">
-                                    <a href="javscript:void(0)">
-                                        <p class="name">Tom Cruse</p>
-                                    </a>
-                                    <div class="time">2022-11-20</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="image-banner-wrapper">
-                            <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">
-                        </div>
-                        <a href="javascript:void(0)" class="diary-title-wrapper">
-                            <div class="diary-title-container">
-                                No Bread Day
-                            </div>
-                        </a>
-                        <div class="diary-content-wrapper">
-                            <span class="diary-content">
-                                Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (
-                            </span>
-                            <button class="expand-button">
-                                더보기
-                            </button>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="profile-wrapper">
-                            <div class="partner-profile-wrapper">
-                                <div class="profile-image-wrapper">
-                                    <a href="javascript:void(0)">
-                                        <img src="/images/member/sample4.png" alt="교환일기 파트너 프로필 사진" class="profile-image">
-                                    </a>
-                                </div>
-                                <div class="member-text-wrapper">
-                                    <a href="javscript:void(0)">
-                                        <p class="name">Alisa Brown</p>
-                                    </a>
-                                    <div class="time">2022-11-20</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="image-banner-wrapper">
-                            <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">
-                        </div>
-                        <a href="javascript:void(0)" class="diary-title-wrapper">
-                            <div class="diary-title-container">
-                                No Bread Day
-                            </div>
-                        </a>
-                        <div class="diary-content-wrapper">
-                            <span class="diary-content">
-                                Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (
-                            </span>
-                            <button class="expand-button">
-                                더보기
-                            </button>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="profile-wrapper">
-                            <div class="partner-profile-wrapper">
-                                <div class="profile-image-wrapper">
-                                    <a href="javascript:void(0)">
-                                        <img src="/images/member/sample4.png" alt="교환일기 파트너 프로필 사진" class="profile-image">
-                                    </a>
-                                </div>
-                                <div class="member-text-wrapper">
-                                    <a href="javscript:void(0)">
-                                        <p class="name">Alisa Brown</p>
-                                    </a>
-                                    <div class="time">2022-11-20</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="image-banner-wrapper">
-                            <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">
-                        </div>
-                        <a href="javascript:void(0)" class="diary-title-wrapper">
-                            <div class="diary-title-container">
-                                No Bread Day
-                            </div>
-                        </a>
-                        <div class="diary-content-wrapper">
-                            <span class="diary-content">
-                                Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (
-                            </span>
-                            <button class="expand-button">
-                                더보기
-                            </button>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="profile-wrapper">
-                            <div class="partner-profile-wrapper">
-                                <div class="profile-image-wrapper">
-                                    <a href="javascript:void(0)">
-                                        <img src="/images/member/sample4.png" alt="교환일기 파트너 프로필 사진" class="profile-image">
-                                    </a>
-                                </div>
-                                <div class="member-text-wrapper">
-                                    <a href="javscript:void(0)">
-                                        <p class="name">Alisa Brown</p>
-                                    </a>
-                                    <div class="time">2022-11-20</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="image-banner-wrapper">
-                            <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">
-                        </div>
-                        <a href="javascript:void(0)" class="diary-title-wrapper">
-                            <div class="diary-title-container">
-                                No Bread Day
-                            </div>
-                        </a>
-                        <div class="diary-content-wrapper">
-                            <span class="diary-content">
-                                Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (
-                            </span>
-                            <button class="expand-button">
-                                더보기
-                            </button>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="profile-wrapper">
-                            <div class="partner-profile-wrapper">
-                                <div class="profile-image-wrapper">
-                                    <a href="javascript:void(0)">
-                                        <img src="/images/member/sample4.png" alt="교환일기 파트너 프로필 사진" class="profile-image">
-                                    </a>
-                                </div>
-                                <div class="member-text-wrapper">
-                                    <a href="javscript:void(0)">
-                                        <p class="name">Alisa Brown</p>
-                                    </a>
-                                    <div class="time">2022-11-20</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="image-banner-wrapper">
-                            <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">
-                        </div>
-                        <a href="javascript:void(0)" class="diary-title-wrapper">
-                            <div class="diary-title-container">
-                                No Bread Day
-                            </div>
-                        </a>
-                        <div class="diary-content-wrapper">
-                            <span class="diary-content">
-                                Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (
-                            </span>
-                            <button class="expand-button">
-                                더보기
-                            </button>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="profile-wrapper">
-                            <div class="partner-profile-wrapper">
-                                <div class="profile-image-wrapper">
-                                    <a href="javascript:void(0)">
-                                        <img src="/images/member/sample4.png" alt="교환일기 파트너 프로필 사진" class="profile-image">
-                                    </a>
-                                </div>
-                                <div class="member-text-wrapper">
-                                    <a href="javscript:void(0)">
-                                        <p class="name">Alisa Brown</p>
-                                    </a>
-                                    <div class="time">2022-11-20</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="image-banner-wrapper">
-                            <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">
-                        </div>
-                        <a href="javascript:void(0)" class="diary-title-wrapper">
-                            <div class="diary-title-container">
-                                No Bread Day
-                            </div>
-                        </a>
-                        <div class="diary-content-wrapper">
-                            <span class="diary-content">
-                                Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (
-                            </span>
-                            <button class="expand-button">
-                                더보기
-                            </button>
-                        </div>
-                    </div>
+<!--                    <div>-->
+<!--                        <div class="profile-wrapper">-->
+<!--                            <div class="partner-profile-wrapper">-->
+<!--                                <div class="profile-image-wrapper">-->
+<!--                                    <a href="javascript:void(0)">-->
+<!--                                        <img src="/images/member/sample4.png" alt="교환일기 파트너 프로필 사진" class="profile-image">-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!--                                <div class="member-text-wrapper">-->
+<!--                                    <a href="javscript:void(0)">-->
+<!--                                        <p class="name">John</p>-->
+<!--                                    </a>-->
+<!--                                    <div class="time">2022-11-20</div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="image-banner-wrapper">-->
+<!--                            <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">-->
+<!--                        </div>-->
+<!--                        <a href="javascript:void(0)" class="diary-title-wrapper">-->
+<!--                            <div class="diary-title-container">-->
+<!--                                No Bread Day-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                        <div class="diary-content-wrapper">-->
+<!--                            <span class="diary-content">-->
+<!--                                Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (-->
+<!--                            </span>-->
+<!--                            <button class="expand-button">-->
+<!--                                더보기-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
                 </div>
-                <div class="pagination-wrapper">
-                    <a class="change-page" href="javscript:void(0)">
-                        <code><</code>
-                    </a>
-                    <a class="change-page page-number" href="javascript:void(0)">
-                        <code>1</code>
-                    </a>
-                    <a class="change-page page-number not-selected" href="javascript:void(0)">
-                        <code>2</code>
-                    </a>
-                    <a class="change-page page-number not-selected" href="javascript:void(0)">
-                        <code>3</code>
-                    </a>
-                    <a class="change-page page-number not-selected" href="javascript:void(0)">
-                        <code>4</code>
-                    </a>
-                    <a class="change-page page-number not-selected" href="javascript:void(0)">
-                        <code>5</code>
-                    </a>
-                    <a class="change-page page-number not-selected" href="javascript:void(0)">
-                        <code>6</code>
-                    </a>
-                    <a class="change-page page-number not-selected" href="javascript:void(0)">
-                        <code>7</code>
-                    </a>
-                    <a class="change-page page-number not-selected" href="javascript:void(0)">
-                        <code>8</code>
-                    </a>
-                    <a class="change-page page-number not-selected" href="javascript:void(0)">
-                        <code>9</code>
-                    </a>
-                    <a class="change-page page-number not-selected" href="javascript:void(0)">
-                        <code>10</code>
-                    </a>
-                    <a class="change-page" href="javscript:void(0)">
+                <div class="pagination-wrapper" th:object="${pagination}">
+                    <a class="change-page" th:href="*{startPage - 1}" th:if="*{prev}"><code><</code></a>
+                    <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                        <a class="change-page page-number" th:href="${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+                        <code th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
+                    </th:block>
+<!--                    <a class="change-page page-number not-selected" href="javascript:void(0)">-->
+<!--                        <code>2</code>-->
+<!--                    </a>-->
+<!--                    <a class="change-page page-number not-selected" href="javascript:void(0)">-->
+<!--                        <code>3</code>-->
+<!--                    </a>-->
+<!--                    <a class="change-page page-number not-selected" href="javascript:void(0)">-->
+<!--                        <code>4</code>-->
+<!--                    </a>-->
+<!--                    <a class="change-page page-number not-selected" href="javascript:void(0)">-->
+<!--                        <code>5</code>-->
+<!--                    </a>-->
+<!--                    <a class="change-page page-number not-selected" href="javascript:void(0)">-->
+<!--                        <code>6</code>-->
+<!--                    </a>-->
+<!--                    <a class="change-page page-number not-selected" href="javascript:void(0)">-->
+<!--                        <code>7</code>-->
+<!--                    </a>-->
+<!--                    <a class="change-page page-number not-selected" href="javascript:void(0)">-->
+<!--                        <code>8</code>-->
+<!--                    </a>-->
+<!--                    <a class="change-page page-number not-selected" href="javascript:void(0)">-->
+<!--                        <code>9</code>-->
+<!--                    </a>-->
+<!--                    <a class="change-page page-number not-selected" href="javascript:void(0)">-->
+<!--                        <code>10</code>-->
+<!--                    </a>-->
+                    <a class="change-page" th:href="*{endPage + 1}" th:if="*{next}">
                         <code>></code>
                     </a>
                 </div>
+                <form th:action="@{/diary/list}" th:object="${criteria}" name="pageForm">
+                    <input type="hidden" th:field="*{page}">
+                    <input type="hidden" th:field="*{amount}">
+                </form>
             </div>
 
             <!-- footer -->
@@ -449,7 +255,12 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script>
+<script th:inline="javascript">
+    let diaryNumber = [[${diaryNumber}]];
+    let $pages = $("a.change-page");
+    let queryString = [[${pagination.criteria.queryString}]];
+    const $detail = $("a.detail");
+
     // 더보기 버튼 클릭시 일기 전체 내용 보이기
     const $expandButtons = $('.expand-button');
 
@@ -533,6 +344,35 @@
             }
         });
     });
+
+//  페이지 이동
+    $("a.write").on("click",function(e){
+        e.preventDefault();
+        location.href="/diary/write";
+    });
+
+    $("a.partner-list").on("click",function(e){
+        e.preventDefault();
+        location.href="/diary/partnerList";
+    });
+
+    $pages.on("click", function(e){
+        e.preventDefault();
+        $(document.pageForm.page).val($(this).attr("href"));
+        document.pageForm.submit();
+    });
+
+    //현재 페이지 기억 -> write컨트롤러 criteria 필요
+    $detail.on("click", function(e){
+        e.preventDefault();
+        location.href = "/diary/detail" + queryString + "&diaryNumber=" + $(this).attr("href");
+    });
+
+    $("a.write").on("click", function(e){
+        e.preventDefault();
+        location.href = "/diary/write" + queryString;
+    });
+
 </script>
 </html>
 
