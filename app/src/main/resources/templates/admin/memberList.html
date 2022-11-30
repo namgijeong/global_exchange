@@ -10,7 +10,7 @@
     <link href="/css/admin/memberList.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div id="logobox"><div id="logo"><a href="#"></a></div></div>
+<div id="logobox"><div id="logo"><a><img src="/images/main/logo.png"></a></div></div>
 
 <!--<div id="header">
     <div id="logo"><a href="administer_main.html"></a></div>
@@ -66,10 +66,9 @@
                     <div class="subnavigation_how_title">카테고리</div>
                     <div class="subnavigation_how_main">
                         <select class="selectnormalcolor">
-                            <option>이름</option>
-                            <option>나이</option>
-                            <option>성별</option>
-                            <option>직업</option>
+                            <option>회원번호</option>
+                            <option>아이디</option>
+                            <option>닉네임</option>
                         </select>
                     </div>
                 </div>
@@ -77,9 +76,8 @@
                     <div class="subnavigation_how_title">정렬방식</div>
                     <div class="subnavigation_how_main">
                         <select class="selectnormalcolor">
-                            <option>아이디오름차순</option>
-                            <option>아이디내림차순</option>
-
+                            <option>오름차순</option><!--회원번호-->
+                            <option>내림차순</option>
                         </select>
                     </div>
                 </div>
@@ -90,142 +88,134 @@
 
         <div id="subnavigation_result_body">
             <div id="subnavigation_search_and_delete">
-                <div id="subnavigation_search">
-                    <span></span>
-                    <input type="text" name="search_member" placeholder="검색"/>
-                </div>
+<!--                <div id="subnavigation_search">-->
+<!--                    <span></span>-->
+<!--                    <input type="text" name="search_member" placeholder="검색"/>-->
+<!--                </div>-->
 
             </div>
             <div id="subnavigation_list">
                 <div id="subnavigation_list_title">
 
+                    <span>번호</span>
                     <span>아이디</span>
                     <span>닉네임</span>
-                    <span>가입 일자</span>
-                    <span>경력</span>
-                    <span>학력</span>
-                    <span>자격증</span>
-                    <span>질문 개수</span>
-                    <span>답변 개수</span>
+                    <span>가르칠 언어</span>
+                    <span>배울 언어</span>
+                    <span>관심사</span>
+                    <span>자기소개</span>
                 </div>
                 <div class="subnavigation_list_detail">
 
-                    <span>itking</span>
-                    <span>it제왕</span>
-                    <span>2022-10-23</span>
-                    <span>직장인 20년차</span>
-                    <span>한국대학교 컴퓨터과 졸업</span>
-                    <span>정보처리기사. 정보보안기사.</span>
-                    <span>10</span>
-                    <span>100</span>
+                    <span>0</span>
+                    <span>ADMIN</span>
+                    <span>관리자</span>
+                    <span>KOREAN</span>
+                    <span>ENGLISH</span>
+                    <span>GAME</span>
+                    <span>안녕하세요</span>
                 </div>
                 <div class="subnavigation_list_detail">
 
-                    <span>itking</span>
-                    <span>it제왕</span>
-                    <span>2022-10-23</span>
-                    <span>직장인 20년차</span>
-                    <span>한국대학교 컴퓨터과 졸업</span>
-                    <span>정보처리기사. 정보보안기사.</span>
-                    <span>10</span>
-                    <span>100</span>
+                    <span>1</span>
+                    <span>KJN</span>
+                    <span>남기정</span>
+                    <span>KOREAN</span>
+                    <span>ENGLISH</span>
+                    <span>GAME</span>
+                    <span>안녕하세요</span>
                 </div>
                 <div class="subnavigation_list_detail">
-                    <!--<input type="checkbox" name="select_member"/>-->
-                    <span>itking</span>
-                    <span>it제왕</span>
-                    <span>2022-10-23</span>
-                    <span>직장인 20년차</span>
-                    <span>한국대학교 컴퓨터과 졸업</span>
-                    <span>정보처리기사. 정보보안기사.</span>
-                    <span>10</span>
-                    <span>100</span>
+
+                    <span>2</span>
+                    <span>JENNY</span>
+                    <span>제니</span>
+                    <span>KOREAN</span>
+                    <span>ENGLISH</span>
+                    <span>GAME</span>
+                    <span>안녕하세요</span>
                 </div>
                 <div class="subnavigation_list_detail">
-                    <!--<input type="checkbox" name="select_member"/>-->
-                    <span>itking</span>
-                    <span>it제왕</span>
-                    <span>2022-10-23</span>
-                    <span>직장인 20년차</span>
-                    <span>한국대학교 컴퓨터과 졸업</span>
-                    <span>정보처리기사. 정보보안기사.</span>
-                    <span>10</span>
-                    <span>100</span>
+
+                    <span>2</span>
+                    <span>JENNY</span>
+                    <span>제니</span>
+                    <span>KOREAN</span>
+                    <span>ENGLISH</span>
+                    <span>GAME</span>
+                    <span>안녕하세요</span>
                 </div>
                 <div class="subnavigation_list_detail">
-                    <!--<input type="checkbox" name="select_member"/>-->
-                    <span>itking</span>
-                    <span>it제왕</span>
-                    <span>2022-10-23</span>
-                    <span>직장인 20년차</span>
-                    <span>한국대학교 컴퓨터과 졸업</span>
-                    <span>정보처리기사. 정보보안기사.</span>
-                    <span>10</span>
-                    <span>100</span>
+
+                    <span>2</span>
+                    <span>JENNY</span>
+                    <span>제니</span>
+                    <span>KOREAN</span>
+                    <span>ENGLISH</span>
+                    <span>GAME</span>
+                    <span>안녕하세요</span>
                 </div>
                 <div class="subnavigation_list_detail">
-                    <!--<input type="checkbox" name="select_member"/>-->
-                    <span>itking</span>
-                    <span>it제왕</span>
-                    <span>2022-10-23</span>
-                    <span>직장인 20년차</span>
-                    <span>한국대학교 컴퓨터과 졸업</span>
-                    <span>정보처리기사. 정보보안기사.</span>
-                    <span>10</span>
-                    <span>100</span>
+
+                    <span>2</span>
+                    <span>JENNY</span>
+                    <span>제니</span>
+                    <span>KOREAN</span>
+                    <span>ENGLISH</span>
+                    <span>GAME</span>
+                    <span>안녕하세요</span>
                 </div>
                 <div class="subnavigation_list_detail">
-                    <!--<input type="checkbox" name="select_member"/>-->
-                    <span>itking</span>
-                    <span>it제왕</span>
-                    <span>2022-10-23</span>
-                    <span>직장인 20년차</span>
-                    <span>한국대학교 컴퓨터과 졸업</span>
-                    <span>정보처리기사. 정보보안기사.</span>
-                    <span>10</span>
-                    <span>100</span>
+
+                    <span>2</span>
+                    <span>JENNY</span>
+                    <span>제니</span>
+                    <span>KOREAN</span>
+                    <span>ENGLISH</span>
+                    <span>GAME</span>
+                    <span>안녕하세요</span>
                 </div>
                 <div class="subnavigation_list_detail">
-                    <!--<input type="checkbox" name="select_member"/>-->
-                    <span>itking</span>
-                    <span>it제왕</span>
-                    <span>2022-10-23</span>
-                    <span>직장인 20년차</span>
-                    <span>한국대학교 컴퓨터과 졸업</span>
-                    <span>정보처리기사. 정보보안기사.</span>
-                    <span>10</span>
-                    <span>100</span>
+
+                    <span>2</span>
+                    <span>JENNY</span>
+                    <span>제니</span>
+                    <span>KOREAN</span>
+                    <span>ENGLISH</span>
+                    <span>GAME</span>
+                    <span>안녕하세요</span>
                 </div>
                 <div class="subnavigation_list_detail">
-                    <!--<input type="checkbox" name="select_member"/>-->
-                    <span>itking</span>
-                    <span>it제왕</span>
-                    <span>2022-10-23</span>
-                    <span>직장인 20년차</span>
-                    <span>한국대학교 컴퓨터과 졸업</span>
-                    <span>정보처리기사. 정보보안기사.</span>
-                    <span>10</span>
-                    <span>100</span>
+
+                    <span>2</span>
+                    <span>JENNY</span>
+                    <span>제니</span>
+                    <span>KOREAN</span>
+                    <span>ENGLISH</span>
+                    <span>GAME</span>
+                    <span>안녕하세요</span>
                 </div>
                 <div class="subnavigation_list_detail">
-                    <!--<input type="checkbox" name="select_member"/>-->
-                    <span>itking</span>
-                    <span>it제왕</span>
-                    <span>2022-10-23</span>
-                    <span>직장인 20년차</span>
-                    <span>한국대학교 컴퓨터과 졸업</span>
-                    <span>정보처리기사. 정보보안기사.</span>
-                    <span>10</span>
-                    <span>100</span>
+
+                    <span>2</span>
+                    <span>JENNY</span>
+                    <span>제니</span>
+                    <span>KOREAN</span>
+                    <span>ENGLISH</span>
+                    <span>GAME</span>
+                    <span>안녕하세요</span>
                 </div>
             </div>
         </div>
-        <div id="page_action">
+        <div id="page_action" >
 
-
-            <div id="page_arrow">
-                <span></span>
-                <span></span>
+            <div id="page_arrow" style="margin-top: 20px">
+                <span style="cursor: pointer"  >
+                    <img src="/images/pagenation/nextArrow.svg" style="transform: rotate(180deg)">
+                </span>
+                <span style="cursor: pointer"  >
+                    <img src="/images/pagenation/nextArrow.svg">
+                </span>
             </div>
         </div>
     </div>

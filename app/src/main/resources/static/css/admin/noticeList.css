@@ -45,6 +45,12 @@ a:hover{
 }
 
 
+#logo a img {
+    width: 220px;
+    height: 80px;
+}
+
+
 #main_body{
     width:1474px;
     height:1000px;
@@ -296,39 +302,58 @@ ul,li{
     padding-right:50px;
     padding-top:10px;
 }
-#subnavigation_search{
+#notice_write_btn{
     display:inline-block;
     width:278px;
     height:56px;
     background-color:white;
-    border-bottom: 1px solid gray;
 
     margin-left:750px;
     font-size:16px;
 }
-#subnavigation_search>span{
-    /*background-image:url("");*/
-    background-size:contain;
-    background-repeat:no-repeat;
-    display:inline-block;
-    width:30px;
-    height:30px;
-    /*그림과 옆요소 수직정렬 맞추기*/
-    vertical-align:bottom;
+
+#notice_write_btn{
+
+    height:50px;
+    text-align:center;
 }
-#subnavigation_search>input{
-    width:230px;
-    height:56px;
+#notice_write_btn>button{
+    margin: 0 5px 0 5px;
+    width:150px;
+    height:40px;
 
-    border:0px;
-    outline:none;
-    border-bottom:1px solid gray;
+    background-color:#5C3EA2;
+    color:white;
 
-    color:#383838;
-
-    vertical-align:bottom;
-    line-height:56px;
+    border:1px solid midnightblue;
+    border-radius:40px;
 }
+
+
+
+/*#subnavigation_search>span{*/
+/*    !*background-image:url("");*!*/
+/*    background-size:contain;*/
+/*    background-repeat:no-repeat;*/
+/*    display:inline-block;*/
+/*    width:30px;*/
+/*    height:30px;*/
+/*    !*그림과 옆요소 수직정렬 맞추기*!*/
+/*    vertical-align:bottom;*/
+/*}*/
+/*#subnavigation_search>input{*/
+/*    width:230px;*/
+/*    height:56px;*/
+
+/*    border:0px;*/
+/*    outline:none;*/
+/*    border-bottom:1px solid gray;*/
+
+/*    color:#383838;*/
+
+/*    vertical-align:bottom;*/
+/*    line-height:56px;*/
+/*}*/
 
 #subnavigation_list{
     width:100%;
@@ -373,7 +398,10 @@ ul,li{
     width:200px;
 }
 #subnavigation_list_title>span:nth-child(4){
-    width:350px;
+    width:150px;
+}
+#subnavigation_list_title>span:nth-child(5){
+    width:150px;
 }
 
 .subnavigation_list_detail{
@@ -410,9 +438,11 @@ ul,li{
     width:200px;
 }
 .subnavigation_list_detail>span:nth-child(4){
-    width:350px;
+    width:150px;
 }
-
+.subnavigation_list_detail>span:nth-child(5){
+    width:150px;
+}
 #page_action{
     width:1090px;
     height:58px;
