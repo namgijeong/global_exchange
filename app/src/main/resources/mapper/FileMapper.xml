@@ -5,4 +5,25 @@
         SELECT * FROM tbl_file_profile
         WHERE MEMBER_NUMBER=#{memberNumber}
     </select>
+
+    <insert id="insertMeetFile">
+        INSERT INTO tbl_file_meet(FILE_NUMBER, FILE_NAME, FILE_UPLOAD_PATH, FILE_UUID, FILE_IMAGE_CHECK, FILE_SIZE, meet_number)
+        VALUES(file_meet_seq.NEXTVAL, #{fileName}, #{fileUploadPath}, #{fileUuid}, #{fileImageCheck}, #{fileSize}, #{meetNumber})
+    </insert>
+
+    <select id="getMeetFile" resultType="fileMeetVO">
+        SELECT * FROM tbl_file_meet
+        WHERE MEET_NUMBER=#{meet_number}
+    </select>
+
+    <!--<update id="updateMeetFile">
+    수정페이지에서 파일정보를 그대로 돌려주지 않기 때문에 파일넘버로 지울수없다.. 게시글 번호만 연관있으므로
+        UPDATE tbl_file_meet
+        SET FILE_NAME=#{fileName},FILE_UPLOAD_PATH=#{fileUploadPath},FILE_UUID=#{fileUuid},FILE_IMAGE_CHECK=#{fileImageCheck},FILE_SIZE=#{fileSize},meet_number=#{meetNumber}
+        WHERE FILE_NUMBER=#{fileNumber}
+    </update>-->
+    <delete id="deleteMeetFile">
+        DELETE FROM tbl_file_meet
+        WHERE meet_number=#{meetNumber}
+    </delete>
 </mapper>
