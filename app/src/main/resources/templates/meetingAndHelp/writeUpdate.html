@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>만남과 도움 작성 페이지</title>
+  <title>만남과 도움 수정 페이지</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -24,7 +24,7 @@
 
 
   <div class="detail-page-wrapper">
-    <form action="/meetingAndHelp/writeOk" method="post">
+    <form action="/meetingAndHelp/writeUpdateOk" method="post">
     <h2 class="write-title">만남과 도움</h2>
     <div class="detail-page">
       <div class="detail-page-container">
@@ -41,29 +41,29 @@
             <div class="header-info-basic">
               <div class="header-info-title">
                 <h1 class="title-content">제목</h1>
-                <input name="meetTitle" class="title-reg" placeholder="제목을 입력하세요">
+                <input id="meetTitle" name="meetTitle" class="title-reg" placeholder="제목을 입력하세요" >
               </div>
             </div>
 
             <div class="select-box">
               <h1 class="title-content select-box-title">내가 익숙한 언어</h1>
-              <select name = "mylearning" class="select-box-size">
-                <option value = "english" selected>영어</option>
-                <option value = "spanish">스페인어</option>
-                <option value = "french">프랑스어</option>
-                <option value = "french">독일어</option>
-                <option value = "italian">이탈리아어</option>
-                <option value = "portuguese">포르투갈어</option>
-                <option value = "russian">러시아어</option>
-                <option value = "japanese">일본어</option>
-                <option value = "chinese">중국어</option>
-                <option value = "korean">한국어</option>
+              <select name = "mylearning" class="select-box-size" id="memberTeachingLang">
+                <option value = "ENGLISH">영어</option>
+                <option value = "SPANISH">스페인어</option>
+                <option value = "FRENCH">프랑스어</option>
+                <option value = "GERMAN">독일어</option>
+                <option value = "ITALIAN">이탈리아어</option>
+                <option value = "PORTUGUESE">포르투갈어</option>
+                <option value = "RUSSIAN">러시아어</option>
+                <option value = "JAPANESE">일본어</option>
+                <option value = "CHINESE">중국어</option>
+                <option value = "KOREAN">한국어</option>
               </select>
             </div>
             <div class="select-box">
               <h1 class="title-content select-box-title">도움을 원하는 언어</h1>
-              <select name = "meetLearningLang" class="select-box-size">
-                <option value = "ENGLISH" selected>영어</option>
+              <select name = "meetLearningLang" class="select-box-size" id="meetLearningLang">
+                <option value = "ENGLISH" >영어</option>
                 <option value = "SPANISH">스페인어</option>
                 <option value = "FRENCH">프랑스어</option>
                 <option value = "GERMAN">독일어</option>
@@ -85,11 +85,11 @@
                       <!--<img src="https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_56/576_blueguitar_1476154324950"
                            class="profile-image" alt="프로필 이미지">-->
 
-                        <th:block th:if="${not #strings.isEmpty(file)}">
-                      <img th:if="${file.fileImageCheck}" th:src="@{/fileProfile/display(fileName=${file.fileUploadPath} + '/' + ${file.fileUuid} + '_' + ${file.fileName})}" class="profile-image"/>
-                      <img th:unless="${file.fileImageCheck}" src="/images/noImage/no-image.jpg" class="profile-image"/>
+                        <th:block th:if="${not #strings.isEmpty(meetDTO.fileProfileVO)}">
+                      <img th:if="${meetDTO.fileProfileVO.fileImageCheck}" th:src="@{/fileProfile/display(fileName=${meetDTO.fileProfileVO.fileUploadPath} + '/' + ${meetDTO.fileProfileVO.fileUuid} + '_' + ${meetDTO.fileProfileVO.fileName})}" class="profile-image"/>
+                      <img th:unless="${meetDTO.fileProfileVO.fileImageCheck}" src="/images/noImage/no-image.jpg" class="profile-image"/>
                         </th:block>
-                      <th:block th:unless="${not #strings.isEmpty(file)}">
+                      <th:block th:unless="${not #strings.isEmpty(meetDTO.fileProfileVO)}">
 
                         <img src="/images/noImage/no-image.jpg"  class="profile-image">
                       </th:block>
@@ -99,7 +99,7 @@
                 <div class="profile-content">
                   <div class="profile-name">
                     <a href="#">
-                      <span class="profile-name-content" th:object="${memberVO}">
+                      <span class="profile-name-content" th:object="${meetDTO}">
                         <!--<span >블루기타</span>-->
                         <span  th:if="*{memberNickname}" th:text="*{memberNickname}"></span>
                         <span  th:unless="*{memberNickname}" >블루기타</span>
@@ -108,8 +108,8 @@
                     </a>
                   </div>
                   <!--<span class="profile-plus">작성자 나라..?</span>-->
-                  <span class="profile-plus"  th:if="${memberVO.memberTeachingLang}" th:text="${memberVO.memberTeachingLang}"></span>
-                  <span class="profile-plus"  th:unless="${memberVO.memberTeachingLang}" >작성자 나라..?</span>
+                  <span class="profile-plus"  th:if="${meetDTO.memberTeachingLang}" th:text="${meetDTO.memberTeachingLang}"></span>
+                  <span class="profile-plus"  th:unless="${meetDTO.memberTeachingLang}" >작성자 나라..?</span>
                 </div>
               </div>
             </div>
@@ -121,7 +121,7 @@
         <section class="section">
           <article>
             <h2 class="article-title">내용</h2>
-            <textarea name="meetContent" class="comment-reg" placeholder="내용을 입력하세요"></textarea>
+            <textarea name="meetContent" class="comment-reg" placeholder="내용을 입력하세요" th:text="${meetDTO.meetContent}"></textarea>
 
           </article>
         </section>
@@ -129,13 +129,15 @@
         <section class="section">
           <h2 class="article-title">장소</h2>
           <div class="address-wrapper">
-            <input name="meetAddress" type="text" class="address" id="sample5_address" placeholder="주소">
+            <input name="meetAddress" type="text" class="address" id="sample5_address" placeholder="주소" th:field="${meetDTO.meetAddress}">
             <input type="button" class="address-search" onclick="sample5_execDaumPostcode()" value="주소 검색">
           </div>
 
-          <input name="meetDetailAddress" type="text" class="address address-detail" placeholder="상세주소">
-          <div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
+          <input name="meetDetailAddress" type="text" class="address address-detail" placeholder="상세주소" th:field="${meetDTO.meetDetailAddress}">
+          <div id="map" style="width:300px;height:300px;margin-top:10px;display:none"> </div>
         </section>
+
+
 
         <div class="comment-button">
           <button class="post-button" type="submit">등록</button>
@@ -149,7 +151,8 @@
       <input type="hidden" name="fileMeetVO.fileUuid"/>
       <input type="hidden" name="fileMeetVO.fileImageCheck"/>
       <input type="hidden" name="fileMeetVO.fileSize"/>
-      <input type="hidden" th:field="${memberVO.memberNumber}"/>
+      <input type="hidden" th:field="${meetDTO.memberNumber}"/>
+      <input type="hidden" th:field="${meetDTO.meetNumber}"/>
 
     </form>
   </div>
@@ -158,6 +161,22 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
+  let originMeetLearningLang = "[[${meetDTO.meetLearningLang}]]";
+  let originMeetTeachingLang = "[[${meetDTO.memberTeachingLang}]]";
+  let originMeetTitle = "[[${meetDTO.meetTitle}]]";
+  console.log(originMeetLearningLang);
+  console.log(originMeetTeachingLang);
+  $("#meetLearningLang").val(originMeetLearningLang).prop("selected", true);
+  $("#memberTeachingLang").val(originMeetTeachingLang).prop("selected", true);
+  $('#meetTitle').attr('value',originMeetTitle);
+  /*$(function(){
+    $("#meetLearningLang").val(originMeetLearningLang).prop("selected", true);
+    $("#memberTeachingLang").val(originMeetTeachingLang).prop("selected", true);
+    //$("#meetLearningLang option[value="+originMeetLearningLang+"]").attr('selected','selected');
+    //$("#memberTeachingLang option[value="+originMeetTeachingLang+"]").attr('selected','selected');
+    //$('#memberTeachingLang').val(originMeetTeachingLang);
+    //$('#meetTitle').attr('value',originMeetTitle);
+  });*/
 
   let fileName;
   let fileUploadPath;
@@ -266,5 +285,6 @@
       $("input[name='fileMeetVO.fileImageCheck']").val(fileImageCheck);
       $("input[name='fileMeetVO.fileSize']").val(fileSize);
     }
+
 </script>
 </html>

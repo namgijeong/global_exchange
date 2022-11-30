@@ -16,7 +16,12 @@ public class MeetDTO {
     private String meetAddress;
     private String meetDetailAddress;
 
+
+    private String memberTeachingLang;
+    private String memberNickname;
+
     private FileMeetVO fileMeetVO;
+    private FileProfileVO fileProfileVO;
 
 //    public void create(String fileName, String fileUploadPath, String fileUuid, boolean fileImageCheck) {
 //        this.fileName = fileName;
