@@ -3,10 +3,7 @@ package com.globalexchange.app.service;
 //import com.example.app.domain.vo.BoardDTO;
 //import com.example.app.domain.vo.BoardVO;
 //import com.example.app.domain.vo.Criteria;
-import com.globalexchange.app.domain.vo.Criteria;
-import com.globalexchange.app.domain.vo.FileProfileVO;
-import com.globalexchange.app.domain.vo.MeetVO;
-import com.globalexchange.app.domain.vo.MemberVO;
+import com.globalexchange.app.domain.vo.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,8 +23,16 @@ public interface MeetService {
     public MemberVO writerInfo(Long memberNumber);
     //작성자 프로필 이미지 가져오기
     public FileProfileVO getMeetWriterImage(Long memberNumber);
-//    //    추가
-//    public void register(BoardDTO boardDTO);
+    //    추가
+   public void insertMeetBody(MeetDTO meetDTO);
+   // meet 게시글 detail 정보 불러오기
+    public MeetDTO detailMeetBody(Long meetNumber);
+    //meet 게시글 수정페이지에서 글과 작성자 정보 불러오기
+    public MeetDTO goModifyPage (Long meetNumber);
+    //meet 게시글 수정완료해서 글은 디비에 넣고, 원래있던 디비파일정보삭제하고(수정페이지에 원래있던 파일정보를 주는게 아니라서 파일번호모름) 디비파일정보 새로 넣음
+    public void updateMeetBody(MeetDTO meetDTO);
+    //meet 게시글 삭제
+    public void deleteMeetBody(Long meetNumber);
 //    //    수정
 //    public void modify(BoardDTO boardDTO);
 //    //    삭제

@@ -21,36 +21,76 @@
     <div class="detail-page">
       <div class="detail-page-container">
         <div class="header-section">
-          <div class="header-image-section">
-            <img src="https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_375/1706_masteringdrum_main2_1498628756023_1499650725964"
-                 class="header-image" alt="상세 헤더 이미지">
+          <div class="header-image-section" th:object="${meetDTO}">
+          <!--<div class="header-image-section" >-->
+            <!--<img src="https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_375/1706_masteringdrum_main2_1498628756023_1499650725964"
+                 class="header-image" alt="상세 헤더 이미지">-->
+            <th:block th:if="${not #strings.isEmpty(meetDTO.fileMeetVO)}">
+              <!--<h1>파일안비어있지롱</h1>
+              <h1 th:text="${meetDTO.fileMeetVO.fileUploadPath} + '/' + ${meetDTO.fileMeetVO.fileUuid} + '_' + ${meetDTO.fileMeetVO.fileName}"></h1>-->
+              <img th:if="${meetDTO.fileMeetVO.fileImageCheck}" th:src="@{/fileMeet/display(fileName=${meetDTO.fileMeetVO.fileUploadPath} + '/' + ${meetDTO.fileMeetVO.fileUuid} + '_' + ${meetDTO.fileMeetVO.fileName})}" class="profile-image" />
+              <img th:unless="${meetDTO.fileMeetVO.fileImageCheck}" src="/images/noImage/no-image.jpg" class="profile-image" />
+            </th:block>
+            <th:block th:unless="${not #strings.isEmpty(meetDTO.fileMeetVO)}">
+             <!-- <h1>파일비어있지롱</h1>-->
+              <img src="/images/noImage/no-image.jpg"  class="profile-image">
+            </th:block>
+           <!-- <img th:if="${meetDTO.fileMeetVO.fileImageCheck}" th:src="@{/fileMeet/display(fileName=*{meetDTO.fileMeetVO.fileUploadPath} + '/' + *{meetDTO.fileMeetVO.fileUuid} + '_' + *{meetDTO.fileMeetVO.fileName})}" class="profile-image" />
+            <img th:unless="*{meetDTO.fileMeetVO.fileImageCheck}" src="/images/noImage/no-image.jpg" class="profile-image" />-->
           </div>
           <div class="header-info">
             <div class="header-info-basic">
               <div class="header-info-title">
-                <h1 class="title-content">만남과 도움 제목</h1>
+                <!--<h1 class="title-content">만남과 도움 제목</h1>-->
+                <h1 class="title-content" th:text="${meetDTO.meetTitle}"></h1>
               </div>
               <div class="header-info-date">
-                <p class="date-content">2022.11.18 4:56</p>
+                <!--<p class="date-content">2022.11.18 4:56</p>-->
+                <p class="date-content" th:text="${meetDTO.meetUpdateDate}"></p>
               </div>
               <div class="post-button-wrapper">
-                <button class="post-button">수정</button>
-                <button class="post-button">삭제</button>
+
+                <!--<th:block th:if="{${session.memberNumber} == ${meetDTO.memberNumber}}">
+                  <button class="post-button">수정</button>
+                  <button class="post-button">삭제</button>
+                </th:block>
+                <th:block th:unless="${session.memberNumber == meetDTO.memberNumber}">
+
+                </th:block>-->
+                <!--<th:block th:switch="${session.memberNumber}">
+                  <th:block th:case="${meetDTO.memberNumber}">
+                    <button class="post-button" >수정</button>
+                    <button class="post-button">삭제</button>
+                  </th:block>
+
+                </th:block>-->
+                <button class="post-button" id="updateButton"> 수정 </button>
+                <button class="post-button" id="removeButton">삭제</button>
               </div>
             </div>
             <div class="select-box">
-              <h1 class="title-content2 select-box-title">내가 익숙한 언어 : 한국어</h1>
+              <!--<h1 class="title-content2 select-box-title">내가 익숙한 언어 : 한국어</h1>-->
+              <h1 class="title-content2 select-box-title" th:text="'내가 익숙한 언어 :'+${meetDTO.memberTeachingLang}"></h1>
             </div>
             <div class="select-box">
-              <h1 class="title-content2 select-box-title">도움을 원하는 언어 : 프랑스어</h1>
+              <!--<h1 class="title-content2 select-box-title" >도움을 원하는 언어 : 프랑스어</h1>-->
+              <h1 class="title-content2 select-box-title" th:text="'도움을 원하는 언어 :'+${meetDTO.meetLearningLang}"></h1>
             </div>
             <div class="header-info-profile">
               <div class="profile-content-section">
                 <div class="profile-image-section">
                   <a href="#">
                     <div class="profile-image-wrapper">
-                      <img src="https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_56/576_blueguitar_1476154324950"
-                           class="profile-image" alt="프로필 이미지">
+                      <!--<img src="https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_56/576_blueguitar_1476154324950"
+                           class="profile-image" alt="프로필 이미지">-->
+
+                      <th:block th:if="${not #strings.isEmpty(meetDTO.fileProfileVO)}">
+                        <img th:if="${meetDTO.fileProfileVO.fileImageCheck}" th:src="@{/fileProfile/display(fileName=${meetDTO.fileProfileVO.fileUploadPath} + '/' + ${meetDTO.fileProfileVO.fileUuid} + '_' + ${meetDTO.fileProfileVO.fileName})}" class="profile-image" />
+                        <img th:unless="${meetDTO.fileProfileVO.fileImageCheck}" src="/images/noImage/no-image.jpg" class="profile-image" />
+                      </th:block>
+                      <th:block th:unless="${not #strings.isEmpty(meetDTO.fileProfileVO)}">
+                        <img src="/images/noImage/no-image.jpg"  class="profile-image">
+                      </th:block>
                     </div>
                   </a>
                 </div>
@@ -58,12 +98,16 @@
                   <div class="profile-name">
                     <a href="#">
                       <span class="profile-name-content">
-                        <span>블루기타</span>
+                       <!-- <span>블루기타</span>-->
+                        <span  th:if="${meetDTO.memberNickname}" th:text="${meetDTO.memberNickname}"></span>
+                        <span  th:unless="${meetDTO.memberNickname}" >블루기타</span>
                         <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3E %3Cpath stroke='%23333' stroke-linecap='round' stroke-width='1.5' d='M6 3l5 5-5 5'/%3E %3C/svg%3E" alt="">
                       </span>
                     </a>
                   </div>
-                  <span class="profile-plus">작성자 나라..?</span>
+                  <!--<span class="profile-plus">작성자 나라..?</span>-->
+                  <span class="profile-plus"  th:if="${meetDTO.memberTeachingLang}" th:text="${meetDTO.memberTeachingLang}"></span>
+                  <span class="profile-plus"  th:unless="${meetDTO.memberTeachingLang}" >작성자 나라..?</span>
                 </div>
               </div>
             </div>
@@ -74,10 +118,13 @@
           <article>
             <h2 class="article-title">내용</h2>
             <div class="article-content">
-              <div>후기를 보시면 아시겠지만 프립에서 대원들로부터 상당히 만족도가 높은 클래스랍니다 ^^* ( 후기 써주신 대원님들 감사해요! )
+             <!-- <div>후기를 보시면 아시겠지만 프립에서 대원들로부터 상당히 만족도가 높은 클래스랍니다 ^^* ( 후기 써주신 대원님들 감사해요! )
                 후기를 보시면 아시겠지만 프립에서 대원들로부터 상당히 만족도가 높은 클래스랍니다 ^^* ( 후기 써주신 대원님들 감사해요! )
                 후기를 보시면 아시겠지만 프립에서 대원들로부터 상당히 만족도가 높은 클래스랍니다 ^^* ( 후기 써주신 대원님들 감사해요! )
-                후기를 보시면 아시겠지만 프립에서 대원들로부터 상당히 만족도가 높은 클래스랍니다 ^^* ( 후기 써주신 대원님들 감사해요! )</div>
+                후기를 보시면 아시겠지만 프립에서 대원들로부터 상당히 만족도가 높은 클래스랍니다 ^^* ( 후기 써주신 대원님들 감사해요! )</div>-->
+                <div th:text="${meetDTO.meetContent}">
+
+                </div>
             </div>
           </article>
         </section>
@@ -88,7 +135,8 @@
             <div id="map" style="width:100%;height:150px;"></div>
             <div class="map-info">
               <div class="map-info-wrapper">
-                <strong class="map-info-content">서울시 영등포구 당산로30길 6 3층 블루기타 실용음악학원</strong>
+                <!--<strong class="map-info-content" th:text="${meetDTO.meetAddress}+${meetDTO.meetDetailAddress}">서울시 영등포구 당산로30길 6 3층 블루기타 실용음악학원</strong>-->
+                <strong class="map-info-content" th:text="${meetDTO.meetAddress}+${meetDTO.meetDetailAddress}"></strong>
               </div>
             </div>
           </div>
@@ -316,49 +364,65 @@
   <footer th:replace="/main/footer.html :: #footerFirst"></footer>
 
 </body>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2dedcb5b9a8bf1a8785a7e1907f9c2bd"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2dedcb5b9a8bf1a8785a7e1907f9c2bd&libraries=services"></script>
-<!--<script>-->
-<!--    var mapContainer = document.getElementById('map'), // 지도를 표시할 div-->
-<!--        mapOption = {-->
-<!--            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표-->
-<!--            level: 3 // 지도의 확대 레벨-->
-<!--        };-->
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
-<!--    // 지도를 생성합니다-->
-<!--    var map = new kakao.maps.Map(mapContainer, mapOption);-->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2dedcb5b9a8bf1a8785a7e1907f9c2bd"></script>
 
-<!--    // 주소-좌표 변환 객체를 생성합니다-->
-<!--    var geocoder = new kakao.maps.services.Geocoder();-->
-
-<!--    // 주소로 좌표를 검색합니다-->
-<!--    geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {-->
-
-<!--        // 정상적으로 검색이 완료됐으면-->
-<!--        if (status === kakao.maps.services.Status.OK) {-->
-
-<!--            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);-->
-
-<!--            // 결과값으로 받은 위치를 마커로 표시합니다-->
-<!--            var marker = new kakao.maps.Marker({-->
-<!--                map: map,-->
-<!--                position: coords-->
-<!--            });-->
-
-<!--            // // 인포윈도우로 장소에 대한 설명을 표시합니다-->
-<!--            // var infowindow = new kakao.maps.InfoWindow({-->
-<!--            //     content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'-->
-<!--            // });-->
-<!--            // infowindow.open(map, marker);-->
-
-<!--            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다-->
-<!--            map.setCenter(coords);-->
-<!--        }-->
-<!--    });-->
-<!--</script>-->
-<script>
+<script th:inline="javascript">
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
+
+    // 지도를 생성합니다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 주소-좌표 변환 객체를 생성합니다
+    var geocoder = new kakao.maps.services.Geocoder();
+    //html에서 받아온값
+    let meetAddress=[[${meetDTO.meetAddress}]];
+    let meetDetailAddress=[[${meetDTO.meetDetailAddress}]];
+    let meetFullAddress=meetAddress+meetDetailAddress;
+    console.log(meetFullAddress);
+    // 주소로 좌표를 검색합니다
+    geocoder.addressSearch(meetFullAddress, function(result, status) {
+
+        // 정상적으로 검색이 완료됐으면
+        if (status === kakao.maps.services.Status.OK) {
+
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: coords
+            });
+
+            // // 인포윈도우로 장소에 대한 설명을 표시합니다
+            // var infowindow = new kakao.maps.InfoWindow({
+            //     content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+            // });
+            // infowindow.open(map, marker);
+
+            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+            map.setCenter(coords);
+        }
+    });
+
+
+    let meetNumber=[[${meetDTO.meetNumber}]];
+    $("button#updateButton").on("click",function(){
+      location.href='/meetingAndHelp/writeUpdate?meetNumber='+meetNumber;
+    });
+    $("button#removeButton").on("click",function(){
+      location.href='/meetingAndHelp/writeRemove?meetNumber='+meetNumber;
+    });
+
+</script>
+<script>
+    /*var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
             level: 3 // 지도의 확대 레벨
@@ -378,7 +442,7 @@
     marker.setMap(map);
 
     // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-    // marker.setMap(null);
+    // marker.setMap(null);*/
 </script>
 <script>
   $(function () {

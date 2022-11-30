@@ -49,12 +49,15 @@ button {
   justify-content: space-between;
   max-width: 768px;
   padding-bottom: 24px;
+
 }
 
 .header-image-section {
   width: 50%;
   max-width: 375px;
   border-radius: 5px;
+  height: 375px;
+  overflow: hidden;
 }
 
 .header-image {

@@ -2,6 +2,7 @@ package com.globalexchange.app.repository;
 //
 
 import com.globalexchange.app.domain.vo.Criteria;
+import com.globalexchange.app.domain.vo.MeetDTO;
 import com.globalexchange.app.domain.vo.MeetVO;
 import com.globalexchange.app.domain.vo.MemberVO;
 import com.globalexchange.app.mapper.MeetMapper;
@@ -33,5 +34,24 @@ public class MeetDAO{
     //작성자 정보 가져오기
     public MemberVO writerInfo(Long memberNumber){
         return meetMapper.writerInfo(memberNumber);
+    }
+
+    //meet 게시글 등록
+    public void insertRequest(MeetDTO meetDTO){
+        meetMapper.insertRequest(meetDTO);
+    }
+
+    //meet 게시글 detail 이동
+    public MeetVO selectMeetRequest(Long meetNumber){
+        return meetMapper.selectMeetRequest(meetNumber);
+    }
+
+    //meet 게시글 update
+    public void updateRequest(MeetDTO meetDTO){
+        meetMapper.updateRequest(meetDTO);
+    }
+    //meet 게시글 delete
+    public void deleteRequest(Long meetNumber){
+        meetMapper.deleteRequest(meetNumber);
     }
 }
