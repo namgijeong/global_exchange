@@ -7,8 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,7 +32,7 @@ public class MeetingAndHelpController {
         model.addAttribute("boards",  meetObjectificationService.meetSelectAll(criteria));
         model.addAttribute("pagination",new PageDTO().createPageDTO(criteria, meetObjectificationService.getTotal()));
     }
-
+    //모달창을 선택하여 골랐을때
     @GetMapping("/categorylist")
     public void categorylist(Criteria criteria,  String nation2, Model model){
 
@@ -43,7 +45,11 @@ public class MeetingAndHelpController {
     }
     // 만남과 도움 상세 페이지
     @GetMapping("/detail")
-    public void detail(){
+    public void detail(Long meetNumber,Model model){
+        MeetDTO meetDTO=meetObjectificationService.detailMeetBody(meetNumber);
+        log.info(""+meetDTO.getFileMeetVO());
+        log.info(""+meetDTO.getFileProfileVO());
+        model.addAttribute("meetDTO",meetDTO);
 
     }
 
@@ -64,6 +70,7 @@ public class MeetingAndHelpController {
 
             fileProfileVO=meetObjectificationService.getMeetWriterImage(1L);
 
+            session.setAttribute("memberNumber",1L);
             model.addAttribute("memberVO",memberVO);
             model.addAttribute("file",fileProfileVO);
             return "/meetingAndHelp/write";
@@ -81,28 +88,37 @@ public class MeetingAndHelpController {
     }
 
     // 만남과 도움 작성 페이지 완료
-    @GetMapping("/writeOk")
-    public void writeOk(){
+    @PostMapping("/writeOk")
+    public RedirectView writeOk(MeetDTO meetDTO){
 
-
+        meetObjectificationService.insertMeetBody(meetDTO);
+            
+        return new RedirectView("/meetingAndHelp/list");
     }
 
     // 만남과 도움 수정 활성화
     @GetMapping("/writeUpdate")
-    public void writeUpdate(){
+    public String writeUpdate(Long meetNumber,Model model){
+        MeetDTO meetDTO=meetObjectificationService.goModifyPage(meetNumber);
+        log.info(""+meetDTO.getFileMeetVO());
+        log.info(""+meetDTO.getFileProfileVO());
+        model.addAttribute("meetDTO",meetDTO);
 
+        return "/meetingAndHelp/writeUpdate";
     }
 
     // 만남과 도움 수정 완료
-    @GetMapping("/writeUpdateOk")
-    public void writeUpdateOk(){
-
+    @PostMapping("/writeUpdateOk")
+    public RedirectView writeUpdateOk(MeetDTO meetDTO){
+        meetObjectificationService.updateMeetBody(meetDTO);
+        return new RedirectView("/meetingAndHelp/detail?meetNumber="+meetDTO.getMeetNumber());
     }
 
     // 만남과 도움 삭제
     @GetMapping("/writeRemove")
-    public void writeRemove(){
-
+    public RedirectView writeRemove(Long meetNumber){
+        meetObjectificationService.deleteMeetBody(meetNumber);
+        return new RedirectView("/meetingAndHelp/list");
     }
 
 //    // 만남과 도움 답글 쓰기 페이지 이동
