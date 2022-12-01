@@ -1,22 +1,46 @@
 package com.globalexchange.app.service;
 
+import com.globalexchange.app.domain.vo.Criteria;
+import com.globalexchange.app.domain.vo.NoticeVO;
+import com.globalexchange.app.repository.NoticeDAO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public interface AdminService {
-    //    추가
-    public void register();
-    //    수정
-    public void modify();
-    //    삭제
-    public void remove(Long boardNumber);
-//    //    조회
-//    public BoardDTO show(Long boardNumber);
-//    //    전체 조회
-//    public List<BoardVO> showAll(Criteria criteria);
+@RequiredArgsConstructor
+public class AdminService {
 
-//    전체 개수
-    public int getTotal();
+    private final NoticeDAO noticeDAO;
+
+    // register
+    public void register(NoticeVO noticeVO) {
+        noticeDAO.save(noticeVO);
+    }
+
+    // modify
+    public void modify(NoticeVO noticeVO) {
+        noticeDAO.setNoticeVO(noticeVO);
+    }
+
+    // remove
+    public void remove(Long noticeNumber) {
+        noticeDAO.remove(noticeNumber);
+    }
+
+    // show
+    public NoticeVO show(Long noticeNumber) {
+        return noticeDAO.findById(noticeNumber);
+    }
+
+    // showAll
+    public List<NoticeVO> showAll(Criteria criteria) {
+        return noticeDAO.findAll(criteria);
+    };
+
+    // getTotal
+    public int getTotal() {
+        return noticeDAO.findCountAll();
+    }
 }
-
-

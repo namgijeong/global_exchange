@@ -299,22 +299,6 @@ textarea {
     resize: none;
 }
 
-pre {
-    display:inline-block;
-    vertical-align:top;
-    width:800px;
-    height:100%;
-    padding-left:30px;
-    padding-top: 10px;
-    outline:none;
-    border:0;
-    border-left:1px solid rgb(238, 238, 238);
-    font-size:16px;
-    color:#383838;
-    box-sizing: border-box;
-    resize: none;
-}
-
 .button-conatiner {
     display: block;
     width: 100%;
@@ -347,5 +331,3 @@ pre {
     border-radius: 0.375rem;
     margin-right: 0.7rem;
 }
-
-

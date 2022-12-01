@@ -28,8 +28,10 @@ public class NoticeControllerTest {
     }
 
     @Test
-    void notice() throws Exception {
-        log.info("notices : " + mockMvc.perform(MockMvcRequestBuilders.get("/notice/list")
+    void noticeList() throws Exception {
+        log.info("notices: " + mockMvc.perform(MockMvcRequestBuilders.get("/notice/list")
+                .param("page", "1")
+                .param("amount", "10")
         ).andReturn().getModelAndView().getModelMap());
     }
 }

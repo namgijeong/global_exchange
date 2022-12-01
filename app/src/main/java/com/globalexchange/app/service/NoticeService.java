@@ -15,26 +15,6 @@ public class NoticeService {
 
     private final NoticeDAO noticeDAO;
 
-    // register
-    public void register(NoticeVO noticeVO) {
-        noticeDAO.save(noticeVO);
-    }
-
-    // modify
-    public void modify(NoticeVO noticeVO) {
-        noticeDAO.setNoticeVO(noticeVO);
-    }
-
-    // remove
-    public void remove(Long noticeNumber) {
-        noticeDAO.remove(noticeNumber);
-    }
-
-    // show
-    public NoticeVO show(Long noticeNumber) {
-        return noticeDAO.findById(noticeNumber);
-    }
-
     // showAll
     public List<NoticeVO> showAll(Criteria criteria) {
         return noticeDAO.findAll(criteria);

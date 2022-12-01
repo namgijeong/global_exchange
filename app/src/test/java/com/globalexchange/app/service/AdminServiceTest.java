@@ -9,41 +9,41 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @Slf4j
-public class NoticeServiceTest {
+public class AdminServiceTest {
     @Autowired
-    private NoticeService noticeService;
+    private AdminService adminService;
 
-/*    @Test
+    @Test
     void register() {
         NoticeVO noticeVO = new NoticeVO().create("공지사항 제목1", "공지사항 내용1");
-        noticeService.register(noticeVO);
-    }*/
+        adminService.register(noticeVO);
+    }
 
-/*    @Test
+    @Test
     void modify() {
-        NoticeVO noticeVO = noticeService.show(2L);
+        NoticeVO noticeVO = adminService.show(2L);
         noticeVO.setNoticeContent("수정된 내용");
         noticeVO.setNoticeTitle("수정된 제목");
-        noticeService.modify(noticeVO);
-    }*/
+        adminService.modify(noticeVO);
+    }
 
-/*    @Test
+    @Test
     void remove() {
-        noticeService.remove(1L);
-    }*/
+        adminService.remove(1L);
+    }
 
-/*    @Test
+    @Test
     void show() {
-        log.info("notice : " + noticeService.show(3L));
-    }*/
+        log.info("notice : " + adminService.show(3L));
+    }
 
     @Test
     void showAll() {
-        noticeService.showAll(new Criteria().create(1, 10)).stream().map(NoticeVO::getNoticeTitle).forEach(log::info);
+        adminService.showAll(new Criteria().create(1, 10)).stream().map(NoticeVO::getNoticeTitle).forEach(log::info);
     }
 
-/*    @Test
+    @Test
     void getTotal() {
-        noticeService.getTotal();
-    }*/
+        adminService.getTotal();
+    }
 }

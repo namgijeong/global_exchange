@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
           rel="stylesheet">
 
-    <link href="/css/admin/noticeDetail.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/admin/noticeWrite.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="logobox"><div id="logo"><a><img src="/images/main/logo.png"></a></div></div>
@@ -41,44 +41,26 @@
     <div id="subnavigation_result">
         <div id="subnavigation_result_header">
             <div id="subnavigation_result_title">
-                <h2>공지사항 상세보기</h2>
-                <span>공지사항 상세보기 입니다</span>
+                <h2>공지사항 작성</h2>
+                <span>공지사항 작성하기 입니다</span>
             </div>
         </div>
         <div id="subnavigation_result_body">
-            <form method="get" th:action="@{/admin/noticeDelete}" th:object="${notice}" id="deleteForm">
+            <form method="post" th:action="@{/admin/noticeWrite}" th:object="${notice}" id="writeForm">
                 <div id="subnavigation_list">
                     <div class="subnavigation_list_detail">
-                        <span>번호</span>
-                        <input type="text" th:field="*{noticeNumber}" readonly>
-                    </div>
-                    <div class="subnavigation_list_detail">
-                        <span>제목</span>
-                        <input type="text" th:field="*{noticeTitle}" readonly>
-                    </div>
-                    <div class="subnavigation_list_detail">
-                        <span>작성 일자</span>
-                        <input type="text" th:field="*{noticeWriteDate}" readonly>
-                    </div>
-                    <div class="subnavigation_list_detail">
-                        <span>수정 일자</span>
-                        <input type="text" th:field="*{noticeUpdateDate}" readonly>
+                        <span><span class="warning">*</span>제목</span>
+                        <input type="text" th:field="*{noticeTitle}" placeholder="공지사항 제목을 작성해주세요">
                     </div>
                     <div class="subnavigation_list_detail content-style">
-                        <span>내용</span>
-                        <pre th:text="*{noticeContent}"></pre>
+                        <span><span class="warning">*</span>내용</span>
+                        <textarea th:field="*{noticeContent}" wrap="soft" placeholder="공지사항 내용을 작성해주세요"></textarea>
                     </div>
                 </div>
                 <ul class="button-conatiner">
                     <div class="button-wrapper">
                         <li>
-                            <input type="button" class="button-style" value="목록으로" onclick="goList()">
-                        </li>
-                        <li>
-                            <input type="button" class="button-style" value="수정" onclick="goUpdate()">
-                        </li>
-                        <li>
-                            <input type="submit" class="button-style" value="삭제">
+                            <input type="submit" class="button-style" value="등록"/>
                         </li>
                     </div>
                 </ul>
@@ -89,24 +71,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
-<script th:inline="javascript">
-    let $queryString = [[${criteria.queryString}]];
-    let $noticeNumber = [[${notice.noticeNumber}]];
-
-    // 전체 목록으로 이동한다.
-    function goList() {
-        location.href = "/admin/noticeList" + $queryString;
-    }
-
-    // 수정 페이지로 이동한다.
-    function goUpdate() {
-        location.href = "/admin/noticeUpdate?noticeNumber=" + $noticeNumber;
-    }
-
-    // 삭제 하고 전체 목록으로 이동한다.
-
-
-</script>
+<script th:inline="javascript"></script>
 </html>
 
 

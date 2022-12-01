@@ -155,7 +155,6 @@ a {
     padding: 0px;
     background-color: white;
     text-align: center;
-    cursor: pointer;
     border-radius: 50%;
     color: rgb(51, 151, 255);
     font-size: 18px;
@@ -166,11 +165,15 @@ a {
     -webkit-box-align: center;
     align-items: center;
     outline: none;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 .not-selected {
     font-weight: normal;
     color: black;
+    cursor: pointer !important;
+    pointer-events: auto !important;
 }
 
 
