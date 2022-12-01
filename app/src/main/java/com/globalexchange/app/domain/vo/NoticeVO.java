@@ -12,10 +12,10 @@ public class NoticeVO {
     private String noticeWriteDate;
     private String noticeUpdateDate;
 
-//    public void create(String fileName, String fileUploadPath, String fileUuid, boolean fileImageCheck) {
-//        this.fileName = fileName;
-//        this.fileUploadPath = fileUploadPath;
-//        this.fileUuid = fileUuid;
-//        this.fileImageCheck = fileImageCheck;
-//    }
+    public NoticeVO create(String noticeTitle, String noticeContent) {
+        this.noticeTitle = noticeTitle;
+        this.noticeContent = noticeContent;
+
+        return this;
+    }
 }

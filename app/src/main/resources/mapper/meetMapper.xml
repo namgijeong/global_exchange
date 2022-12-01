@@ -47,8 +47,34 @@
     </select>
 
     <select id="writerInfo" resultType="memberVO">
-        SELECT member_number,member_id,member_password,member_teaching_lang,member_learning_lang,member_interesting,member_gender,member_nickname,member_phone_num,member_birthdate,member_introduce,member_nation_url
+        SELECT member_number,member_teaching_lang,member_nickname
         FROM tbl_member
         WHERE member_number=#{memberNumber}
     </select>
+
+    <insert id="insertRequest">
+        <selectKey keyProperty="meetNumber" order="BEFORE" resultType="long">
+            SELECT MEET_SEQ.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO tbl_meet(meet_number, meet_title, member_number, meet_learning_lang,meet_content,meet_address,meet_detail_address)
+        VALUES(#{meetNumber}, #{meetTitle}, #{memberNumber}, #{meetLearningLang},#{meetContent},#{meetAddress},#{meetDetailAddress})
+    </insert>
+
+    <select id="selectMeetRequest" resultType="meetVO">
+        SELECT *
+        FROM tbl_meet
+        WHERE meet_number= #{meetNumber}
+    </select>
+
+    <update id="updateRequest">
+        UPDATE tbl_meet
+        SET meet_title=#{meetTitle},meet_learning_lang= #{meetLearningLang},meet_content=#{meetContent},meet_address=#{meetAddress},meet_detail_address=#{meetDetailAddress}
+        WHERE meet_number=#{meetNumber}
+    </update>
+
+    <delete id="deleteRequest">
+        DELETE
+        FROM tbl_meet
+        WHERE meet_number=#{meetNumber}
+    </delete>
 </mapper>

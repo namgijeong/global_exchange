@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.globalexchange.app.mapper.NoticeMapper">
+
+    <insert id="insert">
+        INSERT INTO TBL_NOTICE (NOTICE_NUMBER, NOTICE_TITLE, NOTICE_CONTENT)
+        VALUES (NOTICE_SEQ.NEXTVAL, #{noticeTitle}, #{noticeContent})
+    </insert>
+
+    <update id="update">
+        UPDATE TBL_NOTICE
+        SET NOTICE_TITLE = #{noticeTitle}, NOTICE_CONTENT = #{noticeContent}, NOTICE_UPDATE_DATE = SYSDATE
+        WHERE NOTICE_NUMBER = #{noticeNumber}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM TBL_NOTICE
+        WHERE NOTICE_NUMBER = #{noticeNumber}
+    </delete>
+
+    <select id="select" resultType="noticeVO">
+        SELECT NOTICE_NUMBER, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_WRITE_DATE, NOTICE_UPDATE_DATE
+        FROM TBL_NOTICE
+        WHERE NOTICE_NUMBER = #{noticeNumber}
+    </select>
+
+    <select id="selectAll" resultType="noticeVO">
+        SELECT NOTICE_NUMBER, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_WRITE_DATE, NOTICE_UPDATE_DATE
+        FROM
+        (
+            SELECT ROWNUM R, NOTICE_NUMBER, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_WRITE_DATE, NOTICE_UPDATE_DATE
+            FROM
+            (
+                SELECT NOTICE_NUMBER, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_WRITE_DATE, NOTICE_UPDATE_DATE
+                FROM TBL_NOTICE
+                ORDER BY NOTICE_NUMBER DESC
+            )
+            <![CDATA[
+            WHERE ROWNUM <= #{page} * #{amount}
+        )
+        WHERE R > (#{page} - 1) * #{amount}
+        ]]>
+    </select>
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(NOTICE_NUMBER) FROM TBL_NOTICE
+    </select>
+</mapper>

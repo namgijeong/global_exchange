@@ -5,7 +5,11 @@
         <typeAlias type="com.globalexchange.app.domain.vo.MemberVO" alias="memberVO"/>
         <typeAlias type="com.globalexchange.app.domain.vo.MeetVO" alias="meetVO"/>
         <typeAlias type="com.globalexchange.app.domain.vo.MemberVO" alias="memberVO"/>
+        <typeAlias type="com.globalexchange.app.domain.vo.MemberDTO" alias="memberDTO"/>
+        <typeAlias type="com.globalexchange.app.domain.vo.MeetDTO" alias="meetDTO"/>
         <typeAlias type="com.globalexchange.app.domain.vo.Criteria" alias="criteria"/>
         <typeAlias type="com.globalexchange.app.domain.vo.FileProfileVO" alias="fileProfileVO"/>
+        <typeAlias type="com.globalexchange.app.domain.vo.FileMeetVO" alias="fileMeetVO"/>
+        <typeAlias type="com.globalexchange.app.domain.vo.NoticeVO" alias="noticeVO"/>
     </typeAliases>
 </configuration>

@@ -2,6 +2,8 @@ package com.globalexchange.app.controller;
 
 import com.globalexchange.app.domain.vo.FileMeetVO;
 import net.coobird.thumbnailator.Thumbnailator;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,5 +52,10 @@ public class FileMeetController {
     }
     private String getUploadPath(){
         return new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+    }
+
+    @GetMapping("/display")
+    public byte[] display(String fileName) throws IOException{
+        return FileCopyUtils.copyToByteArray(new File("C:/globalExchangeImages", fileName));
     }
 }

@@ -422,5 +422,11 @@
       e.preventDefault();
       location.href="/meetingAndHelp/write";
     });
+    $("a.read").on("click",function(e){
+      e.preventDefault();
+      let meetNumber=$(this).attr("href");
+      location.href="/meetingAndHelp/detail?meetNumber="+meetNumber;
+
+    })
 </script>
 </html>
