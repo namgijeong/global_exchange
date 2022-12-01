@@ -52,11 +52,9 @@
                         <div class="subnavigation_how_title">카테고리</div>
                         <div class="subnavigation_how_main">
                             <select class="selectnormalcolor">
-                                <option>공지 사항 번호</option>
                                 <option>제목</option>
                                 <option>내용</option>
-                                <option>작성 일자</option>
-                                <option>수정 일자</option>
+                                <option>등록순</option>
                             </select>
                         </div>
                     </div>
@@ -66,7 +64,6 @@
                             <select class="selectnormalcolor">
                                 <option>오름차순</option>
                                 <option>내림차순</option>
-
                             </select>
                         </div>
                     </div>
@@ -74,93 +71,88 @@
                         <button>조회</button>
                     </div>
                 </div>
-
             </div>
-
             <div id="subnavigation_result_body">
                 <div id="subnavigation_search_and_delete">
                     <div id="notice_write_btn">
                         <button type="submit">작성 하기</button>
                     </div>
-
                 </div>
                 <div id="subnavigation_list">
                     <div id="subnavigation_list_title">
-
-                        <span>공지 사항 번호</span>
+                        <span>번호</span>
                         <span>제목</span>
                         <span>내용</span>
                         <span>작성 일자</span>
                         <span>수정 일자</span>
                     </div>
-                    <div class="subnavigation_list_detail">
-
-                        <span>1</span>
-                        <span>사용자 이용수칙</span>
-                        <span>욕설과 비속어는 사용불가입니다.</span>
-                        <span>2022-10-23</span>
-                        <span>2022-10-23</span>
-                    </div>
-                    <div class="subnavigation_list_detail">
-
-                        <span>1</span>
-                        <span>사용자 이용수칙</span>
-                        <span>욕설과 비속어는 사용불가입니다.</span>
-                        <span>2022-10-23</span>
-                        <span>2022-10-23</span>
-                    </div>
-                    <div class="subnavigation_list_detail">
-
-                        <span>1</span>
-                        <span>사용자 이용수칙</span>
-                        <span>욕설과 비속어는 사용불가입니다.</span>
-                        <span>2022-10-23</span>
-                        <span>2022-10-23</span>
-                    </div>
-                    <div class="subnavigation_list_detail">
-
-                        <span>1</span>
-                        <span>사용자 이용수칙</span>
-                        <span>욕설과 비속어는 사용불가입니다.</span>
-                        <span>2022-10-23</span>
-                        <span>2022-10-23</span>
-                    </div>
-                    <div class="subnavigation_list_detail">
-
-                        <span>1</span>
-                        <span>사용자 이용수칙</span>
-                        <span>욕설과 비속어는 사용불가입니다.</span>
-                        <span>2022-10-23</span>
-                        <span>2022-10-23</span>
-                    </div>
-                    <div class="subnavigation_list_detail">
-
-                        <span>1</span>
-                        <span>사용자 이용수칙</span>
-                        <span>욕설과 비속어는 사용불가입니다.</span>
-                        <span>2022-10-23</span>
-                        <span>2022-10-23</span>
-                    </div>
-
-            </div>
-
-
-                <div id="page_action" >
-
-                    <div id="page_arrow" style="margin-top: 20px">
-                <span style="cursor: pointer"  >
-                    <img src="/images/pagenation/nextArrow.svg" style="transform: rotate(180deg)">
-                </span>
-                        <span style="cursor: pointer"  >
-                    <img src="/images/pagenation/nextArrow.svg">
-                </span>
-                    </div>
+                    <th:block th:each="notice:${notices}">
+                        <div class="subnavigation_list_detail" th:object="${notice}">
+                            <span th:text="*{noticeNumber}"></span>
+                            <span>
+                                <a class="read" th:href="*{noticeNumber}" th:text="*{noticeTitle}"></a>
+                            </span>
+                            <span th:text="*{noticeContent}"></span>
+                            <span th:text="${#strings.substring(notice.noticeWriteDate, 0, 16)}"></span>
+                            <span th:text="${#strings.substring(notice.noticeUpdateDate, 0, 16)}"></span>
+                        </div>
+                    </th:block>
                 </div>
-
+                <div class="pagination-wrapper" th:object="${pagination}">
+                    <a class="change-page start-page" th:href="*{startPage - 1}" th:if="*{prev}">
+                        <code><</code>
+                    </a>
+                    <th:block th:each="pageNumber:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                        <a class="change-page page-number not-selected" th:href="${pageNumber}" th:if="${pagination.criteria.page != pageNumber}">
+                            <code th:text="${pageNumber}"></code>
+                        </a>
+                        <a class="change-page page-number" th:unless="${pagination.criteria.page != pageNumber}">
+                            <code th:text="${pageNumber}"></code>
+                        </a>
+                    </th:block>
+                    <a class="change-page end-page" th:href="*{endPage + 1}" th:if="*{next}">
+                        <code>></code>
+                    </a>
+                </div>
+                <form th:action="@{/admin/noticeList}" th:object="${criteria}" name="pageForm">
+                    <input type="hidden" th:field="*{page}">
+                    <input type="hidden" th:field="*{amount}">
+                </form>
+            </div>
         </div>
     </div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
+<script th:inline="javascript">
+    let $queryString = [[${pagination.criteria.queryString}]];
+
+    // 페이지네이션 마우스 올렸을 때 이벤트
+    const $pagenationAtags = $('.change-page');
+
+    $pagenationAtags.hover(function () {
+        $(this).css("background-color", 'rgb(229, 231, 234)');
+    }, function () {
+        $(this).css("background-color", 'transparent');
+    });
+
+    // 페이지 버튼을 눌렀을 때 해당 페이지로 이동
+    let $pages = $('.change-page');
+
+    $pages.on('click', function (e) {
+        e.preventDefault();
+        $(document.pageForm.page).val($(this).attr('href'));
+        document.pageForm.submit();
+    })
+
+    // 제목 클릭시 현재 페이지 정보와 함께 상세페이지로 이동
+    const $read = $('.read');
+
+    $read.on('click', function (e) {
+        e.preventDefault();
+        location.href = "/admin/noticeDetail" + $queryString + "&noticeNumber=" + $(this).attr('href');
+    });
+
+</script>
 </html>
