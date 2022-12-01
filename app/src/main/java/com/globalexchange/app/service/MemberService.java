@@ -10,6 +10,8 @@ public interface MemberService {
     boolean checkNick(String checkNick);
     Long emailLogin(MemberVO memberVO);
     void joinForm(MemberVO memberVO);
+//    void googleJoin(MemberVO memberVO);
+//    Long googleLogin(MemberVO memberVO);
 }
 
 

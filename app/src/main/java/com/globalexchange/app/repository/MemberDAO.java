@@ -41,10 +41,19 @@ public class MemberDAO {
 
     public void joinForm(MemberVO memberVO){
 
-              memberMapper.joinForm(memberVO);
+        memberMapper.joinForm(memberVO);
 
     }
 
-
+//    public Long googleLogin(MemberVO memberVO){
+//
+//        return memberMapper.googleLogin(memberVO);
+//    }
+//
+//    public void googleJoin(MemberVO memberVO){
+//
+//        memberMapper.googleJoin(memberVO);
+//
+//    }
 
 }
