@@ -18,6 +18,7 @@
         WHERE R > (#{page} - 1) * #{amount}
     ]]>
     </select>
+
     <select id="categoryMeetSelectAll" resultType="meetVO">
         SELECT meet_number,meet_title,member_number,meet_learning_lang,meet_content,meet_write_date,meet_update_date,meet_address,meet_detail_address
         FROM

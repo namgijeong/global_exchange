@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
-public class MeetDTO {
+public class MeetAnswerFileDTO {
     private Long meetNumber;
     private String meetTitle;
     private Long memberNumber;

@@ -21,4 +21,10 @@
         values(MEMBER_SEQ.NEXTVAL, #{memberId}, #{memberNickname}, #{memberPassword}, #{memberTeachingLang}, #{memberLearningLang}, #{memberInteresting}, #{memberGender})
     </insert>
 
+    <select id="select" resultType="memberVO">
+        SELECT MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_TEACHING_LANG, MEMBER_LEARNING_LANG, MEMBER_INTERESTING, MEMBER_GENDER, MEMBER_NICKNAME, MEMBER_PHONE_NUM, MEMBER_BIRTHDATE, MEMBER_INTRODUCE, MEMBER_NATION_URL
+        FROM TBL_MEMBER
+        WHERE MEMBER_NUMBER = #{memberNumber}
+    </select>
+
 </mapper>

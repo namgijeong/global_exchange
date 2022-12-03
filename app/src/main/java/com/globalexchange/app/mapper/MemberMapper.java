@@ -11,7 +11,5 @@ public interface MemberMapper {
    Long emailLogin(MemberVO memberVO);
    void joinForm(MemberVO memberVO);
 
-
-
-
+   public MemberVO select(Long memberNumber);
 }

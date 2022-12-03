@@ -10,14 +10,18 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import javax.servlet.http.HttpSession;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
 @Slf4j
-public class NoticeControllerTest {
+public class MainControllerTest {
 
     @Autowired
     private WebApplicationContext webApplicationContext;
-
     private MockMvc mockMvc;
+    private HttpSession session;
 
     @BeforeEach
     public void setUp(){
@@ -25,10 +29,11 @@ public class NoticeControllerTest {
     }
 
     @Test
-    void noticeList() throws Exception {
-        log.info("notices: " + mockMvc.perform(MockMvcRequestBuilders.get("/notice/list")
-                .param("page", "1")
-                .param("amount", "10")
+    public void mainTest() throws Exception{
+        log.info("member : " + mockMvc.perform(MockMvcRequestBuilders.get("/main/main")
+            .param("memberNumber", "1L")
         ).andReturn().getModelAndView().getModelMap());
+
+        /*log.info("session : " + session.getAttribute("memberNumber"));*/
     }
 }

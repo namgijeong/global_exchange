@@ -14,7 +14,7 @@
 <body>
 <div>
     <!-- header -->
-    <div th:replace="/main/header.html:: topHeader "></div>
+    <div th:replace="/main/header.html::topHeader(${member})"></div>
     <div th:replace="/main/header.html:: header "></div>
 
     <!-- section -->

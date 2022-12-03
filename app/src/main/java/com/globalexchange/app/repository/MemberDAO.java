@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 @Slf4j
 public class MemberDAO {
+
     private final MemberMapper memberMapper;
 
     public boolean checkId(String memberId){
@@ -43,6 +44,10 @@ public class MemberDAO {
 
               memberMapper.joinForm(memberVO);
 
+    }
+
+    public MemberVO findByMemberNumber(Long memberNumber) {
+        return memberMapper.select(memberNumber);
     }
 
 

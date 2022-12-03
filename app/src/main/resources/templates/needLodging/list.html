@@ -15,7 +15,7 @@
   <link href="/css/needLodging/list.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<header th:replace="/main/header.html :: #topHeader"></header>
+<header th:replace="/main/header.html::topHeader(${member})"></header>
 <header th:replace="/main/header.html :: #header"></header>
 
 <div class="modal-container modal-overlay">

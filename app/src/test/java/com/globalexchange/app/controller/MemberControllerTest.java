@@ -7,16 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import javax.servlet.http.HttpSession;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
 @Slf4j
-public class NoticeControllerTest {
+class MemberControllerTest {
 
     @Autowired
     private WebApplicationContext webApplicationContext;
-
     private MockMvc mockMvc;
 
     @BeforeEach
@@ -25,10 +30,10 @@ public class NoticeControllerTest {
     }
 
     @Test
-    void noticeList() throws Exception {
-        log.info("notices: " + mockMvc.perform(MockMvcRequestBuilders.get("/notice/list")
-                .param("page", "1")
-                .param("amount", "10")
-        ).andReturn().getModelAndView().getModelMap());
+    void emailLogin() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.post("/member/emailLogin")
+                .param("memberId", "abc@naver.com")
+                .param("memberPassword", "Apple123!!")
+        ).andExpect(MockMvcResultMatchers.status().is3xxRedirection());
     }
 }
