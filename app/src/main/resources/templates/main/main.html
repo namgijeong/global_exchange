@@ -59,20 +59,26 @@
                     <div class="previewContentsHeaderTitle">
                         <h2 class="previewContentsHeaderTitleText">만남과 도움 최신글</h2>
                     </div>
-                    <a class="previewContentsLink">전체보기</a>
+                    <a class="previewContentsLink" th:href="@{/meetingAndHelp/list}">전체보기</a>
                 </div>
                 <div class="previewContentsMain">
-                    <div class="previewContentMain">
-                        <a href="">
+                    <div class="previewContentMain" th:each="latestAnsweredMeet:${latestAnsweredMeetList}" th:object="${latestAnsweredMeet}">
+                        <a th:href="@{/meetingAndHelp/detail(meetNumber = *{meetNumber})}">
                             <div class="image-wrapper">
-                                <img class="previewContentImage" src="/images/main/previewImage.webp"/>
+                                <th:block th:if="${not #strings.isEmpty(latestAnsweredMeet.fileMeetVO)}">
+                                    <img class="previewContentImage" th:if="${latestAnsweredMeet.fileMeetVO.fileImageCheck}"
+                                         th:src="@{/fileMeet/display(fileName=${latestAnsweredMeet.fileMeetVO.fileUploadPath} + '/' + ${latestAnsweredMeet.fileMeetVO.fileUuid} + '_' + ${latestAnsweredMeet.fileMeetVO.fileName})}">
+                                    <img class="previewContentImage" th:unless="${latestAnsweredMeet.fileMeetVO.fileImageCheck}" src="/images/noImage/no-image.jpg"/>
+                                </th:block>
+                                <th:block th:unless="${not #strings.isEmpty(latestAnsweredMeet.fileMeetVO)}">
+                                    <img class="previewContentImage" src="/images/noImage/no-image.jpg">
+                                </th:block>
                             </div>
                             <div class="previewContentText">
-                                <div class="previewContentHelp">미국</div>
-                                <div class="previewContentTitle">미국 유학생활 질문</div>
+                                <div class="previewContentHelp" th:text="*{meetLearningLang}"></div>
+                                <div class="previewContentTitle" th:text="*{meetTitle}"></div>
                                 <div class="previewContentAnswerCount">
-                                    <span>댓글</span>
-                                    <span> 10개</span>
+                                    댓글 <span th:text="*{meetAnswerCount}"></span> 개
                                 </div>
                             </div>
                         </a>
@@ -82,17 +88,24 @@
             <section class="previewContents">
                 <div class="previewContentsHeader">
                     <div class="previewContentsHeaderTitle"><h2 class="previewContentsHeaderTitleText">만남과 도움 답변이 필요한 글</h2></div>
-                    <a class="previewContentsLink">전체보기</a>
+                    <a class="previewContentsLink" th:href="@{/meetingAndHelp/list}">전체보기</a>
                 </div>
                 <div class="previewContentsMain">
-                    <div class="previewContentMain">
-                        <a href="">
+                    <div class="previewContentMain" th:each="latestNotAnsweredMeet:${latestNotAnsweredMeetList}" th:object="${latestNotAnsweredMeet}">
+                        <a th:href="@{/meetingAndHelp/detail(meetNumber = *{meetNumber})}">
                             <div class="image-wrapper">
-                                <img class="previewContentImage" src="/images/main/previewImage.webp"/>
+                                <th:block th:if="${not #strings.isEmpty(latestNotAnsweredMeet.fileMeetVO)}">
+                                    <img class="previewContentImage" th:if="${latestNotAnsweredMeet.fileMeetVO.fileImageCheck}"
+                                         th:src="@{/fileMeet/display(fileName=${latestNotAnsweredMeet.fileMeetVO.fileUploadPath} + '/' + ${latestNotAnsweredMeet.fileMeetVO.fileUuid} + '_' + ${latestNotAnsweredMeet.fileMeetVO.fileName})}">
+                                    <img class="previewContentImage" th:unless="${latestNotAnsweredMeet.fileMeetVO.fileImageCheck}" src="/images/noImage/no-image.jpg"/>
+                                </th:block>
+                                <th:block th:unless="${not #strings.isEmpty(latestNotAnsweredMeet.fileMeetVO)}">
+                                    <img class="previewContentImage" src="/images/noImage/no-image.jpg">
+                                </th:block>
                             </div>
                             <div class="previewContentText">
-                                <div class="previewContentHelp">미국</div>
-                                <div class="previewContentTitle">미국 유학생활 질문</div>
+                                <div class="previewContentHelp" th:text="*{meetLearningLang}"></div>
+                                <div class="previewContentTitle" th:text="*{meetTitle}"></div>
                             </div>
                         </a>
                     </div>
@@ -101,20 +114,26 @@
             <section class="previewContents">
                 <div class="previewContentsHeader">
                     <div class="previewContentsHeaderTitle"><h2 class="previewContentsHeaderTitleText">숙소가 필요해 최신글</h2></div>
-                    <a class="previewContentsLink">전체보기</a>
+                    <a class="previewContentsLink" th:href="@{/needLodging/list}">전체보기</a>
                 </div>
                 <div class="previewContentsMain">
-                    <div class="previewContentMain">
-                        <a href="">
+                    <div class="previewContentMain" th:each="latestAnsweredLodging:${latestAnsweredLodgingList}" th:object="${latestAnsweredLodging}">
+                        <a th:href="@{/needLodging/detail(lodgingNumber = *{lodgingNumber})}">
                             <div class="image-wrapper">
-                                <img class="previewContentImage" src="/images/main/previewImage.webp"/>
+                                <th:block th:if="${not #strings.isEmpty(latestAnsweredLodging.fileLodgingVO)}">
+                                    <img class="previewContentImage" th:if="${latestAnsweredLodging.fileLodgingVO.fileImageCheck}"
+                                         th:src="@{/fileMeet/display(fileName=${latestAnsweredLodging.fileLodgingVO.fileUploadPath} + '/' + ${latestAnsweredLodging.fileLodgingVO.fileUuid} + '_' + ${latestAnsweredLodging.fileLodgingVO.fileName})}">
+                                    <img class="previewContentImage" th:unless="${latestAnsweredLodging.fileLodgingVO.fileImageCheck}" src="/images/noImage/no-image.jpg"/>
+                                </th:block>
+                                <th:block th:unless="${not #strings.isEmpty(latestAnsweredLodging.fileLodgingVO)}">
+                                    <img class="previewContentImage" src="/images/noImage/no-image.jpg">
+                                </th:block>
                             </div>
                             <div class="previewContentText">
-                                <div class="previewContentHelp">미국</div>
-                                <div class="previewContentTitle">미국 유학생활 질문</div>
+                                <div class="previewContentHelp" th:text="*{lodgingLearningLang}"></div>
+                                <div class="previewContentTitle" th:text="*{lodgingTitle}"></div>
                                 <div class="previewContentAnswerCount">
-                                    <span>댓글</span>
-                                    <span> 10개</span>
+                                    댓글 <span th:text="*{lodgingAnswerCount}"></span> 개
                                 </div>
                             </div>
                         </a>
@@ -123,18 +142,25 @@
             </section>
             <section class="previewContents">
                 <div class="previewContentsHeader">
-                    <div class="previewContentsHeaderTitle"><h2 class="previewContentsHeaderTitleText">만남과 도움 답변이 필요한 글</h2></div>
-                    <a class="previewContentsLink">전체보기</a>
+                    <div class="previewContentsHeaderTitle"><h2 class="previewContentsHeaderTitleText">숙소가 필요해 답변이 필요한 글</h2></div>
+                    <a class="previewContentsLink" th:href="@{/needLodging/list}">전체보기</a>
                 </div>
                 <div class="previewContentsMain">
-                    <div class="previewContentMain">
-                        <a href="">
+                    <div class="previewContentMain" th:each="latestNotAnsweredLodging:${latestNotAnsweredLodgingList}" th:object="${latestNotAnsweredLodging}">
+                        <a th:href="@{/needLodging/detail(lodgingNumber = *{lodgingNumber})}">
                             <div class="image-wrapper">
-                                <img class="previewContentImage" src="/images/main/previewImage.webp"/>
+                                <th:block th:if="${not #strings.isEmpty(latestNotAnsweredLodging.fileLodgingVO)}">
+                                    <img class="previewContentImage" th:if="${latestNotAnsweredLodging.fileLodgingVO.fileImageCheck}"
+                                         th:src="@{/fileMeet/display(fileName=${latestNotAnsweredLodging.fileLodgingVO.fileUploadPath} + '/' + ${latestNotAnsweredLodging.fileLodgingVO.fileUuid} + '_' + ${latestNotAnsweredLodging.fileLodgingVO.fileName})}">
+                                    <img class="previewContentImage" th:unless="${latestNotAnsweredLodging.fileLodgingVO.fileImageCheck}" src="/images/noImage/no-image.jpg"/>
+                                </th:block>
+                                <th:block th:unless="${not #strings.isEmpty(latestNotAnsweredLodging.fileLodgingVO)}">
+                                    <img class="previewContentImage" src="/images/noImage/no-image.jpg">
+                                </th:block>
                             </div>
                             <div class="previewContentText">
-                                <div class="previewContentHelp">미국</div>
-                                <div class="previewContentTitle">미국 유학생활 질문</div>
+                                <div class="previewContentHelp" th:text="*{lodgingLearningLang}"></div>
+                                <div class="previewContentTitle" th:text="*{lodgingTitle}"></div>
                             </div>
                         </a>
                     </div>

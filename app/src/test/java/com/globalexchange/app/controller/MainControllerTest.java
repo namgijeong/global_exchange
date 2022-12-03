@@ -30,10 +30,8 @@ public class MainControllerTest {
 
     @Test
     public void mainTest() throws Exception{
-        log.info("member : " + mockMvc.perform(MockMvcRequestBuilders.get("/main/main")
+        log.info("" + mockMvc.perform(MockMvcRequestBuilders.get("/main/main")
             .param("memberNumber", "1L")
         ).andReturn().getModelAndView().getModelMap());
-
-        /*log.info("session : " + session.getAttribute("memberNumber"));*/
     }
 }

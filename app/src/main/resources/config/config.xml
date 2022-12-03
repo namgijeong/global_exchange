@@ -13,5 +13,6 @@
         <typeAlias type="com.globalexchange.app.domain.vo.FileProfileVO" alias="fileProfileVO"/>
         <typeAlias type="com.globalexchange.app.domain.vo.FileMeetVO" alias="fileMeetVO"/>
         <typeAlias type="com.globalexchange.app.domain.vo.NoticeVO" alias="noticeVO"/>
+        <typeAlias type="com.globalexchange.app.domain.vo.LodgingVO" alias="lodgingVO"/>
     </typeAliases>
 </configuration>

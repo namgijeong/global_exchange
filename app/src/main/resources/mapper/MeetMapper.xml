@@ -122,4 +122,44 @@
         ORDER BY meet_answer_comment_number
     </select>
 
+    <select id="selectAllLatestNotAnsweredMeet" resultType="meetVO">
+        SELECT MEET_NUMBER, MEET_TITLE, MEET_LEARNING_LANG
+        FROM
+        (
+            SELECT ROWNUM R, MEET_NUMBER, MEET_TITLE, MEET_LEARNING_LANG
+            FROM
+            (
+                SELECT M.MEET_NUMBER, M.MEET_TITLE, M.MEET_LEARNING_LANG
+                FROM tbl_meet M
+                LEFT JOIN TBL_MEET_ANSWER A
+                ON M.MEET_NUMBER = A.MEET_NUMBER
+                WHERE A.MEET_ANSWER_NUMBER IS NULL
+                ORDER BY M.MEET_NUMBER DESC
+            )
+            <![CDATA[
+            WHERE ROWNUM <= #{page} * #{amount}
+        )
+        WHERE R > (#{page} - 1) * #{amount}
+        ]]>
+    </select>
+
+    <select id="selectAllLatestAnsweredMeet" resultType="meetVO">
+        SELECT  MEET_NUMBER, MEET_TITLE, MEET_LEARNING_LANG
+        FROM
+        (
+            SELECT ROWNUM R, MEET_NUMBER, MEET_TITLE, MEET_LEARNING_LANG
+            FROM
+            (
+                SELECT DISTINCT M.MEET_NUMBER, M.MEET_TITLE, M.MEET_LEARNING_LANG
+                FROM tbl_meet M
+                JOIN TBL_MEET_ANSWER A
+                ON M.MEET_NUMBER = A.MEET_NUMBER
+                ORDER BY M.MEET_NUMBER DESC
+            )
+            <![CDATA[
+            WHERE ROWNUM <= #{page} * #{amount}
+        )
+        WHERE R > (#{page} - 1) * #{amount}
+        ]]>
+    </select>
 </mapper>

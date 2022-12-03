@@ -1,6 +1,7 @@
 package com.globalexchange.app.controller;
 
 import com.globalexchange.app.domain.vo.MemberVO;
+import com.globalexchange.app.service.MainService;
 import com.globalexchange.app.service.MemberObjectificationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 public class MainController {
 
     private final MemberObjectificationService memberObjectificationService;
+    private final MainService mainService;
 
     // 메인 페이지
     @GetMapping("/main")
@@ -28,6 +30,11 @@ public class MainController {
             Long memberNumber = (Long) request.getSession().getAttribute("memberNumber");
             model.addAttribute("member", memberObjectificationService.show(memberNumber));
         }
+
+        model.addAttribute("latestAnsweredMeetList", mainService.showAllLatestAnsweredMeet());
+        model.addAttribute("latestNotAnsweredMeetList", mainService.showAllLatestNotAnsweredMeet());
+        model.addAttribute("latestAnsweredLodgingList", mainService.showAllLatestAnsweredLodging());
+        model.addAttribute("latestNotAnsweredLodgingList", mainService.showAllLatestNotAnsweredLodging());
     }
 
 }

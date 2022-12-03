@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.globalexchange.app.mapper.LodgingMapper">
+    <select id="selectAllLatestNotAnsweredLodging" resultType="lodgingVO">
+        SELECT LODGING_NUMBER, LODGING_LEARNING_LANG, LODGING_TITLE
+        FROM
+        (
+            SELECT ROWNUM R, LODGING_NUMBER, LODGING_LEARNING_LANG, LODGING_TITLE
+            FROM
+            (
+                SELECT L.LODGING_NUMBER, L.LODGING_LEARNING_LANG, L.LODGING_TITLE
+                FROM TBL_LODGING L
+                LEFT JOIN TBL_LODGING_ANSWER A
+                ON L.LODGING_NUMBER = A.LODGING_NUMBER
+                WHERE A.LODGING_NUMBER IS NULL
+                ORDER BY L.LODGING_NUMBER DESC
+            )
+            <![CDATA[
+            WHERE ROWNUM <= #{page} * #{amount}
+        )
+        WHERE R > (#{page} - 1) * #{amount}
+        ]]>
+    </select>
+
+    <select id="selectAllLatestAnsweredLodging" resultType="lodgingVO">
+        SELECT LODGING_NUMBER, LODGING_LEARNING_LANG, LODGING_TITLE
+        FROM
+        (
+            SELECT ROWNUM R, LODGING_NUMBER, LODGING_LEARNING_LANG, LODGING_TITLE
+            FROM
+            (
+                SELECT DISTINCT  L.LODGING_NUMBER, L.LODGING_LEARNING_LANG, L.LODGING_TITLE
+                FROM TBL_LODGING L
+                JOIN TBL_LODGING_ANSWER A
+                ON L.LODGING_NUMBER = A.LODGING_NUMBER
+                ORDER BY L.LODGING_NUMBER DESC
+            )
+            <![CDATA[
+            WHERE ROWNUM <= #{page} * #{amount}
+        )
+        WHERE R > (#{page} - 1) * #{amount}
+        ]]>
+    </select>
+</mapper>

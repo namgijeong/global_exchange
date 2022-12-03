@@ -33,4 +33,10 @@ public interface MeetMapper {
     //meet 답글 코멘트 전체 불러오기
     public List<MeetAnswerCommentVO> meetAnswerCommentSelectAll (Long meetAnswerNumber);
 
+    // 답글이 없는 최신글 조회
+    public List<MeetVO> selectAllLatestNotAnsweredMeet(Criteria criteria);
+
+    // 답글이 있는 최신글 조회
+    public List<MeetVO> selectAllLatestAnsweredMeet(Criteria criteria);
+
 }

@@ -73,4 +73,14 @@ public class MeetDAO{
     public List<MeetAnswerCommentVO> meetAnswerCommentSelectAll (Long meetAnswerNumber){
         return meetMapper.meetAnswerCommentSelectAll(meetAnswerNumber);
     }
+
+    // 답글이 없는 최신글 조회
+    public List<MeetVO> findAllLatestNotAnsweredMeet(Criteria criteria){
+        return meetMapper.selectAllLatestNotAnsweredMeet(criteria);
+    }
+
+    // 답글이 있는 최신글 조회
+    public List<MeetVO> findAllLatestAnsweredMeet(Criteria criteria){
+        return meetMapper.selectAllLatestAnsweredMeet(criteria);
+    }
 }
