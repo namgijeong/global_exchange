@@ -43,6 +43,7 @@ public class MeetingAndHelpController {
         model.addAttribute("boards",  meetObjectificationService.categoryMeetSelectAll(criteria,nation2));
         model.addAttribute("pagination",new PageDTO().createPageDTO(criteria, meetObjectificationService.categoryGetTotal(nation2)));
     }
+
     // 만남과 도움 상세 페이지
     @GetMapping("/detail")
     public void detail(Long meetNumber,Model model,HttpServletRequest request){

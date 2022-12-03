@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 @Slf4j
 public class MemberDAO {
+
     private final MemberMapper memberMapper;
 
     public boolean checkId(String memberId){
@@ -45,7 +46,11 @@ public class MemberDAO {
 
     }
 
-//    public Long googleLogin(MemberVO memberVO){
+    public MemberVO findByMemberNumber(Long memberNumber) {
+        return memberMapper.select(memberNumber);
+    }
+
+    //    public Long googleLogin(MemberVO memberVO){
 //
 //        return memberMapper.googleLogin(memberVO);
 //    }

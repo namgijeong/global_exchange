@@ -13,8 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div th:replace="/main/header.html:: topHeader "></div>
-    <div th:replace="/main/header.html:: header "></div>
+    <div th:replace="/main/header.html::topHeader(${member})"></div>
+    <div th:replace="/main/header.html::header"></div>
 
     <section id="loginBox">
         <div id="loginBoxTitle"><h3>회원가입</h3></div>

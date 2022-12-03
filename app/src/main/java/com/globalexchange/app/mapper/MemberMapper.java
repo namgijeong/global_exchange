@@ -10,7 +10,8 @@ public interface MemberMapper {
    int checkNick(String memberNick);
    Long emailLogin(MemberVO memberVO);
    void joinForm(MemberVO memberVO);
-//   Long googleLogin(MemberVO memberVO);
-//   Long googleJoin(MemberVO memberVO);
+   // Long googleLogin(MemberVO memberVO);
+   // Long googleJoin(MemberVO memberVO);
 
+   public MemberVO select(Long memberNumber);
 }
