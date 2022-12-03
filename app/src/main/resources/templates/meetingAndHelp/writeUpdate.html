@@ -160,10 +160,10 @@
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script>
-  let originMeetLearningLang = "[[${meetDTO.meetLearningLang}]]";
-  let originMeetTeachingLang = "[[${meetDTO.memberTeachingLang}]]";
-  let originMeetTitle = "[[${meetDTO.meetTitle}]]";
+<script th:inline="javascript">
+  let originMeetLearningLang = [[${meetDTO.meetLearningLang}]];
+  let originMeetTeachingLang = [[${meetDTO.memberTeachingLang}]];
+  let originMeetTitle = [[${meetDTO.meetTitle}]];
   console.log(originMeetLearningLang);
   console.log(originMeetTeachingLang);
   $("#meetLearningLang").val(originMeetLearningLang).prop("selected", true);

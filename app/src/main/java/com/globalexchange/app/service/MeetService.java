@@ -33,6 +33,17 @@ public interface MeetService {
     public void updateMeetBody(MeetDTO meetDTO);
     //meet 게시글 삭제
     public void deleteMeetBody(Long meetNumber);
+    //meet 답글 목록 보여주면서 페이지네이션
+    public List<MeetAnswerDTO> meetAnswerSelectAll(Long meetNumber, Criteria criteria);
+    //meet 답글 갯수 세기
+    public long meetAnswerCount(Long meetNumber);
+    //meet 답글 업데이트
+    public void  meetAnswerUpdate(MeetAnswerVO meetAnswerVO);
+    //meet 답글 쓰기 인서트
+    public void meetAnswerInsert(MeetAnswerVO meetAnswerVO);
+    //meet 답글 댓글 개수 목록 뿌리기
+    public List<MeetAnswerCommentDTO> meetAnswerCommentSelectAll (Long meetAnswerNumber);
+
 //    //    수정
 //    public void modify(BoardDTO boardDTO);
 //    //    삭제

@@ -54,7 +54,14 @@ public class FileProfileController {
 
     @GetMapping("/display")
     public byte[] display(String fileName) throws IOException{
-        return FileCopyUtils.copyToByteArray(new File("C:/globalExchangeImages", fileName));
+        /*File file=new File("C:/globalExchangeImages", fileName);
+        if(file.isFile()){
+            return FileCopyUtils.copyToByteArray(file);
+        }
+        file=new File("images/noImage/no-image.jpg");
+        return FileCopyUtils.copyToByteArray(file);*/
+       return FileCopyUtils.copyToByteArray(new File("C:/globalExchangeImages", fileName));
+
     }
 
 }

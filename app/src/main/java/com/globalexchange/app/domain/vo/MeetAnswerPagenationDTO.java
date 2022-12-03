@@ -3,15 +3,14 @@ package com.globalexchange.app.domain.vo;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @Data
-public class MeetAnswerVO {
-    private Long meetAnswerNumber;
-    private Long memberNumber;
-    private String meetAnswerContent;
-    private String meetAnswerWriteDate;
-    private String meetAnswerUpdateDate;
-    private Long meetNumber;
+public class MeetAnswerPagenationDTO {
+    private List<MeetAnswerDTO> meetAnswerDTOList;
+    private long meetAnswerCount;
+
 
 //    public void create(String fileName, String fileUploadPath, String fileUuid, boolean fileImageCheck) {
 //        this.fileName = fileName;
