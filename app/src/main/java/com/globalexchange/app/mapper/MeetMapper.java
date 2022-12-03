@@ -32,5 +32,7 @@ public interface MeetMapper {
     public void meetAnswerInsert(MeetAnswerVO meetAnswerVO);
     //meet 답글 코멘트 전체 불러오기
     public List<MeetAnswerCommentVO> meetAnswerCommentSelectAll (Long meetAnswerNumber);
+    //meet 답글 삭제
+    public void meetAnswerRemove(Long meetAnswerNumber);
 
 }

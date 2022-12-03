@@ -121,4 +121,9 @@
         ORDER BY meet_answer_comment_number
     </select>
 
+    <delete id="meetAnswerRemove" >
+        DELETE FROM tbl_meet_answer
+        WHERE meet_answer_number = #{meetAnswerNumber}
+    </delete>
+
 </mapper>

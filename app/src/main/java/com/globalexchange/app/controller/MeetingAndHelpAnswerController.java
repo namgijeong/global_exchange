@@ -68,9 +68,10 @@ public class MeetingAndHelpAnswerController {
     }
 
     // 만남과 도움 답글 삭제
-    @GetMapping("/answerRemove")
-    public void answerRemove(){
 
+    @GetMapping("/answerRemove/{meetAnswerNumber}")
+    public void answerRemove(@PathVariable("meetAnswerNumber") Long meetAnswerNumber){
+        meetObjectificationService.meetAnswerRemove(meetAnswerNumber);
     }
 
 
