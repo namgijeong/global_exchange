@@ -24,13 +24,19 @@
                 <div class="content-wrapper">
                     <div class="diary-detail-container">
                         <div class="header-section-wrapper">
-                            <div class="image-wrapper">
-                                <img class="image" src="/images/diary/bread.jpg" width="375">
+                            <div class="image-wrapper" th:object="${diary}">
+                                <th:block th:if="${not #strings.isEmpty(diary.fileDiaryVO)}">
+                                    <img class="header-image" th:if="*{fileDiaryVO.fileImageCheck}" th:src="@{/fileDiary/display(fileName=*{fileDiaryVO.fileUploadPath} + '/s_' + *{fileDiaryVO.fileUuid} + '_' + *{fileDiaryVO.fileName})}">
+                                    <img class="header-image" th:unless="*{fileDiaryVO.fileImageCheck}" th:src="@{/images/diary/bread.jpg}" width="375">
+                                </th:block>
+                                <th:block th:unless="${not #strings.isEmpty(diary.fileDiaryVO)}">
+<!--                                    <img class="header-image" src="/images/diary/bread.jpg" width="375">-->
+                                </th:block>
                             </div>
-                            <div class="info-wrapper">
+                            <div class="info-wrapper" th:object="${diary}">
                                 <section class="date-info-section">
                                     <div class="date-wrapper">
-                                        <input class="date-selector" id="dateSelector">
+                                        <input class="date-selector" id="dateSelector" th:text="*{diaryWriteDate}">
                                     </div>
                                 </section>
                                 <section class="partner-profile-section">
@@ -189,7 +195,11 @@ Be Confident!
 <!-- summernote -->
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
-<script>
+<script th:inline="javascript">
+    // let diaryWriteDate = [[${diary.diaryDTO.diaryWriteDate}]];
+    let diaryTitle = [[${diaryTitle}]];
+    console.log(diaryTitle);
+    console.log(diaryWriteDate)
     var dateSelector = document.querySelector('#dateSelector');
     dateSelector.flatpickr();
 
@@ -203,6 +213,10 @@ Be Confident!
         enable:[
             "2022-11-21"
         ]
+        // defaultDate: "diaryWriteDate",
+        // enable:[
+        //     "diaryWriteDate"
+        // ]
         /*maxDate: "2022-11-21"*/
     });
 

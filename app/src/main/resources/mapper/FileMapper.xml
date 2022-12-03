@@ -26,4 +26,23 @@
         DELETE FROM tbl_file_meet
         WHERE meet_number=#{meetNumber}
     </delete>
+
+
+    <insert id="diaryInsert">
+        INSERT INTO TBL_FILE_DIARY(FILE_NUMBER, FILE_NAME, FILE_UPLOAD_PATH, FILE_UUID, FILE_IMAGE_CHECK, FILE_SIZE, DIARY_NUMBER)
+        VALUES(FILE_DIARY_SEQ.NEXTVAL, #{fileName}, #{fileUploadPath}, #{fileUuid}, #{fileImageCheck}, #{fileSize}, TO_CHAR(#{diaryNumber}))
+    </insert>
+
+    <delete id="diaryDelete">
+        DELETE FROM TBL_FILE_DIARY
+        WHERE DIARY_NUMBER = #{diaryNumber}
+    </delete>
+
+    <select id="diarySelect" resultType="fileDiaryVO">
+        SELECT FILE_NUMBER, FILE_NAME, FILE_UPLOAD_PATH, FILE_UUID, FILE_IMAGE_CHECK, FILE_SIZE, DIARY_NUMBER
+        FROM TBL_FILE_DIARY
+        WHERE DIARY_NUMBER = #{diaryNumber}
+    </select>
+
+
 </mapper>

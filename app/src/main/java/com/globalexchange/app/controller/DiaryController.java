@@ -1,12 +1,9 @@
 package com.globalexchange.app.controller;
 
-import com.globalexchange.app.domain.vo.Criteria;
-import com.globalexchange.app.domain.vo.DiaryDTO;
-import com.globalexchange.app.domain.vo.DiaryVO;
-import com.globalexchange.app.domain.vo.PageDTO;
-import com.globalexchange.app.service.DiaryObjectificationService;
+import com.globalexchange.app.domain.vo.*;
 import com.globalexchange.app.service.DiaryService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/diary/*")
@@ -25,11 +23,12 @@ public class DiaryController {
 
     // 일기 목록 페이지
     @GetMapping("/list")
-    public void list(Criteria criteria, Model model){
+    public void list(Long diaryNumber, Criteria criteria, Model model){
         if(criteria.getPage() == 0){
             criteria.create(1, 10);
         }
         model.addAttribute("diaries", diaryService.showAll(criteria));
+//        model.addAttribute("diary", diaryService.show(diaryNumber));
         model.addAttribute("pagination",new PageDTO().createPageDTO(criteria, diaryService.getTotal()));
     }
 
@@ -43,7 +42,7 @@ public class DiaryController {
     @GetMapping("/write")
     public void write(HttpServletRequest request, Model model){
         model.addAttribute("memberId", request.getSession().getAttribute("memberId"));
-        model.addAttribute("board", new DiaryVO());
+        model.addAttribute("diary", new DiaryVO());
     }
 
     // 일기 작성 완료
@@ -51,6 +50,7 @@ public class DiaryController {
     public RedirectView write(DiaryDTO diaryDTO, RedirectAttributes redirectAttributes){
         diaryService.register(diaryDTO);
         redirectAttributes.addFlashAttribute("diaryNumber", diaryDTO.getDiaryNumber());
+        log.info("날짜 출력:"+diaryDTO.getDiaryWriteDate());
         return new RedirectView("/diary/list");
     }
 

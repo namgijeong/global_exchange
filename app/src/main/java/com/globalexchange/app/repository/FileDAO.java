@@ -1,12 +1,15 @@
 package com.globalexchange.app.repository;
 
 
+import com.globalexchange.app.domain.vo.Criteria;
+import com.globalexchange.app.domain.vo.FileDiaryVO;
 import com.globalexchange.app.domain.vo.FileMeetVO;
 import com.globalexchange.app.domain.vo.FileProfileVO;
 import com.globalexchange.app.mapper.FileMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 
 
 @Repository
@@ -39,4 +42,18 @@ public class FileDAO {
     public void deleteMeetFile(Long meet_number){
         fileMapper.deleteMeetFile(meet_number);
     }
+
+    //    일기 파일 추가
+    public void diarySave(FileDiaryVO fileDiaryVO){
+        fileMapper.diaryInsert(fileDiaryVO);
+    }
+    //    일기 파일 삭제
+    public void diaryRemove(Long diaryNumber){
+        fileMapper.diaryDelete(diaryNumber);
+    }
+    //    일기 파일 조회
+    public FileDiaryVO diaryFind(Long diaryNumber){
+        return fileMapper.diarySelect(diaryNumber);
+    }
+
 }
