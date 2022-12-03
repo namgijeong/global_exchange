@@ -33,6 +33,17 @@ public class MemberObjectificationService implements MemberService{
 
          memberDAO.joinForm(memberVO);
     }
+//    @Override
+//    public void googleJoin(MemberVO memberVO){
+//
+//        memberDAO.googleJoin(memberVO);
+//    }
+//    @Override
+//    public Long googleLogin(MemberVO memberVO) {
+//
+//        return memberDAO.googleLogin(memberVO);
+//
+//    }
 
     @Override
     public MemberVO show(Long memberNumber) {

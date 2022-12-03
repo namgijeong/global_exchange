@@ -39,9 +39,13 @@ public class MemberController {
     }
 
     //구글 회원가입
-    @GetMapping("/member/joinGoogle")
-    public void joinGoogle(){
-    }
+//    @GetMapping("/joinGoogle")
+//    @RequestMapping(value = "/googleJoin")
+//    public String joinGoogle(MemberVO memberVO){
+//        memberService.googleJoin(memberVO);
+//
+//        return "/main/main";
+//    }
 
     //로그인 선택 페이지 이동
     @GetMapping("/member/login")
@@ -70,10 +74,22 @@ public class MemberController {
 //    public String logout(@RequestBody)
 
     //구글 로그인
-    @GetMapping("/member/googleLogin")
-    public void googleLogin(){
-
-    }
+//    @RequestMapping(value = "/googleLogin")
+//    public String googleLogin(MemberVO memberVO, HttpServletRequest request){
+//        HttpSession session = request.getSession();
+//
+//        Long memberNumber = memberService.googleLogin(memberVO);
+//
+//        if(memberNumber == null){
+//
+//            return "member/login";
+//
+//        }else {
+//            session.setAttribute("memberNumber" , memberNumber);
+//
+//            return "/main/main";
+//        }
+//    }
 
     // 마이페이지 메인
     @GetMapping("/member/mypage")
