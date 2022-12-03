@@ -68,7 +68,7 @@
 
     <update id="updateRequest">
         UPDATE tbl_meet
-        SET meet_title=#{meetTitle},meet_learning_lang= #{meetLearningLang},meet_content=#{meetContent},meet_address=#{meetAddress},meet_detail_address=#{meetDetailAddress}
+        SET meet_title=#{meetTitle},meet_learning_lang= #{meetLearningLang},meet_content=#{meetContent},meet_address=#{meetAddress},meet_detail_address=#{meetDetailAddress},meet_update_date=SYSDATE
         WHERE meet_number=#{meetNumber}
     </update>
 
@@ -77,4 +77,48 @@
         FROM tbl_meet
         WHERE meet_number=#{meetNumber}
     </delete>
+
+    <select id="meetAnswerSelectAll" resultType="meetAnswerVO">
+        SELECT meet_answer_number,member_number,meet_answer_content,meet_answer_write_date,meet_answer_update_date,meet_number
+        FROM
+        (
+            SELECT ROWNUM R, meet_answer_number,member_number,meet_answer_content,meet_answer_write_date,meet_answer_update_date,meet_number
+            FROM
+            (
+                SELECT meet_answer_number,member_number,meet_answer_content,meet_answer_write_date,meet_answer_update_date,meet_number
+                FROM tbl_meet_answer
+                WHERE meet_number = #{meetNumber}
+                ORDER BY meet_answer_number DESC
+            )
+    <![CDATA[
+            WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+        )
+        WHERE R > (#{criteria.page} - 1) * #{criteria.amount}
+    ]]>
+    </select>
+
+    <select id="meetAnswerCount" resultType="long">
+        SELECT count(meet_answer_number)
+        FROM  tbl_meet_answer
+        WHERE meet_number = #{meetNumber}
+    </select>
+
+    <update id="meetAnswerUpdate" >
+        UPDATE tbl_meet_answer
+        SET meet_answer_content = #{meetAnswerContent} , meet_answer_update_date = SYSDATE
+        WHERE meet_answer_number = #{meetAnswerNumber}
+    </update>
+
+    <insert id="meetAnswerInsert">
+        INSERT INTO tbl_meet_answer(meet_answer_number,member_number,meet_answer_content,meet_number)
+        VALUES(meet_answer_seq.NEXTVAL,#{memberNumber},#{meetAnswerContent},#{meetNumber})
+    </insert>
+
+    <select id="meetAnswerCommentSelectAll" resultType="meetAnswerCommentVO">
+        SELECT *
+        FROM tbl_meet_answer_comment
+        WHERE meet_answer_number = #{meetAnswerNumber}
+        ORDER BY meet_answer_comment_number
+    </select>
+
 </mapper>
