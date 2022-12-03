@@ -81,10 +81,11 @@ public class MeetDAO{
     }
 
     // 답글이 있는 최신글 조회
-    public List<MeetVO> findAllLatestAnsweredMeet(Criteria criteria){
+    public List<MeetVO> findAllLatestAnsweredMeet(Criteria criteria) {
         return meetMapper.selectAllLatestAnsweredMeet(criteria);
-
-    //meet 답글 삭제
+    }
+    
+    // meet 답글 삭제
     public void meetAnswerRemove(Long meetAnswerNumber){
         meetMapper.meetAnswerRemove(meetAnswerNumber);
     }
