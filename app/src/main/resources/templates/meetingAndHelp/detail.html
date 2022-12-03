@@ -698,9 +698,17 @@
         );
     });
     //답글 삭제버튼
-    /*$("#answerBody").on("click",".answerRemove",function() {
-      let registClickNumber = this.classList[2];
-    });*/
+    $("#answerBody").on("click",".answerRemove",function() {
+      console.log("answerRemove들어옴");
+      let meetAnswerNumber = this.classList[1];
+      console.log(this.classList[1]);
+      meetAnswerAjax.remove(
+              meetAnswerNumber,
+              function(){
+                getList();
+              }
+      )
+    });
 
 
 });

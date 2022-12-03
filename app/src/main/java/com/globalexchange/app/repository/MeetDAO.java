@@ -73,4 +73,8 @@ public class MeetDAO{
     public List<MeetAnswerCommentVO> meetAnswerCommentSelectAll (Long meetAnswerNumber){
         return meetMapper.meetAnswerCommentSelectAll(meetAnswerNumber);
     }
+    //meet 답글 삭제
+    public void meetAnswerRemove(Long meetAnswerNumber){
+        meetMapper.meetAnswerRemove(meetAnswerNumber);
+    }
 }

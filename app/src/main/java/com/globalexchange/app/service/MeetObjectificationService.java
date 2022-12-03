@@ -191,18 +191,22 @@ public class MeetObjectificationService implements MeetService {
     }
 
     //meet 답글 갯수 세기
+    @Override
     public long meetAnswerCount(Long meetNumber) {
         return meetDAO.meetAnswerCount(meetNumber);
     }
     //meet 답글 업데이트
+    @Override
     public void  meetAnswerUpdate(MeetAnswerVO meetAnswerVO){
         meetDAO.meetAnswerUpdate(meetAnswerVO);
     }
     //meet 답글 쓰기 인서트
+    @Override
     public void meetAnswerInsert(MeetAnswerVO meetAnswerVO){
         meetDAO.meetAnswerInsert(meetAnswerVO);
     }
     //meet 답글 코멘트 전체 불러오기
+    @Override
     public List<MeetAnswerCommentDTO> meetAnswerCommentSelectAll(Long meetAnswerNumber) {
         List<MeetAnswerCommentVO> meetAnswerCommentVOList = meetDAO.meetAnswerCommentSelectAll(meetAnswerNumber);
         List<MeetAnswerCommentDTO> meetAnswerCommentDTOList = new ArrayList<>();
@@ -242,5 +246,9 @@ public class MeetObjectificationService implements MeetService {
         return meetAnswerCommentDTOList;
     }
 
-
+    //meet 답글 삭제
+    @Override
+    public void meetAnswerRemove(Long meetAnswerNumber){
+        meetDAO.meetAnswerRemove(meetAnswerNumber);
+    }
 }
