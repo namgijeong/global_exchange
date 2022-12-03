@@ -43,6 +43,8 @@ public interface MeetService {
     public void meetAnswerInsert(MeetAnswerVO meetAnswerVO);
     //meet 답글 댓글 개수 목록 뿌리기
     public List<MeetAnswerCommentDTO> meetAnswerCommentSelectAll (Long meetAnswerNumber);
+    //meet 답글 삭제
+     public void meetAnswerRemove(Long meetAnswerNumber);
 
 //    //    수정
 //    public void modify(BoardDTO boardDTO);

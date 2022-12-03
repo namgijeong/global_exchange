@@ -162,4 +162,9 @@
         WHERE R > (#{page} - 1) * #{amount}
         ]]>
     </select>
+
+    <delete id="meetAnswerRemove" >
+        DELETE FROM tbl_meet_answer
+        WHERE meet_answer_number = #{meetAnswerNumber}
+    </delete>
 </mapper>

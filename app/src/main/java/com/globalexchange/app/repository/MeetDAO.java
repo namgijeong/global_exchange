@@ -4,10 +4,11 @@ package com.globalexchange.app.repository;
 import com.globalexchange.app.domain.vo.*;
 import com.globalexchange.app.mapper.MeetMapper;
 import lombok.RequiredArgsConstructor;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-//
+
 import java.util.List;
+
+//
 //
 @Repository
 @RequiredArgsConstructor
@@ -82,5 +83,9 @@ public class MeetDAO{
     // 답글이 있는 최신글 조회
     public List<MeetVO> findAllLatestAnsweredMeet(Criteria criteria){
         return meetMapper.selectAllLatestAnsweredMeet(criteria);
+
+    //meet 답글 삭제
+    public void meetAnswerRemove(Long meetAnswerNumber){
+        meetMapper.meetAnswerRemove(meetAnswerNumber);
     }
 }

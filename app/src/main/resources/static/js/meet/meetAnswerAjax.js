@@ -46,6 +46,17 @@ let meetAnswerAjax=(function(){
         });
     }
 
+    function remove(meetAnswerNumber, callback){
+        $.ajax({
+            url: "/meetingAndHelpAnswer/answerRemove/" + meetAnswerNumber,
+            type: "get",
+            success: function(){
+                if(callback){
+                    callback();
+                }
+            }
+        })
+    }
 
-    return {getList:getList, modify:modify, add:add}
+    return {getList:getList, modify:modify, add:add, remove:remove}
 })();
