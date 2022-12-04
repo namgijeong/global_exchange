@@ -18,7 +18,7 @@ public interface DiaryMapper {
 //    일기 조회
   public DiaryVO diarySelect(Long diaryNumber);
 //    일기 전체 조회
-  public List<DiaryVO> diarySelectAll(Criteria criteria);
+  public List<DiaryDTO> diarySelectAll(Criteria criteria);
 //    일기 전체 개수
   public int getTotal();
 //    코멘트 추가

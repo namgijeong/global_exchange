@@ -22,15 +22,15 @@ public class DiaryDAO {
     diaryMapper.diaryUpdate(diaryDTO);
   }
   //    삭제
-  public void remove(Long boardNumber){
-    diaryMapper.diaryDelete(boardNumber);
+  public void remove(Long diaryNumber){
+    diaryMapper.diaryDelete(diaryNumber);
   }
   //    조회
-  public DiaryVO findById(Long boardNumber){
-    return diaryMapper.diarySelect(boardNumber);
+  public DiaryVO findById(Long diaryNumber){
+    return diaryMapper.diarySelect(diaryNumber);
   }
   //    전체 조회
-  public List<DiaryVO> findAll(Criteria criteria){
+  public List<DiaryDTO> findAll(Criteria criteria){
     return diaryMapper.diarySelectAll(criteria);
   }
   //    전체 개수

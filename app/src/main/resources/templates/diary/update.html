@@ -16,14 +16,14 @@
 <div id="app">
     <div class="appWrapper">
         <!-- header -->
-        <div th:replace="/main/header.html::topHeader(${member})"></div>
+        <div th:replace="/main/header.html:: topHeader "></div>
         <div th:replace="/main/header.html:: header "></div>
 
         <!-- main -->
         <div class="wrapper">
             <div class="content-wrapper">
                 <div class="diary-detail-container">
-                    <form method="post" th:action="@{/diary/write}" th:object="${diary}" id="diaryForm" name="diaryForm" enctype="multipart/form-data">
+                    <form method="post" th:action="@{/diary/update}" th:object="${diary}" id="diaryForm" name="diaryForm" enctype="multipart/form-data">
                         <div class="header-section-wrapper">
                             <div class="image-input-box">
                                 <div id="imageInputStatus">
@@ -103,8 +103,7 @@
                                             </div>
                                             <div class="col-right">
                                                 <div class="input-group">
-                                                    <input th:field="*{diaryTitle}" name="diaryTitle" id="diaryTitle" type="text" maxlength="40" required="required"
-                                                           placeholder="일기의 제목을 작성해주세요." class="input-text">
+                                                    <input type="text" th:field="*{diaryTitle}" maxlength="40" class="input-text">
                                                     <div class="input-text-append">
                                                             <span class="text-muted-container">
                                                                 <small class="text-muted"></small>
@@ -214,6 +213,8 @@
     const $confirmBtn = $('#confirmBtn');
     let selectedDate;
 
+    console.log([[${diary.diaryNumber}]]);
+
     // 파일 업로드
     $file.on('change', function(){
         let formData = new FormData();
@@ -310,10 +311,11 @@
 
     console.log(flatpickr(dateSelector));
 
+    let diaryWriteDate = [[${diary.diaryWriteDate}]];
     dateSelector.flatpickr({
         local: 'ko',
         inline: true,
-        defaultDate: new Date(),
+        defaultDate: diaryWriteDate,
                 // enable:[
                 //     "2022-11-21"
                 // ],
@@ -489,6 +491,7 @@
         text += `<input type="hidden" name="fileDiaryVO.fileSize" value="` + fileSize + `">`;
         text += `<input type="hidden" name="fileDiaryVO.fileImageCheck" value="` + fileImageCheck + `">`;
         text += `<input type="hidden" name="diaryWriteDate" value="` + selectedDate + `">`;
+        text += `<input type="hidden" name="diaryNumber" value="` + [[${diary.diaryNumber}]] + `">`;
         // text += `<input type="hidden" name="diaryDTO.diaryUpdateDate" value="` + selectedDate + `">`;
 
         $("form#diaryForm").append(text).submit();

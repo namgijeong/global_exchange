@@ -59,26 +59,39 @@
                                     <a href="javscript:void(0)">
                                         <p class="name">John</p>
                                     </a>
-                                    <div class="time" th:text="*{diaryWriteDate}"></div>
+
+<!--                                    <div class="time" th:text="${#temporals.format(diaryWriteDate, 'yyyy-MM-dd')}"></div>-->
+                                    <div class="time" th:text="${#strings.substring(diary.diaryWriteDate, 0, 10)}"></div>
+<!--                                    <div class="time" th:text="${#dates.format(diaryWriteDate, 'yyyy-MM-dd')}"></div>-->
                                 </div>
                             </div>
                         </div>
-                        <div class="image-banner-wrapper">
-                            <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">
+
+                        <div class="image-banner-wrapper" th:object="${diary}">
+                            <th:block th:if="${not #strings.isEmpty(diary.fileDiaryVO)}">
+                                <img class="diary-image" th:if="*{fileDiaryVO.fileImageCheck}" th:src="@{/fileDiary/display(fileName=*{fileDiaryVO.fileUploadPath} + '/s_' + *{fileDiaryVO.fileUuid} + '_' + *{fileDiaryVO.fileName})}">
+                                <img class="diary-image" th:unless="*{fileDiaryVO.fileImageCheck}" th:src="@{/images/diary/bread.jpg}" width="375">
+                            </th:block>
+                            <th:block th:unless="${not #strings.isEmpty(diary.fileDiaryVO)}">
+<!--                                <img class="diary-image" src="/images/diary/bread.jpg" width="375">-->
+                            </th:block>
                         </div>
+
+<!--                        <div class="image-banner-wrapper">-->
+<!--                            <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">-->
+<!--                        </div>-->
+
                         <a th:href="*{diaryNumber}" class="diary-title-wrapper detail">
                             <div class="diary-title-container diaryTitle" th:text="*{diaryTitle}">
 
                             </div>
                         </a>
-                        <div class="diary-content-wrapper">
-                            <span class="diary-content diaryContent" th:text="*{diaryContent}">
-
-                            </span>
-                            <button class="expand-button">
-                                더보기
-                            </button>
-                        </div>
+<!--                        <div class="diary-content-wrapper">-->
+<!--                            <span class="diary-content diaryContent" th:text="*{diaryContent}"></span>-->
+<!--                            <button class="expand-button">-->
+<!--                                더보기-->
+<!--                            </button>-->
+<!--                        </div>-->
                     </div>
 <!--                    <div>-->
 <!--                        <div class="profile-wrapper">-->
@@ -260,6 +273,9 @@
     let $pages = $("a.change-page");
     let queryString = [[${pagination.criteria.queryString}]];
     const $detail = $("a.detail");
+    // let $diaryContentWrapper = $('.diary-content-wrapper');
+    // let $diaryContent = $('#diaryContent');
+    // $diaryContentWrapper.html($diaryContent.prev().text());
 
     // 더보기 버튼 클릭시 일기 전체 내용 보이기
     const $expandButtons = $('.expand-button');
@@ -270,6 +286,7 @@
 
         wrapper.html(content);
     });
+
 
 
     // 페이지네이션 마우스 올렸을 때 이벤트

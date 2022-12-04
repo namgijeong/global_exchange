@@ -19,7 +19,7 @@ public interface DiaryService {
     //    조회
     public DiaryDTO show(Long diaryNumber);
     //    전체 조회
-    public List<DiaryVO> showAll(Criteria criteria);
+    public List<DiaryDTO> showAll(Criteria criteria);
     //    전체 개수
     public int getTotal();
 }
