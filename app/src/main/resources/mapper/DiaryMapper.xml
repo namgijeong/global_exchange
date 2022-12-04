@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.globalexchange.app.mapper.DiaryMapper">
+    <insert id="diaryInsert">
+        <selectKey keyProperty="diaryNumber" order="BEFORE" resultType="long">
+            SELECT DIARY_SEQ.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_DIARY(DIARY_NUMBER, MEMBER_NUMBER, DIARY_PARTNER_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE)
+        VALUES (#{diaryNumber}, 1, 1, #{diaryTitle}, #{diaryContent}, #{diaryWriteDate})
+    </insert>
+
+    <update id="diaryUpdate">
+        UPDATE TBL_DIARY
+        SET DIARY_TITLE = #{diaryTitle}, DIARY_CONTENT = #{diaryContent}, DIARY_UPDATE_DATE = SYSDATE
+        WHERE DIARY_NUMBER = #{diaryNumber}
+    </update>
+
+    <delete id="diaryDelete">
+        DELETE FROM TBL_DIARY
+        WHERE DIARY_NUMBER = #{diaryNumber}
+    </delete>
+
+    <select id="diarySelect" resultType="diaryVO">
+        SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_PARTNER_NUMBER, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE
+        FROM TBL_DIARY
+        WHERE DIARY_NUMBER = #{diaryNumber}
+    </select>
+
+    <select id="diarySelectAll" resultType="diaryDTO"> <!--페이징처리-->
+        SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE
+        FROM
+        (
+            SELECT ROWNUM R, DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE
+            FROM
+            (
+                SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE
+                FROM TBL_DIARY
+                ORDER BY DIARY_NUMBER DESC
+            ) D2
+        <![CDATA[
+            WHERE ROWNUM <= #{page} * #{amount}
+        ) WHERE R > (#{page} - 1) * #{amount}
+        ]]>
+    </select>
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(DIARY_NUMBER) FROM TBL_DIARY
+    </select>
+
+</mapper>

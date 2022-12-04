@@ -1,7 +1,7 @@
 package com.globalexchange.app.controller;
 
-import com.globalexchange.app.domain.vo.FileMeetVO;
-import com.globalexchange.app.domain.vo.FileProfileVO;
+import com.globalexchange.app.domain.vo.FileDiaryVO;
+import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,14 +18,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+@Slf4j
 @RestController
-@RequestMapping("/fileProfile/*")
-public class FileProfileController {
+@RequestMapping("/fileDiary/*")
+public class FileDiaryController {
     @PostMapping("/upload")
-    public FileProfileVO upload(MultipartFile upload) throws IOException{
+    public FileDiaryVO upload(MultipartFile upload) throws IOException{
         String rootPath = "C:/globalExchangeImages";
         String uploadPath = getUploadPath();
-        FileProfileVO fileProfileVO = new FileProfileVO();
+        FileDiaryVO fileDiaryVO = new FileDiaryVO();
 
         File uploadFullPath = new File(rootPath, uploadPath);
         if(!uploadFullPath.exists()){uploadFullPath.mkdirs();}
@@ -34,40 +35,48 @@ public class FileProfileController {
         String fileName = upload.getOriginalFilename();
         String uploadFileName = uuid.toString() + "_" + fileName;
 
-        fileProfileVO.setFileName(fileName);
-        fileProfileVO.setFileUuid(uuid.toString());
-        fileProfileVO.setFileUploadPath(getUploadPath());
-        fileProfileVO.setFileSize(upload.getSize());
+        fileDiaryVO.setFileName(fileName);
+        fileDiaryVO.setFileUuid(uuid.toString());
+        fileDiaryVO.setFileUploadPath(getUploadPath());
+        fileDiaryVO.setFileSize(upload.getSize());
+
+//        log.info("upload: "+upload);
 
         File fullPath = new File(uploadFullPath, uploadFileName);
         upload.transferTo(fullPath);
 
         if(Files.probeContentType(fullPath.toPath()).startsWith("image")){
             FileOutputStream out = new FileOutputStream(new File(uploadFullPath, "s_" + uploadFileName));
-            Thumbnailator.createThumbnail(upload.getInputStream(), out, 100, 100);
+            Thumbnailator.createThumbnail(upload.getInputStream(), out, 375, 375);
             out.close();
-            fileProfileVO.setFileImageCheck(true);
-
+            fileDiaryVO.setFileImageCheck(true);
         }
 
-        return fileProfileVO;
+        return fileDiaryVO;
     }
-
-
     private String getUploadPath(){
         return new SimpleDateFormat("yyyy/MM/dd").format(new Date());
     }
 
     @GetMapping("/display")
     public byte[] display(String fileName) throws IOException{
-        /*File file=new File("C:/globalExchangeImages", fileName);
-        if(file.isFile()){
-            return FileCopyUtils.copyToByteArray(file);
-        }
-        file=new File("images/noImage/no-image.jpg");
-        return FileCopyUtils.copyToByteArray(file);*/
-       return FileCopyUtils.copyToByteArray(new File("C:/globalExchangeImages", fileName));
-
+        return FileCopyUtils.copyToByteArray(new File("C:/globalExchangeImages", fileName));
     }
 
+
+    
+    @PostMapping("/delete")
+    public void delete(FileDiaryVO fileDiaryVO) {
+        File file = new File("C:/globalExchangeImages", fileDiaryVO.getFileUploadPath() + "/" + fileDiaryVO.getFileName());
+        if(file.exists()){
+            file.delete();
+        }
+        if(fileDiaryVO.isFileImageCheck()){
+            file = new File("C:/globalExchangeImages", fileDiaryVO.getFileUploadPath() + "/s_" + fileDiaryVO.getFileName());
+            if(file.exists()){
+                file.delete();
+            }
+        }
+    }
+    
 }
