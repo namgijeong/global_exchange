@@ -33,10 +33,10 @@
 <!--                                    <img class="header-image" src="/images/diary/bread.jpg" width="375">-->
                                 </th:block>
                             </div>
-                            <div class="info-wrapper" th:object="${diary}">
+                            <div class="info-wrapper">
                                 <section class="date-info-section">
                                     <div class="date-wrapper">
-                                        <input class="date-selector" id="dateSelector" th:text="*{diaryWriteDate}">
+                                        <input class="date-selector" id="dateSelector">
                                     </div>
                                 </section>
                                 <section class="partner-profile-section">
@@ -196,10 +196,9 @@ Be Confident!
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 <script th:inline="javascript">
-    // let diaryWriteDate = [[${diary.diaryDTO.diaryWriteDate}]];
-    let diaryTitle = [[${diaryTitle}]];
-    console.log(diaryTitle);
-    console.log(diaryWriteDate)
+    let diaryWriteDate = [[${diary.diaryWriteDate}]];
+    console.log(diaryWriteDate);
+
     var dateSelector = document.querySelector('#dateSelector');
     dateSelector.flatpickr();
 
@@ -209,9 +208,9 @@ Be Confident!
     dateSelector.flatpickr({
         local: 'ko',
         inline: true,
-        defaultDate: "2022-11-21",
+        defaultDate: diaryWriteDate,
         enable:[
-            "2022-11-21"
+            diaryWriteDate
         ]
         // defaultDate: "diaryWriteDate",
         // enable:[

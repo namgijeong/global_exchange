@@ -59,7 +59,10 @@
                                     <a href="javscript:void(0)">
                                         <p class="name">John</p>
                                     </a>
-                                    <div class="time" th:text="*{diaryWriteDate}"></div>
+
+<!--                                    <div class="time" th:text="${#temporals.format(diaryWriteDate, 'yyyy-MM-dd')}"></div>-->
+                                    <div class="time" th:text="${#strings.substring(diary.diaryWriteDate, 0, 10)}"></div>
+<!--                                    <div class="time" th:text="${#dates.format(diaryWriteDate, 'yyyy-MM-dd')}"></div>-->
                                 </div>
                             </div>
                         </div>
@@ -83,12 +86,12 @@
 
                             </div>
                         </a>
-                        <div class="diary-content-wrapper">
-                            <span class="diary-content diaryContent" th:text="*{diaryContent}"></span>
-                            <button class="expand-button">
-                                더보기
-                            </button>
-                        </div>
+<!--                        <div class="diary-content-wrapper">-->
+<!--                            <span class="diary-content diaryContent" th:text="*{diaryContent}"></span>-->
+<!--                            <button class="expand-button">-->
+<!--                                더보기-->
+<!--                            </button>-->
+<!--                        </div>-->
                     </div>
 <!--                    <div>-->
 <!--                        <div class="profile-wrapper">-->
