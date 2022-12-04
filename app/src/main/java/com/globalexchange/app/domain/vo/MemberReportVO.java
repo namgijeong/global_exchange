@@ -9,7 +9,10 @@ public class MemberReportVO {
     private Long memberReportNumber;
     private Long reportingMemberNumber;
     private Long reportedMemberNumber;
+
     private Long memberReportCount;
+
+
 
 
 //    public void create(String fileName, String fileUploadPath, String fileUuid, boolean fileImageCheck) {

@@ -155,6 +155,11 @@ pre {
     border-radius: 100%;
 }
 
+.user-info-image {
+    width : 80px;
+    height : 80px;
+}
+
 .image-camera-container {
     position: absolute;
     bottom: 0px;

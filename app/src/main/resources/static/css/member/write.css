@@ -151,6 +151,11 @@ select:disabled {
     cursor: pointer;
 }
 
+.user-info-image {
+    width : 80px;
+    height : 80px;
+}
+
 .image-camera-container {
     position: absolute;
     bottom: 0px;
