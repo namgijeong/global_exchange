@@ -48,12 +48,14 @@ public class MeetingAndHelpController {
     @GetMapping("/detail")
     public void detail(Long meetNumber,Model model,HttpServletRequest request){
         MeetDTO meetDTO=meetObjectificationService.detailMeetBody(meetNumber);
+        Long answerCount=meetObjectificationService.meetAnswerCount(meetNumber);
         log.info(""+meetDTO.getFileMeetVO());
         log.info(""+meetDTO.getFileProfileVO());
         log.info(""+meetDTO.getMemberNickname());
         log.info(""+meetDTO.getMemberNumber());
         model.addAttribute("meetDTO",meetDTO);
-
+        model.addAttribute("answerCount",answerCount);
+        //임의로 세션 만든곳
         HttpSession session = request.getSession();
         session.setAttribute("memberNumber",1L);
 
@@ -75,7 +77,7 @@ public class MeetingAndHelpController {
             memberVO=meetObjectificationService.writerInfo(1L);
 
             fileProfileVO=meetObjectificationService.getMeetWriterImage(1L);
-
+            //임의로 세션만든곳
             session.setAttribute("memberNumber",1L);
             model.addAttribute("memberVO",memberVO);
             model.addAttribute("file",fileProfileVO);

@@ -251,4 +251,18 @@ public class MeetObjectificationService implements MeetService {
     public void meetAnswerRemove(Long meetAnswerNumber){
         meetDAO.meetAnswerRemove(meetAnswerNumber);
     }
+
+    //meet 댓글 코멘트 등록
+    @Override
+    public void meetCommentInsert(MeetAnswerCommentVO meetAnswerCommentVO){
+         meetDAO.meetCommentInsert(meetAnswerCommentVO);
+    }
+    //meet 댓글 코멘트 업데이트
+    public void meetCommentUpdate(MeetAnswerCommentVO meetAnswerCommentVO){
+        meetDAO.meetCommentUpdate(meetAnswerCommentVO);
+    }
+    //meet 댓글 코멘트 삭제
+    public void meetCommentRemove(Long meetAnswerCommentNumber){
+        meetDAO.meetCommentRemove(meetAnswerCommentNumber);
+    }
 }
