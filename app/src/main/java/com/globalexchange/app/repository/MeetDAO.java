@@ -77,4 +77,16 @@ public class MeetDAO{
     public void meetAnswerRemove(Long meetAnswerNumber){
         meetMapper.meetAnswerRemove(meetAnswerNumber);
     }
+    //meet 댓글 코멘트 등록
+    public void meetCommentInsert(MeetAnswerCommentVO meetAnswerCommentVO){
+        meetMapper.meetCommentInsert(meetAnswerCommentVO);
+    }
+    //meet 댓글 코멘트 업데이트
+    public void meetCommentUpdate(MeetAnswerCommentVO meetAnswerCommentVO){
+        meetMapper.meetCommentUpdate(meetAnswerCommentVO);
+    }
+    //meet 댓글 코멘트 삭제
+    public void meetCommentRemove(Long meetAnswerCommentNumber){
+        meetMapper.meetCommentRemove(meetAnswerCommentNumber);
+    }
 }
