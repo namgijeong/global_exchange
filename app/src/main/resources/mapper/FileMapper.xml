@@ -33,6 +33,12 @@
         VALUES(FILE_DIARY_SEQ.NEXTVAL, #{fileName}, #{fileUploadPath}, #{fileUuid}, #{fileImageCheck}, #{fileSize}, TO_CHAR(#{diaryNumber}))
     </insert>
 
+<!--    <update id="diaryUpdate">-->
+<!--        UPDATE TBL_FILE_DIARY-->
+<!--        SET FILE_NAME=#{fileName}, FILE_UPLOAD_PATH=#{fileUploadPath}, FILE_UUID=#{fileUuid}, FILE_IMAGE_CHECK=#{fileImageCheck}, FILE_SIZE=#{fileSize}-->
+<!--        WHERE DIARY_NUMBER = #{diaryNumber}-->
+<!--    </update>-->
+
     <delete id="diaryDelete">
         DELETE FROM TBL_FILE_DIARY
         WHERE DIARY_NUMBER = #{diaryNumber}

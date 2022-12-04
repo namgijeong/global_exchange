@@ -39,10 +39,11 @@ public class DiaryObjectificationService implements DiaryService {
   @Override
   public void modify(DiaryDTO diaryDTO) {
     diaryDAO.setDiaryVO(diaryDTO);
-    FileDiaryVO file = diaryDTO.getFileDiaryVO();
-    Optional.ofNullable(file).ifPresent(file1 -> {
-      file1.setDiaryNumber(diaryDTO.getDiaryNumber());
-      fileDAO.diarySave(file1);
+    fileDAO.diaryRemove(diaryDTO.getDiaryNumber());
+    FileDiaryVO fileDiaryVO = diaryDTO.getFileDiaryVO();
+    Optional.ofNullable(fileDiaryVO).ifPresent(file -> {
+      file.setDiaryNumber(diaryDTO.getDiaryNumber());
+      fileDAO.diarySave(file);
     });
   }
 
@@ -67,13 +68,11 @@ public class DiaryObjectificationService implements DiaryService {
     List<DiaryDTO> list2 = new ArrayList<>();
 
     log.info("list: "+list);
-//    DiaryVO diaryVO = new DiaryVO();
     for(DiaryDTO diaryDTO : list) {
       {
         diaryDTO.create(diaryDAO.findById(diaryDTO.getDiaryNumber()));
         log.info("diaryNumber;"+diaryDTO.getDiaryNumber());
-//        DiaryDTO diaryDTO = new DiaryDTO();
-//        diaryDTO.create(diaryDAO.findById(diaryNumber));
+
         diaryDTO.setFileDiaryVO(fileDAO.diaryFind(diaryDTO.getDiaryNumber()));
         log.info("diaryDTO:"+diaryDTO);
         list2.add(diaryDTO);
@@ -82,17 +81,7 @@ public class DiaryObjectificationService implements DiaryService {
     }
     log.info("list2: " + list2);
     return list2;
-//    }}
 
-//    }
-
-
-//    diaryDTO.create(diaryDAO.findAll(criteria), fileDAO.diaryFind(criteria));
-//    diaryDTO.setFileDiaryVO(fileDAO.diaryFind(criteria));
-
-//    return diaryDTO;
-
-//    return diaryDAO.findAll(criteria);
   }
 
   @Override

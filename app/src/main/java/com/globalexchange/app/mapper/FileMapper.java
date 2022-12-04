@@ -22,6 +22,9 @@ public interface FileMapper {
 
     //    일기 파일 추가
     public void diaryInsert(FileDiaryVO fileDiaryVO);
+    //    일기 파일 수정
+//    public void diaryUpdate(Long diaryNumber);
+
     //    일기 파일 삭제
     public void diaryDelete(Long diaryNumber);
     //    일기 파일 조회

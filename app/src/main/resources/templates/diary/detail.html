@@ -74,7 +74,7 @@
                         <section class="section-container">
                             <div class="section-title">
                                 <h2>교환 일기</h2>
-                                <button class="frip-btn">수정하기</button>
+                                <button class="frip-btn" type="button" onclick="goUpdate()">수정하기</button>
                             </div>
                             <div class="form-container">
                                 <form name="diaryForm" th:object="${diary}">
@@ -196,6 +196,14 @@ Be Confident!
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 <script th:inline="javascript">
+    let diaryNumber = [[${diary.diaryNumber}]];
+    let queryString = [[${criteria.queryString}]];
+
+    function goUpdate(){
+        location.href = "/diary/update" + queryString + "&diaryNumber=" + diaryNumber;
+    }
+
+
     let diaryWriteDate = [[${diary.diaryWriteDate}]];
     console.log(diaryWriteDate);
 

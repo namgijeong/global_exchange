@@ -32,8 +32,8 @@ public class DiaryController {
         model.addAttribute("pagination",new PageDTO().createPageDTO(criteria, diaryService.getTotal()));
     }
 
-    // 일기 상세 페이지
-    @GetMapping("/detail")
+    // 일기 상세 페이지, 일기 수정 페이지
+    @GetMapping(value={"/detail", "/update"})
     public void detail(Long diaryNumber, Criteria criteria, Model model){
         model.addAttribute("diary", diaryService.show(diaryNumber));
     }
@@ -50,26 +50,28 @@ public class DiaryController {
     public RedirectView write(DiaryDTO diaryDTO, RedirectAttributes redirectAttributes){
         diaryService.register(diaryDTO);
         redirectAttributes.addFlashAttribute("diaryNumber", diaryDTO.getDiaryNumber());
-        log.info("날짜 출력:"+diaryDTO.getDiaryWriteDate());
+//        log.info("날짜 출력:"+diaryDTO.getDiaryWriteDate());
         return new RedirectView("/diary/list");
     }
 
     // 일기 수정 활성화
-    @GetMapping("/listUpdate")
-    public void listUpdate(){
+//    @GetMapping("/update")
+//    public void update(){
+//    }
 
-    }
-
-    // 일기 수정완료
-    @GetMapping("/listUpdateOk")
-    public void listUpdateOk(){
-
+    // 일기 수정 완료
+    @PostMapping("/update")
+    public RedirectView update(DiaryDTO diaryDTO, RedirectAttributes redirectAttributes){
+        diaryService.modify(diaryDTO);
+        redirectAttributes.addAttribute("diaryNumber", diaryDTO.getDiaryNumber());
+        return new RedirectView("/diary/detail");
     }
 
     // 일기 삭제
-    @GetMapping("/listRemove")
-    public void listRemove(){
-
+    @GetMapping("/delete")
+    public RedirectView delete(Long diaryNumber){
+        diaryService.remove(diaryNumber);
+        return new RedirectView("/diary/list");
     }
 
 //    // 일기 코멘트 작성

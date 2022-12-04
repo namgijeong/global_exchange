@@ -47,6 +47,10 @@ public class FileDAO {
     public void diarySave(FileDiaryVO fileDiaryVO){
         fileMapper.diaryInsert(fileDiaryVO);
     }
+    //    일기 파일 수정
+//    public void setFileDiaryVO(Long diaryNumber){
+//        fileMapper.diaryUpdate(diaryNumber);
+//    }
     //    일기 파일 삭제
     public void diaryRemove(Long diaryNumber){
         fileMapper.diaryDelete(diaryNumber);
