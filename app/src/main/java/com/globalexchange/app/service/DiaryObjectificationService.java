@@ -1,11 +1,9 @@
 package com.globalexchange.app.service;
 
-import com.globalexchange.app.domain.vo.Criteria;
-import com.globalexchange.app.domain.vo.DiaryDTO;
-import com.globalexchange.app.domain.vo.DiaryVO;
-import com.globalexchange.app.domain.vo.FileDiaryVO;
+import com.globalexchange.app.domain.vo.*;
 import com.globalexchange.app.repository.DiaryDAO;
 import com.globalexchange.app.repository.FileDAO;
+import com.globalexchange.app.repository.MemberDAO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,6 +22,7 @@ public class DiaryObjectificationService implements DiaryService {
 
   private final DiaryDAO diaryDAO;
   private final FileDAO fileDAO;
+  private final MemberDAO memberDAO;
 
   @Override
   @Transactional(rollbackFor = Exception.class)
@@ -87,5 +86,27 @@ public class DiaryObjectificationService implements DiaryService {
   @Override
   public int getTotal() {
     return diaryDAO.findCountAll();
+  }
+
+  @Override
+  public List<MemberDTO> showAllPartner(Criteria criteria) {
+    List<MemberVO> memberVOList = memberDAO.findAll(criteria);
+    List<MemberDTO> memberDTOList = new ArrayList<>();
+
+    for(MemberVO memberVO : memberVOList){
+      MemberDTO memberDTO = new MemberDTO();
+
+      memberDTO.create2(memberVO);
+      memberDTO.setFileProfileVO(memberDAO.myPageProfile(memberVO.getMemberNumber()));
+
+      memberDTOList.add(memberDTO);
+    }
+
+    return memberDTOList;
+  }
+
+  @Override
+  public int getTotal(Criteria criteria) {
+    return memberDAO.findCountAll(criteria);
   }
 }

@@ -1,8 +1,6 @@
 package com.globalexchange.app.service;
 
-import com.globalexchange.app.domain.vo.Criteria;
-import com.globalexchange.app.domain.vo.DiaryDTO;
-import com.globalexchange.app.domain.vo.DiaryVO;
+import com.globalexchange.app.domain.vo.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +20,12 @@ public interface DiaryService {
     public List<DiaryDTO> showAll(Criteria criteria);
     //    전체 개수
     public int getTotal();
+
+    // 파트너 리스트 조회
+    public List<MemberDTO> showAllPartner(Criteria criteria);
+
+    // 파트너 수 조회
+    public int getTotal(Criteria criteria);
 }
 
 

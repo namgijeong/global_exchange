@@ -1,7 +1,9 @@
 package com.globalexchange.app.repository;//package com.globalexchange.app.repository;
 
 
+import com.globalexchange.app.domain.vo.Criteria;
 import com.globalexchange.app.domain.vo.FileProfileVO;
+import com.globalexchange.app.domain.vo.MemberDTO;
 import com.globalexchange.app.domain.vo.MemberVO;
 import com.globalexchange.app.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
@@ -163,6 +165,16 @@ public class MemberDAO {
 //   마이페잊 수정 완료
     public void myPageImageUpdate(FileProfileVO fileProfileVO){
         memberMapper.myPageImageUpdate(fileProfileVO);
+    }
+
+    // 멤버 전체 조회
+    public List<MemberVO> findAll(Criteria criteria){
+        return memberMapper.selectAll(criteria);
+    }
+
+    // 멤버 수 조회
+    public int findCountAll(Criteria criteria){
+        return memberMapper.getTotal(criteria);
     }
 
 }

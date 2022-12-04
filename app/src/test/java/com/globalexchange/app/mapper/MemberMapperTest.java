@@ -1,5 +1,6 @@
 package com.globalexchange.app.mapper;
 
+import com.globalexchange.app.domain.vo.Criteria;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,20 @@ class MemberMapperTest {
     @Test
     void select() {
         log.info("member : " + memberMapper.select(1L));
+    }
+
+    @Test
+    void selectAll() {
+        log.info("member : " + memberMapper.selectAll(new Criteria().create(1, 16, "ALL")));
+    }
+
+    @Test
+    void getTotal() {
+        log.info("count : " + memberMapper.getTotal(new Criteria().create(1, 16, "ALL")));
+    }
+
+    @Test
+    void myPageProfile() {
+        log.info("memberProfileFile" + memberMapper.myPageProfile(1L));
     }
 }

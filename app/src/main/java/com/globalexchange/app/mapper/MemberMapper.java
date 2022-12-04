@@ -1,6 +1,8 @@
 package com.globalexchange.app.mapper;
 
+import com.globalexchange.app.domain.vo.Criteria;
 import com.globalexchange.app.domain.vo.FileProfileVO;
+import com.globalexchange.app.domain.vo.MemberDTO;
 import com.globalexchange.app.domain.vo.MemberVO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -58,7 +60,12 @@ public interface MemberMapper {
 //    마이페이지 수정 완료
    void myPageImageUpdate(FileProfileVO fileProfileVO);
 
-
 //
    public MemberVO select(Long memberNumber);
+
+   // 멤버 전체 조회
+   public List<MemberVO> selectAll(Criteria criteria);
+
+   // 멤버 수 조회
+   public int getTotal(Criteria criteria);
 }
