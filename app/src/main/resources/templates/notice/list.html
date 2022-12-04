@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Global Exchange</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+          rel="stylesheet">
+    <link href="/css/main/header.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/main/footer.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/notice/list.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div>
+    <!-- header -->
+    <div th:replace="/main/header.html::topHeader(${member})"></div>
+    <div th:replace="/main/header.html:: header "></div>
+
+    <!-- section -->
+    <div id="root">
+        <h1>공지사항</h1>
+        <div id="noticeAll">
+            <span>전체</span>
+        </div>
+        <ul id="noticeList">
+            <div th:each="notice:${notices}">
+                <li th:object="${notice}">
+                    <div class="notice-wrapper">
+                        <div class="notice-mark">공지</div>
+                        <div class="notice-title" th:text="*{noticeTitle}">
+                            <!-- <span>New</span> -->
+                        </div>
+                        <div class="notice-date" th:text="${#strings.substring(notice.noticeUpdateDate, 0, 16)}"></div>
+                    </div>
+                    <div class="notice-content">
+                        <pre class="notice-content-text" th:text="*{noticeContent}"></pre>
+                    </div>
+                </li>
+            </div>
+        </ul>
+        <div class="pagination-wrapper" th:object="${pagination}">
+            <a class="change-page start-page" th:href="*{startPage - 1}" th:if="*{prev}">
+                <code><</code>
+            </a>
+            <th:block th:each="pageNumber:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                <a class="change-page page-number not-selected" th:href="${pageNumber}" th:if="${pagination.criteria.page != pageNumber}">
+                    <code th:text="${pageNumber}"></code>
+                </a>
+                <a class="change-page page-number" th:unless="${pagination.criteria.page != pageNumber}">
+                    <code th:text="${pageNumber}"></code>
+                </a>
+            </th:block>
+            <a class="change-page end-page" th:href="*{endPage + 1}" th:if="*{next}">
+                <code>></code>
+            </a>
+        </div>
+        <form th:action="@{/notice/list}" th:object="${criteria}" name="pageForm">
+            <input type="hidden" th:field="*{page}">
+            <input type="hidden" th:field="*{amount}">
+        </form>
+    </div>
+    <!-- footer -->
+    <div th:replace="/main/footer.html:: footerFirst"></div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/notice/notice.js"></script>
+<script>
+    // 페이지네이션 마우스 올렸을 때 이벤트
+    const $pagenationAtags = $('.change-page');
+
+    $pagenationAtags.hover(function () {
+        $(this).css("background-color", 'rgb(229, 231, 234)');
+    }, function () {
+        $(this).css("background-color", 'transparent');
+    });
+
+    // 페이지 버튼을 눌렀을 때 해당 페이지로 이동
+    let $pages = $('.change-page');
+
+    $pages.on('click', function (e) {
+        e.preventDefault();
+        $(document.pageForm.page).val($(this).attr('href'));
+        document.pageForm.submit();
+    })
+</script>
+</html>

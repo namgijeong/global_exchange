@@ -43,13 +43,19 @@ public class MeetingAndHelpController {
         model.addAttribute("boards",  meetObjectificationService.categoryMeetSelectAll(criteria,nation2));
         model.addAttribute("pagination",new PageDTO().createPageDTO(criteria, meetObjectificationService.categoryGetTotal(nation2)));
     }
+
     // 만남과 도움 상세 페이지
     @GetMapping("/detail")
-    public void detail(Long meetNumber,Model model){
+    public void detail(Long meetNumber,Model model,HttpServletRequest request){
         MeetDTO meetDTO=meetObjectificationService.detailMeetBody(meetNumber);
         log.info(""+meetDTO.getFileMeetVO());
         log.info(""+meetDTO.getFileProfileVO());
+        log.info(""+meetDTO.getMemberNickname());
+        log.info(""+meetDTO.getMemberNumber());
         model.addAttribute("meetDTO",meetDTO);
+
+        HttpSession session = request.getSession();
+        session.setAttribute("memberNumber",1L);
 
     }
 
@@ -121,35 +127,7 @@ public class MeetingAndHelpController {
         return new RedirectView("/meetingAndHelp/list");
     }
 
-//    // 만남과 도움 답글 쓰기 페이지 이동
-//    @GetMapping("/answerWrite")
-//    public void answerWrite(){
 //
-//    }
-
-    // 만남과 도움 답글 쓰기 완료
-    @GetMapping("/answerWriteOk")
-    public void answerWriteOk(){
-
-    }
-
-    // 만남과 도움 답글 수정 활성화
-    @GetMapping("/answerUpdate")
-    public void answerUpdate(){
-
-    }
-
-    // 만남과 도움 답글 수정 완료
-    @GetMapping("/answerUpdateOk")
-    public void answerUpdateOk(){
-
-    }
-
-    // 만남과 도움 답글 삭제
-    @GetMapping("/answerRemove")
-    public void answerRemove(){
-
-    }
 
 //    // 만남과 도움 댓글 작성 페이지 이동
 //    @GetMapping("/answerCommentWrite")
@@ -157,7 +135,7 @@ public class MeetingAndHelpController {
 //
 //    }
 
-    // 만남과 도움 댓글 작성 완료
+    /*// 만남과 도움 댓글 작성 완료
     @GetMapping("/answerCommentWriteOk")
     public void answerCommentWriteOk(){
 
@@ -179,6 +157,6 @@ public class MeetingAndHelpController {
     @GetMapping("/answerCommentRemove")
     public void answerCommentRemove(){
 
-    }
+    }*/
 
 }

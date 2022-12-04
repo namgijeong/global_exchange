@@ -1,24 +1,88 @@
 package com.globalexchange.app.service;
 
-//import com.example.app.domain.vo.BoardDTO;
-//import com.example.app.domain.vo.BoardVO;
-//import com.example.app.domain.vo.Criteria;
+import com.globalexchange.app.domain.vo.*;
+import com.globalexchange.app.repository.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
-public interface MainService {
-//    //    추가
-//    public void register(BoardDTO boardDTO);
-//    //    수정
-//    public void modify(BoardDTO boardDTO);
-//    //    삭제
-//    public void remove(Long boardNumber);
-//    //    조회
-//    public BoardDTO show(Long boardNumber);
-//    //    전체 조회
-//    public List<BoardVO> showAll(Criteria criteria);
-////    전체 개수
-//    public int getTotal();
+@RequiredArgsConstructor
+public class MainService {
+
+    private final MeetDAO meetDAO;
+    private final FileDAO fileDAO;
+    private final LodgingDAO lodgingDAO;
+    private final LodgingAnswerDAO lodgingAnswerDAO;
+    /*private final FileLodgingDAO fileLodgingDAO;*/
+
+    public List<MeetDTO> showAllLatestAnsweredMeet(){
+        List<MeetVO> meetVOList = meetDAO.findAllLatestAnsweredMeet(new Criteria().create(1, 4));
+        List<MeetDTO> meetDTOList = new ArrayList<>();
+
+        for(MeetVO meetVO : meetVOList) {
+            MeetDTO meetDTO = new MeetDTO();
+
+            meetDTO.create(meetVO);
+            meetDTO.setMeetAnswerCount(meetDAO.meetAnswerCount(meetVO.getMeetNumber()));
+            meetDTO.setFileMeetVO(fileDAO.getMeetFile(meetVO.getMeetNumber()));
+
+            meetDTOList.add(meetDTO);
+        }
+
+        return meetDTOList;
+    }
+
+    public List<MeetDTO> showAllLatestNotAnsweredMeet(){
+        List<MeetVO> meetVOList = meetDAO.findAllLatestNotAnsweredMeet(new Criteria().create(1, 4));
+        List<MeetDTO> meetDTOList = new ArrayList<>();
+
+        for(MeetVO meetVO : meetVOList) {
+            MeetDTO meetDTO = new MeetDTO();
+
+            meetDTO.create(meetVO);
+            meetDTO.setMeetAnswerCount(meetDAO.meetAnswerCount(meetVO.getMeetNumber()));
+            meetDTO.setFileMeetVO(fileDAO.getMeetFile(meetVO.getMeetNumber()));
+
+            meetDTOList.add(meetDTO);
+        }
+
+        return meetDTOList;
+    }
+
+    public List<LodgingDTO> showAllLatestAnsweredLodging(){
+        List<LodgingVO> lodgingVOList = lodgingDAO.findAllLatestAnsweredLodging(new Criteria().create(1, 4));
+        List<LodgingDTO> lodgingDTOList = new ArrayList<>();
+
+        for(LodgingVO lodgingVO : lodgingVOList) {
+            LodgingDTO lodgingDTO = new LodgingDTO();
+
+            lodgingDTO.create(lodgingVO);
+            lodgingDTO.setLodgingAnswerCount(lodgingAnswerDAO.findCount(lodgingVO.getLodgingNumber()));
+            /*lodgingDTO.setFileLodgingVO(fileLodgingDAO.getLodgingFile(lodgingVO.getLodgingNumber()));*/
+
+            lodgingDTOList.add(lodgingDTO);
+        }
+
+        return lodgingDTOList;
+    }
+
+    public List<LodgingDTO> showAllLatestNotAnsweredLodging(){
+        List<LodgingVO> lodgingVOList = lodgingDAO.findAllLatestNotAnsweredLodging(new Criteria().create(1, 4));
+        List<LodgingDTO> lodgingDTOList = new ArrayList<>();
+
+        for(LodgingVO lodgingVO : lodgingVOList) {
+            LodgingDTO lodgingDTO = new LodgingDTO();
+
+            lodgingDTO.create(lodgingVO);
+            lodgingDTO.setLodgingAnswerCount(lodgingAnswerDAO.findCount(lodgingVO.getLodgingNumber()));
+            /*lodgingDTO.setFileLodgingVO(fileLodgingDAO.getLodgingFile(lodgingVO.getLodgingNumber()));*/
+
+            lodgingDTOList.add(lodgingDTO);
+        }
+
+        return lodgingDTOList;
+    }
 }
-
-

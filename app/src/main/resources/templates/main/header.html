@@ -8,30 +8,112 @@
     <link href="/css/main/header.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div id="topHeader" th:fragment="topHeader">
+    <div id="topHeader" th:fragment="topHeader(member)">
         <div>
-            <div id="topHeaderText">
-                <span class="top-header-button" id="joinMember">회원가입</span>
-                <span class="top-header-button" id="login">로그인</span>
-                <span class="top-header-button">자주 묻는 질문</span>
-                <span class="top-header-button">공지사항</span>
-                <span class="top-header-button">마이페이지</span>
+            <div id="topHeaderText" th:object="${member}">
+                <th:block th:if="${member == null}">
+                    <span class="top-header-button" id="joinMember" onclick="location.href='/member/join'">회원가입</span>
+                    <span class="top-header-button" id="login" onclick="location.href='/member/login'">로그인</span>
+                </th:block>
+                <th:block th:unless="${member == null}">
+                    <span class="top-header-button" id="memberNickname" th:onclick="|location.href='@{/member/mypage}'|">
+                    <!--<span class="top-header-button" id="memberNickname" th:onclick="|location.href='@{/member/mypage(memberNumber = *{memberNumber})}'|">-->
+                        <span class="memberNickname-style" th:text="*{memberNickname}"></span>님
+                    </span>
+                    <span class="top-header-button" id="logout" th:onclick="|location.href='@{/member/logout}'|">
+                    <!--<span class="top-header-button" id="logout" th:onclick="|location.href='@{/member/logout(memberNumber = *{memberNumber})}'|">-->
+                        <button class="logout-btn">로그아웃</button>
+                    </span>
+                </th:block>
+                <span id="notice" class="top-header-button" th:onclick="|location.href='@{/notice/list}'|">공지사항</span>
+                <span id="question" class="top-header-button"th:onclick="|location.href='@{/question/question}'|" >문의사항</span>
             </div>
         </div>
     </div>
     <div id="header" th:fragment="header">
         <div>
-            <a id="logo">
+            <a id="logo" th:href="@{/main/main}">
                 <img src="/images/main/logo.png"/>
             </a>
             <form id="searchSection">
                 <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23AAA' stroke-width='2' d='M11 17c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zM15 15l4.95 4.95'/%3E %3C/svg%3E"/>
                 <input name="searchKeyWord" placeholder="어떤 게시글을 찾으시나요?"/>
             </form>
-            <a id="diary"><div class="header-icon"><img src="/images/main/diaryIcon.png"/></div><span class="header-icon-text">교환일기</span></a>
-            <a id="meetAndHelp"><div class="header-icon"><img src="/images/main/meetIcon.png"/></div><span class="header-icon-text">만남과 도움</span></a>
-            <a id="guestHouse"><div class="header-icon"><img src="/images/main/accomodationIcon.png"/></div><span class="header-icon-text">숙소가 필요해</span></a>
+            <a id="diary" th:href="@{/diary/list}">
+                <div class="header-icon">
+                    <img src="/images/main/diaryIcon.png"/>
+                </div>
+                <span class="header-icon-text">교환일기</span>
+            </a>
+            <a id="meetAndHelp" th:href="@{/meetingAndHelp/list}">
+                <div class="header-icon">
+                    <img src="/images/main/meetIcon.png"/>
+                </div>
+                <span class="header-icon-text">만남과 도움</span>
+            </a>
+            <a id="guestHouse" th:href="@{/needLodging/list}">
+                <div class="header-icon">
+                    <img src="/images/main/accomodationIcon.png"/>
+                </div>
+                <span class="header-icon-text">숙소가 필요해</span>
+            </a>
         </div>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script th:inline="javascript">
+    const $joinMember = $('#joinMember');
+    const $login = $('#login');
+    const $memberNickname = $('#memberNickname');
+    const $logout = $('#logout');
+    const $notice = $('#notice');
+    const $question = $('#question');
+    let $memberNumber = [[${member.memberNumber}]];
+
+    $joinMember.on('click', function () {
+        alert("눌림");
+        location.href = "/member/joinForm";
+    });
+
+    $login.on('click', function () {
+        location.href = "/member/login";
+    });
+
+    $memberNickname.on('click', function () {
+        location.href = "/member/mypage?memberNumber=" + $memberNumber;
+    });
+
+    $logout.on('click', function () {
+        location.href = "/member/logout?memberNumber=" + $memberNumber;
+    });
+
+    $notice.on('click', function () {
+        location.href = "/notice/list";
+    });
+
+    $question.on('click', function () {
+        location.href = "/question/question";
+    });
+</script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

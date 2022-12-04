@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 @Data
 public class MemberReportVO {
     private Long memberReportNumber;
-    private String reportingMemberNumber;
-    private String reportedMemberNumber;
-    private String memberReportCount;
+    private Long reportingMemberNumber;
+    private Long reportedMemberNumber;
+    private Long memberReportCount;
 
 
 //    public void create(String fileName, String fileUploadPath, String fileUuid, boolean fileImageCheck) {

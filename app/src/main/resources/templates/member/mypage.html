@@ -14,7 +14,7 @@
     <div id="app">
         <div class="appWrapper">
             <!-- header -->
-            <div th:replace="/main/header.html:: topHeader "></div>
+            <div th:replace="/main/header.html::topHeader(${member})"></div>
             <div th:replace="/main/header.html:: header "></div>
 
             <!-- main -->
@@ -181,7 +181,7 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script>
+<script th:inline="javascript">
     // 모달창
     const modalContainer = document.querySelector(".modal-container");
 

@@ -11,7 +11,7 @@ public class MeetAnswerVO {
     private String meetAnswerContent;
     private String meetAnswerWriteDate;
     private String meetAnswerUpdateDate;
-    private String meetNumber;
+    private Long meetNumber;
 
 //    public void create(String fileName, String fileUploadPath, String fileUuid, boolean fileImageCheck) {
 //        this.fileName = fileName;
