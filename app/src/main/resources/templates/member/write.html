@@ -71,7 +71,7 @@
                         <div>
                             <label for="memberBirthday" class="input-label">생년월일</label>
                             <!-- 생년월일은 변경 불가하게 함. -->
-                            <input type="text" id="memberBirthday" name="memberBirthdate" class="input-style" value="990101" th:value="${memberDTO.memberBirthdate}">
+                            <input type="text" id="memberBirthday" name="memberBirthdate" class="input-style" value="990101" th:value="${#strings.substring(memberDTO.memberBirthdate,0,10)}">
                             <div class="warning-text">생년월일을 입력해주세요.</div>
                         </div>
                         <div>

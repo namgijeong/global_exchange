@@ -64,7 +64,7 @@
                             </div>
                             <div>
                                 <label for="memberBirthday" class="input-label" >생년월일</label>
-                                <input type="text" id="memberBirthday" name="memberBirthday" class="input-style" value="901010"disabled th:value="${memberDTO.memberBirthdate}">
+                                <input type="text" id="memberBirthday" name="memberBirthday" class="input-style" value="901010"disabled th:value="${#strings.substring(memberDTO.memberBirthdate,0,10)}">
                             </div>
                             <div>
                                 <label for="memberMotherTongue" class="input-label" >모국어</label>
