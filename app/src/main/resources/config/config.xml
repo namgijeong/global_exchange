@@ -5,14 +5,26 @@
         <typeAlias type="com.globalexchange.app.domain.vo.MemberVO" alias="memberVO"/>
         <typeAlias type="com.globalexchange.app.domain.vo.MeetVO" alias="meetVO"/>
         <typeAlias type="com.globalexchange.app.domain.vo.MemberVO" alias="memberVO"/>
+
+        <typeAlias type="com.globalexchange.app.domain.vo.DiaryVO" alias="diaryVO"/>
+
+        <typeAlias type="com.globalexchange.app.domain.vo.MemberDTO" alias="memberDTO"/>
+
         <typeAlias type="com.globalexchange.app.domain.vo.MemberVO" alias="memberVO"/>
         <typeAlias type="com.globalexchange.app.domain.vo.MeetAnswerVO" alias="meetAnswerVO"/>
         <typeAlias type="com.globalexchange.app.domain.vo.MeetAnswerCommentVO" alias="meetAnswerCommentVO"/>
+
         <typeAlias type="com.globalexchange.app.domain.vo.MeetDTO" alias="meetDTO"/>
+        <typeAlias type="com.globalexchange.app.domain.vo.DiaryDTO" alias="diaryDTO"/>
+
         <typeAlias type="com.globalexchange.app.domain.vo.Criteria" alias="criteria"/>
         <typeAlias type="com.globalexchange.app.domain.vo.FileProfileVO" alias="fileProfileVO"/>
         <typeAlias type="com.globalexchange.app.domain.vo.FileMeetVO" alias="fileMeetVO"/>
+
         <typeAlias type="com.globalexchange.app.domain.vo.NoticeVO" alias="noticeVO"/>
         <typeAlias type="com.globalexchange.app.domain.vo.LodgingVO" alias="lodgingVO"/>
+
+        <typeAlias type="com.globalexchange.app.domain.vo.FileDiaryVO" alias="fileDiaryVO"/>
+
     </typeAliases>
 </configuration>
