@@ -17,14 +17,103 @@
     </select>
 
     <insert id="joinForm">
-        insert into tbl_member(member_number, member_id, member_nickname, member_password, member_teaching_lang, member_learning_lang, member_interesting, member_gender)
-        values(MEMBER_SEQ.NEXTVAL, #{memberId}, #{memberNickname}, #{memberPassword}, #{memberTeachingLang}, #{memberLearningLang}, #{memberInteresting}, #{memberGender})
+        <selectKey keyProperty="memberNumber" order="BEFORE" resultType="long">
+            SELECT MEMBER_SEQ.NEXTVAL FROM DUAL
+        </selectKey>
+        insert into tbl_member(member_number, member_id, member_nickname, member_password, member_teaching_lang, member_learning_lang, member_interesting, member_gender, member_nation_url)
+        values(#{memberNumber}, #{memberId}, #{memberNickname}, #{memberPassword}, #{memberTeachingLang}, #{memberLearningLang}, #{memberInteresting}, #{memberGender}, #{memberNationUrl})
     </insert>
+
 
     <select id="select" resultType="memberVO">
         SELECT MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_TEACHING_LANG, MEMBER_LEARNING_LANG, MEMBER_INTERESTING, MEMBER_GENDER, MEMBER_NICKNAME, MEMBER_PHONE_NUM, MEMBER_BIRTHDATE, MEMBER_INTRODUCE, MEMBER_NATION_URL
         FROM TBL_MEMBER
         WHERE MEMBER_NUMBER = #{memberNumber}
     </select>
+
+
+    <select id="currentJoinMemberNum" resultType="long">
+        SELECT LAST_NUMBER FROM all_SEQUENCES
+        WHERE SEQUENCE_NAME = 'MEMBER_SEQ'
+    </select>
+
+    <insert id="profileDefaultInsert">
+        insert into tbl_file_profile(file_number,file_name,file_upload_path,file_uuid,file_image_check,file_size,member_number)
+        values(file_profile_seq.NEXTVAL,#{fileName},#{fileUploadPath},#{fileUuid},#{fileImageCheck},#{fileSize},#{memberNumber})
+    </insert>
+
+    <select id="myPageNickname" resultType="memberVO">
+        SELECT MEMBER_NICKNAME,MEMBER_NUMBER FROM tbl_member
+        WHERE MEMBER_NUMBER = #{memberNumber}
+    </select>
+
+    <select id="myPageProfile" resultType="fileProfileVO">
+        SELECT * FROM tbl_file_profile
+        WHERE MEMBER_NUMBER = #{memberNumber}
+    </select>
+
+
+    <select id="diaryTotalPost" resultType="long">
+        SELECT count(MEMBER_NUMBER) FROM tbl_diary
+        WHERE MEMBER_NUMBER= #{memberNumber}
+    </select>
+
+    <select id="meetPost" resultType="long">
+        SELECT count(MEMBER_NUMBER) FROM tbl_meet
+        WHERE MEMBER_NUMBER= #{memberNumber}
+    </select>
+
+    <select id="lodgingPost" resultType="long">
+        SELECT count(MEMBER_NUMBER) FROM tbl_lodging
+        WHERE MEMBER_NUMBER= #{memberNumber}
+    </select>
+
+    <select id="meetAnswer" resultType="long">
+        SELECT count(MEMBER_NUMBER) FROM tbl_meet
+        WHERE MEMBER_NUMBER= #{memberNumber}
+    </select>
+
+    <select id="lodgingAnswer" resultType="long">
+        SELECT count(MEMBER_NUMBER) FROM tbl_lodging
+        WHERE MEMBER_NUMBER= #{memberNumber}
+    </select>
+
+    <select id="diaryPartnerList" resultType="long">
+        SELECT DIARY_PARTNER_NUMBER FROM tbl_diary_partner
+        WHERE MEMBER_NUMBER= #{memberNumber}
+    </select>
+
+    <select id="diaryPartnerNickname" resultType="memberVO">
+        SELECT MEMBER_NICKNAME,MEMBER_NUMBER,MEMBER_TEACHING_LANG FROM tbl_member
+        WHERE MEMBER_NUMBER = #{memberNumber}
+    </select>
+
+    <select id="diaryPartnerProfile" resultType="fileProfileVO">
+        SELECT * FROM tbl_file_profile
+        WHERE MEMBER_NUMBER = #{memberNumber}
+    </select>
+
+    <delete id="deletePartner">
+        DELETE FROM tbl_diary_partner
+        WHERE DIARY_PARTNER_NUMBER= #{diaryPartnerNumber}
+    </delete>
+
+    <select id="myPageDetail" resultType="memberVO">
+        SELECT * FROM tbl_member
+        WHERE MEMBER_NUMBER = #{memberNumber}
+    </select>
+
+
+    <update id="myPageContentUpdate">
+        UPDATE tbl_member
+        SET MEMBER_NICKNAME = #{memberNickname}, MEMBER_PHONE_NUM = #{memberPhoneNum}, MEMBER_BIRTHDATE = #{memberBirthdate}, MEMBER_TEACHING_LANG = #{memberTeachingLang}, MEMBER_LEARNING_LANG = #{memberLearningLang}, MEMBER_INTERESTING = #{memberInteresting}, MEMBER_INTRODUCE = #{memberIntroduce},member_nation_url = #{memberNationUrl}
+        WHERE MEMBER_NUMBER = #{memberNumber}
+    </update>
+
+    <update id="myPageImageUpdate">
+        UPDATE tbl_file_profile
+        SET FILE_NAME = #{fileName}, FILE_UPLOAD_PATH = #{fileUploadPath}, FILE_UUID = #{fileUuid}, FILE_IMAGE_CHECK = #{fileImageCheck}, FILE_SIZE = #{fileSize}, MEMBER_NUMBER = #{memberNumber}
+        WHERE FILE_NUMBER = #{fileNumber}
+    </update>
 
 </mapper>

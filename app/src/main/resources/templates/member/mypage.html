@@ -19,11 +19,18 @@
 
             <!-- main -->
             <div class="page-wrapper">
-                <div class="mypage-user-info-wrapper">
+                <div class="mypage-user-info-wrapper" onclick="location.href='/member/detail'">
                     <a href="javascript:void(0)" class="user-info-wrapper">
-                        <img class="user-info-image" src="/images/member/sample5.png" alt="프로필 이미지">
+                        <!--<img class="user-info-image" src="/images/member/sample5.png" alt="프로필 이미지">-->
+                        <th:block th:if="${not #strings.isEmpty(memberDTO.fileProfileVO)}">
+                            <img th:if="${memberDTO.fileProfileVO.fileImageCheck}" th:src="@{/fileProfile/display(fileName=${memberDTO.fileProfileVO.fileUploadPath} + '/' + ${memberDTO.fileProfileVO.fileUuid} + '_' + ${memberDTO.fileProfileVO.fileName})}"  class="user-info-image"/>
+                            <img th:unless="${memberDTO.fileProfileVO.fileImageCheck}" src="/images/noImage/no-image.jpg" class="user-info-image"/>
+                        </th:block>
+                        <th:block th:unless="${not #strings.isEmpty(memberDTO.fileProfileVO)}">
+                            <img src="/images/noImage/no-image.jpg"  class="user-info-image">
+                        </th:block>
                         <div class="user-info-text-wrapper">
-                            <div id="memberNickName" class="user-info-nickname">
+                            <div id="memberNickName" class="user-info-nickname" th:text="${memberDTO.memberNickname}">
                                 Jason Me
                             </div>
                             <div id="memberAccountType" class="user-info-account">
@@ -37,7 +44,7 @@
                         <div class="user-property-title">
                             파트너와 나누고 있는 교환일기 수
                         </div>
-                        <div class="user-property-value">
+                        <div class="user-property-value" th:text="${diaryTotalPost}">
                             3
                         </div>
                     </div>
@@ -45,7 +52,7 @@
                         <div class="user-property-title">
                             내가 작성한<br> 게시글 수
                         </div>
-                        <div class="user-property-value">
+                        <div class="user-property-value" th:text="${postTotal}">
                             10
                         </div>
                     </div>
@@ -53,29 +60,63 @@
                         <div class="user-property-title">
                             내가 작성한<br> 답글 수
                         </div>
-                        <div class="user-property-value">
+                        <div class="user-property-value" th:text="${answerTotal}">
                             9
                         </div>
                     </div>
                 </div>
                 <div class="mypage-domain-wrapper">
                     <header>교환일기 파트너 목록</header>
-                    <div class="mypage-partner-list-wrapper">
-                        <div class="partner-info-wrapper">
+
+                    <div class="mypage-partner-list-wrapper" id="partnerList">
+                        <th:block th:each="partnerOne:${partnerList}">
+
+                            <div class="partner-info-wrapper">
+                                <div class="partner-info-container">
+                                    <div class="partner-profile-image-wrapper">
+                                        <a href="javascript:void(0)">
+<!--                                            <img class="partner-profile-image" src="/images/member/sample3.png" alt="파트너 프로필 이미지">-->
+                                            <th:block th:if="${not #strings.isEmpty(partnerOne.fileProfileVO)}">
+                                                <img th:if="${partnerOne.fileProfileVO.fileImageCheck}" th:src="@{/fileProfile/display(fileName=${partnerOne.fileProfileVO.fileUploadPath} + '/' + ${partnerOne.fileProfileVO.fileUuid} + '_' + ${partnerOne.fileProfileVO.fileName})}"  class="user-info-image"/>
+                                                <img th:unless="${partnerOne.fileProfileVO.fileImageCheck}" src="/images/noImage/no-image.jpg" class="user-info-image"/>
+                                            </th:block>
+                                            <th:block th:unless="${not #strings.isEmpty(partnerOne.fileProfileVO)}">
+                                                <img src="/images/noImage/no-image.jpg"  class="user-info-image">
+                                            </th:block>
+                                        </a>
+                                    </div>
+                                    <div class="partner-meta-data">
+                                        <a href="javascript:void(0)">
+                                            <div id="partnerNickname" class="partner-meta-data-title" th:text="${partnerOne.memberNickname}">
+                                                John
+                                            </div>
+                                        </a>
+                                        <div class="partner-meta-data-row">
+                                            <div class="partner-meta-data-nation" th:text="${partnerOne.memberTeachingLang}">
+                                                영국
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="partner-off-btn " th:value="${partnerOne.memberNumber}">파트너 끊기</button>
+                            </div>
+                        </th:block>
+                        <!--<div class="partner-info-wrapper">
                             <div class="partner-info-container">
                                 <div class="partner-profile-image-wrapper">
                                     <a href="javascript:void(0)">
-                                        <img class="partner-profile-image" src="/images/member/sample2.png" alt="파트너 프로필 이미지">
+&lt;!&ndash;                                        <img class="partner-profile-image" src="/images/member/sample2.png" alt="파트너 프로필 이미지">&ndash;&gt;
+
                                     </a>
                                 </div>
                                 <div class="partner-meta-data">
                                     <a href="javascript:void(0)">
-                                        <div id="partnerNickname" class="partner-meta-data-title">
+                                        <div id="partnerNickname" class="partner-meta-data-title" th:text="${partnerList.memberNickname}">
                                             Tom Cruse
                                         </div>
                                     </a>
                                     <div class="partner-meta-data-row">
-                                        <div class="partner-meta-data-nation">
+                                        <div class="partner-meta-data-nation" th:text="${partnerList.memberTeachingLang}">
                                             미국
                                         </div>
                                     </div>
@@ -126,7 +167,7 @@
                                 </div>
                             </div>
                             <button onclick="modal()" class="partner-off-btn">파트너 끊기</button>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <div class="mypage-domain-wrapper">
@@ -134,7 +175,7 @@
                     <a href="javascript:void(0)">
                         <div class="table-base">
                             <div class="table-row-content-wrapper">
-                                <div class="table-row-title">공지사항</div>
+                                <div class="table-row-title" onclick="location.href='/notice/list'">공지사항</div>
                                 <div></div>
                             </div>
                         </div>
@@ -142,7 +183,7 @@
                     <a href="javascript:void(0)">
                         <div class="table-base">
                             <div class="table-row-content-wrapper">
-                                <div class="table-row-title">문의사항 작성하기</div>
+                                <div class="table-row-title" onclick="location.href='/question/question'">문의사항 작성하기</div>
                                 <div></div>
                             </div>
                         </div>
@@ -167,7 +208,7 @@
                 </div>
                 <footer class="modal-footer">
                     <div class="btn-container">
-                        <button id="yesBtn" class="warning-btn">
+                        <button id="yesBtn" class="warning-btn" >
                             네
                         </button>
                         <button id="noBtn" class="secondary-btn">
@@ -181,9 +222,19 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
 <script th:inline="javascript">
+
+<script>
+
+
+
     // 모달창
+    let partnerOneMemberNumber ;
+    const $yesBtn = $('#yesBtn');
+    const $noBtn = $('#noBtn');
     const modalContainer = document.querySelector(".modal-container");
+
 
     function openModal() {
         document.body.style.overflow = "hidden";
@@ -191,27 +242,68 @@
 
     function closeModal() {
         document.body.style.overflow = "unset";
-    }
+    };
 
     function modal() {
         modalContainer.style.display = "flex";
         openModal();
-    }
+    };
 
-    const $yesBtn = $('#yesBtn');
-    const $noBtn = $('#noBtn');
 
-    $yesBtn.on('click', function () {
-        /* 해당 파트너를 삭제한다. */
-        console.log('파트너를 삭제합니다.');
-        modalContainer.style.display = "none";
-        closeModal();
-    })
+
+
 
     $noBtn.on('click', function () {
         modalContainer.style.display = "none";
         closeModal();
-    })
+    });
+
+    $(document).ready(function () {
+
+
+
+    $("#partnerList").on("click",".partner-off-btn", function(){
+        console.log('파트너 끊기 들어옴.');
+        console.log($(this).attr('value'));
+        partnerOneMemberNumber =  $(this).attr('value');
+        console.log('파트너를 삭제합니다.'+ partnerOneMemberNumber);
+        modal();
+
+    });
+    //     function clickPartnerOff() {
+    //         console.log('파트너 끊기 들어옴.');
+    //         console.log($(this).attr('value'));
+    //         partnerOneMemberNumber =  $(this).attr('value');
+    //         console.log('파트너를 삭제합니다.'+ partnerOneMemberNumber);
+    //         modal();
+    //     };
+
+        $yesBtn.on('click', function () {
+            /* 해당 파트너를 삭제한다. */
+            console.log('파트너를 삭제합니다.');
+            console.log('파트너를 삭제합니다.'+ partnerOneMemberNumber);
+            $.ajax({
+                url: "/member/mypagePartner/deletePartner/" + partnerOneMemberNumber,
+                type:"get",
+                contentType:"application/json; charset=utf-8",
+                success: function(){
+                    modalContainer.style.display = "none";
+                    closeModal();
+                    location.href='/member/mypage';
+                },
+                error: function(a, b, c){
+                    console.log(a, b, c);
+                }
+            });
+
+        });
+    });
+
+
+
+
+
+
 </script>
 </html>
 
