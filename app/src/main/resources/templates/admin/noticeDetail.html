@@ -44,60 +44,78 @@
                 <h2>공지사항 상세보기</h2>
                 <span>공지사항 상세보기 입니다</span>
             </div>
-
         </div>
-
         <div id="subnavigation_result_body">
-            <div id="subnavigation_search_and_delete">
-<!--                <div id="subnavigation_search">-->
-<!--                    <span></span>-->
-<!--                    <input type="text" name="search_member" placeholder="검색"/>-->
-<!--                </div>-->
-
-            </div>
-            <div id="subnavigation_list">
-                <div id="subnavigation_list_title">
-                    <!--<input type="checkbox" />-->
-                    <span>공지사항 번호</span>
-                    <input type="text" value="1"/>
-
+            <form method="get" th:action="@{/admin/noticeDelete}" th:object="${notice}" id="deleteForm">
+                <div id="subnavigation_list">
+                    <div class="subnavigation_list_detail">
+                        <span>번호</span>
+                        <input type="text" th:field="*{noticeNumber}" readonly>
+                    </div>
+                    <div class="subnavigation_list_detail">
+                        <span>제목</span>
+                        <input type="text" th:field="*{noticeTitle}" readonly>
+                    </div>
+                    <div class="subnavigation_list_detail">
+                        <span>작성 일자</span>
+                        <input type="text" th:field="*{noticeWriteDate}" readonly>
+                    </div>
+                    <div class="subnavigation_list_detail">
+                        <span>수정 일자</span>
+                        <input type="text" th:field="*{noticeUpdateDate}" readonly>
+                    </div>
+                    <div class="subnavigation_list_detail content-style">
+                        <span>내용</span>
+                        <pre th:text="*{noticeContent}"></pre>
+                    </div>
                 </div>
-                <div class="subnavigation_list_detail">
-                    <!--<input type="checkbox" name="select_member"/>-->
-                    <span>제목</span>
-                    <input type="text" value="사용자 이용수칙"/>
-                </div>
-                <div class="subnavigation_list_detail">
-                    <!--<input type="checkbox" name="select_member"/>-->
-                    <span>작성 일자</span>
-                    <input type="text" value="2022-10-23"/>
-
-                </div>
-                <div class="subnavigation_list_detail">
-                    <!--<input type="checkbox" name="select_member"/>-->
-                    <span>수정 일자</span>
-                    <input type="text" value="2022-10-23"/>
-
-                </div>
-                <div class="subnavigation_list_detail">
-                    <!--<input type="checkbox" name="select_member"/>-->
-                    <span>내용</span>
-                    <input type="text" value="욕설과 비속어는 사용불가입니다."/>
-
-                </div>
-
-            </div>
-
-            <div id="back_and_submit">
-                <button >목록으로</button>
-                <button type="submit">수정하기</button>
-                <button type="submit">삭제하기</button>
-            </div>
-
+                <ul class="button-conatiner">
+                    <div class="button-wrapper">
+                        <li>
+                            <input type="button" class="button-style" value="목록으로" onclick="goList()">
+                        </li>
+                        <li>
+                            <input type="button" class="button-style" value="수정" onclick="goUpdate()">
+                        </li>
+                        <li>
+                            <input type="submit" class="button-style" value="삭제">
+                        </li>
+                    </div>
+                </ul>
+            </form>
         </div>
     </div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
+<script th:inline="javascript">
+    let $queryString = [[${criteria.queryString}]];
+    let $noticeNumber = [[${notice.noticeNumber}]];
+
+    // 전체 목록으로 이동한다.
+    function goList() {
+        location.href = "/admin/noticeList" + $queryString;
+    }
+
+    // 수정 페이지로 이동한다.
+    function goUpdate() {
+        location.href = "/admin/noticeUpdate?noticeNumber=" + $noticeNumber;
+    }
+
+    // 삭제 하고 전체 목록으로 이동한다.
+
+
+</script>
 </html>
+
+
+
+
+
+
+
+
+
+
+

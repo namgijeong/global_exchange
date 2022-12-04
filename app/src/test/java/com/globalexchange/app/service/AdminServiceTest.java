@@ -1,4 +1,4 @@
-package com.globalexchange.app.mapper;
+package com.globalexchange.app.service;
 
 import com.globalexchange.app.domain.vo.Criteria;
 import com.globalexchange.app.domain.vo.NoticeVO;
@@ -7,45 +7,43 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 @Slf4j
-public class NoticeMapperTest {
+public class AdminServiceTest {
     @Autowired
-    private NoticeMapper noticeMapper;
+    private AdminService adminService;
 
     @Test
-    void insert() {
+    void register() {
         NoticeVO noticeVO = new NoticeVO().create("공지사항 제목1", "공지사항 내용1");
-        noticeMapper.insert(noticeVO);
+        adminService.register(noticeVO);
     }
 
     @Test
-    void update() {
-        NoticeVO noticeVO = noticeMapper.select(2L);
+    void modify() {
+        NoticeVO noticeVO = adminService.show(2L);
         noticeVO.setNoticeContent("수정된 내용");
         noticeVO.setNoticeTitle("수정된 제목");
-        noticeMapper.update(noticeVO);
+        adminService.modify(noticeVO);
     }
 
     @Test
-    void delete() {
-        noticeMapper.delete(1L);
+    void remove() {
+        adminService.remove(1L);
     }
 
     @Test
-    void select() {
-        log.info("notice : " + noticeMapper.select(3L));
+    void show() {
+        log.info("notice : " + adminService.show(3L));
     }
 
     @Test
-    void selectAll() {
-        noticeMapper.selectAll(new Criteria().create(1, 10)).stream().map(NoticeVO::getNoticeTitle).forEach(log::info);
+    void showAll() {
+        adminService.showAll(new Criteria().create(1, 10)).stream().map(NoticeVO::getNoticeTitle).forEach(log::info);
     }
 
     @Test
     void getTotal() {
-        noticeMapper.getTotal();
+        adminService.getTotal();
     }
 }

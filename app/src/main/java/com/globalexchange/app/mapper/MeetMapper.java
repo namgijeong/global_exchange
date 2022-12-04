@@ -1,9 +1,6 @@
 package com.globalexchange.app.mapper;
 
-import com.globalexchange.app.domain.vo.Criteria;
-import com.globalexchange.app.domain.vo.MeetDTO;
-import com.globalexchange.app.domain.vo.MeetVO;
-import com.globalexchange.app.domain.vo.MemberVO;
+import com.globalexchange.app.domain.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -25,4 +22,23 @@ public interface MeetMapper {
     public void updateRequest(MeetDTO meetDTO);
     //meet 게시글 delete
     public void deleteRequest(Long meetNumber);
+    //meet 답글 select 페이지네이션
+    public List<MeetAnswerVO> meetAnswerSelectAll(@Param("meetNumber") Long meetNumber, @Param("criteria") Criteria criteria);
+    //meet 답글 갯수 세기
+    public long meetAnswerCount(Long meetNumber);
+    //meet 답글 업데이트
+    public void  meetAnswerUpdate(MeetAnswerVO meetAnswerVO);
+    //meet 답글 쓰기 인서트
+    public void meetAnswerInsert(MeetAnswerVO meetAnswerVO);
+    //meet 답글 코멘트 전체 불러오기
+    public List<MeetAnswerCommentVO> meetAnswerCommentSelectAll (Long meetAnswerNumber);
+    //meet 답글 삭제
+    public void meetAnswerRemove(Long meetAnswerNumber);
+
+    // 답글이 없는 최신글 조회
+    public List<MeetVO> selectAllLatestNotAnsweredMeet(Criteria criteria);
+
+    // 답글이 있는 최신글 조회
+    public List<MeetVO> selectAllLatestAnsweredMeet(Criteria criteria);
+
 }

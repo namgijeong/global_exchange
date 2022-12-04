@@ -4,18 +4,16 @@
     <meta charset="UTF-8">
     <meta name ="google-signin-client_id" content="373673855497-8p67tihs4dtqcn7vvkfheuvurao2o7i1.apps.googleusercontent.com">
     <title>로그인</title>
-
     <link href="/css/main/header.css" rel="stylesheet" type="text/css" />
     <link href="/css/main/footer.css" rel="stylesheet" type="text/css" />
     <link href="/css/member/login.css" rel="stylesheet" type="text/css" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div th:replace="/main/header.html:: topHeader "></div>
-    <div th:replace="/main/header.html:: header "></div>
+    <div th:replace="/main/header.html::topHeader(${member})"></div>
+    <div th:replace="/main/header.html::header"></div>
     <section id="realLogin">
         <div id="realLoginLogin"><h3>로그인</h3></div>
         <div id="putLoginInfo">
@@ -28,7 +26,7 @@
             <div><button id="goRealGoogleLogin" onclick="init()"><img src="/images/member/googleLoginIcon.png"/></button></div>
         </div>
     </section>
-    <form action="/member/emailLogin" method="post">
+    <form th:action="@{/member/emailLogin}" method="post">
         <input type="hidden" name="memberId"  >
         <input type="hidden" name="memberPassword"  >
         <button type="submit" id="realSubmit" style="display:none;"></button>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.globalexchange.app.mapper.MeetMapper">
+    <select id="meetSelectAll" resultType="meetVO">
+        SELECT meet_number,meet_title,member_number,meet_learning_lang,meet_content,meet_write_date,meet_update_date,meet_address,meet_detail_address
+        FROM
+        (
+            SELECT ROWNUM R, meet_number,meet_title,member_number,meet_learning_lang,meet_content,meet_write_date,meet_update_date,meet_address,meet_detail_address
+            FROM
+            (
+                SELECT meet_number,meet_title,member_number,meet_learning_lang,meet_content,meet_write_date,meet_update_date,meet_address,meet_detail_address
+                FROM tbl_meet
+                ORDER BY meet_number DESC
+            )
+    <![CDATA[
+            WHERE ROWNUM <= #{page} * #{amount}
+        )
+        WHERE R > (#{page} - 1) * #{amount}
+    ]]>
+    </select>
+
+    <select id="categoryMeetSelectAll" resultType="meetVO">
+        SELECT meet_number,meet_title,member_number,meet_learning_lang,meet_content,meet_write_date,meet_update_date,meet_address,meet_detail_address
+        FROM
+        (
+            SELECT ROWNUM R, meet_number,meet_title,member_number,meet_learning_lang,meet_content,meet_write_date,meet_update_date,meet_address,meet_detail_address
+            FROM
+            (
+                SELECT meet_number,meet_title,member_number,meet_learning_lang,meet_content,meet_write_date,meet_update_date,meet_address,meet_detail_address
+                FROM tbl_meet
+                WHERE meet_learning_lang = #{meetLearningLang}
+                ORDER BY meet_number DESC
+            )
+    <![CDATA[
+            WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+        )
+        WHERE R > (#{criteria.page} - 1) * #{criteria.amount}
+    ]]>
+    </select>
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(meet_number) FROM tbl_meet
+    </select>
+
+    <select id="categoryGetTotal" resultType="_int">
+        SELECT COUNT(meet_number) FROM tbl_meet
+        WHERE meet_learning_lang = #{meetLearningLang}
+    </select>
+
+    <select id="writerInfo" resultType="memberVO">
+        SELECT member_number,member_teaching_lang,member_nickname
+        FROM tbl_member
+        WHERE member_number=#{memberNumber}
+    </select>
+
+    <insert id="insertRequest">
+        <selectKey keyProperty="meetNumber" order="BEFORE" resultType="long">
+            SELECT MEET_SEQ.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO tbl_meet(meet_number, meet_title, member_number, meet_learning_lang,meet_content,meet_address,meet_detail_address)
+        VALUES(#{meetNumber}, #{meetTitle}, #{memberNumber}, #{meetLearningLang},#{meetContent},#{meetAddress},#{meetDetailAddress})
+    </insert>
+
+    <select id="selectMeetRequest" resultType="meetVO">
+        SELECT *
+        FROM tbl_meet
+        WHERE meet_number= #{meetNumber}
+    </select>
+
+    <update id="updateRequest">
+        UPDATE tbl_meet
+        SET meet_title=#{meetTitle},meet_learning_lang= #{meetLearningLang},meet_content=#{meetContent},meet_address=#{meetAddress},meet_detail_address=#{meetDetailAddress},meet_update_date=SYSDATE
+        WHERE meet_number=#{meetNumber}
+    </update>
+
+    <delete id="deleteRequest">
+        DELETE
+        FROM tbl_meet
+        WHERE meet_number=#{meetNumber}
+    </delete>
+
+    <select id="meetAnswerSelectAll" resultType="meetAnswerVO">
+        SELECT meet_answer_number,member_number,meet_answer_content,meet_answer_write_date,meet_answer_update_date,meet_number
+        FROM
+        (
+            SELECT ROWNUM R, meet_answer_number,member_number,meet_answer_content,meet_answer_write_date,meet_answer_update_date,meet_number
+            FROM
+            (
+                SELECT meet_answer_number,member_number,meet_answer_content,meet_answer_write_date,meet_answer_update_date,meet_number
+                FROM tbl_meet_answer
+                WHERE meet_number = #{meetNumber}
+                ORDER BY meet_answer_number DESC
+            )
+    <![CDATA[
+            WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+        )
+        WHERE R > (#{criteria.page} - 1) * #{criteria.amount}
+    ]]>
+    </select>
+
+    <select id="meetAnswerCount" resultType="long">
+        SELECT count(meet_answer_number)
+        FROM  tbl_meet_answer
+        WHERE meet_number = #{meetNumber}
+    </select>
+
+    <update id="meetAnswerUpdate" >
+        UPDATE tbl_meet_answer
+        SET meet_answer_content = #{meetAnswerContent} , meet_answer_update_date = SYSDATE
+        WHERE meet_answer_number = #{meetAnswerNumber}
+    </update>
+
+    <insert id="meetAnswerInsert">
+        INSERT INTO tbl_meet_answer(meet_answer_number,member_number,meet_answer_content,meet_number)
+        VALUES(meet_answer_seq.NEXTVAL,#{memberNumber},#{meetAnswerContent},#{meetNumber})
+    </insert>
+
+    <select id="meetAnswerCommentSelectAll" resultType="meetAnswerCommentVO">
+        SELECT *
+        FROM tbl_meet_answer_comment
+        WHERE meet_answer_number = #{meetAnswerNumber}
+        ORDER BY meet_answer_comment_number
+    </select>
+
+    <select id="selectAllLatestNotAnsweredMeet" resultType="meetVO">
+        SELECT MEET_NUMBER, MEET_TITLE, MEET_LEARNING_LANG
+        FROM
+        (
+            SELECT ROWNUM R, MEET_NUMBER, MEET_TITLE, MEET_LEARNING_LANG
+            FROM
+            (
+                SELECT M.MEET_NUMBER, M.MEET_TITLE, M.MEET_LEARNING_LANG
+                FROM tbl_meet M
+                LEFT JOIN TBL_MEET_ANSWER A
+                ON M.MEET_NUMBER = A.MEET_NUMBER
+                WHERE A.MEET_ANSWER_NUMBER IS NULL
+                ORDER BY M.MEET_NUMBER DESC
+            )
+            <![CDATA[
+            WHERE ROWNUM <= #{page} * #{amount}
+        )
+        WHERE R > (#{page} - 1) * #{amount}
+        ]]>
+    </select>
+
+    <select id="selectAllLatestAnsweredMeet" resultType="meetVO">
+        SELECT  MEET_NUMBER, MEET_TITLE, MEET_LEARNING_LANG
+        FROM
+        (
+            SELECT ROWNUM R, MEET_NUMBER, MEET_TITLE, MEET_LEARNING_LANG
+            FROM
+            (
+                SELECT DISTINCT M.MEET_NUMBER, M.MEET_TITLE, M.MEET_LEARNING_LANG
+                FROM tbl_meet M
+                JOIN TBL_MEET_ANSWER A
+                ON M.MEET_NUMBER = A.MEET_NUMBER
+                ORDER BY M.MEET_NUMBER DESC
+            )
+            <![CDATA[
+            WHERE ROWNUM <= #{page} * #{amount}
+        )
+        WHERE R > (#{page} - 1) * #{amount}
+        ]]>
+    </select>
+
+    <delete id="meetAnswerRemove" >
+        DELETE FROM tbl_meet_answer
+        WHERE meet_answer_number = #{meetAnswerNumber}
+    </delete>
+</mapper>

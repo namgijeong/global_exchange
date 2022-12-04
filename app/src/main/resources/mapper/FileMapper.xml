@@ -12,8 +12,9 @@
     </insert>
 
     <select id="getMeetFile" resultType="fileMeetVO">
-        SELECT * FROM tbl_file_meet
-        WHERE MEET_NUMBER=#{meet_number}
+        SELECT FILE_NUMBER, FILE_NAME, FILE_UPLOAD_PATH, FILE_UUID, FILE_IMAGE_CHECK, FILE_SIZE, MEET_NUMBER
+        FROM TBL_FILE_MEET
+        WHERE MEET_NUMBER = #{meet_number}
     </select>
 
     <!--<update id="updateMeetFile">
