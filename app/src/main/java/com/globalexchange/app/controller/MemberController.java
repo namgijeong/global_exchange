@@ -102,25 +102,20 @@ public class MemberController {
 
 
     //    이메일 로그인
-//    @PostMapping("/emailLogin")
-    @RequestMapping(value = "/emailLogin")
-    public String emailLogin(MemberVO memberVO, HttpServletRequest request, RedirectAttributes attr) {
-        log.info(memberVO.getMemberId() + "들어옴"+ memberVO.getMemberPassword());
-        HttpSession session = request.getSession();
+    @PostMapping(value = "/member/emailLogin")
+    public RedirectView emailLogin(MemberVO memberVO, HttpServletRequest request) {
 
+        HttpSession session = request.getSession();
         Long memberNumber = memberService.emailLogin(memberVO);
 
-
+        /* 일치하는 회원 정보가 없는 경우 */
         if(memberNumber == null){
-
-            return "member/login";
+            return new RedirectView("/member/login");
+            /* 일치하는 회원 정보가 있는 경우 회원 번호를 session에 넣는다. */
         }else {
             session.setAttribute("memberNumber" , memberNumber);
-
-            return "/main/main";
+            return new RedirectView("/main/main");
         }
-
-
     }
 
 //    @PostMapping("/logout")

@@ -48,10 +48,10 @@
     </select>
 
     <select id="myPageProfile" resultType="fileProfileVO">
-        SELECT * FROM tbl_file_profile
+        SELECT FILE_NUMBER, FILE_NAME, FILE_UPLOAD_PATH, FILE_UUID, FILE_IMAGE_CHECK, FILE_SIZE, MEMBER_NUMBER
+        FROM TBL_FILE_PROFILE
         WHERE MEMBER_NUMBER = #{memberNumber}
     </select>
-
 
     <select id="diaryTotalPost" resultType="long">
         SELECT count(MEMBER_NUMBER) FROM tbl_diary
@@ -116,4 +116,36 @@
         WHERE FILE_NUMBER = #{fileNumber}
     </update>
 
+    <select id="selectAll" resultType="memberVO">
+        SELECT MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_TEACHING_LANG, MEMBER_LEARNING_LANG, MEMBER_INTERESTING, MEMBER_GENDER, MEMBER_NICKNAME, MEMBER_PHONE_NUM, MEMBER_BIRTHDATE, MEMBER_INTRODUCE, MEMBER_NATION_URL
+        FROM
+        (
+        SELECT ROWNUM R, MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_TEACHING_LANG, MEMBER_LEARNING_LANG, MEMBER_INTERESTING, MEMBER_GENDER, MEMBER_NICKNAME, MEMBER_PHONE_NUM, MEMBER_BIRTHDATE, MEMBER_INTRODUCE, MEMBER_NATION_URL
+        FROM
+        (
+        SELECT MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_TEACHING_LANG, MEMBER_LEARNING_LANG, MEMBER_INTERESTING, MEMBER_GENDER, MEMBER_NICKNAME, MEMBER_PHONE_NUM, MEMBER_BIRTHDATE, MEMBER_INTRODUCE, MEMBER_NATION_URL
+        FROM TBL_MEMBER
+        <where>
+            <if test="memberTeachingLang != null and memberTeachingLang != 'ALL'.toString()">
+                MEMBER_TEACHING_LANG = #{memberTeachingLang}
+            </if>
+        </where>
+        ORDER BY MEMBER_NUMBER DESC
+        )
+        <![CDATA[
+            WHERE ROWNUM <= #{page} * #{amount}
+        )
+        WHERE R > (#{page} - 1) * #{amount}
+        ]]>
+    </select>
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(MEMBER_NUMBER)
+        FROM  TBL_MEMBER
+        <where>
+            <if test="memberTeachingLang != null and memberTeachingLang != 'ALL'.toString()">
+                MEMBER_TEACHING_LANG = #{memberTeachingLang}
+            </if>
+        </where>
+    </select>
 </mapper>
