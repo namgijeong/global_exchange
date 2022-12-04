@@ -1,6 +1,7 @@
 package com.globalexchange.app.controller;
 
 import com.globalexchange.app.domain.vo.FileMeetVO;
+import com.globalexchange.app.domain.vo.FileProfileVO;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;

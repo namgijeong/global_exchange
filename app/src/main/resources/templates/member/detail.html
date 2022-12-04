@@ -33,70 +33,77 @@
                         <div class="top">
                             <article class="image-container">
                                 <label for="profileImage">
-                                    <img src="/images/member/sample5.png" alt="프로필 이미지" class="profile-image">
+<!--                                    <img src="/images/member/sample5.png" alt="프로필 이미지" class="profile-image">-->
+                                    <th:block th:if="${not #strings.isEmpty(memberDTO.fileProfileVO)}">
+                                        <img th:if="${memberDTO.fileProfileVO.fileImageCheck}" th:src="@{/fileProfile/display(fileName=${memberDTO.fileProfileVO.fileUploadPath} + '/' + ${memberDTO.fileProfileVO.fileUuid} + '_' + ${memberDTO.fileProfileVO.fileName})}"  class="user-info-image"/>
+                                        <img th:unless="${memberDTO.fileProfileVO.fileImageCheck}" src="/images/noImage/no-image.jpg" class="user-info-image"/>
+                                    </th:block>
+                                    <th:block th:unless="${not #strings.isEmpty(memberDTO.fileProfileVO)}">
+                                        <img src="/images/noImage/no-image.jpg"  class="user-info-image" width="80px" height="80px">
+                                    </th:block>
                                     <div class="image-camera-container">
                                         <img src="/images/member/camera.png" class="camera-image">
                                     </div>
                                 </label>
                                 <input type="file" name="profileImage" id="profileImage" class="file-input" disabled>
                             </article>
-                            <button type="button" onclick="javascript:void(0)" class="save-button">수정</button>
+                            <button type="button" onclick="location.href='/member/write'" class="save-button">수정</button>
                         </div>
                         <article class="input-container">
                             <div>
-                                <label for="memberNickname" class="input-label">닉네임</label>
-                                <input type="text" id="memberNickname" name="memberNickname" class="input-style" value="Jason" disabled>
+                                <label for="memberNickname" class="input-label" >닉네임</label>
+                                <input type="text" id="memberNickname" name="memberNickname" class="input-style" value="Jason" disabled th:value="${memberDTO.memberNickname}">
                             </div>
                             <div>
                                 <label for="memberPhoneNumber" class="input-label">휴대폰 번호</label>
-                                <input type="text" id="memberPhoneNumber" name="memberPhoneNumber" class="input-style" value="010-1111-2222" disabled>
+                                <input type="text" id="memberPhoneNumber" name="memberPhoneNumber" class="input-style" value="010-1111-2222" disabled  th:value="${memberDTO.memberPhoneNum}">
                             </div>
                             <div>
-                                <label for="memberEmail" class="input-label">이메일</label>
-                                <input type="text" id="memberEmail" name="memberEmail" class="input-style" value="abc@google.com" disabled>
+                                <label for="memberEmail" class="input-label" >이메일</label>
+                                <input type="text" id="memberEmail" name="memberEmail" class="input-style" value="abc@google.com" disabled th:value="${memberDTO.memberId}">
                             </div>
                             <div>
-                                <label for="memberBirthday" class="input-label">생년월일</label>
-                                <input type="text" id="memberBirthday" name="memberBirthday" class="input-style" value="901010"disabled>
+                                <label for="memberBirthday" class="input-label" >생년월일</label>
+                                <input type="text" id="memberBirthday" name="memberBirthday" class="input-style" value="901010"disabled th:value="${memberDTO.memberBirthdate}">
                             </div>
                             <div>
-                                <label for="memberMotherTongue" class="input-label">모국어</label>
-                                <select name="memberMotherTongue" id="memberMotherTongue" class="input-style" disabled>
-                                    <option value="eng">영어</option>
-                                    <option value="spain">스페인어</option>
-                                    <option value="france">프랑스어</option>
-                                    <option value="germany">독일어</option>
-                                    <option value="italy">이탈리아어</option>
-                                    <option value="portugal">포르투갈어</option>
-                                    <option value="russia">러시아어</option>
-                                    <option value="japan">일본어</option>
-                                    <option value="china">중국어</option>
-                                    <option value="korea" selected>한국어</option>
+                                <label for="memberMotherTongue" class="input-label" >모국어</label>
+                                <select name="memberTeachingLang" id="memberMotherTongue" class="input-style" disabled th:field="${memberDTO.memberTeachingLang}">
+                                    <option value="ENGLISH">영어</option>
+                                    <option value="SPANISH">스페인어</option>
+                                    <option value="FRENCH">프랑스어</option>
+                                    <option value="GERMAN">독일어</option>
+                                    <option value="ITALIAN">이탈리아어</option>
+                                    <option value="PORTUGUESE">포르투갈어</option>
+                                    <option value="RUSSIAN">러시아어</option>
+                                    <option value="JAPANESE">일본어</option>
+                                    <option value="CHINESE">중국어</option>
+                                    <option value="KOREAN">한국어</option>
                                 </select>
                             </div>
                             <div>
-                                <label for="memberWantToLearnLanguage" class="input-label">배우고 싶은 언어</label>
-                                <select name="memberWantToLearnLanguage" id="memberWantToLearnLanguage" class="input-style" disabled>
-                                    <option value="eng" selected>영어</option>
-                                    <option value="spain">스페인어</option>
-                                    <option value="france">프랑스어</option>
-                                    <option value="germany">독일어</option>
-                                    <option value="italy">이탈리아어</option>
-                                    <option value="portugal">포르투갈어</option>
-                                    <option value="russia">러시아어</option>
-                                    <option value="japan">일본어</option>
-                                    <option value="china">중국어</option>
-                                    <option value="korea">한국어</option>
+                                <label for="memberWantToLearnLanguage" class="input-label" >배우고 싶은 언어</label>
+                                <select name="memberLearningLang" id="memberWantToLearnLanguage" class="input-style" disabled th:field="${memberDTO.memberLearningLang}">
+                                    <option value="ENGLISH">영어</option>
+                                    <option value="SPANISH">스페인어</option>
+                                    <option value="FRENCH">프랑스어</option>
+                                    <option value="GERMAN">독일어</option>
+                                    <option value="ITALIAN">이탈리아어</option>
+                                    <option value="PORTUGUESE">포르투갈어</option>
+                                    <option value="RUSSIAN">러시아어</option>
+                                    <option value="JAPANESE">일본어</option>
+                                    <option value="CHINESE">중국어</option>
+                                    <option value="KOREAN">한국어</option>
                                 </select>
                             </div>
                             <div>
-                                <label for="memberInterest" class="input-label">관심사</label>
-                                <input type="text" id="memberInterest" name="memberInterest" class="input-style" value="등산"disabled>
+                                <label for="memberInterest" class="input-label" >관심사</label>
+                                <input type="text" id="memberInterest" name="memberInterest" class="input-style" value="등산"disabled th:value="${memberDTO.memberInteresting}">
                             </div>
                             <div>
-                                <label for="memberIntroduction" class="input-label">자기소개</label>
-                                <div class="pre-tag">
-                                    <pre id="memberIntroduction" name="memberIntroduction" wrap="soft" class="text-area-style input-style" disabled>
+                                <label for="memberIntroduction" class="input-label" >자기소개</label>
+                                <div class="pre-tag" >
+                                    <pre id="memberIntroduction" name="memberIntroduction" wrap="soft" class="text-area-style input-style" disabled th:text="${memberDTO.memberIntroduce}">
 안녕하세요 전 서울에 사는 Jason입니다. Hello I'm Jason.
                                     </pre>
                                 </div>

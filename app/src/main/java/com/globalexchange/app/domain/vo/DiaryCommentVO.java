@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 public class DiaryCommentVO {
     private Long diaryCommentNumber;
     private Long memberNumber;
-    private Long diaryCommentContent;
-    private Long diaryCommentWriteDate;
-    private Long diaryCommentUpdateDate;
+    private String diaryCommentContent;
+    private String diaryCommentWriteDate;
+    private String diaryCommentUpdateDate;
     private Long diaryNumber;
 
 //    public void create(String fileName, String fileUploadPath, String fileUuid, boolean fileImageCheck) {

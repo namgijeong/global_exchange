@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 @Data
 public class MemberReportVO {
     private Long memberReportNumber;
-    private String reportingMemberNumber;
-    private String reportedMemberNumber;
+    private Long reportingMemberNumber;
+    private Long reportedMemberNumber;
     private String memberReportCount;
 
 

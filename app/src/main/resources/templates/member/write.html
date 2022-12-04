@@ -29,89 +29,103 @@
         </header>
         <section class="info-container">
             <section class="page-wrapper">
-                <form name="memberInfo">
+                <form name="memberInfo" action="/member/writeOk" method="post">
                     <div class="top">
                         <article class="image-container">
                             <div id="profileInputStatus">
                                 <label id="profileImageLabel" for="profileImage">
-                                    <img src="/images/member/sample5.png" alt="프로필 이미지" class="profile-image">
+<!--                                    <img src="/images/member/sample5.png" alt="프로필 이미지" class="profile-image">-->
+                                    <th:block th:if="${not #strings.isEmpty(memberDTO.fileProfileVO)}">
+                                        <img  th:if="${memberDTO.fileProfileVO.fileImageCheck}" th:src="@{/fileProfile/display(fileName=${memberDTO.fileProfileVO.fileUploadPath} + '/' + ${memberDTO.fileProfileVO.fileUuid} + '_' + ${memberDTO.fileProfileVO.fileName})}"  class="user-info-image"/>
+                                        <img  th:unless="${memberDTO.fileProfileVO.fileImageCheck}" src="/images/noImage/no-image.jpg" class="user-info-image"/>
+                                    </th:block>
+                                    <th:block th:unless="${not #strings.isEmpty(memberDTO.fileProfileVO)}">
+                                        <img  src="/images/noImage/no-image.jpg"  class="user-info-image" width="80px" height="80px">
+                                    </th:block>
                                     <div class="image-camera-container">
                                         <img src="/images/member/camera.png" class="camera-image">
                                     </div>
                                 </label>
-                                <input type="file" name="profileImage" id="profileImage" class="file-input" accept="image/gif, image/png, image/bmp, image/jpeg">
+                                <input type="file" name="profileImage" id="profileImage" class="file-input" accept="image/gif, image/png, image/bmp, image/jpeg" >
                             </div>
                         </article>
-                        <button id="saveBtn" type="button" class="save-button">저장</button>
+                        <button id="saveBtn" type="submit" class="save-button" >저장</button>
                     </div>
                     <article class="input-container">
                         <div>
                             <label for="memberNickname" class="input-label">닉네임</label>
-                            <input type="text" id="memberNickname" name="memberNickname" class="input-style">
+                            <input type="text" id="memberNickname" name="memberNickname" class="input-style"  th:value="${memberDTO.memberNickname}">
                             <div class="warning-text">닉네임을 입력해주세요.</div>
                         </div>
                         <div>
                             <label for="memberPhoneNumber" class="input-label">휴대폰 번호</label>
-                            <input type="text" id="memberPhoneNumber" name="memberPhoneNumber" class="input-style" placeholder="예) 010-1111-2222">
+                            <input type="text" id="memberPhoneNumber" name="memberPhoneNum" class="input-style" placeholder="예) 010-1111-2222" th:value="${memberDTO.memberPhoneNum}">
                             <div class="warning-text">휴대폰 번호를 입력해주세요.</div>
                         </div>
                         <div>
                             <label for="memberEmail" class="input-label">이메일</label>
                             <!-- 이메일은 변경 불가하게 함. -->
-                            <input type="text" id="memberEmail" name="memberEmail" class="input-style" value="abc@naver.com" disabled>
+                            <input type="text" id="memberEmail" name="memberId" class="input-style" value="abc@naver.com" disabled th:value="${memberDTO.memberId}">
                             <div class="warning-text">이메일 주소를 입력해주세요.</div>
                         </div>
                         <div>
                             <label for="memberBirthday" class="input-label">생년월일</label>
                             <!-- 생년월일은 변경 불가하게 함. -->
-                            <input type="text" id="memberBirthday" name="memberBirthday" class="input-style" value="990101" disabled>
+                            <input type="text" id="memberBirthday" name="memberBirthdate" class="input-style" value="990101" th:value="${memberDTO.memberBirthdate}">
                             <div class="warning-text">생년월일을 입력해주세요.</div>
                         </div>
                         <div>
                             <label for="memberMotherTongue" class="input-label">모국어</label>
-                            <select name="memberMotherTongue" id="memberMotherTongue" class="input-style">
-                                <option value="영어">영어</option>
-                                <option value="스페인어">스페인어</option>
-                                <option value="프랑스어">프랑스어</option>
-                                <option value="독일어">독일어</option>
-                                <option value="이탈리아어">이탈리아어</option>
-                                <option value="포르투갈어">포르투갈어</option>
-                                <option value="러시아어">러시아어</option>
-                                <option value="일본어">일본어</option>
-                                <option value="중국어">중국어</option>
-                                <option value="한국어">한국어</option>
+                            <select name="memberTeachingLang" id="memberMotherTongue" class="input-style" th:field="${memberDTO.memberTeachingLang}">
+                                <option value="ENGLISH">영어</option>
+                                <option value="SPANISH">스페인어</option>
+                                <option value="FRENCH">프랑스어</option>
+                                <option value="GERMAN">독일어</option>
+                                <option value="ITALIAN">이탈리아어</option>
+                                <option value="PORTUGUESE">포르투갈어</option>
+                                <option value="RUSSIAN">러시아어</option>
+                                <option value="JAPANESE">일본어</option>
+                                <option value="CHINESE">중국어</option>
+                                <option value="KOREAN">한국어</option>
                             </select>
                             <div class="warning-text">가르치고 싶은 언어를 선택해주세요.</div>
                         </div>
                         <div>
                             <label for="memberWantToLearnLanguage" class="input-label">배우고 싶은 언어</label>
-                            <select name="memberWantToLearnLanguage" id="memberWantToLearnLanguage" class="input-style">
-                                <option value="영어">영어</option>
-                                <option value="스페인어">스페인어</option>
-                                <option value="프랑스어">프랑스어</option>
-                                <option value="독일어">독일어</option>
-                                <option value="이탈리아어">이탈리아어</option>
-                                <option value="포르투갈어">포르투갈어</option>
-                                <option value="러시아어">러시아어</option>
-                                <option value="일본어">일본어</option>
-                                <option value="중국어">중국어</option>
-                                <option value="한국어">한국어</option>
+                            <select name="memberLearningLang" id="memberWantToLearnLanguage" class="input-style" th:field="${memberDTO.memberLearningLang}">
+                                <option value="ENGLISH">영어</option>
+                                <option value="SPANISH">스페인어</option>
+                                <option value="FRENCH">프랑스어</option>
+                                <option value="GERMAN">독일어</option>
+                                <option value="ITALIAN">이탈리아어</option>
+                                <option value="PORTUGUESE">포르투갈어</option>
+                                <option value="RUSSIAN">러시아어</option>
+                                <option value="JAPANESE">일본어</option>
+                                <option value="CHINESE">중국어</option>
+                                <option value="KOREAN">한국어</option>
                             </select>
                             <div class="warning-text">배우고 싶은 언어를 선택해주세요.</div>
                         </div>
                         <div>
                             <label for="memberInterest" class="input-label">관심사</label>
-                            <input type="text" id="memberInterest" name="memberInterest" class="input-style">
+                            <input type="text" id="memberInterest" name="memberInteresting" class="input-style" th:value="${memberDTO.memberInteresting}">
                             <div class="warning-text">관심사를 입력해주세요.</div>
                         </div>
                         <div>
                             <label for="memberIntroduction" class="input-label">자기소개</label>
-                            <textarea id="memberIntroduction" name="memberIntroduction" placeholder="간단한 자기 소개를 작성해주세요."
-                                      wrap="soft" maxlength="500" class="text-area-style input-style"></textarea>
+                            <textarea id="memberIntroduction" name="memberIntroduce" placeholder="간단한 자기 소개를 작성해주세요."
+                                      wrap="soft" maxlength="500" class="text-area-style input-style" th:text="${memberDTO.memberIntroduce}"></textarea>
                             <div class="warning-text">자기소개를 작성해주세요.</div>
                             <small class="character-count">0/500</small>
                         </div>
                     </article>
+                    <input type="hidden" name="fileProfileVO.fileName"/>
+                    <input type="hidden" name="fileProfileVO.fileUploadPath"/>
+                    <input type="hidden" name="fileProfileVO.fileUuid"/>
+                    <input type="hidden" name="fileProfileVO.fileImageCheck"/>
+                    <input type="hidden" name="fileProfileVO.fileSize"/>
+                    <input type="hidden" th:field="${memberDTO.memberNumber}"/>
+                    <input type="hidden" th:field="${memberDTO.fileProfileVO.fileNumber}"/>
                 </form>
             </section>
         </section>
@@ -145,7 +159,8 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script>
+
+<script th:inline="javascript">
     // input 태그 포커스 시 색 변화
     let flag = true;
 
@@ -249,14 +264,40 @@
 
             // Ajax 방식으로 파일을 controller로 전송한다.
             // Ajax가 성공하면 showUploadResult 함수를 실행한다.
-            showUploadResult();
+            let formData = new FormData();
+            let file = this.files[0];
+
+            console.log(this.files[0] + "프로필사진 화면 변환");
+            formData.append("upload", file);
+
+            $.ajax({
+                url:'/fileProfile/upload',
+                type:'post',
+                data:formData,
+                contentType:false,
+                processData:false,
+                success : showUploadResult
+            });
+
         } else {
             modal();
         }
     });
 
+
+    let fileName = [[${memberDTO.fileProfileVO.fileName}]]
+    let fileUploadPath = [[${memberDTO.fileProfileVO.fileUploadPath}]]
+    let fileUuid = [[${memberDTO.fileProfileVO.fileUuid}]]
+    let fileImageCheck = [[${memberDTO.fileProfileVO.fileImageCheck}]]
+    let fileSize = [[${memberDTO.fileProfileVO.fileSize}]]
+
+    $("input[name='fileProfileVO.fileName']").val(fileName);
+    $("input[name='fileProfileVO.fileUploadPath']").val(fileUploadPath);
+    $("input[name='fileProfileVO.fileUuid']").val(fileUuid);
+    $("input[name='fileProfileVO.fileImageCheck']").val(fileImageCheck);
+    $("input[name='fileProfileVO.fileSize']").val(fileSize);
     // 화면에 썸네일을 보여준다.
-    function showUploadResult() {
+    function showUploadResult(file) {
         let text = "";
         text += `<div class="thumbnail-container" data-file-size="" data-file-name="" data-file-upload-path="" data-file-uuid="">`;
         text += '<span>';
@@ -265,11 +306,29 @@
 
         /* 실제론 src에 controller로 가능 경로를 작성한다. */
         /* 썸네일의 크기는 64 * 64로 한다. */
-        text += `<img src="/images/diary/bread.jpg" width="100%" height="100%" style="border-radius: 100%; cursor: pointer;">`;
+        if(!file.fileImageCheck){
+            text += `<img src=/images/noImage/no-image.jpg" width="100">`;
+        }else{
+            text += `<img width="100%" height="100%" style="border-radius: 100%; cursor: pointer;" src="/fileProfile/display?fileName=` + file.fileUploadPath + `/s_` + file.fileUuid + "_" + file.fileName + `">`;
+        }
         text += `</div>`;
+
+        fileName = file.fileName;
+        fileUploadPath = file.fileUploadPath;
+        fileUuid =  file.fileUuid;
+        fileImageCheck = file.fileImageCheck;
+        fileSize = file.fileSize;
+
+        $("input[name='fileProfileVO.fileName']").val(fileName);
+        $("input[name='fileProfileVO.fileUploadPath']").val(fileUploadPath);
+        $("input[name='fileProfileVO.fileUuid']").val(fileUuid);
+        $("input[name='fileProfileVO.fileImageCheck']").val(fileImageCheck);
+        $("input[name='fileProfileVO.fileSize']").val(fileSize);
 
         $('#profileInputStatus').hide();
         $('.image-container').append(text);
+
+
     };
 
     // x를 누르면 업로드 되었던 파일을 삭제한다.
@@ -284,6 +343,9 @@
         $div.remove();
         $('#profileInputStatus').show();
     });
+
+
+
 
 </script>
 </html>
