@@ -61,4 +61,9 @@ class MemberMapperTest {
     void lodgingAnswer() {
         log.info("total lodging answer count : " + memberMapper.lodgingAnswer(1L));
     }
+
+    @Test
+    void insertReport() {
+        memberMapper.insertReport(1L, 3L);
+    }
 }

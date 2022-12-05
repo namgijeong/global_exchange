@@ -68,4 +68,10 @@ public interface MemberMapper {
 
    // 멤버 수 조회
    public int getTotal(Criteria criteria);
+
+   // 멤버 신고
+   public void insertReport(Long reportingMemberNumber, Long reportedMemberNumber);
+
+   // 멤버 신고 횟수 조회
+   public int selectReports(Long reportedMemberNumber);
 }

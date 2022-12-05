@@ -146,11 +146,11 @@ public class MemberController {
 //    }
 
     // 마이페이지 메인
-//    @GetMapping("/mypage")
     @RequestMapping(value = "/mypage")
     public void mypage(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
         Long memberNumber = (Long)session.getAttribute("memberNumber");
+
         MemberDTO memberDTO = memberService.getMypageProfile(memberNumber);
         model.addAttribute("memberDTO",memberDTO);
 
@@ -162,7 +162,6 @@ public class MemberController {
 
         Long answerTotal = memberService.AnswerTotal(memberNumber);
         model.addAttribute("answerTotal",answerTotal);
-
 
         List<MemberDTO> partnerList = memberService.diaryPartnerList(memberNumber);
         model.addAttribute("partnerList",partnerList);

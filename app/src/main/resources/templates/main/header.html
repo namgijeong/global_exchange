@@ -16,10 +16,13 @@
                 <span class="top-header-button" id="login" onclick="location.href='/member/login'">로그인</span>
             </th:block>
             <th:block th:unless="${memberNumber == null}">
-                    <span class="top-header-button" id="memberNickname" th:onclick="|location.href='@{/member/mypage}'|">
+                    <span class="top-header-button" id="memberNickname" th:onclick="|location.href='@{/admin/memberList}'|" th:if="${memberNumber == 1}">
+                        <span class="memberNickname-style">관리자 페이지</span>
+                    </span>
+                    <span class="top-header-button" id="memberNickname" th:onclick="|location.href='@{/member/mypage}'|" th:unless="${memberNumber == 1}">
                         <span class="memberNickname-style" th:text="${memberNickname}"></span>님
                     </span>
-                <span class="top-header-button" id="logout" th:onclick="|location.href='@{/member/logout}'|">
+                    <span class="top-header-button" id="logout" th:onclick="|location.href='@{/member/logout}'|">
                         <button class="logout-btn">로그아웃</button>
                     </span>
             </th:block>

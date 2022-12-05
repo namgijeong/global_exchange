@@ -302,7 +302,7 @@
 
     // 교환일기 파트너 신고 버튼 클릭 시
     $reportYesBtn.on('click', function () {
-        location.href = "/member/report?reportingMemberNumber=" + $memberNumber + "&reportedMemberNumber=" + $partnerNumber;
+        location.href = "/diary/partnerReport?reportingMemberNumber=" + $memberNumber + "&reportedMemberNumber=" + $partnerNumber;
         reportModalContainer.style.display = "none";
         closeModal();
     });

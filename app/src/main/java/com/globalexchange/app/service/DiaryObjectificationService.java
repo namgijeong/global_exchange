@@ -165,4 +165,9 @@ public class DiaryObjectificationService implements DiaryService {
   public int diaryPartnerCheck(Long memberNumber, Long diaryPartnerNumber) {
     return diaryDAO.diaryPartnerCheck(memberNumber, diaryPartnerNumber);
   }
+
+  @Override
+  public void registerReport(Long reportingMemberNumber, Long reportedMemberNumber) {
+    memberDAO.saveReport(reportingMemberNumber, reportedMemberNumber);
+  }
 }

@@ -32,4 +32,9 @@ class MemberDAOTest {
     void findCountAll() {
         log.info("members : " + memberDAO.findCountAll(new Criteria().create(1, 10, "KOREAN")));
     }
+
+    @Test
+    void findReports() {
+        log.info("count : " + memberDAO.findReports(2L));
+    }
 }
