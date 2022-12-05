@@ -53,7 +53,14 @@
                                 <div class="profile-image-wrapper">
                                     <a href="javascript:void(0)">
 <!--                                        <img src="/images/member/sample4.png" alt="교환일기 파트너 프로필 사진" class="profile-image">-->
-                                        <img class="profile-image">
+                                        <th:block th:if="${not #strings.isEmpty(diary.filePartnerProfileVO)}">
+                                            <img class="profile-image" th:if="${diary.filePartnerProfileVO.fileImageCheck}"
+                                                 th:src="@{/fileMeet/display(fileName=${diary.filePartnerProfileVO.fileUploadPath} + '/s_' + ${diary.filePartnerProfileVO.fileUuid} + '_' + ${diary.filePartnerProfileVO.fileName})}">
+                                            <img class="profile-image" th:unless="${diary.filePartnerProfileVO.fileImageCheck}" src="/images/member/defaultProfileImg.png"/>
+                                        </th:block>
+                                        <th:block th:unless="${not #strings.isEmpty(diary.filePartnerProfileVO)}">
+                                            <img class="profile-image" src="/images/member/defaultProfileImg.png">
+                                        </th:block>
                                     </a>
                                 </div>
                                 <div class="member-text-wrapper">
@@ -74,7 +81,7 @@
                                 <img class="diary-image" th:unless="*{fileDiaryVO.fileImageCheck}" th:src="@{/images/diary/bread.jpg}" width="375">
                             </th:block>
                             <th:block th:unless="${not #strings.isEmpty(diary.fileDiaryVO)}">
-<!--                                <img class="diary-image" src="/images/diary/bread.jpg" width="375">-->
+                                <img class="diary-image" src="/images/noImage/no-image.jpg" width="375">
                             </th:block>
                         </div>
 

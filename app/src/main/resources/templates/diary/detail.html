@@ -30,7 +30,7 @@
                                     <img class="header-image" th:unless="*{fileDiaryVO.fileImageCheck}" th:src="@{/images/diary/bread.jpg}" width="375">
                                 </th:block>
                                 <th:block th:unless="${not #strings.isEmpty(diary.fileDiaryVO)}">
-<!--                                    <img class="header-image" src="/images/diary/bread.jpg" width="375">-->
+                                    <img class="header-image" src="/images/noImage/no-image.jpg" width="375">
                                 </th:block>
                             </div>
                             <div class="info-wrapper">
@@ -43,10 +43,18 @@
                                     <div class="partner-profile-wrapper">
                                         <div class="partner-profile">
                                             <div class="partner-profile-info">
-                                                <div class="partner-profile-image">
+                                                <div class="partner-profile-image" >
                                                     <a href="javascript:void(0)">
-                                                        <div class="partner-image-wrapper">
-                                                            <img class="partner-profile-img-style" src="/images/member/sample2.png">
+                                                        <div class="partner-image-wrapper" th:object="${diary}">
+<!--                                                            <img class="partner-profile-img-style" src="/images/member/sample2.png">-->
+                                                            <th:block th:if="${not #strings.isEmpty(diary.filePartnerProfileVO)}">
+                                                                <img class="partner-profile-img-style" th:if="${diary.filePartnerProfileVO.fileImageCheck}"
+                                                                     th:src="@{/fileMeet/display(fileName=${diary.filePartnerProfileVO.fileUploadPath} + '/s_' + ${diary.filePartnerProfileVO.fileUuid} + '_' + ${diary.filePartnerProfileVO.fileName})}">
+                                                                <img class="partner-profile-img-style" th:unless="${diary.filePartnerProfileVO.fileImageCheck}" src="/images/member/defaultProfileImg.png"/>
+                                                            </th:block>
+                                                            <th:block th:unless="${not #strings.isEmpty(diary.filePartnerProfileVO)}">
+                                                                <img class="partner-profile-img-style" src="/images/member/defaultProfileImg.png">
+                                                            </th:block>
                                                         </div>
                                                     </a>
                                                 </div>
@@ -56,11 +64,12 @@
                                                             <span class="partner-nickname" th:text="${diary.diaryPartnerNickname}"></span>
                                                         </a>
                                                     </div>
-                                                    <span class="partner-nation"></span>
+                                                    <span class="partner-nation" th:text="${diary.memberTeachingLang}"></span>
                                                 </div>
                                             </div>
                                             <a href="javascript:void(0)">
-                                                <img class="nation-img-style" src="/images/nation/america.png">
+<!--                                                <img class="nation-img-style" src="/images/nation/america.png">-->
+                                                <img class="nation-img-style" th:src="${diary.memberNationUrl}">
                                             </a>
                                         </div>
                                     </div>

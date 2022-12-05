@@ -19,7 +19,7 @@ public class DiaryDTO {
     private String memberTeachingLang;
     private String memberNickname;
     private String diaryPartnerNickname;
-
+    private String memberNationUrl;
 
     private FileDiaryVO fileDiaryVO;
     private FileProfileVO fileProfileVO;
