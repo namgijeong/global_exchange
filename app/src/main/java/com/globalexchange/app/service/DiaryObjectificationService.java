@@ -58,6 +58,7 @@ public class DiaryObjectificationService implements DiaryService {
     DiaryDTO diaryDTO = new DiaryDTO();
     diaryDTO.create(diaryDAO.findById(diaryNumber));
     diaryDTO.setFileDiaryVO(fileDAO.diaryFind(diaryNumber));
+    diaryDTO.setDiaryPartnerNickname(memberDAO.diaryPartnerNickname(diaryDTO.getDiaryPartnerNumber()).getMemberNickname());
     return diaryDTO;
   }
 
@@ -74,6 +75,7 @@ public class DiaryObjectificationService implements DiaryService {
         log.info("diaryNumber;"+diaryDTO.getDiaryNumber());
 
         diaryDTO.setFileDiaryVO(fileDAO.diaryFind(diaryDTO.getDiaryNumber()));
+        diaryDTO.setDiaryPartnerNickname(memberDAO.diaryPartnerNickname(diaryDTO.getDiaryPartnerNumber()).getMemberNickname());
         log.info("diaryDTO:"+diaryDTO);
         list2.add(diaryDTO);
 
@@ -112,7 +114,7 @@ public class DiaryObjectificationService implements DiaryService {
   }
 
   @Override
-  public MemberDTO showPartner(Long memberNumber) {
+  public MemberDTO showPartnerDetail(Long memberNumber) {
 
     MemberDTO memberDTO = new MemberDTO();
     memberDTO.create(memberDAO.findByMemberNumber(memberNumber), memberDAO.myPageProfile(memberNumber)
@@ -120,5 +122,37 @@ public class DiaryObjectificationService implements DiaryService {
             , (memberDAO.meetAnswer(memberNumber) + memberDAO.lodgingAnswer(memberNumber)));
 
     return memberDTO;
+  }
+
+  @Override
+  public List<MemberDTO> showPartner(Long memberNumber){
+//    List<Long> memberVOList = diaryDAO.findPartner(memberNumber);
+//    log.info("memberNumber:"+memberNumber);
+//    log.info("memberVOList:"+memberVOList);
+//    List<MemberDTO> memberDTOList = new ArrayList<>();
+//
+//    for(MemberVO memberVO : memberVOList){
+//      MemberDTO memberDTO = new MemberDTO();
+//
+//      memberDTO.create2(memberVO);
+//      memberDTO.setFileProfileVO(memberDAO.myPageProfile(memberVO.getMemberNumber()));
+//
+//      memberDTOList.add(memberDTO);
+//    }
+
+//    return memberDTOList;
+    List<Long> memberNumberList = diaryDAO.findPartner(memberNumber);
+    List<MemberDTO> memberDTOList = new ArrayList<>();
+    for(Long memberVO : memberNumberList){
+      MemberDTO memberDTO = new MemberDTO();
+//      memberVO1.setMemberNickname(memberDAO.diaryPartnerNickname(memberNumber).getMemberNickname());
+//      memberVOList.add(memberVO1);
+      memberDTO.create2(memberDAO.diaryPartnerNickname(memberVO));
+      memberDTOList.add(memberDTO);
+    }
+
+    return memberDTOList;
+
+
   }
 }

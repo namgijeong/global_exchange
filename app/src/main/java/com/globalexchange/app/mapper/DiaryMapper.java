@@ -3,6 +3,7 @@ package com.globalexchange.app.mapper;
 import com.globalexchange.app.domain.vo.Criteria;
 import com.globalexchange.app.domain.vo.DiaryVO;
 import com.globalexchange.app.domain.vo.DiaryDTO;
+import com.globalexchange.app.domain.vo.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -29,5 +30,7 @@ public interface DiaryMapper {
   
 //    코멘트 조회
 
+  //  파트너 조회
+  public List<Long> diaryPartnerSelect(Long memberNumber);
 
 }

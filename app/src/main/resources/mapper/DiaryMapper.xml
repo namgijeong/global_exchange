@@ -6,7 +6,7 @@
             SELECT DIARY_SEQ.NEXTVAL FROM DUAL
         </selectKey>
         INSERT INTO TBL_DIARY(DIARY_NUMBER, MEMBER_NUMBER, DIARY_PARTNER_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE)
-        VALUES (#{diaryNumber}, 1, 1, #{diaryTitle}, #{diaryContent}, #{diaryWriteDate})
+        VALUES (#{diaryNumber}, #{memberNumber}, #{diaryPartnerNumber}, #{diaryTitle}, #{diaryContent}, #{diaryWriteDate})
     </insert>
 
     <update id="diaryUpdate">
@@ -21,19 +21,19 @@
     </delete>
 
     <select id="diarySelect" resultType="diaryVO">
-        SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_PARTNER_NUMBER, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE
+        SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_PARTNER_NUMBER, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE, member_number, diary_partner_number
         FROM TBL_DIARY
         WHERE DIARY_NUMBER = #{diaryNumber}
     </select>
 
     <select id="diarySelectAll" resultType="diaryDTO"> <!--페이징처리-->
-        SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE
+        SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE, member_number, diary_partner_number
         FROM
         (
-            SELECT ROWNUM R, DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE
+            SELECT ROWNUM R, DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE, member_number, diary_partner_number
             FROM
             (
-                SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE
+                SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE, member_number, diary_partner_number
                 FROM TBL_DIARY
                 ORDER BY DIARY_NUMBER DESC
             ) D2
@@ -45,6 +45,11 @@
 
     <select id="getTotal" resultType="_int">
         SELECT COUNT(DIARY_NUMBER) FROM TBL_DIARY
+    </select>
+
+    <select id="diaryPartnerSelect" resultType="long">
+        SELECT DIARY_PARTNER_NUMBER FROM tbl_diary_partner
+        WHERE MEMBER_NUMBER= #{memberNumber}
     </select>
 
 </mapper>
