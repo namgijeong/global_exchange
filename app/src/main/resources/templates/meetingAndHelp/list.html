@@ -16,7 +16,7 @@
 
 </head>
 <body>
-<header th:replace="/main/header.html::topHeader(${member})"></header>
+<header th:replace="/main/header.html::topHeader(memberNumber = ${session.memberNumber}, memberNickname = ${session.memberNickname})"></header>
 <header th:replace="/main/header.html :: #header"></header>
 
 

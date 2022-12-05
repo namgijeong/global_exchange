@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div th:replace="/main/header.html::topHeader(${member})"></div>
+    <div th:replace="/main/header.html::topHeader(memberNumber = ${session.memberNumber}, memberNickname = ${session.memberNickname})"></div>
     <div th:replace="/main/header.html::header"></div>
     <section id="realLogin">
         <div id="realLoginLogin"><h3>로그인</h3></div>

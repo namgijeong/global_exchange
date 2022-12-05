@@ -3,6 +3,7 @@ package com.globalexchange.app.repository;
 import com.globalexchange.app.domain.vo.Criteria;
 import com.globalexchange.app.domain.vo.DiaryDTO;
 import com.globalexchange.app.domain.vo.DiaryVO;
+import com.globalexchange.app.domain.vo.MemberVO;
 import com.globalexchange.app.mapper.DiaryMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -36,6 +37,11 @@ public class DiaryDAO {
   //    전체 개수
   public int findCountAll(){
     return diaryMapper.getTotal();
+  }
+
+  //    파트너 조회
+  public List<Long> findPartner(Long memberNumber){
+    return diaryMapper.diaryPartnerSelect(memberNumber);
   }
 
 }
