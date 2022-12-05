@@ -48,15 +48,17 @@ public class MeetingAndHelpController {
     @GetMapping("/detail")
     public void detail(Long meetNumber,Model model,HttpServletRequest request){
         MeetDTO meetDTO=meetObjectificationService.detailMeetBody(meetNumber);
+        Long answerCount=meetObjectificationService.meetAnswerCount(meetNumber);
         log.info(""+meetDTO.getFileMeetVO());
         log.info(""+meetDTO.getFileProfileVO());
         log.info(""+meetDTO.getMemberNickname());
         log.info(""+meetDTO.getMemberNumber());
         model.addAttribute("meetDTO",meetDTO);
-
-        HttpSession session = request.getSession();
+        model.addAttribute("answerCount",answerCount);
+        //임의로 세션 만든곳
+       /* HttpSession session = request.getSession();
         session.setAttribute("memberNumber",1L);
-
+        */
     }
 
     // 만남과 도움 작성 페이지 이동
@@ -75,7 +77,7 @@ public class MeetingAndHelpController {
             memberVO=meetObjectificationService.writerInfo(1L);
 
             fileProfileVO=meetObjectificationService.getMeetWriterImage(1L);
-
+            //임의로 세션만든곳
             session.setAttribute("memberNumber",1L);
             model.addAttribute("memberVO",memberVO);
             model.addAttribute("file",fileProfileVO);
@@ -127,36 +129,6 @@ public class MeetingAndHelpController {
         return new RedirectView("/meetingAndHelp/list");
     }
 
-//
 
-//    // 만남과 도움 댓글 작성 페이지 이동
-//    @GetMapping("/answerCommentWrite")
-//    public void answerCommentWrite(){
-//
-//    }
-
-    /*// 만남과 도움 댓글 작성 완료
-    @GetMapping("/answerCommentWriteOk")
-    public void answerCommentWriteOk(){
-
-    }
-
-    // 만남과 도움 댓글 수정 페이지 이동
-    @GetMapping("/answerCommentUpdate")
-    public void answerCommentUpdate(){
-
-    }
-
-    // 만남과 도움 댓글 수정 완료
-    @GetMapping("/answerCommentUpdateOk")
-    public void answerCommentUpdateOk(){
-
-    }
-
-    // 만남과 도움 댓글 삭제
-    @GetMapping("/answerCommentRemove")
-    public void answerCommentRemove(){
-
-    }*/
 
 }

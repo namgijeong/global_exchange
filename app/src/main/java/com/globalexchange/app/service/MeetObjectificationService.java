@@ -176,13 +176,15 @@ public class MeetObjectificationService implements MeetService {
             meetAnswerDTO.setFileUploadPath(fileProfileVO.getFileUploadPath());
             meetAnswerDTO.setFileSize(fileProfileVO.getFileSize());
             meetAnswerDTO.setFileNumber(fileProfileVO.getFileNumber());*/
+            else{
+                meetAnswerDTO.setFileImageCheck(false);
+                meetAnswerDTO.setFileName(null);
+                meetAnswerDTO.setFileUuid(null);
+                meetAnswerDTO.setFileUploadPath(null);
+                meetAnswerDTO.setFileSize(null);
+                meetAnswerDTO.setFileNumber(null);
+            }
 
-            meetAnswerDTO.setFileImageCheck(false);
-            meetAnswerDTO.setFileName(null);
-            meetAnswerDTO.setFileUuid(null);
-            meetAnswerDTO.setFileUploadPath(null);
-            meetAnswerDTO.setFileSize(null);
-            meetAnswerDTO.setFileNumber(null);
 
             meetAnswerDTOList.add(meetAnswerDTO);
         });
@@ -232,14 +234,16 @@ public class MeetObjectificationService implements MeetService {
                 meetAnswerCommentDTO.setFileSize(fileProfileVO.getFileSize());
                 meetAnswerCommentDTO.setFileNumber(fileProfileVO.getFileNumber());
             }
+            else{
+                meetAnswerCommentDTO.setFileImageCheck(false);
+                meetAnswerCommentDTO.setFileName(null);
+                meetAnswerCommentDTO.setFileUuid(null);
+                meetAnswerCommentDTO.setFileUploadPath(null);
+                meetAnswerCommentDTO.setFileSize(null);
+                meetAnswerCommentDTO.setFileNumber(null);
+            }
 
 
-            meetAnswerCommentDTO.setFileImageCheck(false);
-            meetAnswerCommentDTO.setFileName(null);
-            meetAnswerCommentDTO.setFileUuid(null);
-            meetAnswerCommentDTO.setFileUploadPath(null);
-            meetAnswerCommentDTO.setFileSize(null);
-            meetAnswerCommentDTO.setFileNumber(null);
 
             meetAnswerCommentDTOList.add(meetAnswerCommentDTO);
         });
@@ -250,5 +254,19 @@ public class MeetObjectificationService implements MeetService {
     @Override
     public void meetAnswerRemove(Long meetAnswerNumber){
         meetDAO.meetAnswerRemove(meetAnswerNumber);
+    }
+
+    //meet 댓글 코멘트 등록
+    @Override
+    public void meetCommentInsert(MeetAnswerCommentVO meetAnswerCommentVO){
+         meetDAO.meetCommentInsert(meetAnswerCommentVO);
+    }
+    //meet 댓글 코멘트 업데이트
+    public void meetCommentUpdate(MeetAnswerCommentVO meetAnswerCommentVO){
+        meetDAO.meetCommentUpdate(meetAnswerCommentVO);
+    }
+    //meet 댓글 코멘트 삭제
+    public void meetCommentRemove(Long meetAnswerCommentNumber){
+        meetDAO.meetCommentRemove(meetAnswerCommentNumber);
     }
 }

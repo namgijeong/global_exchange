@@ -102,10 +102,10 @@ public class MemberController {
 
 
     //    이메일 로그인
-    @PostMapping(value = "/member/emailLogin")
-    public RedirectView emailLogin(MemberVO memberVO, HttpServletRequest request) {
-
+    @PostMapping(value = "/emailLogin")
+    public RedirectView emailLogin(MemberVO memberVO, HttpServletRequest request, RedirectAttributes redirectAttributes) {
         HttpSession session = request.getSession();
+
         Long memberNumber = memberService.emailLogin(memberVO);
 
         /* 일치하는 회원 정보가 없는 경우 */

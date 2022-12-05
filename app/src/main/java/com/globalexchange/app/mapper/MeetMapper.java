@@ -34,6 +34,12 @@ public interface MeetMapper {
     public List<MeetAnswerCommentVO> meetAnswerCommentSelectAll (Long meetAnswerNumber);
     //meet 답글 삭제
     public void meetAnswerRemove(Long meetAnswerNumber);
+    //meet 댓글 코멘트 등록
+    public void meetCommentInsert(MeetAnswerCommentVO meetAnswerCommentVO);
+    //meet 댓글 코멘트 업데이트
+    public void meetCommentUpdate(MeetAnswerCommentVO meetAnswerCommentVO);
+    //meet 댓글 코멘트 삭제
+    public void meetCommentRemove(Long meetAnswerCommentNumber);
 
     // 답글이 없는 최신글 조회
     public List<MeetVO> selectAllLatestNotAnsweredMeet(Criteria criteria);

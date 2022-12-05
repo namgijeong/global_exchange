@@ -312,7 +312,10 @@ textarea.comment-content{
   width: 100%;
   height: 100px;
 }
-
+textarea.comment-text{
+  width: 100%;
+  height: 100px;
+}
 .comment-reply {
   margin-top: 22px;
   background-color: rgb(249, 249, 249);

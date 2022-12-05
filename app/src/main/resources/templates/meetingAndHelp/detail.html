@@ -51,8 +51,8 @@
               <div class="post-button-wrapper">
 
                 <th:block th:if="${session.memberNumber == meetDTO.memberNumber}">
-                  <button class="post-button">수정</button>
-                  <button class="post-button">삭제</button>
+                  <button class="post-button" id="updateButton">수정</button>
+                  <button class="post-button" id="removeButton">삭제</button>
                 </th:block>
                 <th:block th:unless="${session.memberNumber == meetDTO.memberNumber}">
 
@@ -144,7 +144,7 @@
 
         <section class="section">
           <article>
-            <h2 class="article-title">답글 10개</h2>
+            <h2 class="article-title" th:text="'답글:' +${answerCount}">답글 10개</h2>
             <div class="comment-reg-section">
               <textarea class="comment-reg" id="inputWriteAnswer" placeholder="답글을 입력하세요"></textarea>
               <div class="comment-button">
@@ -438,23 +438,25 @@
   function showList(answers){
     let answertext="";
     answers.meetAnswerDTOList.forEach(meetAnswerDTO=>{
+      console.log("파일업로드패스"+meetAnswerDTO.fileUploadPath);
+      console.log("파일유유아이디"+meetAnswerDTO.fileUuid);
+      console.log("파일네임"+meetAnswerDTO.fileName);
     answertext+='<div class="comment-section">';
       answertext+='<div class="profile-content-section">';
       answertext+='<div class="profile-image-section comment-profile-image-section">';
       answertext+='<a href="#">';
       answertext+='<div class="profile-image-wrapper">';
-      /*answertext+='<img src="/fileProfile/display?fileName='+meetAnswerDTO.fileUploadPath + '/' + meetAnswerDTO.fileUuid + '_' + meetAnswerDTO.fileName+'"';
-    answertext+='class="profile-image" alt="프로필 이미지">';*/
-      answertext+='<img src="/images/noImage/noImgLittleProfile.png"';
-      answertext+='class="profile-image" alt="프로필 이미지"/>';
-      /*answertext+='<th:block th:if="${meetAnswerDTO.fileUploadPath == null}">';
-      answertext+='<img th:if="${meetAnswerDTO.fileImageCheck}" th:src="@{/fileProfile/display(fileName=${meetAnswerDTO.fileUploadPath}+ `/`+ ${meetAnswerDTO.fileUuid}+ `_` +${meetAnswerDTO.fileName})}" class="profile-image" />';
+      answertext+='<img src="/fileProfile/display?fileName='+meetAnswerDTO.fileUploadPath + '/s_' + meetAnswerDTO.fileUuid + '_' + meetAnswerDTO.fileName+'"';
+      answertext+='class="profile-image" alt="프로필 이미지">';
+      /*answertext+='<img src="/images/noImage/noImgLittleProfile.png"';
+      answertext+='class="profile-image" alt="프로필 이미지"/>';*/
+     /* answertext+='<th:block th:if="${meetAnswerDTO.fileUploadPath != null}">';
+      answertext+='<img th:if="${meetAnswerDTO.fileImageCheck}" th:src="@{/fileProfile/display(fileName=${meetAnswerDTO.fileUploadPath}+ `/s_`+ ${meetAnswerDTO.fileUuid}+ `_` +${meetAnswerDTO.fileName})}" class="profile-image" />';
       answertext+='<img th:unless="${meetAnswerDTO.fileImageCheck}" src="/images/nation/america.png" class="profile-image" />';
       answertext+='</th:block>';
-      answertext+='<th:block th:unless="${meetAnswerDTO.fileUploadPath == null}">';
+      answertext+='<th:block th:unless="${meetAnswerDTO.fileUploadPath != null}">';
       answertext+='<img src="/images/nation/america.png"  class="profile-image" >';
       answertext+= '</th:block>';*/
-
       answertext+='</div>';
       answertext+='</a>';
       answertext+='</div>';
@@ -468,8 +470,8 @@
       answertext+='</div>';
       answertext+='<span class="comment-date">'+meetAnswerDTO.meetAnswerUpdateDate +'작성</span>';
       answertext+='<div class="post-button-wrapper comment-button">';
-      answertext+='<button class="post-button '+meetAnswerDTO.meetAnswerNumber+' answerUpdate" style="margin-right: 4px;">수정</button>';
-      answertext+='<button class="post-button '+meetAnswerDTO.meetAnswerNumber+' answerRemove">삭제</button>';
+      answertext+='<button class="post-button '+meetAnswerDTO.meetAnswerNumber+' answerUpdate '+meetAnswerDTO.memberNumber+'" style="margin-right: 4px;">수정</button>';
+      answertext+='<button class="post-button '+meetAnswerDTO.meetAnswerNumber+' answerRemove '+meetAnswerDTO.memberNumber+'">삭제</button>';
       answertext+='</div>';
       answertext+='</div>';
       answertext+='</div>';
@@ -484,7 +486,7 @@
       answertext+='<div class="comment-reg-section reply-toggle'+meetAnswerDTO.meetAnswerNumber+' reply-toggle">';
       answertext+='<textarea class="comment-reg" placeholder="댓글을 입력하세요"></textarea>';
       answertext+='<div class="comment-button">';
-      answertext+='<button class="post-button">등록</button>';
+      answertext+='<button class="post-button  '+meetAnswerDTO.meetAnswerNumber+' commentWriteButton ">등록</button>';
       answertext+='</div>';
       answertext+='</div>';
               //댓글구역
@@ -597,12 +599,15 @@
     let commenttext="";
     let currentIndex;
     meetAnswerCommentDTOList.forEach(meetAnswerCommentDTO=>{
-      commenttext+='<div class="reply-content"  id="comment'+meetAnswerCommentDTO.meetAnswerCommentNumber +'">';
+      console.log("파일업로드패스"+meetAnswerCommentDTO.fileUploadPath);
+      console.log("파일유유아이디"+meetAnswerCommentDTO.fileUuid);
+      console.log("파일네임"+meetAnswerCommentDTO.fileName);
+      commenttext+='<div class="reply-content"  id="comment">';
       commenttext+='<div class="profile-content-section">';
       commenttext+='<div class="profile-image-section comment-profile-image-section">';
       commenttext+='<a href="#">';
       commenttext+='<div class="profile-image-wrapper">';
-      commenttext+='<img src="https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_56/576_blueguitar_1476154324950"';
+      commenttext+='<img src="/fileProfile/display?fileName='+meetAnswerCommentDTO.fileUploadPath + '/s_' + meetAnswerCommentDTO.fileUuid + '_' + meetAnswerCommentDTO.fileName+'"';
       commenttext+='class="profile-image" alt="프로필 이미지">';
       commenttext+='</div>';
       commenttext+='</a>';
@@ -617,12 +622,12 @@
       commenttext+='</div>';
       commenttext+='<span class="comment-date">'+meetAnswerCommentDTO.meetCommentUpdateDate+'</span>';
       commenttext+='<div class="post-button-wrapper comment-button">';
-      commenttext+='<button class="post-button" style="margin-right: 4px;">수정</button>';
-      commenttext+='<button class="post-button">삭제</button>';
+      commenttext+='<button class="post-button '+meetAnswerCommentDTO.meetAnswerCommentNumber+ ' commentUpdateButton '+meetAnswerCommentDTO.memberNumber+'" style="margin-right: 4px;">수정</button>';
+      commenttext+='<button class="post-button '+meetAnswerCommentDTO.meetAnswerCommentNumber+ ' commentRemoveButton '+meetAnswerCommentDTO.memberNumber+'">삭제</button>';
       commenttext+='</div>';
       commenttext+='</div>';
       commenttext+='</div>';
-      commenttext+='<div>';
+      commenttext+='<div class="comment-text  comment-text'+meetAnswerCommentDTO.meetAnswerCommentNumber+'">';
       commenttext+=meetAnswerCommentDTO.meetAnswerCommentContent;
       commenttext+='</div>';
       commenttext+='</div>';
@@ -639,37 +644,42 @@
   let answerModifyCheck=true;
   let currentModifyingAnswerNumber=0;
   let writeAnswerMeetNumber=[[${meetDTO.meetNumber}]];
+  let commentModifyCheck=true;
+  let currentModifyingCommentNumber=0;
   $(document).ready(function () {
 
-    $("#answerBody").on("click",".reply-register",function(){
+    $("#answerBody").on("click", ".reply-register", function () {
       console.log("리플라이리지스터들어감");
       let registerClickNumber = this.classList[2];
       //$('.reply-toggle'+registerClickNumber).toggle();
       //console.log($("#answerBody.reply-toggle"));
-      if(flagRegister){
-        $('.reply-toggle'+registerClickNumber).show();
-        flagRegister=false;
-      }
-      else{
-        $('.reply-toggle'+registerClickNumber).hide();
-        flagRegister=true;
+      if (flagRegister) {
+        $('.reply-toggle' + registerClickNumber).show();
+        flagRegister = false;
+      } else {
+        $('.reply-toggle' + registerClickNumber).hide();
+        flagRegister = true;
       }
     });
+    let sessionMemberNumber=[[${session.memberNumber}]];
+
     //답글 수정버튼 누르면
-    $("#answerBody").on("click",".answerUpdate",function() {
-      if (answerModifyCheck==false && currentModifyingAnswerNumber != this.classList[1]) {
-        alert("수정중인 댓글이 있습니다.");
+    $("#answerBody").on("click", ".answerUpdate", function () {
+      if(sessionMemberNumber!=this.classList[3]){
+        alert("작성자가 아니므로 수정 못합니다");
+      }
+      else if (answerModifyCheck == false && currentModifyingAnswerNumber != this.classList[1]) {
+        alert("수정중인 답글이 있습니다.");
         return;
       }
-      if(currentModifyingAnswerNumber== 0) {
+      else if (currentModifyingAnswerNumber == 0) {
         currentModifyingAnswerNumber = this.classList[1];
 
         answerModifyCheck = false;
 
         //<div class="comment-content'+meetAnswerDTO.meetAnswerNumber+'">'+meetAnswerDTO.meetAnswerContent+'</div>
         $(".comment-content" + currentModifyingAnswerNumber).replaceWith("<textarea  style='resize:none;'  class='comment-content  comment-content" + currentModifyingAnswerNumber + "'>" + $(".comment-content" + currentModifyingAnswerNumber).text() + "</textarea>");
-      }
-      else{
+      } else {
         meetAnswerAjax.modify({
           meetAnswerNumber: currentModifyingAnswerNumber,
           meetAnswerContent: $("textarea.comment-content" + currentModifyingAnswerNumber).val()
@@ -678,45 +688,133 @@
           answerModifyCheck = true;
         });
 
-        currentModifyingAnswerNumber=0;
+        currentModifyingAnswerNumber = 0;
       }
 
     });
-  //답글 쓰기버튼
-    $("#firstWriteAnswer").on("click",function(){
+    //답글 쓰기버튼
+    $("#firstWriteAnswer").on("click", function () {
       console.log("firstwriteanswer들어옴");
-       let meetAnswerContent = $("#inputWriteAnswer").val();
-       console.log($("#inputWriteAnswer").val());
+      let meetAnswerContent = $("#inputWriteAnswer").val();
+      console.log($("#inputWriteAnswer").val());
+      console.log(meetAnswerContent);
+
+      if(meetAnswerContent==''){
+        alert("입력한 내용이 아무것도 없습니다");
+        return;
+      }
+      else {
         meetAnswerAjax.add({
-          meetNumber:writeAnswerMeetNumber,
-          meetAnswerContent:meetAnswerContent
+                  meetNumber: writeAnswerMeetNumber,
+                  meetAnswerContent: meetAnswerContent
                 },
-                function (){
+                function () {
                   $("#inputWriteAnswer").val("");
                   getList();
                 }
         );
+      }
+
     });
+
+
     //답글 삭제버튼
-    $("#answerBody").on("click",".answerRemove",function() {
-      console.log("answerRemove들어옴");
-      let meetAnswerNumber = this.classList[1];
-      console.log(this.classList[1]);
-      meetAnswerAjax.remove(
-              meetAnswerNumber,
-              function(){
-                getList();
-              }
-      )
+    $("#answerBody").on("click", ".answerRemove", function () {
+      if(sessionMemberNumber!=this.classList[3]){
+        alert("작성자가 아니므로 삭제 못합니다");
+      }
+      else {
+        console.log("answerRemove들어옴");
+        let meetAnswerNumber = this.classList[1];
+        console.log(this.classList[1]);
+        meetAnswerAjax.remove(
+                meetAnswerNumber,
+                function () {
+                  getList();
+                }
+        );
+      }
+    });
+
+    //댓글 쓰기등록버튼
+    $("#answerBody").on("click", ".commentWriteButton", function () {
+      //어느 답글에 연관된것이냐
+      /*if(!commentWriteCheck && currentWriteCommentNumber!=this.classList[1]){
+        alert("쓰고 있는 댓글이 있습니다.");
+        return;
+      }*/
+
+
+        commentWriteCheck=false;
+        let meetAnswerNumber = this.classList[1];
+        //let meetAnswerCommentContent=$(this).parent(".comment-button").prev(".comment-content").val();
+        let meetAnswerCommentContent=$(this).parent().prev().val();
+        console.log("댓글쓰기 등록버튼"+meetAnswerCommentContent);
+        if(meetAnswerCommentContent==''){
+          alert("입력한 내용이 아무것도 없습니다.");
+          return;
+        }
+        else {
+          meetCommentAjax.add(
+                  {
+                    meetAnswerNumber: meetAnswerNumber,
+                    meetAnswerCommentContent: meetAnswerCommentContent
+                  },
+                  function () {
+                    getList();
+                    //$(this).parent(".comment-button").prev(".comment-content").val("");
+                    $(this).parent().prev().val("");
+                  }
+          );
+        }
+    });
+
+    $("#answerBody").on("click",".commentUpdateButton",function(){
+      if(sessionMemberNumber!=this.classList[3]){
+        alert("작성자가 아니므로 수정 못합니다");
+      }
+      else if(commentModifyCheck==false && currentModifyingCommentNumber!=this.classList[1]){
+        alert("수정중인 답글이 있습니다.");
+        return;
+      }
+      else if(currentModifyingCommentNumber==0){
+        currentModifyingCommentNumber=this.classList[1];
+        let meetAnswerCommentNumber = this.classList[1];
+        commentModifyCheck=false;
+        $(".comment-text" + meetAnswerCommentNumber).replaceWith("<textarea  style='resize:none;'  class='comment-text comment-text" + meetAnswerCommentNumber + "'>" + $(".comment-text" + meetAnswerCommentNumber).text() + "</textarea>");
+      }
+      else{
+        meetCommentAjax.modify({
+          meetAnswerCommentNumber:  currentModifyingCommentNumber,
+          meetAnswerCommentContent: $("textarea.comment-text" + currentModifyingCommentNumber).val()
+        }, function () {
+          getList();
+          commentModifyCheck = true;
+        });
+
+        currentModifyingCommentNumber = 0;
+      }
+    });
+
+    $("#answerBody").on("click",".commentRemoveButton",function(){
+      if(sessionMemberNumber!=this.classList[3]){
+        alert("작성자가 아니므로 삭제 못합니다");
+      }
+      else {
+        let meetAnswerCommentNumber = this.classList[1];
+
+        meetCommentAjax.remove(
+                meetAnswerCommentNumber,
+                function () {
+                  getList();
+                }
+        )
+      }
+
     });
 
 
-});
-
-
-
-
-
+  });
 
 </script>
 </html>

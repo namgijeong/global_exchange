@@ -167,4 +167,22 @@
         DELETE FROM tbl_meet_answer
         WHERE meet_answer_number = #{meetAnswerNumber}
     </delete>
+
+
+    <insert id="meetCommentInsert">
+        INSERT INTO tbl_meet_answer_comment(meet_answer_comment_number,member_number,meet_answer_comment_content,meet_answer_number)
+        VALUES(meet_answer_comment_seq.NEXTVAL,#{memberNumber},#{meetAnswerCommentContent},#{meetAnswerNumber})
+    </insert>
+
+    <update id="meetCommentUpdate" >
+        UPDATE tbl_meet_answer_comment
+        SET meet_answer_comment_content = #{meetAnswerCommentContent} , meet_comment_update_date = SYSDATE
+        WHERE meet_answer_comment_number = #{meetAnswerCommentNumber}
+    </update>
+
+    <delete id="meetCommentRemove" >
+        DELETE FROM  tbl_meet_answer_comment
+        WHERE meet_answer_comment_number = #{meetAnswerCommentNumber}
+    </delete>
+
 </mapper>
