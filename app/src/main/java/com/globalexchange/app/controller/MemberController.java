@@ -168,13 +168,6 @@ public class MemberController {
         model.addAttribute("partnerList",partnerList);
     }
 
-    // 마이페이지 교환일기 상대 끊기
-//    @GetMapping("/deletePartner")
-//    @RequestMapping(value = "/deletePartner")
-//    public void deletePartner(){
-//
-//    }
-
     // 마이페이지 상세보기
     @RequestMapping(value = "/detail")
     public void detail(HttpServletRequest request, Model model){

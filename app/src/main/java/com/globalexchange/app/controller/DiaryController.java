@@ -158,4 +158,15 @@ public class DiaryController {
     public void partnerDetail(Long memberNumber, Criteria criteria, Model model){
         model.addAttribute("partner", diaryService.showPartnerDetail(memberNumber));
     }
+
+    // 파트너 등록
+    @GetMapping("/partnerApply")
+    public RedirectView partnerApply(Long memberNumber, Long diaryPartnerNumber){
+
+        if(diaryService.diaryPartnerCheck(memberNumber, diaryPartnerNumber) == 0) {
+            diaryService.registerPartner(memberNumber, diaryPartnerNumber);
+        }
+
+        return new RedirectView("/diary/list");
+    }
 }
