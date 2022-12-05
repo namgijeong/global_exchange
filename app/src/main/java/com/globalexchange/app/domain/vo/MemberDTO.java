@@ -18,9 +18,12 @@ public class MemberDTO {
     private String memberBirthdate;
     private String memberIntroduce;
     private String memberNationUrl;
+
     private FileProfileVO fileProfileVO;
 
-
+    private Long diaryTotal;
+    private Long postTotal;
+    private Long answerTotal;
 
 //    public void create(String fileName, String fileUploadPath, String fileUuid, boolean fileImageCheck) {
 //        this.fileName = fileName;
@@ -88,6 +91,26 @@ public class MemberDTO {
         this.memberIntroduce = memberVO.getMemberIntroduce();
         this.memberNationUrl = memberVO.getMemberNationUrl();
         this.fileProfileVO = fileProfileVO;
-
     }
+
+    public void create(MemberVO memberVO, FileProfileVO fileProfileVO, Long diaryTotal, Long postTotal, Long answerTotal) {
+        this.memberNumber = memberVO.getMemberNumber();
+        this.memberId = memberVO.getMemberId();
+        this.memberPassword = memberVO.getMemberPassword();
+        this.memberTeachingLang = memberVO.getMemberTeachingLang();
+        this.memberLearningLang = memberVO.getMemberLearningLang();
+        this.memberInteresting = memberVO.getMemberInteresting();
+        this.memberGender = memberVO.getMemberGender();
+        this.memberNickname = memberVO.getMemberNickname();
+        this.memberPhoneNum = memberVO.getMemberPhoneNum();
+        this.memberBirthdate = memberVO.getMemberBirthdate();
+        this.memberBirthdate = memberVO.getMemberBirthdate();
+        this.memberIntroduce = memberVO.getMemberIntroduce();
+        this.memberNationUrl = memberVO.getMemberNationUrl();
+        this.fileProfileVO = fileProfileVO;
+        this.diaryTotal = diaryTotal;
+        this.postTotal = postTotal;
+        this.answerTotal = answerTotal;
+    }
+
 }

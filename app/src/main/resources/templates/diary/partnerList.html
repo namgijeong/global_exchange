@@ -59,7 +59,7 @@
                     </div>
                     <div class="previewContentsMain">
                         <div class="previewContentMain" th:each="member:${members}" th:object="${member}">
-                            <a th:href="@{/diary/partnerDetail(memberNumber = *{memberNumber})}">
+                            <a class="read" th:href="*{memberNumber}">
                                 <div class="image-wrapper">
                                     <th:block th:if="${not #strings.isEmpty(member.fileProfileVO)}">
                                         <img class="previewContentImage" th:if="${member.fileProfileVO.fileImageCheck}"
@@ -225,8 +225,14 @@
     const CirclesRadio=document.querySelectorAll(".modal-radio-circle");
     const $modalFooterBtn = $('.modal-footer-btn');
     const $inputs = $('input[name=language]');
+    const $read = $('.read');
     let $chosenLang = "";
+    let $queryString = [[${criteria.queryString}]];
 
+    $read.on('click', function (e) {
+        e.preventDefault();
+        location.href = "/diary/partnerDetail" + $queryString + "&memberNumber=" + $(this).attr('href');
+    })
 
     // 부모스크롤 비활성화
     const openModal = () => {
