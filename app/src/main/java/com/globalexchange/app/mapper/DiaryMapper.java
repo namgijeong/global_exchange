@@ -33,4 +33,9 @@ public interface DiaryMapper {
   //  파트너 조회
   public List<Long> diaryPartnerSelect(Long memberNumber);
 
+  // 파트너 등록
+  public void diaryPartnerInsert(Long memberNumber, Long diaryPartnerNumber);
+
+  // 파트너 유무 확인
+  public int diaryPartnerCheck(Long memberNumber, Long diaryPartnerNumber);
 }

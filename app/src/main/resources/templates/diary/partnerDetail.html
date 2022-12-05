@@ -13,246 +13,247 @@
     <link href="/css/diary/partnerDetail.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div id="app">
-        <div class="appWrapper">
-            <!-- header -->
-            <div th:replace="/main/header.html::topHeader(memberNumber = ${session.memberNumber}, memberNickname = ${session.memberNickname})"></div>
-            <div th:replace="/main/header.html:: header "></div>
+<div id="app">
+    <div class="appWrapper">
+        <!-- header -->
+        <div th:replace="/main/header.html::topHeader(memberNumber = ${session.memberNumber}, memberNickname = ${session.memberNickname})"></div>
+        <div th:replace="/main/header.html:: header"></div>
 
-            <!-- main -->
-            <div class="wrapper">
-                <div class="content-wrapper">
-                    <div class="diary-detail-container">
-                        <div class="header-section-wrapper" th:object="${partner}">
-                            <div class="image-wrapper">
-                                <th:block th:if="${not #strings.isEmpty(partner.fileProfileVO)}">
-                                    <img class="header-image" th:if="*{fileProfileVO.fileImageCheck}" th:src="@{/fileDiary/display(fileName=*{fileProfileVO.fileUploadPath} + '/s_' + *{fileProfileVO.fileUuid} + '_' + *{fileDiaryVO.fileName})}">
-                                    <img class="header-image" th:unless="*{fileProfileVO.fileImageCheck}" th:src="@{/images/member/defaultProfileImg.png}" width="375">
-                                </th:block>
-                                <th:block th:unless="${not #strings.isEmpty(partner.fileProfileVO)}">
-                                </th:block>
-                                <img class="header-image" src="/images/member/defaultProfileImg.png" width="375">
-                            </div>
-                            <div class="info-wrapper">
-                                <div class="mypage-user-property-container">
-                                    <div>
-                                        <div class="user-property-title">
-                                            <span th:text="*{memberNickname}"></span>님이<br> 작성한 교환일기 수
-                                        </div>
-                                        <div class="user-property-value" th:text="*{diaryTotal}">
-                                        </div>
+        <!-- main -->
+        <div class="wrapper">
+            <div class="content-wrapper">
+                <div class="diary-detail-container">
+                    <div class="header-section-wrapper" th:object="${partner}">
+                        <div class="image-wrapper">
+                            <th:block th:if="${not #strings.isEmpty(partner.fileProfileVO)}">
+                                <img class="header-image" th:if="*{fileProfileVO.fileImageCheck}" th:src="@{/fileDiary/display(fileName=*{fileProfileVO.fileUploadPath} + '/s_' + *{fileProfileVO.fileUuid} + '_' + *{fileDiaryVO.fileName})}">
+                                <img class="header-image" th:unless="*{fileProfileVO.fileImageCheck}" th:src="@{/images/member/defaultProfileImg.png}" width="375">
+                            </th:block>
+                            <th:block th:unless="${not #strings.isEmpty(partner.fileProfileVO)}">
+                            </th:block>
+                            <img class="header-image" src="/images/member/defaultProfileImg.png" width="375">
+                        </div>
+                        <div class="info-wrapper">
+                            <div class="mypage-user-property-container">
+                                <div>
+                                    <div class="user-property-title">
+                                        <span th:text="*{memberNickname}"></span>님이<br> 작성한 교환일기 수
                                     </div>
-                                    <div>
-                                        <div class="user-property-title">
-                                            <span th:text="*{memberNickname}"></span>님이<br> 작성한 게시글 수
-                                        </div>
-                                        <div class="user-property-value" th:text="*{postTotal}">
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="user-property-title">
-                                            <span th:text="*{memberNickname}"></span>님이<br> 작성한 답글 수
-                                        </div>
-                                        <div class="user-property-value" th:text="*{answerTotal}">
-                                        </div>
+                                    <div class="user-property-value" th:text="*{diaryTotal}">
                                     </div>
                                 </div>
-                                <section class="partner-profile-section">
-                                    <div class="partner-profile-wrapper">
-                                        <div class="partner-nickname">
-                                            닉네임
-                                        </div>
-                                        <div class="partner-nickname" th:text="*{memberNickname}">
-                                        </div>
+                                <div>
+                                    <div class="user-property-title">
+                                        <span th:text="*{memberNickname}"></span>님이<br> 작성한 게시글 수
                                     </div>
-                                    <div class="partner-profile-wrapper">
-                                        <div class="partner-nickname">
-                                            익숙한 언어
-                                        </div>
-                                        <div class="img-wrapper">
-                                            <div th:text="*{memberTeachingLang}">
-                                            </div>
-                                            <img class="nation-img-style" th:src="*{memberNationUrl}">
-                                        </div>
+                                    <div class="user-property-value" th:text="*{postTotal}">
                                     </div>
-                                    <div class="partner-profile-wrapper">
-                                        <div class="partner-nickname">
-                                            배우고 싶은 언어
-                                        </div>
-                                        <div class="img-wrapper">
-                                            <div th:text="*{memberLearningLang}">
-                                                ENGLISH
-                                            </div>
-                                            <img class="nation-img-style" src="/images/nation/america.png">
-                                        </div>
+                                </div>
+                                <div>
+                                    <div class="user-property-title">
+                                        <span th:text="*{memberNickname}"></span>님이<br> 작성한 답글 수
                                     </div>
-                                </section>
+                                    <div class="user-property-value" th:text="*{answerTotal}">
+                                    </div>
+                                </div>
+                            </div>
+                            <section class="partner-profile-section">
+                                <div class="partner-profile-wrapper">
+                                    <div class="partner-nickname">
+                                        닉네임
+                                    </div>
+                                    <div class="partner-nickname" th:text="*{memberNickname}">
+                                    </div>
+                                </div>
+                                <div class="partner-profile-wrapper">
+                                    <div class="partner-nickname">
+                                        익숙한 언어
+                                    </div>
+                                    <div class="img-wrapper">
+                                        <div th:text="*{memberTeachingLang}">
+                                        </div>
+                                        <img class="nation-img-style" th:src="*{memberNationUrl}">
+                                    </div>
+                                </div>
+                                <div class="partner-profile-wrapper">
+                                    <div class="partner-nickname">
+                                        배우고 싶은 언어
+                                    </div>
+                                    <div class="img-wrapper">
+                                        <div th:text="*{memberLearningLang}">
+                                            ENGLISH
+                                        </div>
+                                        <img class="nation-img-style" src="/images/nation/america.png">
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <section class="section-container" th:object="${partner}">
+                        <div class="section-title">
+                            <h2>교환일기 파트너 프로파일</h2>
+                            <div>
+                                <button class="frip-btn" type="button" onclick="applyModalOpen()" th:if="${session.memberNumber != null and session.memberNumber != partner.memberNumber}">
+                                    파트너 신청하기
+                                    <!-- 시간 여유가 된다면 AJAX로 검사해서 경고창 띄우기 -->
+                                </button>
+                                <button class="frip-btn" type="button" onclick="goPartnerList()">
+                                    목록으로
+                                </button>
+                                <button class="secondary-btn" type="button" onclick="reportModalOpen()" th:if="${session.memberNumber != null and session.memberNumber != partner.memberNumber}">
+                                    신고하기
+                                </button>
                             </div>
                         </div>
-                        <section class="section-container" th:object="${partner}">
-                            <div class="section-title">
-                                <h2>교환일기 파트너 프로파일</h2>
-                                <div>
-                                    <button class="frip-btn" type="button" onclick="applyModalOpen()" th:if="${session.memberNumber != null and session.memberNumber != partner.memberNumber}">
-                                        파트너 신청하기
-                                    </button>
-                                    <button class="frip-btn" type="button" onclick="goPartnerList()">
-                                        목록으로
-                                    </button>
-                                    <button class="secondary-btn" type="button" onclick="reportModalOpen()" th:if="${session.memberNumber != null and session.memberNumber != partner.memberNumber}">
-                                        신고하기
-                                    </button>
+                        <div class="form-container">
+                            <form name="diaryForm">
+                                <div class="input-container">
+                                    <div class="row">
+                                        <div class="col-left">
+                                            <div class="input-label-style">
+                                                <span class="input-subject">닉네임</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-right">
+                                            <div class="input-group">
+                                                <input type="text" class="input-text" readonly th:field="*{memberNickname}">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-container">
-                                <form name="diaryForm">
-                                    <div class="input-container">
-                                        <div class="row">
-                                            <div class="col-left">
-                                                <div class="input-label-style">
-                                                    <span class="input-subject">닉네임</span>
-                                                </div>
+                                <div class="input-container">
+                                    <div class="row">
+                                        <div class="col-left">
+                                            <div class="input-label-style">
+                                                <span class="input-subject">이메일</span>
                                             </div>
-                                            <div class="col-right">
-                                                <div class="input-group">
-                                                    <input type="text" class="input-text" readonly th:field="*{memberNickname}">
-                                                </div>
+                                        </div>
+                                        <div class="col-right">
+                                            <div class="input-group">
+                                                <input type="text" class="input-text" readonly th:field="*{memberId}">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="input-container">
-                                        <div class="row">
-                                            <div class="col-left">
-                                                <div class="input-label-style">
-                                                    <span class="input-subject">이메일</span>
-                                                </div>
+                                </div>
+                                <div class="input-container">
+                                    <div class="row">
+                                        <div class="col-left">
+                                            <div class="input-label-style">
+                                                <span class="input-subject">생년월일</span>
                                             </div>
-                                            <div class="col-right">
-                                                <div class="input-group">
-                                                    <input type="text" class="input-text" readonly th:field="*{memberId}">
-                                                </div>
+                                        </div>
+                                        <div class="col-right">
+                                            <div class="input-group">
+                                                <input type="text" class="input-text" readonly th:field="*{memberBirthdate}">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="input-container">
-                                        <div class="row">
-                                            <div class="col-left">
-                                                <div class="input-label-style">
-                                                    <span class="input-subject">생년월일</span>
-                                                </div>
+                                </div>
+                                <div class="input-container">
+                                    <div class="row">
+                                        <div class="col-left">
+                                            <div class="input-label-style">
+                                                <span class="input-subject">성별</span>
                                             </div>
-                                            <div class="col-right">
-                                                <div class="input-group">
-                                                    <input type="text" class="input-text" readonly th:field="*{memberBirthdate}">
-                                                </div>
+                                        </div>
+                                        <div class="col-right">
+                                            <div class="input-group">
+                                                <input type="text" class="input-text" readonly th:if="${partner.memberGender == M}" value="남자">
+                                                <input type="text" class="input-text" readonly th:unless="${partner.memberGender == M}" value="여자">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="input-container">
-                                        <div class="row">
-                                            <div class="col-left">
-                                                <div class="input-label-style">
-                                                    <span class="input-subject">성별</span>
-                                                </div>
+                                </div>
+                                <div class="input-container">
+                                    <div class="row">
+                                        <div class="col-left">
+                                            <div class="input-label-style">
+                                                <span class="input-subject">관심사</span>
                                             </div>
-                                            <div class="col-right">
-                                                <div class="input-group">
-                                                    <input type="text" class="input-text" readonly th:if="${partner.memberGender == M}" value="남자">
-                                                    <input type="text" class="input-text" readonly th:unless="${partner.memberGender == M}" value="여자">
-                                                </div>
+                                        </div>
+                                        <div class="col-right">
+                                            <div class="input-group">
+                                                <input type="text" class="input-text" readonly th:field="*{memberInteresting}">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="input-container">
-                                        <div class="row">
-                                            <div class="col-left">
-                                                <div class="input-label-style">
-                                                    <span class="input-subject">관심사</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-right">
-                                                <div class="input-group">
-                                                    <input type="text" class="input-text" readonly th:field="*{memberInteresting}">
-                                                </div>
+                                </div>
+                                <div class="input-container">
+                                    <div class="row">
+                                        <div class="col-left">
+                                            <div class="input-label-style">
+                                                <span class="input-subject">자기소개</span>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="input-container">
-                                        <div class="row">
-                                            <div class="col-left">
-                                                <div class="input-label-style">
-                                                    <span class="input-subject">자기소개</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-right">
-                                                <div class="input-group">
+                                        <div class="col-right">
+                                            <div class="input-group">
                                                     <pre id="memberIntroduction" name="memberIntroduction" wrap="soft" class="text-area-style input-text" disabled th:field="*{memberIntroduce}">
                                                     </pre>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
-                        </section>
-                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
                 </div>
             </div>
-
-            <!-- footer -->
-            <div th:replace="/main/footer.html:: footerFirst"></div>
         </div>
-    </div>
 
-    <!-- 파트너 신청하기 모달창 -->
-    <div id="applyModal" class="modal-container modal-overlay">
-        <div class="modal-flex">
-            <div class="modal-wrapper">
-                <div class="modal-body">
-                    <h2 class="modal-title">교환일기 파트너를 신청하시겠습니까?</h2>
-                    <div>
-                        교환일기 파트너를 신청합니다.
-                    </div>
+        <!-- footer -->
+        <div th:replace="/main/footer.html:: footerFirst"></div>
+    </div>
+</div>
+
+<!-- 파트너 신청하기 모달창 -->
+<div id="applyModal" class="modal-container modal-overlay">
+    <div class="modal-flex">
+        <div class="modal-wrapper">
+            <div class="modal-body">
+                <h2 class="modal-title">교환일기 파트너를 신청하시겠습니까?</h2>
+                <div>
+                    교환일기 파트너를 신청합니다.
                 </div>
-                <footer class="modal-footer">
-                    <div class="btn-container">
-                        <button id="applyYesBtn" class="frip-btn" >
-                            네
-                        </button>
-                        <button id="applyNoBtn" class="secondary-btn">
-                            아니오
-                        </button>
-                    </div>
-                </footer>
             </div>
-        </div>
-        <div class="modal-color"></div>
-    </div>
-
-    <!-- 파트너 신고하기 모달창 -->
-    <div id="reportModal" class="modal-container modal-overlay">
-        <div class="modal-flex">
-            <div class="modal-wrapper">
-                <div class="modal-body">
-                    <h2 class="modal-title">교환일기 파트너를 신고하시겠습니까?</h2>
-                    <div >
-                        교환일기 파트너를 신고합니다.
-                    </div>
+            <footer class="modal-footer">
+                <div class="btn-container">
+                    <button id="applyYesBtn" class="frip-btn" >
+                        네
+                    </button>
+                    <button id="applyNoBtn" class="secondary-btn">
+                        아니오
+                    </button>
                 </div>
-                <footer class="modal-footer">
-                    <div class="btn-container">
-                        <button id="reportYesBtn" class="frip-btn" >
-                            네
-                        </button>
-                        <button id="reportNoBtn" class="secondary-btn">
-                            아니오
-                        </button>
-                    </div>
-                </footer>
-            </div>
+            </footer>
         </div>
-        <div class="modal-color"></div>
     </div>
+    <div class="modal-color"></div>
+</div>
+
+<!-- 파트너 신고하기 모달창 -->
+<div id="reportModal" class="modal-container modal-overlay">
+    <div class="modal-flex">
+        <div class="modal-wrapper">
+            <div class="modal-body">
+                <h2 class="modal-title">교환일기 파트너를 신고하시겠습니까?</h2>
+                <div >
+                    교환일기 파트너를 신고합니다.
+                </div>
+            </div>
+            <footer class="modal-footer">
+                <div class="btn-container">
+                    <button id="reportYesBtn" class="frip-btn" >
+                        네
+                    </button>
+                    <button id="reportNoBtn" class="secondary-btn">
+                        아니오
+                    </button>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <div class="modal-color"></div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script th:inline="javascript">

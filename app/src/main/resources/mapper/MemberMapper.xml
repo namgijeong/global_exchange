@@ -149,22 +149,4 @@
             </if>
         </where>
     </select>
-
-    <select id="getTotalWrittenDiary">
-        SELECT COUNT(DIARY.DIARY_NUMBER)
-        FROM TBL_MEMBER MEMBER
-        JOIN TBL_DIARY DIARY
-        ON MEMBER.MEMBER_NUMBER = DIARY.MEMBER_NUMBER
-        WHERE MEMBER.MEMBER_NUMBER = #{memberNumber}
-    </select>
-
-    <select id="getTotalWrittenPost">
-        SELECT COUNT(*)
-        FROM TBL_MEMBER MEMBER
-        LEFT JOIN TBL_DIARY DIARY
-        ON MEMBER.MEMBER_NUMBER = DIARY.MEMBER_NUMBER
-        RIGHT JOIN TBL_MEET MEET
-        ON MEMBER.MEMBER_NUMBER = MEET.MEMBER_NUMBER
-        WHERE MEMBER.MEMBER_NUMBER = ${memberNumber}
-    </select>
 </mapper>
