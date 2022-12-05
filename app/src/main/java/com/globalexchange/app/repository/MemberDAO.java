@@ -143,9 +143,14 @@ public class MemberDAO {
 
 //    교환일기 파트너 삭제
 
-    public void deletePartner(Long diaryPartnerNumber){
+    public void deletePartner(Long diaryPartnerNumber, Long memberNumber){
 
-        memberMapper.deletePartner(diaryPartnerNumber);
+        memberMapper.deletePartner(diaryPartnerNumber, memberNumber);
+
+    }
+
+    public void deletePartner2(Long diaryPartnerNumber, Long memberNumber){
+        memberMapper.deletePartner2(diaryPartnerNumber, memberNumber);
     }
     
 

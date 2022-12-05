@@ -138,8 +138,10 @@ public class MemberObjectificationService implements MemberService{
     }
 
     @Override
-    public void deletePartner(Long diaryPartnerNumber){
-        memberDAO.deletePartner(diaryPartnerNumber);
+    public void deletePartner(Long diaryPartnerNumber, Long memberNumber){
+
+        memberDAO.deletePartner(diaryPartnerNumber,memberNumber);
+        memberDAO.deletePartner2(diaryPartnerNumber,memberNumber);
     }
 
 
