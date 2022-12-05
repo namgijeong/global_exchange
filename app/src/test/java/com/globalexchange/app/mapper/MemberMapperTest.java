@@ -36,4 +36,29 @@ class MemberMapperTest {
     void myPageProfile() {
         log.info("memberProfileFile" + memberMapper.myPageProfile(1L));
     }
+
+    @Test
+    void diaryTotalPost() {
+        log.info("total diary count : " + memberMapper.diaryTotalPost(1L));
+    }
+
+    @Test
+    void meetPost() {
+        log.info("total meet post count : " + memberMapper.meetPost(1L));
+    }
+
+    @Test
+    void lodgingPost() {
+        log.info("total lodging post count : " + memberMapper.lodgingPost(1L));
+    }
+
+    @Test
+    void meetAnswer() {
+        log.info("total meet answer count : " + memberMapper.meetAnswer(1L));
+    }
+
+    @Test
+    void lodgingAnswer() {
+        log.info("total lodging answer count : " + memberMapper.lodgingAnswer(1L));
+    }
 }

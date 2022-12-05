@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -108,5 +109,16 @@ public class DiaryObjectificationService implements DiaryService {
   @Override
   public int getTotal(Criteria criteria) {
     return memberDAO.findCountAll(criteria);
+  }
+
+  @Override
+  public MemberDTO showPartner(Long memberNumber) {
+
+    MemberDTO memberDTO = new MemberDTO();
+    memberDTO.create(memberDAO.findByMemberNumber(memberNumber), memberDAO.myPageProfile(memberNumber)
+            , memberDAO.diaryTotalPost(memberNumber), (memberDAO.meetPost(memberNumber) + memberDAO.lodgingPost(memberNumber))
+            , (memberDAO.meetAnswer(memberNumber) + memberDAO.lodgingAnswer(memberNumber)));
+
+    return memberDTO;
   }
 }

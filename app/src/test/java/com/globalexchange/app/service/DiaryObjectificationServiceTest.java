@@ -24,4 +24,9 @@ class DiaryObjectificationServiceTest {
     void getTotal() {
         log.info("count : " + diaryService.getTotal(new Criteria().create(1, 10, "KOREAN")));
     }
+
+    @Test
+    void showPartner() {
+        log.info("member : " + diaryService.showPartner(1L));
+    }
 }
