@@ -41,7 +41,8 @@ public interface MemberService {
     List<MemberDTO> diaryPartnerList(Long memberNumber);
 
     //  파트너 삭제
-    void deletePartner(Long diaryPartnerNumber);
+    void deletePartner(Long diaryPartnerNumber, Long memberNumber);
+
 
     //  마이페이지 상세보기
     MemberDTO myPageDetail(Long memberNumber);
