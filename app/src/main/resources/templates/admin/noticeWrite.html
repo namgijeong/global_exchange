@@ -1,10 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Global Exchange</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+          rel="stylesheet">
+
+    <link href="/css/admin/noticeWrite.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-$END$
+<div id="logobox"><div id="logo"><a><img src="/images/main/logo.png"></a></div></div>
+
+<div id="main_body">
+    <div id="subnavigation">
+        <ul>
+            <li class="menu"> 
+                <a><span>사용자 관리</span><span class="rightarrow"></span></a>
+                <ul class="hide">
+                    <li class="normalcolor"><a>회원 관리</a></li>
+
+                </ul>
+            </li>
+            <li class="menu"> 
+                <a><span>컨텐츠 관리</span><span class="rightarrow"></span></a>
+                <ul class="hide">
+                    <li class="normalcolor"><a>만남과 도움 관리</a></li>
+                    <li class="normalcolor"><a>숙소가 필요해 관리</a></li>
+                </ul>
+            </li>
+            <li class="menu"> 
+                <a><span>공지사항 관리</span><span class="rightarrow"></span></a>
+                <ul class="hide">
+                    <li class="normalcolor"><a>공지사항 관리</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div id="subnavigation_result">
+        <div id="subnavigation_result_header">
+            <div id="subnavigation_result_title">
+                <h2>공지사항 작성</h2>
+                <span>공지사항 작성하기 입니다</span>
+            </div>
+        </div>
+        <div id="subnavigation_result_body">
+            <form method="post" th:action="@{/admin/noticeWrite}" th:object="${notice}" id="writeForm">
+                <div id="subnavigation_list">
+                    <div class="subnavigation_list_detail">
+                        <span><span class="warning">*</span>제목</span>
+                        <input type="text" th:field="*{noticeTitle}" placeholder="공지사항 제목을 작성해주세요">
+                    </div>
+                    <div class="subnavigation_list_detail content-style">
+                        <span><span class="warning">*</span>내용</span>
+                        <textarea th:field="*{noticeContent}" wrap="soft" placeholder="공지사항 내용을 작성해주세요"></textarea>
+                    </div>
+                </div>
+                <ul class="button-conatiner">
+                    <div class="button-wrapper">
+                        <li>
+                            <input type="submit" class="button-style" value="등록"/>
+                        </li>
+                    </div>
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/admin/admin.js"></script>
+<script th:inline="javascript"></script>
 </html>

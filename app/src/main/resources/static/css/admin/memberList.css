@@ -117,17 +117,15 @@ ul,li{
     text-align:left;
 }
 
-.menu>a{
+.menu a{
     cursor:pointer;
     display:inline-block;
     width:100%;
     line-height:52px;
     height:52px;
-
     display:flex;
-
-
 }
+
 .menu>a:hover{
     background-color:#3a495e;
     color: #AB72EC;

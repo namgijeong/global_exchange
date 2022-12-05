@@ -10,10 +10,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/admin/*")
@@ -21,6 +25,11 @@ import org.springframework.web.servlet.view.RedirectView;
 public class AdminController {
 
     private final AdminService adminService;
+
+    // 관리자 멤버 리스트 페이지
+    @GetMapping("/memberList")
+    public void memberList(HttpServletRequest request){
+    }
 
     // 공지사항 리스트 페이지
     @GetMapping("/noticeList")
@@ -69,11 +78,7 @@ public class AdminController {
         return new RedirectView("/admin/noticeList");
     }
 
-/*    // 관리자 멤버 리스트 페이지
-    @GetMapping("/memberList")
-    public void memberList(){
-
-    }
+/*
 
     // 관리자 멤버 상세보기 페이지
     @GetMapping("/memberDetail")
