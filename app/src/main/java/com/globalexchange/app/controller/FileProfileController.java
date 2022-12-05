@@ -44,7 +44,7 @@ public class FileProfileController {
 
         if(Files.probeContentType(fullPath.toPath()).startsWith("image")){
             FileOutputStream out = new FileOutputStream(new File(uploadFullPath, "s_" + uploadFileName));
-            Thumbnailator.createThumbnail(upload.getInputStream(), out, 100, 100);
+            Thumbnailator.createThumbnail(upload.getInputStream(), out, 375, 375);
             out.close();
             fileProfileVO.setFileImageCheck(true);
 

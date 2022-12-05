@@ -96,7 +96,12 @@
 
     <delete id="deletePartner">
         DELETE FROM tbl_diary_partner
-        WHERE DIARY_PARTNER_NUMBER= #{diaryPartnerNumber}
+        WHERE DIARY_PARTNER_NUMBER= #{diaryPartnerNumber} and MEMBER_NUMBER = #{memberNumber}
+    </delete>
+
+    <delete id="deletePartner2">
+        DELETE FROM tbl_diary_partner
+        WHERE DIARY_PARTNER_NUMBER= #{memberNumber} and MEMBER_NUMBER= #{diaryPartnerNumber}
     </delete>
 
     <select id="myPageDetail" resultType="memberVO">
