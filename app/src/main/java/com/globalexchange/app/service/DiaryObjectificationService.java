@@ -4,6 +4,7 @@ import com.globalexchange.app.domain.vo.*;
 import com.globalexchange.app.repository.DiaryDAO;
 import com.globalexchange.app.repository.FileDAO;
 import com.globalexchange.app.repository.MemberDAO;
+import com.globalexchange.app.repository.MemberReportDAO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,6 +25,7 @@ public class DiaryObjectificationService implements DiaryService {
   private final DiaryDAO diaryDAO;
   private final FileDAO fileDAO;
   private final MemberDAO memberDAO;
+  private final MemberReportDAO memberReportDAO;
 
   @Override
   @Transactional(rollbackFor = Exception.class)
@@ -168,6 +170,6 @@ public class DiaryObjectificationService implements DiaryService {
 
   @Override
   public void registerReport(Long reportingMemberNumber, Long reportedMemberNumber) {
-    memberDAO.saveReport(reportingMemberNumber, reportedMemberNumber);
+    memberReportDAO.saveReport(reportingMemberNumber, reportedMemberNumber);
   }
 }

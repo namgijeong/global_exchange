@@ -155,9 +155,14 @@
         VALUES (MEMBER_REPORT_SEQ.NEXTVAL, #{reportingMemberNumber}, #{reportedMemberNumber})
     </insert>
 
-    <select id="selectReports" resultType="_int">
+    <select id="getReportsCount" resultType="_int">
         SELECT COUNT(MEMBER_REPORT_NUMBER)
         FROM TBL_MEMBER_REPORT
         WHERE REPORTED_MEMBER_NUMBER = #{reportedMemberNumber}
     </select>
+
+    <delete id="deleteMember">
+        DELETE FROM TBL_MEMBER
+        WHERE MEMBER_NUMBER = #{memberNumber}
+    </delete>
 </mapper>

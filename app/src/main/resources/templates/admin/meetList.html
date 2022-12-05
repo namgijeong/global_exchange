@@ -8,35 +8,54 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
           rel="stylesheet">
 
-    <link href="/css/admin/meetingAndHelpList.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/admin/meetList.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div>
     <div id="logobox">
-        <div id="logo"><a><img src="/images/main/logo.png"></a></div>
+        <div id="logo">
+            <a>
+                <img src="/images/main/logo.png" th:onclick="|location.href='@{/admin/memberList}'|">
+            </a>
+        </div>
     </div>
-
     <div id="main_body">
         <div id="subnavigation">
             <ul>
                 <li class="menu"> 
-                    <a><span>사용자 관리</span><span class="rightarrow"></span></a>
+                    <a>
+                        <span>사용자 관리</span>
+                        <span class="rightarrow"></span>
+                    </a>
                     <ul class="hide">
-                        <li class="normalcolor"><a>회원 관리</a></li>
-
+                        <li class="normalcolor">
+                            <a th:onclick="|location.href='@{/admin/memberList}'|">회원 관리</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="menu"> 
-                    <a><span>컨텐츠 관리</span><span class="rightarrow"></span></a>
+                    <a>
+                        <span>컨텐츠 관리</span>
+                        <span class="rightarrow"></span>
+                    </a>
                     <ul class="hide">
-                        <li class="normalcolor"><a>만남과 도움 관리</a></li>
-                        <li class="normalcolor"><a>숙소가 필요해 관리</a></li>
+                        <li class="normalcolor">
+                            <a th:onclick="|location.href='@{/admin/meetList}'|">만남과 도움 관리</a>
+                        </li>
+                        <!--<li class="normalcolor">
+                            <a th:onclick="|location.href='@{/admin/lodgingList}'|">숙소가 필요해 관리</a>
+                        </li>-->
                     </ul>
                 </li>
                 <li class="menu"> 
-                    <a><span>공지사항 관리</span><span class="rightarrow"></span></a>
+                    <a>
+                        <span>공지사항 관리</span>
+                        <span class="rightarrow"></span>
+                    </a>
                     <ul class="hide">
-                        <li class="normalcolor"><a>공지사항 관리</a></li>
+                        <li class="normalcolor">
+                            <a th:onclick="|location.href='@{/admin/noticeList}'|">공지사항 관리</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -44,20 +63,17 @@
         <div id="subnavigation_result">
             <div id="subnavigation_result_header">
                 <div id="subnavigation_result_title">
-                    <h2>만남과 도움 목록</h2>
-                    <span>작성된 만남과 도움 목록입니다</span>
+                    <h2>만남과 도움 게시글 목록</h2>
+                    <span>만남과 도움 게시글 목록입니다</span>
                 </div>
-                <div id="subnavigation_how_array">
+                <!--<div id="subnavigation_how_array">
                     <div class="subnavigation_how">
                         <div class="subnavigation_how_title">카테고리</div>
                         <div class="subnavigation_how_main">
                             <select class="selectnormalcolor">
-                                <option>만남 번호</option>
-                                <option>멤버 번호</option>
                                 <option>제목</option>
-                                <option>작성 일자</option>
-                                <option>수정 일자</option>
-
+                                <option>내용</option>
+                                <option>등록순</option>
                             </select>
                         </div>
                     </div>
@@ -73,102 +89,94 @@
                     <div id="inquire">
                         <button>조회</button>
                     </div>
-                </div>
-
+                </div>-->
             </div>
-
             <div id="subnavigation_result_body">
                 <div id="subnavigation_search_and_delete">
-<!--                    <div id="subnavigation_search">-->
-<!--                        <span></span>-->
-<!--                        <input type="text" name="search_member" placeholder="검색"/>-->
-<!--                    </div>-->
-
+                    <!--                   <ul class="button-conatiner">
+                                           <div class="button-wrapper">
+                                               <li>
+                                                   <input type="button" class="button-style" value="작성하기" onclick="goWrite()">
+                                               </li>
+                                           </div>
+                                       </ul>-->
                 </div>
                 <div id="subnavigation_list">
                     <div id="subnavigation_list_title">
-                        <span>만남 번호</span>
-                        <span>멤버 번호</span>
+                        <span>게시글 번호</span>
                         <span>제목</span>
-                        <span>배울 언어</span>
                         <span>내용</span>
+                        <span>작성자가 익숙한 언어</span>
+                        <span>작성자가 도움을 원하는 언어</span>
                         <span>작성 일자</span>
-                        <span>수정 일자</span>
-                        <span>주소</span>
-
                     </div>
-                    <div class="subnavigation_list_detail">
-                        <span>1</span>
-                        <span>1</span>
-                        <span>영어 회화를 배우고 싶어요</span>
-                        <span>ENGLISH</span>
-                        <span>읽고쓰는건 인터넷사전 검색하면서 하면 대충하는데, 회화를 못하겠어요. 한국어와 영어 언어교환 구해요.</span>
-                        <span>2022-11-20</span>
-                        <span>2022-11-22</span>
-                        <span>서울시 강남구 역삼동</span>
-                    </div>
-                    <div class="subnavigation_list_detail">
-                        <span>1</span>
-                        <span>1</span>
-                        <span>영어 회화를 배우고 싶어요</span>
-                        <span>ENGLISH</span>
-                        <span>읽고쓰는건 인터넷사전 검색하면서 하면 대충하는데, 회화를 못하겠어요. 한국어와 영어 언어교환 구해요.</span>
-                        <span>2022-11-20</span>
-                        <span>2022-11-22</span>
-                        <span>서울시 강남구 역삼동</span>
-                    </div>
-                    <div class="subnavigation_list_detail">
-                        <span>1</span>
-                        <span>1</span>
-                        <span>영어 회화를 배우고 싶어요</span>
-                        <span>ENGLISH</span>
-                        <span>읽고쓰는건 인터넷사전 검색하면서 하면 대충하는데, 회화를 못하겠어요. 한국어와 영어 언어교환 구해요.</span>
-                        <span>2022-11-20</span>
-                        <span>2022-11-22</span>
-                        <span>서울시 강남구 역삼동</span>
-                    </div>
-                    <div class="subnavigation_list_detail">
-                        <span>1</span>
-                        <span>1</span>
-                        <span>영어 회화를 배우고 싶어요</span>
-                        <span>ENGLISH</span>
-                        <span>읽고쓰는건 인터넷사전 검색하면서 하면 대충하는데, 회화를 못하겠어요. 한국어와 영어 언어교환 구해요.</span>
-                        <span>2022-11-20</span>
-                        <span>2022-11-22</span>
-                        <span>서울시 강남구 역삼동</span>
-                    </div>
-                    <div class="subnavigation_list_detail">
-                        <span>1</span>
-                        <span>1</span>
-                        <span>영어 회화를 배우고 싶어요</span>
-                        <span>ENGLISH</span>
-                        <span>읽고쓰는건 인터넷사전 검색하면서 하면 대충하는데, 회화를 못하겠어요. 한국어와 영어 언어교환 구해요.</span>
-                        <span>2022-11-20</span>
-                        <span>2022-11-22</span>
-                        <span>서울시 강남구 역삼동</span>
-                    </div>
+                    <th:block th:each="meet:${meets}">
+                        <div class="subnavigation_list_detail" th:object="${meet}">
+                            <span th:text="*{meetNumber}"></span>
+                            <span>
+                                <a class="read" th:href="*{meetNumber}" th:text="*{meetTitle}"></a>
+                            </span>
+                            <span th:text="*{meetContent}"></span>
+                            <span th:text="*{memberTeachingLang}"></span>
+                            <span th:text="*{meetLearningLang}"></span>
+                            <span th:text="${#strings.substring(meet.meetWriteDate, 0, 16)}"></span>
+                        </div>
+                    </th:block>
                 </div>
-
-
-            </div>
-
-
-            <div id="page_action">
-                <div id="page_arrow" style="margin-top: 20px">
-                <span style="cursor: pointer"  >
-                    <img src="/images/pagenation/nextArrow.svg" style="transform: rotate(180deg)">
-                </span>
-                    <span style="cursor: pointer"  >
-                    <img src="/images/pagenation/nextArrow.svg">
-                </span>
+                <div class="pagination-wrapper" th:object="${pagination}">
+                    <a class="change-page start-page" th:href="*{startPage - 1}" th:if="*{prev}">
+                        <code><</code>
+                    </a>
+                    <th:block th:each="pageNumber:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                        <a class="change-page page-number not-selected" th:href="${pageNumber}" th:if="${pagination.criteria.page != pageNumber}">
+                            <code th:text="${pageNumber}"></code>
+                        </a>
+                        <a class="change-page page-number" th:unless="${pagination.criteria.page != pageNumber}">
+                            <code th:text="${pageNumber}"></code>
+                        </a>
+                    </th:block>
+                    <a class="change-page end-page" th:href="*{endPage + 1}" th:if="*{next}">
+                        <code>></code>
+                    </a>
                 </div>
+                <form th:action="@{/admin/meetList}" th:object="${criteria}" name="pageForm">
+                    <input type="hidden" th:field="*{page}">
+                    <input type="hidden" th:field="*{amount}">
+                </form>
             </div>
-
-
         </div>
     </div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
+<script th:inline="javascript">
+    let $queryString = [[${pagination.criteria.queryString}]];
+
+    // 페이지네이션 마우스 올렸을 때 이벤트
+    const $pagenationAtags = $('.change-page');
+
+    $pagenationAtags.hover(function () {
+        $(this).css("background-color", 'rgb(229, 231, 234)');
+    }, function () {
+        $(this).css("background-color", 'transparent');
+    });
+
+    // 페이지 버튼을 눌렀을 때 해당 페이지로 이동
+    let $pages = $('.change-page');
+
+    $pages.on('click', function (e) {
+        e.preventDefault();
+        $(document.pageForm.page).val($(this).attr('href'));
+        document.pageForm.submit();
+    })
+
+    // 제목 클릭시 현재 페이지 정보와 함께 상세페이지로 이동
+    const $read = $('.read');
+
+    $read.on('click', function (e) {
+        e.preventDefault();
+        location.href = "/admin/meetDetail" + $queryString + "&meetNumber=" + $(this).attr('href');
+    });
+</script>
 </html>

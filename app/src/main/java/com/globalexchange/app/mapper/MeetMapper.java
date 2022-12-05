@@ -47,4 +47,7 @@ public interface MeetMapper {
     // 답글이 있는 최신글 조회
     public List<MeetVO> selectAllLatestAnsweredMeet(Criteria criteria);
 
+    // 게시글 삭제
+    public void deleteMeet(Long meetNumber);
+
 }

@@ -177,14 +177,8 @@ public class MemberDAO {
         return memberMapper.getTotal(criteria);
     }
 
-    // 멤버 신고
-    public void saveReport(Long reportingMemberNumber, Long reportedMemberNumber){
-        memberMapper.insertReport(reportingMemberNumber, reportedMemberNumber);
+    // 멤버 삭제
+    public void removeMember(Long memberNumber) {
+        memberMapper.deleteMember(memberNumber);
     }
-
-    // 멤버 신고 횟수 조회
-    public int findReports(Long reportedMemberNumber){
-        return memberMapper.selectReports(reportedMemberNumber);
-    }
-
 }

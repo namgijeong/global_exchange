@@ -36,4 +36,17 @@ public class MeetDTO {
         this.meetDetailAddress = meetVO.getMeetDetailAddress();
     }
 
+    public void create(MeetVO meetVO, String memberTeachingLang, String memberNickname) {
+        this.meetNumber = meetVO.getMeetNumber();
+        this.meetTitle = meetVO.getMeetTitle();
+        this.memberNumber = meetVO.getMemberNumber();
+        this.meetLearningLang = meetVO.getMeetLearningLang();
+        this.meetContent = meetVO.getMeetContent();
+        this.meetWriteDate = meetVO.getMeetWriteDate();
+        this.meetUpdateDate = meetVO.getMeetUpdateDate();
+        this.meetAddress = meetVO.getMeetAddress();
+        this.meetDetailAddress = meetVO.getMeetDetailAddress();
+        this.memberTeachingLang = memberTeachingLang;
+        this.memberNickname = memberNickname;
+    }
 }

@@ -63,7 +63,7 @@ class MemberMapperTest {
     }
 
     @Test
-    void insertReport() {
-        memberMapper.insertReport(1L, 3L);
+    void deleteMember() {
+        memberMapper.deleteMember(4L);
     }
 }

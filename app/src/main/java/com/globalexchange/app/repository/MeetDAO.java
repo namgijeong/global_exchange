@@ -101,4 +101,9 @@ public class MeetDAO{
     public void meetCommentRemove(Long meetAnswerCommentNumber){
         meetMapper.meetCommentRemove(meetAnswerCommentNumber);
     }
+
+    // 게시글 삭제
+    public void removeMeet(Long meetNumber){
+        meetMapper.deleteMeet(meetNumber);
+    }
 }

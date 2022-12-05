@@ -11,29 +11,50 @@
     <link href="/css/admin/noticeUpdate.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<div id="logobox"><div id="logo"><a><img src="/images/main/logo.png"></a></div></div>
-
+<div id="logobox">
+    <div id="logo">
+        <a>
+            <img src="/images/main/logo.png" th:onclick="|location.href='@{/admin/memberList}'|">
+        </a>
+    </div>
+</div>
 <div id="main_body">
     <div id="subnavigation">
         <ul>
             <li class="menu"> 
-                <a><span>사용자 관리</span><span class="rightarrow"></span></a>
+                <a>
+                    <span>사용자 관리</span>
+                    <span class="rightarrow"></span>
+                </a>
                 <ul class="hide">
-                    <li class="normalcolor"><a>회원 관리</a></li>
-
+                    <li class="normalcolor">
+                        <a th:onclick="|location.href='@{/admin/memberList}'|">회원 관리</a>
+                    </li>
                 </ul>
             </li>
             <li class="menu"> 
-                <a><span>컨텐츠 관리</span><span class="rightarrow"></span></a>
+                <a>
+                    <span>컨텐츠 관리</span>
+                    <span class="rightarrow"></span>
+                </a>
                 <ul class="hide">
-                    <li class="normalcolor"><a>만남과 도움 관리</a></li>
-                    <li class="normalcolor"><a>숙소가 필요해 관리</a></li>
+                    <li class="normalcolor">
+                        <a th:onclick="|location.href='@{/admin/meetList}'|">만남과 도움 관리</a>
+                    </li>
+                    <!--<li class="normalcolor">
+                        <a th:onclick="|location.href='@{/admin/lodgingList}'|">숙소가 필요해 관리</a>
+                    </li>-->
                 </ul>
             </li>
             <li class="menu"> 
-                <a><span>공지사항 관리</span><span class="rightarrow"></span></a>
+                <a>
+                    <span>공지사항 관리</span>
+                    <span class="rightarrow"></span>
+                </a>
                 <ul class="hide">
-                    <li class="normalcolor"><a>공지사항 관리</a></li>
+                    <li class="normalcolor">
+                        <a th:onclick="|location.href='@{/admin/noticeList}'|">공지사항 관리</a>
+                    </li>
                 </ul>
             </li>
         </ul>
