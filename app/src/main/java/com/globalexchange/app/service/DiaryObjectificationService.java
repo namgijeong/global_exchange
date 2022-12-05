@@ -59,6 +59,8 @@ public class DiaryObjectificationService implements DiaryService {
     diaryDTO.create(diaryDAO.findById(diaryNumber));
     diaryDTO.setFileDiaryVO(fileDAO.diaryFind(diaryNumber));
     diaryDTO.setDiaryPartnerNickname(memberDAO.diaryPartnerNickname(diaryDTO.getDiaryPartnerNumber()).getMemberNickname());
+    diaryDTO.setFileProfileVO(memberDAO.myPageProfile(diaryDTO.getMemberNumber()));
+    log.info("프로필"+memberDAO.myPageProfile(diaryDTO.getMemberNumber()));
     return diaryDTO;
   }
 
@@ -76,6 +78,9 @@ public class DiaryObjectificationService implements DiaryService {
 
         diaryDTO.setFileDiaryVO(fileDAO.diaryFind(diaryDTO.getDiaryNumber()));
         diaryDTO.setDiaryPartnerNickname(memberDAO.diaryPartnerNickname(diaryDTO.getDiaryPartnerNumber()).getMemberNickname());
+        diaryDTO.setFilePartnerProfileVO(memberDAO.diaryPartnerProfile(diaryDTO.getDiaryPartnerNumber()));
+        log.info("닉네임"+memberDAO.diaryPartnerNickname(diaryDTO.getDiaryPartnerNumber()).getMemberNickname());
+        log.info("프로필"+memberDAO.diaryPartnerProfile(diaryDTO.getDiaryPartnerNumber()));
         log.info("diaryDTO:"+diaryDTO);
         list2.add(diaryDTO);
 
