@@ -56,9 +56,9 @@ public class MeetingAndHelpController {
         model.addAttribute("meetDTO",meetDTO);
         model.addAttribute("answerCount",answerCount);
         //임의로 세션 만든곳
-        HttpSession session = request.getSession();
+       /* HttpSession session = request.getSession();
         session.setAttribute("memberNumber",1L);
-
+        */
     }
 
     // 만남과 도움 작성 페이지 이동
@@ -129,36 +129,6 @@ public class MeetingAndHelpController {
         return new RedirectView("/meetingAndHelp/list");
     }
 
-//
 
-//    // 만남과 도움 댓글 작성 페이지 이동
-//    @GetMapping("/answerCommentWrite")
-//    public void answerCommentWrite(){
-//
-//    }
-
-    /*// 만남과 도움 댓글 작성 완료
-    @GetMapping("/answerCommentWriteOk")
-    public void answerCommentWriteOk(){
-
-    }
-
-    // 만남과 도움 댓글 수정 페이지 이동
-    @GetMapping("/answerCommentUpdate")
-    public void answerCommentUpdate(){
-
-    }
-
-    // 만남과 도움 댓글 수정 완료
-    @GetMapping("/answerCommentUpdateOk")
-    public void answerCommentUpdateOk(){
-
-    }
-
-    // 만남과 도움 댓글 삭제
-    @GetMapping("/answerCommentRemove")
-    public void answerCommentRemove(){
-
-    }*/
 
 }

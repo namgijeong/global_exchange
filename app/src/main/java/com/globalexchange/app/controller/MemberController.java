@@ -104,7 +104,7 @@ public class MemberController {
     //    이메일 로그인
 //    @PostMapping("/emailLogin")
     @RequestMapping(value = "/emailLogin")
-    public String emailLogin(MemberVO memberVO, HttpServletRequest request, RedirectAttributes attr) {
+    public RedirectView emailLogin(MemberVO memberVO, HttpServletRequest request, RedirectAttributes redirectAttributes) {
         log.info(memberVO.getMemberId() + "들어옴"+ memberVO.getMemberPassword());
         HttpSession session = request.getSession();
 
@@ -113,11 +113,11 @@ public class MemberController {
 
         if(memberNumber == null){
 
-            return "member/login";
+            return new RedirectView("member/login");
         }else {
             session.setAttribute("memberNumber" , memberNumber);
 
-            return "/main/main";
+            return new RedirectView( "/main/main");
         }
 
 
