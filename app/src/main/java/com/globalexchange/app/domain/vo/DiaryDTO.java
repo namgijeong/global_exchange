@@ -23,6 +23,7 @@ public class DiaryDTO {
 
     private FileDiaryVO fileDiaryVO;
     private FileProfileVO fileProfileVO;
+    private FileProfileVO filePartnerProfileVO;
 
     public void create(Long memberNumber, Long diaryPartnerNumber, String diaryTitle, String diaryContent){
         this.memberNumber = memberNumber;
