@@ -176,13 +176,15 @@ public class MeetObjectificationService implements MeetService {
             meetAnswerDTO.setFileUploadPath(fileProfileVO.getFileUploadPath());
             meetAnswerDTO.setFileSize(fileProfileVO.getFileSize());
             meetAnswerDTO.setFileNumber(fileProfileVO.getFileNumber());*/
+            else{
+                meetAnswerDTO.setFileImageCheck(false);
+                meetAnswerDTO.setFileName(null);
+                meetAnswerDTO.setFileUuid(null);
+                meetAnswerDTO.setFileUploadPath(null);
+                meetAnswerDTO.setFileSize(null);
+                meetAnswerDTO.setFileNumber(null);
+            }
 
-            meetAnswerDTO.setFileImageCheck(false);
-            meetAnswerDTO.setFileName(null);
-            meetAnswerDTO.setFileUuid(null);
-            meetAnswerDTO.setFileUploadPath(null);
-            meetAnswerDTO.setFileSize(null);
-            meetAnswerDTO.setFileNumber(null);
 
             meetAnswerDTOList.add(meetAnswerDTO);
         });
@@ -232,14 +234,16 @@ public class MeetObjectificationService implements MeetService {
                 meetAnswerCommentDTO.setFileSize(fileProfileVO.getFileSize());
                 meetAnswerCommentDTO.setFileNumber(fileProfileVO.getFileNumber());
             }
+            else{
+                meetAnswerCommentDTO.setFileImageCheck(false);
+                meetAnswerCommentDTO.setFileName(null);
+                meetAnswerCommentDTO.setFileUuid(null);
+                meetAnswerCommentDTO.setFileUploadPath(null);
+                meetAnswerCommentDTO.setFileSize(null);
+                meetAnswerCommentDTO.setFileNumber(null);
+            }
 
 
-            meetAnswerCommentDTO.setFileImageCheck(false);
-            meetAnswerCommentDTO.setFileName(null);
-            meetAnswerCommentDTO.setFileUuid(null);
-            meetAnswerCommentDTO.setFileUploadPath(null);
-            meetAnswerCommentDTO.setFileSize(null);
-            meetAnswerCommentDTO.setFileNumber(null);
 
             meetAnswerCommentDTOList.add(meetAnswerCommentDTO);
         });

@@ -26,7 +26,7 @@ public class MeetingAndHelpCommentController {
         log.info(""+ meetAnswerNumber);
         log.info("comment 컨트롤러들어옴");
         List<MeetAnswerCommentDTO> meetAnswerCommentDTOList=meetObjectificationService.meetAnswerCommentSelectAll(meetAnswerNumber);
-        log.info(""+meetAnswerCommentDTOList);
+        log.info("meetAnswerCommentDTOlIST:"+meetAnswerCommentDTOList);
         return meetAnswerCommentDTOList;
     }
 
