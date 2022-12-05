@@ -7,8 +7,8 @@
     </select>
 
     <select id="checkNick" resultType="_int" >
-        SELECT count(MEMBER_NUMBER) FROM tbl_member
-        WHERE MEMBER_NICKNAME = #{memberNickname}
+    SELECT count(MEMBER_NUMBER) FROM tbl_member
+    WHERE MEMBER_NICKNAME = #{memberNickname}
     </select>
 
     <select id="emailLogin" resultType="long" >
@@ -48,39 +48,39 @@
     </select>
 
     <select id="myPageProfile" resultType="fileProfileVO">
-        SELECT * FROM tbl_file_profile
+        SELECT FILE_NUMBER, FILE_NAME, FILE_UPLOAD_PATH, FILE_UUID, FILE_IMAGE_CHECK, FILE_SIZE, MEMBER_NUMBER
+        FROM TBL_FILE_PROFILE
         WHERE MEMBER_NUMBER = #{memberNumber}
     </select>
 
-
     <select id="diaryTotalPost" resultType="long">
-        SELECT count(MEMBER_NUMBER) FROM tbl_diary
-        WHERE MEMBER_NUMBER= #{memberNumber}
+        SELECT count(DIARY_NUMBER) FROM TBL_DIARY
+        WHERE MEMBER_NUMBER = #{memberNumber}
     </select>
 
     <select id="meetPost" resultType="long">
-        SELECT count(MEMBER_NUMBER) FROM tbl_meet
-        WHERE MEMBER_NUMBER= #{memberNumber}
+        SELECT count(MEET_NUMBER) FROM TBL_MEET
+        WHERE MEMBER_NUMBER = #{memberNumber}
     </select>
 
     <select id="lodgingPost" resultType="long">
-        SELECT count(MEMBER_NUMBER) FROM tbl_lodging
-        WHERE MEMBER_NUMBER= #{memberNumber}
+        SELECT count(LODGING_NUMBER) FROM TBL_LODGING
+        WHERE MEMBER_NUMBER = #{memberNumber}
     </select>
 
     <select id="meetAnswer" resultType="long">
-        SELECT count(MEMBER_NUMBER) FROM tbl_meet
-        WHERE MEMBER_NUMBER= #{memberNumber}
+        SELECT count(MEET_ANSWER_NUMBER) FROM TBL_MEET_ANSWER
+        WHERE MEMBER_NUMBER = #{memberNumber}
     </select>
 
     <select id="lodgingAnswer" resultType="long">
-        SELECT count(MEMBER_NUMBER) FROM tbl_lodging
-        WHERE MEMBER_NUMBER= #{memberNumber}
+        SELECT count(LODGING_ANSWER_NUMBER) FROM TBL_LODGING_ANSWER
+        WHERE MEMBER_NUMBER = #{memberNumber}
     </select>
 
     <select id="diaryPartnerList" resultType="long">
         SELECT DIARY_PARTNER_NUMBER FROM tbl_diary_partner
-        WHERE MEMBER_NUMBER= #{memberNumber}
+        WHERE MEMBER_NUMBER = #{memberNumber}
     </select>
 
     <select id="diaryPartnerNickname" resultType="memberVO">
@@ -116,4 +116,63 @@
         WHERE FILE_NUMBER = #{fileNumber}
     </update>
 
+    <select id="selectAll" resultType="memberVO">
+        SELECT MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_TEACHING_LANG, MEMBER_LEARNING_LANG, MEMBER_INTERESTING, MEMBER_GENDER, MEMBER_NICKNAME, MEMBER_PHONE_NUM, MEMBER_BIRTHDATE, MEMBER_INTRODUCE, MEMBER_NATION_URL
+        FROM
+        (
+        SELECT ROWNUM R, MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_TEACHING_LANG, MEMBER_LEARNING_LANG, MEMBER_INTERESTING, MEMBER_GENDER, MEMBER_NICKNAME, MEMBER_PHONE_NUM, MEMBER_BIRTHDATE, MEMBER_INTRODUCE, MEMBER_NATION_URL
+        FROM
+        (
+        SELECT MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_TEACHING_LANG, MEMBER_LEARNING_LANG, MEMBER_INTERESTING, MEMBER_GENDER, MEMBER_NICKNAME, MEMBER_PHONE_NUM, MEMBER_BIRTHDATE, MEMBER_INTRODUCE, MEMBER_NATION_URL
+        FROM TBL_MEMBER
+        <where>
+            <if test="memberTeachingLang != null and memberTeachingLang != 'ALL'.toString()">
+                MEMBER_TEACHING_LANG = #{memberTeachingLang}
+            </if>
+        </where>
+        ORDER BY MEMBER_NUMBER DESC
+        )
+        <![CDATA[
+            WHERE ROWNUM <= #{page} * #{amount}
+        )
+        WHERE R > (#{page} - 1) * #{amount}
+        ]]>
+    </select>
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(MEMBER_NUMBER)
+        FROM  TBL_MEMBER
+        <where>
+            <if test="memberTeachingLang != null and memberTeachingLang != 'ALL'.toString()">
+                MEMBER_TEACHING_LANG = #{memberTeachingLang}
+            </if>
+        </where>
+    </select>
+
+    <select id="getTotalWrittenDiary">
+        SELECT COUNT(DIARY.DIARY_NUMBER)
+        FROM TBL_MEMBER MEMBER
+        JOIN TBL_DIARY DIARY
+        ON MEMBER.MEMBER_NUMBER = DIARY.MEMBER_NUMBER
+        WHERE MEMBER.MEMBER_NUMBER = #{memberNumber}
+    </select>
+
+    <select id="getTotalWrittenPost">
+        SELECT COUNT(*)
+        FROM TBL_MEMBER MEMBER
+        LEFT JOIN TBL_DIARY DIARY
+        ON MEMBER.MEMBER_NUMBER = DIARY.MEMBER_NUMBER
+        RIGHT JOIN TBL_MEET MEET
+        ON MEMBER.MEMBER_NUMBER = MEET.MEMBER_NUMBER
+        WHERE MEMBER.MEMBER_NUMBER = ${memberNumber}
+    </select>
 </mapper>
+
+
+
+
+
+
+
+
+

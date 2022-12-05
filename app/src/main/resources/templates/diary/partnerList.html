@@ -2,212 +2,110 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>새로운 교환일기 파트너 신청</title>
-    <link href="/css/main/header.css" rel="stylesheet" type="text/css" />
-    <link href="/css/main/footer.css" rel="stylesheet" type="text/css" />
-    <link href="/css/diary/partnerList.css" rel="stylesheet" type="text/css" />
-
+    <title>diary detail</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <link href="/css/main/header.css" rel="stylesheet" type="text/css" />
+    <link href="/css/main/footer.css" rel="stylesheet" type="text/css" />
+    <link href="/css/diary/partnerList.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div th:replace="/main/header.html::topHeader(${member})"></div>
-<div th:replace="/main/header.html:: header "></div>
+<div id="app">
+    <div class="appWrapper">
+        <!-- header -->
+        <div th:replace="/main/header.html::topHeader(${member})"></div>
+        <div th:replace="/main/header.html:: header "></div>
 
-<!-- 본문 -->
-<section>
-       <div id="bigTitle">
-        <span>
-            교환 일기
-        </span>
-    </div>
-    <div id="middleTitle">
-        <a>교환 일기 피드</a>
-        <a>새로운 교환 일기 파트너 신청</a>
-    </div>
-    <div id="mainFilter">
-        <button>언어</button>
-    </div>
-    <div id="mainSection">
-        <div id="mainBody">
-            <div id="mainTitle">
-                <div>
-                    프로필 리스트
-                </div>
+        <!-- main -->
+        <div class="wrapper">
+            <div class="header">
+                    <span class="title">
+                        교환 일기
+                    </span>
             </div>
-            <div id="mainList">
-                <div class="profileRow">
-                    <div class="profileOne">
-                        <img src="/images/diary/foreignerWoman1.jpg"/>
-                        <div class="profileText">
-                            <span>미국</span>
-                            <div class="profileName">Jenny William Anderson</div>
-                            <div class="profileInteresting"><span>관심사</span><span>게임</span></div>
-                        </div>
-                    </div>
-                    <div class="profileOne">
-                        <img src="/images/diary/foreignerWoman1.jpg"/>
-                        <div class="profileText">
-                            <span>미국</span>
-                            <div class="profileName">Jenny William Anderson</div>
-                            <div class="profileInteresting"><span>관심사</span><span>게임</span></div>
-                        </div>
-                    </div>
-                    <div class="profileOne">
-                        <img src="/images/diary/foreignerWoman1.jpg"/>
-                        <div class="profileText">
-                            <span>미국</span>
-                            <div class="profileName">Jenny William Anderson</div>
-                            <div class="profileInteresting"><span>관심사</span><span>게임</span></div>
-                        </div>
-                    </div>
-                    <div class="profileOne">
-                        <img src="/images/diary/foreignerWoman1.jpg"/>
-                        <div class="profileText">
-                            <span>미국</span>
-                            <div class="profileName">Jenny William Anderson</div>
-                            <div class="profileInteresting"><span>관심사</span><span>게임</span></div>
-                        </div>
-                    </div>
+            <div class="category-filter-wrapper">
+                <div class="category-list-wrapper">
+                    <a th:href="@{/diary/list}" class="category not-selected-category">
+                        교환 일기
+                    </a>
+                    <a th:href="@{/diary/write}" class="category not-selected-category">
+                        교환 일기 작성
+                    </a>
+                    <a th:href="@{/diary/partnerList}" class="category">
+                        교환 일기 파트너
+                    </a>
                 </div>
-                <div class="profileRow">
-                    <div class="profileOne">
-                        <img src="/images/diary/foreignerWoman1.jpg"/>
-                        <div class="profileText">
-                            <span>미국</span>
-                            <div class="profileName">Jenny William Anderson</div>
-                            <div class="profileInteresting"><span>관심사</span><span>게임</span></div>
-                        </div>
-                    </div>
-                    <div class="profileOne">
-                        <img src="/images/diary/foreignerWoman1.jpg"/>
-                        <div class="profileText">
-                            <span>미국</span>
-                            <div class="profileName">Jenny William Anderson</div>
-                            <div class="profileInteresting"><span>관심사</span><span>게임</span></div>
-                        </div>
-                    </div>
-                    <div class="profileOne">
-                        <img src="/images/diary/foreignerWoman1.jpg"/>
-                        <div class="profileText">
-                            <span>미국</span>
-                            <div class="profileName">Jenny William Anderson</div>
-                            <div class="profileInteresting"><span>관심사</span><span>게임</span></div>
-                        </div>
-                    </div>
-                    <div class="profileOne">
-                        <img src="/images/diary/foreignerWoman1.jpg"/>
-                        <div class="profileText">
-                            <span>미국</span>
-                            <div class="profileName">Jenny William Anderson</div>
-                            <div class="profileInteresting"><span>관심사</span><span>게임</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="profileRow">
-                    <div class="profileOne">
-                        <img src="/images/diary/foreignerWoman1.jpg"/>
-                        <div class="profileText">
-                            <span>미국</span>
-                            <div class="profileName">Jenny William Anderson</div>
-                            <div class="profileInteresting"><span>관심사</span><span>게임</span></div>
-                        </div>
-                    </div>
-                    <div class="profileOne">
-                        <img src="/images/diary/foreignerWoman1.jpg"/>
-                        <div class="profileText">
-                            <span>미국</span>
-                            <div class="profileName">Jenny William Anderson</div>
-                            <div class="profileInteresting"><span>관심사</span><span>게임</span></div>
-                        </div>
-                    </div>
-                    <div class="profileOne">
-                        <img src="/images/diary/foreignerWoman1.jpg"/>
-                        <div class="profileText">
-                            <span>미국</span>
-                            <div class="profileName">Jenny William Anderson</div>
-                            <div class="profileInteresting"><span>관심사</span><span>게임</span></div>
-                        </div>
-                    </div>
-                    <div class="profileOne">
-                        <img src="/images/diary/foreignerWoman1.jpg"/>
-                        <div class="profileText">
-                            <span>미국</span>
-                            <div class="profileName">Jenny William Anderson</div>
-                            <div class="profileInteresting"><span>관심사</span><span>게임</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="profileRow">
-                    <div class="profileOne">
-                        <img src="/images/diary/foreignerWoman1.jpg"/>
-                        <div class="profileText">
-                            <span>미국</span>
-                            <div class="profileName">Jenny William Anderson</div>
-                            <div class="profileInteresting"><span>관심사</span><span>게임</span></div>
-                        </div>
-                    </div>
-                    <div class="profileOne">
-                        <img src="/images/diary/foreignerWoman1.jpg"/>
-                        <div class="profileText">
-                            <span>미국</span>
-                            <div class="profileName">Jenny William Anderson</div>
-                            <div class="profileInteresting"><span>관심사</span><span>게임</span></div>
-                        </div>
-                    </div>
-                    <div class="profileOne">
-                        <img src="/images/diary/foreignerWoman1.jpg"/>
-                        <div class="profileText">
-                            <span>미국</span>
-                            <div class="profileName">Jenny William Anderson</div>
-                            <div class="profileInteresting"><span>관심사</span><span>게임</span></div>
-                        </div>
-                    </div>
-                    <div class="profileOne">
-                        <img src="/images/diary/foreignerWoman1.jpg"/>
-                        <div class="profileText">
-                            <span>미국</span>
-                            <div class="profileName">Jenny William Anderson</div>
-                            <div class="profileInteresting"><span>관심사</span><span>게임</span></div>
-                        </div>
+                <div class="filter-button-wrapper">
+                    <div class="filter-open-button-wrapper">
+                        <button class="filter-button">
+                            필터
+                        </button>
                     </div>
                 </div>
             </div>
-
-            <div id="pageNation">
-                <div class="prev-button-group">
-                    <button class="arrow-button">
-                        <img src="/images/pagenation/firstPageArrow.svg" class="arrow-img">
-                    </button>
-                    <button class="arrow-button">
-                        <img src="/images/pagenation/prevArrow.svg" class="arrow-img">
-                    </button>
-                </div>
-                <button class="page-button first-page">1</button>
-                <button class="page-button">2</button>
-                <button class="page-button">3</button>
-                <button class="page-button">4</button>
-                <button class="page-button">5</button>
-                <button class="page-button">6</button>
-                <button class="page-button">7</button>
-                <button class="page-button">8</button>
-                <button class="page-button">9</button>
-                <button class="page-button">10</button>
-                <div class="next-button-group">
-                    <button class="arrow-button">
-                        <img src="/images/pagenation/nextArrow.svg" class="arrow-img">
-                    </button>
-                    <button class="arrow-button">
-                        <img src="/images/pagenation/lastPageArrow.svg" class="arrow-img">
-                    </button>
-                </div>
+            <div class="diary-list-wrapper">
+                <section class="previewContents">
+                    <div class="previewContentsHeader">
+                        <div class="previewContentsHeaderTitle">
+                            <h2 class="previewContentsHeaderTitleText" th:if="${pagination.criteria.memberTeachingLang != null}"
+                                th:text="${pagination.criteria.memberTeachingLang}">
+                            </h2>
+                            <h2 class="previewContentsHeaderTitleText" th:unless="${pagination.criteria.memberTeachingLang != null}">ALL
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="previewContentsMain">
+                        <div class="previewContentMain" th:each="member:${members}" th:object="${member}">
+                            <a class="read" th:href="*{memberNumber}">
+                                <div class="image-wrapper">
+                                    <th:block th:if="${not #strings.isEmpty(member.fileProfileVO)}">
+                                        <img class="previewContentImage" th:if="${member.fileProfileVO.fileImageCheck}"
+                                             th:src="@{/fileMeet/display(fileName=${member.fileProfileVO.fileUploadPath} + '/' + ${member.fileProfileVO.fileUuid} + '_' + ${member.fileProfileVO.fileName})}">
+                                        <img class="previewContentImage" th:unless="${member.fileProfileVO.fileImageCheck}" src="/images/member/defaultProfileImg.png"/>
+                                    </th:block>
+                                    <th:block th:unless="${not #strings.isEmpty(member.fileProfileVO)}">
+                                        <img class="previewContentImage" src="/images/member/defaultProfileImg.png">
+                                    </th:block>
+                                </div>
+                                <div class="previewContentText">
+                                    <div class="preview-content-sub" th:text="*{memberTeachingLang}"></div>
+                                    <div class="preview-content-main"th:text="*{memberNickname}"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
             </div>
+            <div class="pagination-wrapper" th:object="${pagination}">
+                <a class="change-page start-page" th:href="*{startPage - 1}" th:if="*{prev}">
+                    <code><</code>
+                </a>
+                <th:block th:each="pageNumber:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                    <a class="change-page page-number not-selected" th:href="${pageNumber}" th:if="${pagination.criteria.page != pageNumber}">
+                        <code th:text="${pageNumber}"></code>
+                    </a>
+                    <a class="change-page page-number" th:unless="${pagination.criteria.page != pageNumber}">
+                        <code th:text="${pageNumber}"></code>
+                    </a>
+                </th:block>
+                <a class="change-page end-page" th:href="*{endPage + 1}" th:if="*{next}">
+                    <code>></code>
+                </a>
+            </div>
+            <form th:action="@{/diary/partnerList}" th:object="${criteria}" name="pageForm">
+                <input type="hidden" th:field="*{page}">
+                <input type="hidden" th:field="*{amount}">
+                <input type="hidden" th:field="*{memberTeachingLang}">
+            </form>
         </div>
-    </div>
-</section>
 
-<div th:replace="/main/footer.html:: footerFirst"></div>
+        <!-- footer -->
+        <div th:replace="/main/footer.html:: footerFirst"></div>
+    </div>
+</div>
 
 <!-- 모달창 -->
 <div class="modal-container modal-overlay">
@@ -229,73 +127,80 @@
                             <div class="modal-country-box">
                                 <div class="modal-radio-input-wrapper">
                                     <div class="modal-radio-input">
+                                        <label for="modalInput0" class="modal-label">
+                                            전체
+                                            <div class="modal-radio"><div class="modal-radio-circle"></div></div>
+                                            <input name="language" value="ALL" type="radio" class="modal-input" id="modalInput0" checked>
+                                        </label>
+                                    </div>
+                                    <div class="modal-radio-input">
                                         <label for="modalInput1" class="modal-label">
                                             영어
                                             <div class="modal-radio"><div class="modal-radio-circle"></div></div>
-                                            <input name="nation" value="ENGLISH" type="radio" class="modal-input" id="modalInput1">
+                                            <input name="language" value="ENGLISH" type="radio" class="modal-input" id="modalInput1">
                                         </label>
                                     </div>
                                     <div class="modal-radio-input">
                                         <label for="modalInput2" class="modal-label">
                                             스페인어
                                             <div class="modal-radio"><div class="modal-radio-circle"></div></div>
-                                            <input name="nation" value="SPANISH" type="radio" class="modal-input" id="modalInput2">
+                                            <input name="language" value="SPANISH" type="radio" class="modal-input" id="modalInput2">
                                         </label>
                                     </div>
                                     <div class="modal-radio-input">
                                         <label for="modalInput3" class="modal-label">
                                             프랑스어
                                             <div class="modal-radio"><div class="modal-radio-circle"></div></div>
-                                            <input name="nation" value="FRENCH" type="radio" class="modal-input" id="modalInput3">
+                                            <input name="language" value="FRENCH" type="radio" class="modal-input" id="modalInput3">
                                         </label>
                                     </div>
                                     <div class="modal-radio-input">
                                         <label for="modalInput4" class="modal-label">
                                             독일어
                                             <div class="modal-radio"><div class="modal-radio-circle"></div></div>
-                                            <input name="nation" value="GERMAN" type="radio" class="modal-input" id="modalInput4">
+                                            <input name="language" value="GERMAN" type="radio" class="modal-input" id="modalInput4">
                                         </label>
                                     </div>
                                     <div class="modal-radio-input">
                                         <label for="modalInput5" class="modal-label">
                                             이탈리아어
                                             <div class="modal-radio"><div class="modal-radio-circle"></div></div>
-                                            <input name="nation" value="ITALIAN" type="radio" class="modal-input" id="modalInput5">
+                                            <input name="language" value="ITALIAN" type="radio" class="modal-input" id="modalInput5">
                                         </label>
                                     </div>
                                     <div class="modal-radio-input">
                                         <label for="modalInput6" class="modal-label">
                                             포르투갈어
                                             <div class="modal-radio"><div class="modal-radio-circle"></div></div>
-                                            <input name="nation" value="PORTUGUESE" type="radio" class="modal-input" id="modalInput6">
+                                            <input name="language" value="PORTUGUESE" type="radio" class="modal-input" id="modalInput6">
                                         </label>
                                     </div>
                                     <div class="modal-radio-input">
                                         <label for="modalInput7" class="modal-label">
-                                            러시아
+                                            러시아어
                                             <div class="modal-radio"><div class="modal-radio-circle"></div></div>
-                                            <input name="nation" value="RUSSIAN" type="radio" class="modal-input" id="modalInput7">
+                                            <input name="language" value="RUSSIAN" type="radio" class="modal-input" id="modalInput7">
                                         </label>
                                     </div>
                                     <div class="modal-radio-input">
                                         <label for="modalInput8" class="modal-label">
-                                            일본
+                                            일본어
                                             <div class="modal-radio"><div class="modal-radio-circle"></div></div>
-                                            <input name="nation" value="JAPANESE" type="radio" class="modal-input" id="modalInput8">
+                                            <input name="language" value="JAPANESE" type="radio" class="modal-input" id="modalInput8">
                                         </label>
                                     </div>
                                     <div class="modal-radio-input">
                                         <label for="modalInput9" class="modal-label">
-                                            중국
+                                            중국어
                                             <div class="modal-radio"><div class="modal-radio-circle"></div></div>
-                                            <input name="nation" value="CHINESE" type="radio" class="modal-input" id="modalInput9">
+                                            <input name="language" value="CHINESE" type="radio" class="modal-input" id="modalInput9">
                                         </label>
                                     </div>
                                     <div class="modal-radio-input">
                                         <label for="modalInput10" class="modal-label">
-                                            한국
+                                            한국어
                                             <div class="modal-radio"><div class="modal-radio-circle"></div></div>
-                                            <input name="nation" value="KOREAN" type="radio" class="modal-input" id="modalInput10">
+                                            <input name="language" value="KOREAN" type="radio" class="modal-input" id="modalInput10">
                                         </label>
                                     </div>
                                 </div>
@@ -312,6 +217,91 @@
     <div class="modal-color"></div>
 </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="/js/diary/partnerList.js" ></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script th:inline="javascript">
+    const modalContainer = document.querySelector(".modal-container");
+    const btnModal = document.querySelector('.filter-button');
+    const btnsRadio = document.querySelectorAll(".modal-input");
+    const CirclesRadio=document.querySelectorAll(".modal-radio-circle");
+    const $modalFooterBtn = $('.modal-footer-btn');
+    const $inputs = $('input[name=language]');
+    const $read = $('.read');
+    let $chosenLang = "";
+    let $queryString = [[${criteria.queryString}]];
+
+    $read.on('click', function (e) {
+        e.preventDefault();
+        location.href = "/diary/partnerDetail" + $queryString + "&memberNumber=" + $(this).attr('href');
+    })
+
+    // 부모스크롤 비활성화
+    const openModal = () => {
+        document.body.style.overflow = "hidden";
+    };
+
+    // 부모스크롤 활성화
+    const closeModal = () => {
+        document.body.style.overflow = "unset";
+    };
+
+    btnModal.addEventListener("click", e => {
+        modalContainer.style.display = "flex";
+        openModal();
+    });
+
+    const closeBtn = modalContainer.querySelector(".close-btn")
+    closeBtn.addEventListener("click", e => {
+        modalContainer.style.display = "none";
+        closeModal();
+    });
+
+
+    // 필터 라디오
+    CirclesRadio[0].style.backgroundColor="#3377FF";
+
+    let prev;
+    btnsRadio.forEach((btnRadio,index)=>{
+        btnRadio.addEventListener("click",function(){
+
+            CirclesRadio[0].style.backgroundColor="white";
+
+            if(prev!=null){
+                prev.style.backgroundColor="white";
+            }
+            CirclesRadio[index].style.backgroundColor="#3377FF";
+            prev=CirclesRadio[index];
+        });
+    });
+
+    // 적용 버튼을 눌렀을 때
+    $modalFooterBtn.on('click', function () {
+        $inputs.each(function (index, item) {
+            if($(item).prop('checked')){
+                 $chosenLang = $(this).val();
+            }
+        });
+        modalContainer.style.display = "none";
+        closeModal();
+        location.href = "/diary/partnerList?page=1&amount=16&memberTeachingLang=" + $chosenLang;
+    })
+
+    // 페이지네이션 마우스 올렸을 때 이벤트
+    const $pagenationAtags = $('.change-page');
+
+    $pagenationAtags.hover(function () {
+        $(this).css("background-color", 'rgb(229, 231, 234)');
+    }, function () {
+        $(this).css("background-color", 'transparent');
+    });
+
+    // 페이지 버튼을 눌렀을 때 해당 페이지로 이동
+    let $pages = $('.change-page');
+
+    $pages.on('click', function (e) {
+        e.preventDefault();
+        $(document.pageForm.page).val($(this).attr('href'));
+        /*$(document.pageForm.memberTeachingLang).val($);*/
+        document.pageForm.submit();
+    })
+</script>
 </html>

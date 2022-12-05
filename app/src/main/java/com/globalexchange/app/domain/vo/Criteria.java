@@ -11,10 +11,18 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class Criteria {
     private int page;
     private int amount;
+    private String memberTeachingLang;
 
     public Criteria create(int page, int amount) {
         this.page = page;
         this.amount = amount;
+        return this;
+    }
+
+    public Criteria create(int page, int amount, String memberTeachingLang) {
+        this.page = page;
+        this.amount = amount;
+        this.memberTeachingLang = memberTeachingLang;
         return this;
     }
 

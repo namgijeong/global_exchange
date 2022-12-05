@@ -106,27 +106,18 @@ public class DiaryController {
 
     //교환일기 파트너 리스트 이동
     @GetMapping("/partnerList")
-    public void newDiaryPartnerList(){
+    public void diaryPartnerList(Criteria criteria, Model model){
 
+        if(criteria.getPage() == 0){
+            criteria.create(1, 16, "ALL");
+        }
+        model.addAttribute("members", diaryService.showAllPartner(criteria));
+        model.addAttribute("pagination", new PageDTO().createPageDTO(criteria, diaryService.getTotal(criteria)));
     }
 
-    // 교환일기 파트너 상세보기 이동
+    // 파트너 상세 페이지
     @GetMapping("/partnerDetail")
-    public void newDiaryPartnerDetail(){
-
+    public void partnerDetail(Long memberNumber, Criteria criteria, Model model){
+        model.addAttribute("partner", diaryService.showPartner(memberNumber));
     }
-
-    //새로운 교환일기 파트너 신청
-    @GetMapping("/partnerSignup")
-    public void newDiaryPartnerSignup(){
-
-    }
-
-    //새로운 교환일기 파트너 신고
-    @GetMapping("/pertnerReport")
-    public void newDiaryPartnerReport(){
-
-    }
-
-
 }

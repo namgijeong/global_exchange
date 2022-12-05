@@ -15,6 +15,7 @@ class MeetDAOTest {
 
     @Autowired
     private MeetDAO meetDAO;
+    private MemberDAO memberDAO;
 
     @Test
     void findAllLatestNotAnsweredMeet() {
@@ -24,5 +25,15 @@ class MeetDAOTest {
     @Test
     void findAllLatestAnsweredMeet() {
         meetDAO.findAllLatestAnsweredMeet(new Criteria().create(1, 4)).stream().map(MeetVO::getMeetTitle).forEach(log::info);
+    }
+
+    @Test
+    void findAll() {
+        log.info("member : " + memberDAO.findAll(new Criteria().create(1, 10, "KOREAN")));
+    }
+
+    @Test
+    void findCountAll() {
+        log.info("count : " + memberDAO.findCountAll(new Criteria().create(1, 10)));
     }
 }
