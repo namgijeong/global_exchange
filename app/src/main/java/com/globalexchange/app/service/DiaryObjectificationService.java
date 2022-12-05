@@ -112,7 +112,7 @@ public class DiaryObjectificationService implements DiaryService {
   }
 
   @Override
-  public MemberDTO showPartner(Long memberNumber) {
+  public MemberDTO showPartnerDetail(Long memberNumber) {
 
     MemberDTO memberDTO = new MemberDTO();
     memberDTO.create(memberDAO.findByMemberNumber(memberNumber), memberDAO.myPageProfile(memberNumber)
