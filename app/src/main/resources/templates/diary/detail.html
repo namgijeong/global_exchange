@@ -53,14 +53,10 @@
                                                 <div class="profile-content">
                                                     <div class="partner-name-wrapper">
                                                         <a href="javascript:void(0)">
-                                                            <span class="partner-nickname">
-                                                                Tom Cruise
-                                                            </span>
+                                                            <span class="partner-nickname" th:text="${diary.diaryPartnerNickname}"></span>
                                                         </a>
                                                     </div>
-                                                    <span class="partner-nation">
-                                                        미국
-                                                    </span>
+                                                    <span class="partner-nation"></span>
                                                 </div>
                                             </div>
                                             <a href="javascript:void(0)">
@@ -116,65 +112,65 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="section-title">
-                                <h2>코멘트</h2>
-                            </div>
-                            <div class="comment-wrapper">
-                                <form name="commentForm">
-                                    <div class="comment-form-wrapper">
-                                        <div class="comment-header">
-                                            <div class="comment-profile-image-wrapper">
-                                                <img src="/images/member/sample5.png" alt="답글 프로필 사진" class="comment-profile-image-style">
-                                            </div>
-                                            <div class="comment-profile-metadata">
-                                                <div class="comment-nickname">
-                                                    Jason Me
-                                                </div>
-                                                <div class="comment-created-date">
-                                                    2022-10-10 15:30
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <textarea name="commentContent" class="comment-body" placeholder="코멘트를 입력해주세요." wrap="soft" maxlength="500"></textarea>
-                                        <div class="comment-btn-wrapper">
-                                            <input type="button" value="코멘트 작성하기" class="frip-btn">
-                                        </div>
-                                    </div>
-                                </form>
-                                <!-- 아래코드는 controller에서 가져온 코멘트 리스트를 뿌릴 때 사용한다. -->
-                                <form id="comments" action="javascript:void(0)">
-                                    <div class="comment-form-wrapper">
-                                        <div class="comment-header">
-                                            <div class="comment-profile-image-wrapper">
-                                                <img src="/images/member/sample2.png" alt="답글 프로필 사진" class="comment-profile-image-style">
-                                            </div>
-                                            <div class="comment-profile-metadata">
-                                                <div class="comment-nickname">
-                                                    Tom Cruise
-                                                </div>
-                                                <div class="comment-created-date">
-                                                    2022-09-30 12:30
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <pre class="comment-body">
-Hey Jason Me!
-Your English is very good!
-Be Confident!
-                                        </pre>
-                                        <!-- 수정 시 textaera로 변경한다. -->
-<!--                                        <textarea name="commentContent" class="comment-body" placeholder="코멘트를 입력해주세요." wrap="soft" maxlength="300" disabled>Hey Jason Me!
-Your English is very good!
-Be Confident!
-                                        </textarea>-->
-                                        <div class="comment-btn-wrapper">
-                                            <input type="button" value="코멘트 수정하기" class="frip-btn">
-                                            <input type="button" value="코멘트 삭제하기" class="frip-btn">
-                                            <input type="button" value="취소" class="frip-btn">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+<!--                            <div class="section-title">-->
+<!--                                <h2>코멘트</h2>-->
+<!--                            </div>-->
+<!--                            <div class="comment-wrapper">-->
+<!--                                <form name="commentForm">-->
+<!--                                    <div class="comment-form-wrapper">-->
+<!--                                        <div class="comment-header">-->
+<!--                                            <div class="comment-profile-image-wrapper">-->
+<!--                                                <img src="/images/member/sample5.png" alt="답글 프로필 사진" class="comment-profile-image-style">-->
+<!--                                            </div>-->
+<!--                                            <div class="comment-profile-metadata">-->
+<!--                                                <div class="comment-nickname">-->
+<!--                                                    Jason Me-->
+<!--                                                </div>-->
+<!--                                                <div class="comment-created-date">-->
+<!--                                                    2022-10-10 15:30-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <textarea name="commentContent" class="comment-body" placeholder="코멘트를 입력해주세요." wrap="soft" maxlength="500"></textarea>-->
+<!--                                        <div class="comment-btn-wrapper">-->
+<!--                                            <input type="button" value="코멘트 작성하기" class="frip-btn">-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </form>-->
+<!--                                &lt;!&ndash; 아래코드는 controller에서 가져온 코멘트 리스트를 뿌릴 때 사용한다. &ndash;&gt;-->
+<!--                                <form id="comments" action="javascript:void(0)">-->
+<!--                                    <div class="comment-form-wrapper">-->
+<!--                                        <div class="comment-header">-->
+<!--                                            <div class="comment-profile-image-wrapper">-->
+<!--                                                <img src="/images/member/sample2.png" alt="답글 프로필 사진" class="comment-profile-image-style">-->
+<!--                                            </div>-->
+<!--                                            <div class="comment-profile-metadata">-->
+<!--                                                <div class="comment-nickname">-->
+<!--                                                    Tom Cruise-->
+<!--                                                </div>-->
+<!--                                                <div class="comment-created-date">-->
+<!--                                                    2022-09-30 12:30-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <pre class="comment-body">-->
+<!--Hey Jason Me!-->
+<!--Your English is very good!-->
+<!--Be Confident!-->
+<!--                                        </pre>-->
+<!--                                        &lt;!&ndash; 수정 시 textaera로 변경한다. &ndash;&gt;-->
+<!--&lt;!&ndash;                                        <textarea name="commentContent" class="comment-body" placeholder="코멘트를 입력해주세요." wrap="soft" maxlength="300" disabled>Hey Jason Me!-->
+<!--Your English is very good!-->
+<!--Be Confident!-->
+<!--                                        </textarea>&ndash;&gt;-->
+<!--                                        <div class="comment-btn-wrapper">-->
+<!--                                            <input type="button" value="코멘트 수정하기" class="frip-btn">-->
+<!--                                            <input type="button" value="코멘트 삭제하기" class="frip-btn">-->
+<!--                                            <input type="button" value="취소" class="frip-btn">-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </form>-->
+<!--                            </div>-->
                         </section>
                     </div>
                 </div>
