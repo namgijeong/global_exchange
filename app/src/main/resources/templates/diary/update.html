@@ -11,12 +11,13 @@
     <link href="/css/main/header.css" rel="stylesheet" type="text/css" />
     <link href="/css/main/footer.css" rel="stylesheet" type="text/css" />
     <link href="/css/diary/write.css" rel="stylesheet" type="text/css" />
+    <link href="/css/diary/detail.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div id="app">
     <div class="appWrapper">
         <!-- header -->
-        <div th:replace="/main/header.html:: topHeader "></div>
+        <div th:replace="/main/header.html::topHeader(${member})"></div>
         <div th:replace="/main/header.html:: header "></div>
 
         <!-- main -->
@@ -75,12 +76,38 @@
                                             </a>
                                         </div>-->
                                         <div>
-                                            <label for="a" class="input-label">교환 일기 파트너</label>
-                                            <select name="diaryPartner" id="a" class="input-style">
-                                                <option value="Tom Crues" selected>Tom Crues</option>
-                                                <option value="John">John</option>
-                                                <option value="Alice Brown">Alice Brown</option>
-                                            </select>
+<!--                                            <label for="a" class="input-label">교환 일기 파트너</label>-->
+<!--                                            <select name="diaryPartner" id="a" class="input-style">-->
+<!--                                                <option value="Tom Crues" selected>Tom Crues</option>-->
+<!--                                                <option value="John">John</option>-->
+<!--                                                <option value="Alice Brown">Alice Brown</option>-->
+<!--                                            </select>-->
+                                            <section class="partner-profile-section">
+                                                <div class="partner-profile-wrapper">
+                                                    <div class="partner-profile">
+                                                        <div class="partner-profile-info">
+                                                            <div class="partner-profile-image">
+                                                                <a href="javascript:void(0)">
+                                                                    <div class="partner-image-wrapper">
+                                                                        <img class="partner-profile-img-style" src="/images/member/sample2.png">
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="profile-content">
+                                                                <div class="partner-name-wrapper">
+                                                                    <a href="javascript:void(0)">
+                                                                        <span class="partner-nickname" th:text="${diary.diaryPartnerNickname}"></span>
+                                                                    </a>
+                                                                </div>
+                                                                <span class="partner-nation"></span>
+                                                            </div>
+                                                        </div>
+                                                        <a href="javascript:void(0)">
+                                                            <img class="nation-img-style" src="/images/nation/america.png">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </section>
                                         </div>
                                     </div>
                                 </section>
@@ -316,6 +343,9 @@
         local: 'ko',
         inline: true,
         defaultDate: diaryWriteDate,
+        enable:[
+            diaryWriteDate
+        ],
                 // enable:[
                 //     "2022-11-21"
                 // ],

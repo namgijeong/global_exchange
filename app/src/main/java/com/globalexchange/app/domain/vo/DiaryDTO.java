@@ -16,8 +16,13 @@ public class DiaryDTO {
     private String diaryWriteDate;
     private String diaryUpdateDate;
 
+    private String memberTeachingLang;
+    private String memberNickname;
+    private String diaryPartnerNickname;
+
+
     private FileDiaryVO fileDiaryVO;
-//    private DiaryVO DiaryVO;
+    private FileProfileVO fileProfileVO;
 
     public void create(Long memberNumber, Long diaryPartnerNumber, String diaryTitle, String diaryContent){
         this.memberNumber = memberNumber;
@@ -47,21 +52,5 @@ public class DiaryDTO {
         this.diaryNumber = diaryNumber;
         this.fileDiaryVO = fileDiaryVO;
     }
-
-//    public void create(BoardVO boardVO) {
-//        this.boardNumber = boardVO.getBoardNumber();
-//        this.boardTitle = boardVO.getBoardTitle();
-//        this.boardWriter = boardVO.getBoardWriter();
-//        this.boardContent = boardVO.getBoardContent();
-//        this.boardRegisterDate = boardVO.getBoardRegisterDate();
-//        this.boardUpdateDate = boardVO.getBoardUpdateDate();
-//    }
-//
-//    public void create(String boardTitle, String boardWriter, String boardContent) {
-//        this.boardTitle = boardTitle;
-//        this.boardWriter = boardWriter;
-//        this.boardContent = boardContent;
-//    }
-//
 
 }

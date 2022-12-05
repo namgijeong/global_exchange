@@ -76,10 +76,12 @@
                                         </div>-->
                                         <div>
                                             <label for="a" class="input-label">교환 일기 파트너</label>
-                                            <select name="diaryPartner" id="a" class="input-style">
-                                                <option value="Tom Crues" selected>Tom Crues</option>
-                                                <option value="John">John</option>
-                                                <option value="Alice Brown">Alice Brown</option>
+                                            <select name="diaryPartnerNumber" id="a" class="input-style">
+                                                <th:block th:each="member1:${members}">
+                                                <option  th:value="${member1.memberNumber}" th:text="${member1.memberNickname}"></option> <!--th:object="${member1}"-->
+<!--                                                <option value="John">John</option>-->
+<!--                                                <option value="Alice Brown">Alice Brown</option>-->
+                                                </th:block>
                                             </select>
                                         </div>
                                     </div>
