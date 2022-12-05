@@ -27,16 +27,17 @@ public interface DiaryService {
     // 파트너 수 조회
     public int getTotal(Criteria criteria);
 
-
     // 파트너 상세 정보 조회
     public MemberDTO showPartnerDetail(Long memberNumber);
-
 
     // 파트너 조회
     public List<MemberDTO> showPartner(Long memberNumber);
 
+    // 파트너 등록
+    public void registerPartner(Long memberNumber, Long diaryPartnerNumber);
 
-
+    // 파트너 유무 확인
+    public int diaryPartnerCheck(Long memberNumber, Long diaryPartnerNumber);
 }
 
 

@@ -60,7 +60,7 @@ public interface MemberMapper {
    //    마이페이지 수정 완료
    void myPageImageUpdate(FileProfileVO fileProfileVO);
 
-   //
+   // 멤버 조회
    public MemberVO select(Long memberNumber);
 
    // 멤버 전체 조회
