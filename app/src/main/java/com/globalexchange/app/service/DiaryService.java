@@ -26,6 +26,9 @@ public interface DiaryService {
 
     // 파트너 수 조회
     public int getTotal(Criteria criteria);
+
+    // 파트너 상세 정보 조회
+    public MemberDTO showPartner(Long memberNumber);
 }
 
 

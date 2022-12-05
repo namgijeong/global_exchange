@@ -114,4 +114,10 @@ public class DiaryController {
         model.addAttribute("members", diaryService.showAllPartner(criteria));
         model.addAttribute("pagination", new PageDTO().createPageDTO(criteria, diaryService.getTotal(criteria)));
     }
+
+    // 파트너 상세 페이지
+    @GetMapping("/partnerDetail")
+    public void partnerDetail(Long memberNumber, Criteria criteria, Model model){
+        model.addAttribute("partner", diaryService.showPartner(memberNumber));
+    }
 }
