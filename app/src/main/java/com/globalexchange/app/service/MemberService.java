@@ -12,7 +12,7 @@ import java.util.List;
 public interface MemberService {
     boolean checkId(String checkId);
     boolean checkNick(String checkNick);
-    Long emailLogin(MemberVO memberVO);
+    MemberVO emailLogin(MemberVO memberVO);
     void joinForm(MemberVO memberVO);
 
     // void googleJoin(MemberVO memberVO);

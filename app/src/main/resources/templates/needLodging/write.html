@@ -18,7 +18,7 @@
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2dedcb5b9a8bf1a8785a7e1907f9c2bd"></script>
 </head>
 <body>
-<header th:replace="/main/header.html::topHeader(${member})"></header>
+<header th:replace="/main/header.html::topHeader(memberNumber = ${session.memberNumber}, memberNickname = ${session.memberNickname})"></header>
 <header th:replace="/main/header.html :: #header"></header>
 
 <div class="detail-page-wrapper">

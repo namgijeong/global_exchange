@@ -14,7 +14,7 @@
   <link href="/css/meetingAndHelp/detail.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <header th:replace="/main/header.html::topHeader(${member})"></header>
+  <header th:replace="/main/header.html::topHeader(memberNumber = ${session.memberNumber}, memberNickname = ${session.memberNickname})"></header>
   <header th:replace="/main/header.html :: #header"></header>
 
   <div class="detail-page-wrapper">

@@ -31,8 +31,10 @@ public interface DiaryService {
     // 파트너 상세 정보 조회
     public MemberDTO showPartnerDetail(Long memberNumber);
 
+
     // 파트너 조회
     public List<MemberDTO> showPartner(Long memberNumber);
+
 
 
 }

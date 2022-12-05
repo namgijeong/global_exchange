@@ -11,8 +11,9 @@
     WHERE MEMBER_NICKNAME = #{memberNickname}
     </select>
 
-    <select id="emailLogin" resultType="long" >
-        SELECT MEMBER_NUMBER FROM tbl_member
+    <select id="emailLogin" resultType="memberVO" >
+        SELECT MEMBER_NUMBER, MEMBER_NICKNAME
+        FROM TBL_MEMBER
         WHERE MEMBER_ID = #{memberId} and MEMBER_PASSWORD = #{memberPassword}
     </select>
 
@@ -167,12 +168,3 @@
         WHERE MEMBER.MEMBER_NUMBER = ${memberNumber}
     </select>
 </mapper>
-
-
-
-
-
-
-
-
-

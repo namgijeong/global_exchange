@@ -106,20 +106,26 @@ public class MemberController {
     public RedirectView emailLogin(MemberVO memberVO, HttpServletRequest request, RedirectAttributes redirectAttributes) {
         HttpSession session = request.getSession();
 
-        Long memberNumber = memberService.emailLogin(memberVO);
+        MemberVO member = memberService.emailLogin(memberVO);
 
         /* 일치하는 회원 정보가 없는 경우 */
-        if(memberNumber == null){
+        if(member == null){
             return new RedirectView("/member/login");
+
             /* 일치하는 회원 정보가 있는 경우 회원 번호를 session에 넣는다. */
         }else {
-            session.setAttribute("memberNumber" , memberNumber);
+            session.setAttribute("memberNumber", member.getMemberNumber());
+            session.setAttribute("memberNickname", member.getMemberNickname());
             return new RedirectView("/main/main");
         }
     }
 
-//    @PostMapping("/logout")
-//    public String logout(@RequestBody)
+    @GetMapping("/logout")
+    public RedirectView logout(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return new RedirectView("/main/main");
+    }
 
     //구글 로그인
 //    @RequestMapping(value = "/googleLogin")

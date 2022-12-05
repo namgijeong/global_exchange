@@ -27,6 +27,6 @@ class DiaryObjectificationServiceTest {
 
     @Test
     void showPartner() {
-        log.info("member : " + diaryService.showPartner(1L));
+        log.info("member : " + diaryService.showPartnerDetail(1L));
     }
 }

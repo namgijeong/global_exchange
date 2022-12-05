@@ -40,7 +40,7 @@ public class MemberDAO {
         return true;
     }
 
-    public Long emailLogin(MemberVO memberVO){
+    public MemberVO emailLogin(MemberVO memberVO){
 
         return memberMapper.emailLogin(memberVO);
     }

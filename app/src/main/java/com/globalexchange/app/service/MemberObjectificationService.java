@@ -32,7 +32,7 @@ public class MemberObjectificationService implements MemberService{
         return memberDAO.checkNick(memberNickname);
     }
     @Override
-    public Long emailLogin(MemberVO memberVO){
+    public MemberVO emailLogin(MemberVO memberVO){
 
         return memberDAO.emailLogin(memberVO);
     }

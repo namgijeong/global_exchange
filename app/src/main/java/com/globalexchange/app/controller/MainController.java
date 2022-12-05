@@ -23,13 +23,7 @@ public class MainController {
 
     // 메인 페이지
     @GetMapping("/main")
-    public void main(HttpServletRequest request, Model model){
-
-        // 세션에 정보가 있는 경우
-        if(request.getSession().getAttribute("memberNumber") != null){
-            Long memberNumber = (Long) request.getSession().getAttribute("memberNumber");
-            model.addAttribute("member", memberObjectificationService.show(memberNumber));
-        }
+    public void main(Model model){
 
         model.addAttribute("latestAnsweredMeetList", mainService.showAllLatestAnsweredMeet());
         model.addAttribute("latestNotAnsweredMeetList", mainService.showAllLatestNotAnsweredMeet());
