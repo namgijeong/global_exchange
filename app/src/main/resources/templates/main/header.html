@@ -16,10 +16,14 @@
                 <span class="top-header-button" id="login" onclick="location.href='/member/login'">로그인</span>
             </th:block>
             <th:block th:unless="${memberNumber == null}">
-                    <span class="top-header-button" id="memberNickname" th:onclick="|location.href='@{/member/mypage}'|">
+                    <span class="top-header-button" id="admin" th:onclick="|location.href='@{/admin/memberList}'|" th:if="${memberNumber == 1}">
+                        <span class="memberNickname-style">관리자 페이지</span>
+                    </span>
+                    <!--<form th:action="@{/admin/memberList}" method="post" id="adminForm" hidden></form>-->
+                    <span class="top-header-button" id="memberNickname" th:onclick="|location.href='@{/member/mypage}'|" th:unless="${memberNumber == 1}">
                         <span class="memberNickname-style" th:text="${memberNickname}"></span>님
                     </span>
-                <span class="top-header-button" id="logout" th:onclick="|location.href='@{/member/logout}'|">
+                    <span class="top-header-button" id="logout" th:onclick="|location.href='@{/member/logout}'|">
                         <button class="logout-btn">로그아웃</button>
                     </span>
             </th:block>
@@ -28,35 +32,38 @@
         </div>
     </div>
 </div>
-<div id="header" th:fragment="header">
-    <div>
-        <a id="logo" th:href="@{/main/main}">
-            <img src="/images/main/logo.png"/>
-        </a>
-        <form id="searchSection">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23AAA' stroke-width='2' d='M11 17c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zM15 15l4.95 4.95'/%3E %3C/svg%3E"/>
-            <input name="searchKeyWord" placeholder="어떤 게시글을 찾으시나요?"/>
-        </form>
-        <a id="diary" th:href="@{/diary/list}">
-            <div class="header-icon">
-                <img src="/images/main/diaryIcon.png"/>
-            </div>
-            <span class="header-icon-text">교환일기</span>
-        </a>
-        <a id="meetAndHelp" th:href="@{/meetingAndHelp/list}">
-            <div class="header-icon">
-                <img src="/images/main/meetIcon.png"/>
-            </div>
-            <span class="header-icon-text">만남과 도움</span>
-        </a>
-        <a id="guestHouse" th:href="@{/needLodging/list}">
-            <div class="header-icon">
-                <img src="/images/main/accomodationIcon.png"/>
-            </div>
-            <span class="header-icon-text">숙소가 필요해</span>
-        </a>
+
+    <div id="header" th:fragment="header">
+        <div>
+            <a id="logo" th:href="@{/main/main}">
+                <img src="/images/main/logo.png"/>
+            </a>
+            <form id="searchSection">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23AAA' stroke-width='2' d='M11 17c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zM15 15l4.95 4.95'/%3E %3C/svg%3E"/>
+                <input name="searchKeyWord" placeholder="어떤 게시글을 찾으시나요?"/>
+            </form>
+            <a id="diary" th:href="@{/diary/list}">
+                <div class="header-icon">
+                    <img src="/images/main/diaryIcon.png"/>
+                </div>
+                <span class="header-icon-text">교환일기</span>
+            </a>
+            <a id="meetAndHelp" th:href="@{/meetingAndHelp/list}">
+                <div class="header-icon">
+                    <img src="/images/main/meetIcon.png"/>
+                </div>
+                <span class="header-icon-text">만남과 도움</span>
+            </a>
+            <!--<a id="guestHouse" th:href="@{/needLodging/list}">
+                <div class="header-icon">
+                    <img src="/images/main/accomodationIcon.png"/>
+                </div>
+                <span class="header-icon-text">숙소가 필요해</span>
+            </a>-->
+        </div>
+
     </div>
-</div>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script th:inline="javascript">
@@ -67,6 +74,8 @@
     const $notice = $('#notice');
     const $question = $('#question');
     let $memberNumber = [[${member.memberNumber}]];
+    /*const $admin = $('#admin');
+    const $adminForm = $('form#adminForm');*/
 
     $joinMember.on('click', function () {
         alert("눌림");
@@ -92,5 +101,11 @@
     $question.on('click', function () {
         location.href = "/question/question";
     });
+
+    // 관리자 페이지로 이동
+    /*$admin.on('click', function () {
+        console.log('들어옴');
+        $adminForm.submit();
+    })*/
 </script>
 </html>

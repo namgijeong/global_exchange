@@ -41,18 +41,55 @@
             </section>
             <section id="nationalIconList">
                 <div>
-                    <img src="/images/main/americaIcon.png" th:onclick="|location.href='@{/diary/parnterList(memberTeachingLang = ENG)}'|">
+                    <img src="/images/main/americaIcon.png"
+                         th:onclick="|location.href='@{/diary/partnerList(page = 1, amount = 16, memberTeachingLang = ENGLISH)}'|">
                     <span>영어</span>
                 </div>
-                <div><img src="/images/main/spainIcon.png"/><span>스페인어</span></div>
-                <div><img src="/images/main/franceIcon.png"/><span>프랑스어</span></div>
-                <div><img src="/images/main/germanyIcon.png"/><span>독일어</span></div>
-                <div><img src="/images/main/italyIcon.png"/><span>이탈리아어</span></div>
-                <div><img src="/images/main/portugalIcon.png"/><span>포르투갈어</span></div>
-                <div><img src="/images/main/russiaIcon.png"/><span>러시아어</span></div>
-                <div><img src="/images/main/japanIcon.png"/><span>일본어</span></div>
-                <div><img src="/images/main/chinaIcon.png"/><span>중국어</span></div>
-                <div><img src="/images/main/southKoreaIcon.png"/><span>한국어</span></div>
+                <div>
+                    <img src="/images/main/spainIcon.png"
+                         th:onclick="|location.href='@{/diary/partnerList(page = 1, amount = 16, memberTeachingLang = SPANISH)}'|">
+                    <span>스페인어</span>
+                </div>
+                <div>
+                    <img src="/images/main/franceIcon.png"
+                         th:onclick="|location.href='@{/diary/partnerList(page = 1, amount = 16, memberTeachingLang = FRENCH)}'|">
+                    <span>프랑스어</span>
+                </div>
+                <div>
+                    <img src="/images/main/germanyIcon.png"
+                         th:onclick="|location.href='@{/diary/partnerList(page = 1, amount = 16, memberTeachingLang = GERMAN)}'|">
+                    <span>독일어</span>
+                </div>
+                <div>
+                    <img src="/images/main/italyIcon.png"
+                         th:onclick="|location.href='@{/diary/partnerList(page = 1, amount = 16, memberTeachingLang = ITALIAN)}'|">
+                    <span>이탈리아어</span>
+                </div>
+                <div>
+                    <img src="/images/main/portugalIcon.png"
+                         th:onclick="|location.href='@{/diary/partnerList(page = 1, amount = 16, memberTeachingLang = PORTUGUESE)}'|">
+                    <span>포르투갈어</span>
+                </div>
+                <div>
+                    <img src="/images/main/russiaIcon.png"
+                         th:onclick="|location.href='@{/diary/partnerList(page = 1, amount = 16, memberTeachingLang = RUSSIAN)}'|">
+                    <span>러시아어</span>
+                </div>
+                <div>
+                    <img src="/images/main/japanIcon.png"
+                         th:onclick="|location.href='@{/diary/partnerList(page = 1, amount = 16, memberTeachingLang = JAPANESE)}'|">
+                    <span>일본어</span>
+                </div>
+                <div>
+                    <img src="/images/main/chinaIcon.png"
+                         th:onclick="|location.href='@{/diary/partnerList(page = 1, amount = 16, memberTeachingLang = CHINESE)}'|">
+                    <span>중국어</span>
+                </div>
+                <div>
+                    <img src="/images/main/southKoreaIcon.png"
+                         th:onclick="|location.href='@{/diary/partnerList(page = 1, amount = 16, memberTeachingLang = KOREAN)}'|">
+                    <span>한국어</span>
+                </div>
             </section>
             <section class="previewContents">
                 <div class="previewContentsHeader">
@@ -111,7 +148,7 @@
                     </div>
                 </div>
             </section>
-            <section class="previewContents">
+            <!--<section class="previewContents">
                 <div class="previewContentsHeader">
                     <div class="previewContentsHeaderTitle"><h2 class="previewContentsHeaderTitleText">숙소가 필요해 최신글</h2></div>
                     <a class="previewContentsLink" th:href="@{/needLodging/list}">전체보기</a>
@@ -139,8 +176,8 @@
                         </a>
                     </div>
                 </div>
-            </section>
-            <section class="previewContents">
+            </section>-->
+            <!--<section class="previewContents">
                 <div class="previewContentsHeader">
                     <div class="previewContentsHeaderTitle"><h2 class="previewContentsHeaderTitleText">숙소가 필요해 답변이 필요한 글</h2></div>
                     <a class="previewContentsLink" th:href="@{/needLodging/list}">전체보기</a>
@@ -165,7 +202,7 @@
                         </a>
                     </div>
                 </div>
-            </section>
+            </section>-->
         </div>
 
         <!-- footer -->

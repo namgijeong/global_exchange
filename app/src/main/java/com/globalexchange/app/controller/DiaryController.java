@@ -172,4 +172,13 @@ public class DiaryController {
 
         return new RedirectView("/diary/list");
     }
+
+    // 파트너 신고
+    @GetMapping("/partnerReport")
+    public RedirectView report(Long reportingMemberNumber, Long reportedMemberNumber){
+
+        diaryService.registerReport(reportingMemberNumber, reportedMemberNumber);
+
+        return new RedirectView("/diary/list");
+    }
 }

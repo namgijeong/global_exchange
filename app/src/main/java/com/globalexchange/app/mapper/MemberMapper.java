@@ -2,9 +2,7 @@ package com.globalexchange.app.mapper;
 
 import com.globalexchange.app.domain.vo.Criteria;
 import com.globalexchange.app.domain.vo.FileProfileVO;
-import com.globalexchange.app.domain.vo.MemberDTO;
 import com.globalexchange.app.domain.vo.MemberVO;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -69,4 +67,7 @@ public interface MemberMapper {
 
    // 멤버 수 조회
    public int getTotal(Criteria criteria);
+
+   // 멤버 삭제
+   public void deleteMember(Long memberNumber);
 }

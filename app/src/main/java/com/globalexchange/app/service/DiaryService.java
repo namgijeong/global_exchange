@@ -38,6 +38,9 @@ public interface DiaryService {
 
     // 파트너 유무 확인
     public int diaryPartnerCheck(Long memberNumber, Long diaryPartnerNumber);
+
+    // 파트너 신고
+    public void registerReport(Long reportingMemberNumber, Long reportedMemberNumber);
 }
 
 

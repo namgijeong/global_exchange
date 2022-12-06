@@ -121,19 +121,26 @@
 }
 
 #diary, #meetAndHelp, #guestHouse{
-    width:64px;
+    width:80px;
     height:51px;
 }
-
+#diary{
+    margin-left:20px;
+}
+#meetAndHelp{
+    margin-left:20px;
+}
 .header-icon{
     width:64px;
     height:34px;
+
+    margin-left:8px;
+    margin-right:8px;
 }
 
 .header-icon>img{
-    margin-left:8px;
-    margin-right:8px;
-    width:48px;
+
+    width:64px;
     height:34px;
     background-size:contain;
 }
@@ -146,5 +153,5 @@
     text-align:center;
     font-family: SUIT, "UI Frip", "Noto Sans KR", Helvetica, Arial, sans-serif;
     color:#aaaaaa;
-    font-size:10px;
+    font-size:11px;
 }

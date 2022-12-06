@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.globalexchange.app.mapper.MemberReportMapper">
+    <insert id="insertReport">
+        INSERT INTO TBL_MEMBER_REPORT (MEMBER_REPORT_NUMBER, REPORTING_MEMBER_NUMBER, REPORTED_MEMBER_NUMBER)
+        VALUES (MEMBER_REPORT_SEQ.NEXTVAL, #{reportingMemberNumber}, #{reportedMemberNumber})
+    </insert>
+
+    <select id="getReportsCount" resultType="_int">
+        SELECT COUNT(MEMBER_REPORT_NUMBER)
+        FROM TBL_MEMBER_REPORT
+        WHERE REPORTED_MEMBER_NUMBER = #{reportedMemberNumber}
+    </select>
+</mapper>
