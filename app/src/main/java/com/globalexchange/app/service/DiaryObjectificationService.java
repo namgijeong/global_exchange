@@ -61,6 +61,9 @@ public class DiaryObjectificationService implements DiaryService {
     diaryDTO.create(diaryDAO.findById(diaryNumber));
     diaryDTO.setFileDiaryVO(fileDAO.diaryFind(diaryNumber));
     diaryDTO.setDiaryPartnerNickname(memberDAO.diaryPartnerNickname(diaryDTO.getDiaryPartnerNumber()).getMemberNickname());
+    diaryDTO.setFilePartnerProfileVO(memberDAO.myPageProfile(diaryDTO.getDiaryPartnerNumber()));
+    diaryDTO.setMemberNationUrl(memberDAO.myPageDetail(diaryDTO.getDiaryPartnerNumber()).getMemberNationUrl());
+    diaryDTO.setMemberTeachingLang(memberDAO.myPageDetail(diaryDTO.getDiaryPartnerNumber()).getMemberTeachingLang());
     return diaryDTO;
   }
 
@@ -74,11 +77,13 @@ public class DiaryObjectificationService implements DiaryService {
     for(DiaryDTO diaryDTO : list) {
       {
         diaryDTO.create(diaryDAO.findById(diaryDTO.getDiaryNumber()));
-        log.info("diaryNumber;"+diaryDTO.getDiaryNumber());
+        log.info("diaryDTO1:"+diaryDTO);
 
         diaryDTO.setFileDiaryVO(fileDAO.diaryFind(diaryDTO.getDiaryNumber()));
+        log.info("diaryDTO2:"+diaryDTO);
         diaryDTO.setDiaryPartnerNickname(memberDAO.diaryPartnerNickname(diaryDTO.getDiaryPartnerNumber()).getMemberNickname());
-        log.info("diaryDTO:"+diaryDTO);
+        log.info("diaryDTO3:"+diaryDTO);
+        diaryDTO.setFilePartnerProfileVO(memberDAO.myPageProfile(diaryDTO.getDiaryPartnerNumber()));
         list2.add(diaryDTO);
 
       }
