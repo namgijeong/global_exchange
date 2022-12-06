@@ -42,29 +42,30 @@ div.banner div{
 
 .arrow{
     position:absolute;
-    width:80px;
-    height:80px;
+    width:40px;
+    height:40px;
 
     transform: translateY(-50%);
 
     font-size:3rem;
     background-color:#0000002e;
-
+    /*background-color:transparent;*/
+    vertical-align:center;
     cursor:pointer;
     border-radius:50%;
     text-align:center;
 
-    top:43%;
-    line-height:72px;
+    top:90%;
+    line-height:40px;
     z-index:1;
 }
 
 .prev{
-    left:80px;
+    left:20px;
 }
 
 .next{
-    right:80px;
+    right:20px;
 }
 
 #nationalIconList{
