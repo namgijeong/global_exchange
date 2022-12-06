@@ -66,4 +66,9 @@ class MemberMapperTest {
     void deleteMember() {
         memberMapper.deleteMember(4L);
     }
+
+    @Test
+    void testSelect() {
+        log.info("member : " + memberMapper.select(84L));
+    }
 }

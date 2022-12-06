@@ -101,7 +101,7 @@ public class DiaryObjectificationService implements DiaryService {
     for(MemberVO memberVO : memberVOList){
       MemberDTO memberDTO = new MemberDTO();
 
-      memberDTO.create2(memberVO);
+      memberDTO.create(memberVO);
       memberDTO.setFileProfileVO(memberDAO.myPageProfile(memberVO.getMemberNumber()));
 
       memberDTOList.add(memberDTO);
@@ -138,7 +138,7 @@ public class DiaryObjectificationService implements DiaryService {
       MemberDTO memberDTO = new MemberDTO();
 //      memberVO1.setMemberNickname(memberDAO.diaryPartnerNickname(memberNumber).getMemberNickname());
 //      memberVOList.add(memberVO1);
-      memberDTO.create2(memberDAO.diaryPartnerNickname(memberVO));
+      memberDTO.create(memberDAO.diaryPartnerNickname(memberVO));
       memberDTOList.add(memberDTO);
     }
 

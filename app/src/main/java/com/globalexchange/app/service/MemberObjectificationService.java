@@ -149,8 +149,7 @@ public class MemberObjectificationService implements MemberService{
     public MemberDTO myPageDetail(Long memberNumber){
         MemberDTO memberDTO = new MemberDTO();
 //        fileDAO.
-        memberDTO.create2(memberDAO.myPageDetail(memberNumber));
-        memberDTO.setFileProfileVO(memberDAO.myPageProfile(memberNumber));
+        memberDTO.create(memberDAO.myPageDetail(memberNumber), memberDAO.myPageProfile(memberNumber));
 
         return memberDTO;
     }

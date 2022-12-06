@@ -21,13 +21,13 @@
         <selectKey keyProperty="memberNumber" order="BEFORE" resultType="long">
             SELECT MEMBER_SEQ.NEXTVAL FROM DUAL
         </selectKey>
-        insert into tbl_member(member_number, member_id, member_nickname, member_password, member_teaching_lang, member_learning_lang, member_interesting, member_gender, member_nation_url)
-        values(#{memberNumber}, #{memberId}, #{memberNickname}, #{memberPassword}, #{memberTeachingLang}, #{memberLearningLang}, #{memberInteresting}, #{memberGender}, #{memberNationUrl})
+        insert into tbl_member(member_number, member_id, member_nickname, member_password, member_teaching_lang, member_learning_lang, member_interesting, member_gender, member_nation_url, MEMBER_LEARNING_URL)
+        values(#{memberNumber}, #{memberId}, #{memberNickname}, #{memberPassword}, #{memberTeachingLang}, #{memberLearningLang}, #{memberInteresting}, #{memberGender}, #{memberNationUrl} , #{memberLearningUrl})
     </insert>
 
 
     <select id="select" resultType="memberVO">
-        SELECT MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_TEACHING_LANG, MEMBER_LEARNING_LANG, MEMBER_INTERESTING, MEMBER_GENDER, MEMBER_NICKNAME, MEMBER_PHONE_NUM, MEMBER_BIRTHDATE, MEMBER_INTRODUCE, MEMBER_NATION_URL
+        SELECT MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_TEACHING_LANG, MEMBER_LEARNING_LANG, MEMBER_INTERESTING, MEMBER_GENDER, MEMBER_NICKNAME, MEMBER_PHONE_NUM, MEMBER_BIRTHDATE, MEMBER_INTRODUCE, MEMBER_NATION_URL, MEMBER_LEARNING_URL
         FROM TBL_MEMBER
         WHERE MEMBER_NUMBER = #{memberNumber}
     </select>
@@ -112,7 +112,7 @@
 
     <update id="myPageContentUpdate">
         UPDATE tbl_member
-        SET MEMBER_NICKNAME = #{memberNickname}, MEMBER_PHONE_NUM = #{memberPhoneNum}, MEMBER_BIRTHDATE = #{memberBirthdate}, MEMBER_TEACHING_LANG = #{memberTeachingLang}, MEMBER_LEARNING_LANG = #{memberLearningLang}, MEMBER_INTERESTING = #{memberInteresting}, MEMBER_INTRODUCE = #{memberIntroduce},member_nation_url = #{memberNationUrl}
+        SET MEMBER_NICKNAME = #{memberNickname}, MEMBER_PHONE_NUM = #{memberPhoneNum}, MEMBER_BIRTHDATE = #{memberBirthdate}, MEMBER_TEACHING_LANG = #{memberTeachingLang}, MEMBER_LEARNING_LANG = #{memberLearningLang}, MEMBER_INTERESTING = #{memberInteresting}, MEMBER_INTRODUCE = #{memberIntroduce}, member_nation_url = #{memberNationUrl}, MEMBER_LEARNING_URL = #{memberLearningUrl}
         WHERE MEMBER_NUMBER = #{memberNumber}
     </update>
 
@@ -123,13 +123,13 @@
     </update>
 
     <select id="selectAll" resultType="memberVO">
-        SELECT MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_TEACHING_LANG, MEMBER_LEARNING_LANG, MEMBER_INTERESTING, MEMBER_GENDER, MEMBER_NICKNAME, MEMBER_PHONE_NUM, MEMBER_BIRTHDATE, MEMBER_INTRODUCE, MEMBER_NATION_URL
+        SELECT MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_TEACHING_LANG, MEMBER_LEARNING_LANG, MEMBER_INTERESTING, MEMBER_GENDER, MEMBER_NICKNAME, MEMBER_PHONE_NUM, MEMBER_BIRTHDATE, MEMBER_INTRODUCE, MEMBER_NATION_URL, MEMBER_LEARNING_URL
         FROM
         (
-        SELECT ROWNUM R, MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_TEACHING_LANG, MEMBER_LEARNING_LANG, MEMBER_INTERESTING, MEMBER_GENDER, MEMBER_NICKNAME, MEMBER_PHONE_NUM, MEMBER_BIRTHDATE, MEMBER_INTRODUCE, MEMBER_NATION_URL
+        SELECT ROWNUM R, MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_TEACHING_LANG, MEMBER_LEARNING_LANG, MEMBER_INTERESTING, MEMBER_GENDER, MEMBER_NICKNAME, MEMBER_PHONE_NUM, MEMBER_BIRTHDATE, MEMBER_INTRODUCE, MEMBER_NATION_URL, MEMBER_LEARNING_URL
         FROM
         (
-        SELECT MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_TEACHING_LANG, MEMBER_LEARNING_LANG, MEMBER_INTERESTING, MEMBER_GENDER, MEMBER_NICKNAME, MEMBER_PHONE_NUM, MEMBER_BIRTHDATE, MEMBER_INTRODUCE, MEMBER_NATION_URL
+        SELECT MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_TEACHING_LANG, MEMBER_LEARNING_LANG, MEMBER_INTERESTING, MEMBER_GENDER, MEMBER_NICKNAME, MEMBER_PHONE_NUM, MEMBER_BIRTHDATE, MEMBER_INTRODUCE, MEMBER_NATION_URL, MEMBER_LEARNING_URL
         FROM TBL_MEMBER
         <where>
             <if test="memberTeachingLang != null and memberTeachingLang != 'ALL'.toString()">
@@ -154,11 +154,6 @@
             </if>
         </where>
     </select>
-
-    <insert id="insertReport">
-        INSERT INTO TBL_MEMBER_REPORT (MEMBER_REPORT_NUMBER, REPORTING_MEMBER_NUMBER, REPORTED_MEMBER_NUMBER)
-        VALUES (MEMBER_REPORT_SEQ.NEXTVAL, #{reportingMemberNumber}, #{reportedMemberNumber})
-    </insert>
 
     <select id="getReportsCount" resultType="_int">
         SELECT COUNT(MEMBER_REPORT_NUMBER)

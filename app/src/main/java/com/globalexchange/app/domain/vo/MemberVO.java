@@ -19,4 +19,5 @@ public class MemberVO {
     private String memberBirthdate;
     private String memberIntroduce;
     private String memberNationUrl;
+    private String memberLearningUrl;
 }

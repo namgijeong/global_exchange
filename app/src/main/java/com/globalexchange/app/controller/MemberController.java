@@ -68,6 +68,32 @@ public class MemberController {
             case "KOREAN" : memberVO.setMemberNationUrl("/images/nation/southKorea.png");
                 break;
         }
+
+        String learningLang = memberVO.getMemberLearningLang();
+
+        switch (learningLang) {
+            case "ENGLISH" : memberVO.setMemberLearningUrl("/images/nation/america.png");
+                break;
+            case "SPANISH" : memberVO.setMemberLearningUrl("/images/nation/spain.png");
+                break;
+            case "FRENCH" : memberVO.setMemberLearningUrl("/images/nation/france.png");
+                break;
+            case "GERMAN" : memberVO.setMemberLearningUrl("/images/nation/germany.png");
+                break;
+            case "ITALIAN" : memberVO.setMemberLearningUrl("/images/nation/italy.png");
+                break;
+            case "PORTUGUESE" : memberVO.setMemberLearningUrl("/images/nation/portugal.png");
+                break;
+            case "RUSSIAN" : memberVO.setMemberLearningUrl("/images/nation/russia.png");
+                break;
+            case "JAPANESE" : memberVO.setMemberLearningUrl("/images/nation/japan.png");
+                break;
+            case "CHINESE" : memberVO.setMemberLearningUrl("/images/nation/china.png");
+                break;
+            case "KOREAN" : memberVO.setMemberLearningUrl("/images/nation/southKorea.png");
+                break;
+        }
+
         memberService.joinForm(memberVO);
 //        Long currentJoinMemberNum = memberService.currentJoinMemberNum();
         FileProfileVO fileProfileVO = new FileProfileVO();
@@ -236,6 +262,31 @@ public class MemberController {
                 break;
             case "KOREAN":
                 memberVO.setMemberNationUrl("/images/nation/southKorea.png");
+                break;
+        }
+
+        String learningLang = memberDTO.getMemberLearningLang();
+
+        switch (learningLang) {
+            case "ENGLISH" : memberVO.setMemberLearningUrl("/images/nation/america.png");
+                break;
+            case "SPANISH" : memberVO.setMemberLearningUrl("/images/nation/spain.png");
+                break;
+            case "FRENCH" : memberVO.setMemberLearningUrl("/images/nation/france.png");
+                break;
+            case "GERMAN" : memberVO.setMemberLearningUrl("/images/nation/germany.png");
+                break;
+            case "ITALIAN" : memberVO.setMemberLearningUrl("/images/nation/italy.png");
+                break;
+            case "PORTUGUESE" : memberVO.setMemberLearningUrl("/images/nation/portugal.png");
+                break;
+            case "RUSSIAN" : memberVO.setMemberLearningUrl("/images/nation/russia.png");
+                break;
+            case "JAPANESE" : memberVO.setMemberLearningUrl("/images/nation/japan.png");
+                break;
+            case "CHINESE" : memberVO.setMemberLearningUrl("/images/nation/china.png");
+                break;
+            case "KOREAN" : memberVO.setMemberLearningUrl("/images/nation/southKorea.png");
                 break;
         }
 
