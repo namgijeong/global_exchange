@@ -19,7 +19,6 @@
             <div th:replace="/main/header.html::topHeader(memberNumber = ${session.memberNumber}, memberNickname = ${session.memberNickname})"></div>
             <div th:replace="/main/header.html:: header "></div>
 
-<!--            <th:block th:if-->
             <!-- main -->
             <div class="wrapper">
                 <div class="header">
@@ -30,10 +29,7 @@
                 <div class="category-filter-wrapper">
                     <div class="category-list-wrapper">
                         <a class="category">
-                            내가 작성
-                        </a>
-                        <a class="category not-selected-category">
-                            파트너가 작성
+                            교환 일기
                         </a>
                         <a class="category not-selected-category write">
                             교환 일기 작성
@@ -188,7 +184,6 @@
         </div>
     </div>
 
-    <!--
     <div class="modal-container modal-overlay">
         <div class="modal-flex">
             <div class="modal-wrapper">
@@ -278,7 +273,7 @@
             </div>
         </div>
         <div class="modal-color"></div>
-    </div>-->
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script th:inline="javascript">
