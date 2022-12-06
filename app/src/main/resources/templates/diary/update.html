@@ -1,220 +1,234 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>diary write</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    <link href="/css/main/header.css" rel="stylesheet" type="text/css" />
-    <link href="/css/main/footer.css" rel="stylesheet" type="text/css" />
-    <link href="/css/diary/write.css" rel="stylesheet" type="text/css" />
-    <link href="/css/diary/detail.css" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8">
+  <title>diary write</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+  <link href="/css/main/header.css" rel="stylesheet" type="text/css"/>
+  <link href="/css/main/footer.css" rel="stylesheet" type="text/css"/>
+      <link href="/css/diary/write.css" rel="stylesheet" type="text/css" />
+<!--  <link href="/css/diary/detail.css" rel="stylesheet" type="text/css"/>-->
+  <link href="/css/diary/update.css" rel="stylesheet" type="text/css"/>
+
 </head>
 <body>
 <div id="app">
-    <div class="appWrapper">
-        <!-- header -->
-        <div th:replace="/main/header.html::topHeader(memberNumber = ${session.memberNumber}, memberNickname = ${session.memberNickname})"></div>
-        <div th:replace="/main/header.html:: header "></div>
+  <div class="appWrapper">
+    <!-- header -->
+    <div
+        th:replace="/main/header.html::topHeader(memberNumber = ${session.memberNumber}, memberNickname = ${session.memberNickname})"></div>
+    <div th:replace="/main/header.html:: header "></div>
 
-        <!-- main -->
-        <div class="wrapper">
-            <div class="content-wrapper">
-                <div class="diary-detail-container">
-                    <form method="post" th:action="@{/diary/update}" th:object="${diary}" id="diaryForm" name="diaryForm" enctype="multipart/form-data">
-                        <div class="header-section-wrapper">
-                            <div class="image-input-box">
-                                <div id="imageInputStatus">
-                                    <div class="plus-image-text-wrapper">
-                                        <div class="plus-image-text-container">
-                                            <label for="diaryFile" class="image-input-label">
-                                                <img src="/images/diary/plusImage.png" width="48px" height="48px">
-                                                <div>
-                                                    이미지 추가하기
-                                                </div>
-                                            </label>
-                                        </div>
+    <!-- main -->
+    <div class="wrapper">
+      <div class="content-wrapper">
+        <div class="diary-detail-container">
+          <form method="post" th:action="@{/diary/update}" th:object="${diary}" id="diaryForm" name="diaryForm"
+                enctype="multipart/form-data">
+            <div class="header-section-wrapper">
+              <div class="image-input-box">
+                <div id="imageInputStatus">
+                  <div class="plus-image-text-wrapper">
+                    <div class="plus-image-text-container">
+                      <label for="diaryFile" class="image-input-label">
+                        <img src="/images/diary/plusImage.png" width="48px" height="48px">
+                        <div>
+                          이미지 추가하기
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <input type="file" id="diaryFile" name="upload" accept="image/gif, image/png, image/bmp, image/jpeg"
+                       hidden>
+              </div>
+              <div class="info-wrapper">
+                <section class="date-info-section">
+                  <div class="date-wrapper">
+                    <input class="date-selector" id="dateSelector">
+                  </div>
+                </section>
+                <section class="partner-profile-section">
+                  <div class="partner-profile-wrapper">
+                    <!--<div class="partner-profile">
+                        <div class="partner-profile-info">
+                            <div class="partner-profile-image">
+                                <a href="javascript:void(0)">
+                                    <div class="partner-image-wrapper">
+                                        <img class="partner-profile-img-style" src="/images/member/sample2.png">
                                     </div>
-                                </div>
-                                <input type="file" id="diaryFile" name="upload" accept="image/gif, image/png, image/bmp, image/jpeg" hidden>
+                                </a>
                             </div>
-                            <div class="info-wrapper">
-                                <section class="date-info-section">
-                                    <div class="date-wrapper">
-                                        <input class="date-selector" id="dateSelector">
-                                    </div>
-                                </section>
-                                <section class="partner-profile-section">
-                                    <div class="partner-profile-wrapper">
-                                        <!--<div class="partner-profile">
-                                            <div class="partner-profile-info">
-                                                <div class="partner-profile-image">
-                                                    <a href="javascript:void(0)">
-                                                        <div class="partner-image-wrapper">
-                                                            <img class="partner-profile-img-style" src="/images/member/sample2.png">
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <div class="profile-content">
-                                                    <div class="partner-name-wrapper">
-                                                        <a href="javascript:void(0)">
-                                                            <span class="partner-nickname">
-                                                                Tom Cruise
-                                                            </span>
-                                                        </a>
-                                                    </div>
-                                                    <span class="partner-nation">
-                                                        미국
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <a href="javascript:void(0)">
-                                                <img class="nation-img-style" src="/images/main/americaIcon.png">
-                                            </a>
-                                        </div>-->
-                                        <div>
-<!--                                            <label for="a" class="input-label">교환 일기 파트너</label>-->
-<!--                                            <select name="diaryPartner" id="a" class="input-style">-->
-<!--                                                <option value="Tom Crues" selected>Tom Crues</option>-->
-<!--                                                <option value="John">John</option>-->
-<!--                                                <option value="Alice Brown">Alice Brown</option>-->
-<!--                                            </select>-->
-                                            <section class="partner-profile-section">
-                                                <div class="partner-profile-wrapper">
-                                                    <div class="partner-profile">
-                                                        <div class="partner-profile-info">
-                                                            <div class="partner-profile-image">
-                                                                <a href="javascript:void(0)">
-                                                                    <div class="partner-image-wrapper">
-                                                                        <img class="partner-profile-img-style" src="/images/member/sample2.png">
-                                                                    </div>
-                                                                </a>
-                                                            </div>
-                                                            <div class="profile-content">
-                                                                <div class="partner-name-wrapper">
-                                                                    <a href="javascript:void(0)">
-                                                                        <span class="partner-nickname" th:text="${diary.diaryPartnerNickname}"></span>
-                                                                    </a>
-                                                                </div>
-                                                                <span class="partner-nation"></span>
-                                                            </div>
-                                                        </div>
-                                                        <a href="javascript:void(0)">
-                                                            <img class="nation-img-style" src="/images/nation/america.png">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </section>
-                                        </div>
-                                    </div>
-                                </section>
+                            <div class="profile-content">
+                                <div class="partner-name-wrapper">
+                                    <a href="javascript:void(0)">
+                                        <span class="partner-nickname">
+                                            Tom Cruise
+                                        </span>
+                                    </a>
+                                </div>
+                                <span class="partner-nation">
+                                    미국
+                                </span>
                             </div>
                         </div>
-                        <section class="section-container">
-                            <div class="section-title">
-                                <h2>교환 일기</h2>
-                                <button id="saveBtn" class="save-btn" type="button">저장하기</button>
-                                <!--button 디폴트값 submit이므로 type="button" 붙여라-->
+                        <a href="javascript:void(0)">
+                            <img class="nation-img-style" src="/images/main/americaIcon.png">
+                        </a>
+                    </div>-->
+                    <div>
+                      <!--                                            <label for="a" class="input-label">교환 일기 파트너</label>-->
+                      <!--                                            <select name="diaryPartner" id="a" class="input-style">-->
+                      <!--                                                <option value="Tom Crues" selected>Tom Crues</option>-->
+                      <!--                                                <option value="John">John</option>-->
+                      <!--                                                <option value="Alice Brown">Alice Brown</option>-->
+                      <!--                                            </select>-->
+
+                      <div class="partner-profile">
+                        <div class="partner-profile-info">
+                          <div class="partner-profile-image">
+                            <a href="javascript:void(0)">
+                              <div class="partner-image-wrapper" th:object="${diary}">
+                                <!--                                                                        <img class="partner-profile-img-style" src="/images/member/sample2.png">-->
+                                <th:block th:if="${not #strings.isEmpty(diary.filePartnerProfileVO)}">
+                                  <img class="partner-profile-img-style"
+                                       th:if="${diary.filePartnerProfileVO.fileImageCheck}"
+                                       th:src="@{/fileMeet/display(fileName=${diary.filePartnerProfileVO.fileUploadPath} + '/s_' + ${diary.filePartnerProfileVO.fileUuid} + '_' + ${diary.filePartnerProfileVO.fileName})}">
+                                  <img class="partner-profile-img-style"
+                                       th:unless="${diary.filePartnerProfileVO.fileImageCheck}"
+                                       src="/images/member/defaultProfileImg.png"/>
+                                </th:block>
+                                <th:block th:unless="${not #strings.isEmpty(diary.filePartnerProfileVO)}">
+                                  <img class="partner-profile-img-style" src="/images/member/defaultProfileImg.png">
+                                </th:block>
+                              </div>
+                            </a>
+                          </div>
+                          <div class="profile-content">
+                            <div class="partner-name-wrapper">
+                              <a href="javascript:void(0)">
+                                <span class="partner-nickname" th:text="${diary.diaryPartnerNickname}"></span>
+                              </a>
                             </div>
-                            <div class="form-container">
-    <!--                            <form method="post" th:action="@{/diary/write}" th:object="${diary}" id="diaryForm" enctype="multipart/form-data">-->
-                                    <div class="input-container">
-                                        <div class="row">
-                                            <div class="col-left">
-                                                <div class="input-label-style">
-                                                    <span class="input-subject">제목</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-right">
-                                                <div class="input-group">
-                                                    <input type="text" th:field="*{diaryTitle}" maxlength="40" class="input-text">
-                                                    <div class="input-text-append">
+                            <span class="partner-nation" th:text="${diary.memberTeachingLang}"></span>
+                          </div>
+                        </div>
+                        <a href="javascript:void(0)">
+                          <!--                                                            <img class="nation-img-style" src="/images/nation/america.png">-->
+                          <img class="nation-img-style" th:src="${diary.memberNationUrl}">
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+            <section class="section-container">
+              <div class="section-title">
+                <h2>교환 일기</h2>
+                <button id="saveBtn" class="save-btn" type="button">저장하기</button>
+                <!--button 디폴트값 submit이므로 type="button" 붙여라-->
+              </div>
+              <div class="form-container">
+                <!--                            <form method="post" th:action="@{/diary/write}" th:object="${diary}" id="diaryForm" enctype="multipart/form-data">-->
+                <div class="input-container">
+                  <div class="row">
+                    <div class="col-left">
+                      <div class="input-label-style">
+                        <span class="input-subject">제목</span>
+                      </div>
+                    </div>
+                    <div class="col-right">
+                      <div class="input-group">
+                        <input type="text" th:field="*{diaryTitle}" maxlength="40" class="input-text">
+                        <div class="input-text-append">
                                                             <span class="text-muted-container">
                                                                 <small class="text-muted"></small>
                                                             </span>
-                                                    </div>
-                                                </div>
-                                                <div class="warning-text">일기 제목을 작성해주세요.</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="input-container">
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-left">
-                                                <div class="input-label-style">
-                                                    <span class="input-subject">내용</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-right">
-                                                <div class="input-group">
-                                                    <textarea th:field="*{diaryContent}" id="summernote" name="diaryContent"></textarea>
-                                                </div>
-                                                <div class="warning-text">일기 내용을 작성해주세요.</div>
-                                            </div>
-                                        </div>
-                                    </div>
-    <!--                            </form>-->
-                            </div>
-                        </section>
-                    </form>
+                        </div>
+                      </div>
+                      <div class="warning-text">일기 제목을 작성해주세요.</div>
+                    </div>
+                  </div>
                 </div>
-            </div>
+                <div class="input-container">
+                  <hr>
+                  <div class="row">
+                    <div class="col-left">
+                      <div class="input-label-style">
+                        <span class="input-subject">내용</span>
+                      </div>
+                    </div>
+                    <div class="col-right">
+                      <div class="input-group">
+                        <textarea th:field="*{diaryContent}" id="summernote" name="diaryContent"></textarea>
+                      </div>
+                      <div class="warning-text">일기 내용을 작성해주세요.</div>
+                    </div>
+                  </div>
+                </div>
+                <!--                            </form>-->
+              </div>
+            </section>
+          </form>
         </div>
-
-        <!-- footer -->
-        <div th:replace="/main/footer.html:: footerFirst"></div>
+      </div>
     </div>
 
-    <!-- modal -->
-    <div id="confirmModal" class="modal-container modal-overlay">
-        <div class="modal-flex">
-            <div class="modal-wrapper">
-                <div class="modal-body">
-                    <h2 class="modal-title">일기 내용을 저장하시겠습니까?</h2>
-                    <div >
-                        일기를 저장합니다.
-                    </div>
-                </div>
-                <footer class="modal-footer">
-                    <div class="btn-container">
-                        <button id="yesBtn" class="warning-btn">
-                            네
-                        </button>
-                        <button id="noBtn" class="secondary-btn">
-                            아니오
-                        </button>
-                    </div>
-                </footer>
-            </div>
-        </div>
-        <div class="modal-color"></div>
-    </div>
+    <!-- footer -->
+    <div th:replace="/main/footer.html:: footerFirst"></div>
+  </div>
 
-    <!-- modal -->
-    <div id="imageVerifyModal" class="modal-container modal-overlay">
-        <div class="modal-flex">
-            <div class="modal-wrapper">
-                <div class="modal-body">
-                    <h2 class="modal-title">이미지 업로드 실패</h2>
-                    <div >
-                        jpg, png, bmp, gif 파일만 등록할 수 있습니다.
-                    </div>
-                </div>
-                <footer class="modal-footer">
-                    <div class="btn-container">
-                        <button id="confirmBtn" class="warning-btn">
-                            확인
-                        </button>
-                    </div>
-                </footer>
-            </div>
+  <!-- modal -->
+  <div id="confirmModal" class="modal-container modal-overlay">
+    <div class="modal-flex">
+      <div class="modal-wrapper">
+        <div class="modal-body">
+          <h2 class="modal-title">일기 내용을 저장하시겠습니까?</h2>
+          <div>
+            일기를 저장합니다.
+          </div>
         </div>
-        <div class="modal-color"></div>
+        <footer class="modal-footer">
+          <div class="btn-container">
+            <button id="yesBtn" class="warning-btn">
+              네
+            </button>
+            <button id="noBtn" class="secondary-btn">
+              아니오
+            </button>
+          </div>
+        </footer>
+      </div>
     </div>
+    <div class="modal-color"></div>
+  </div>
+
+  <!-- modal -->
+  <div id="imageVerifyModal" class="modal-container modal-overlay">
+    <div class="modal-flex">
+      <div class="modal-wrapper">
+        <div class="modal-body">
+          <h2 class="modal-title">이미지 업로드 실패</h2>
+          <div>
+            jpg, png, bmp, gif 파일만 등록할 수 있습니다.
+          </div>
+        </div>
+        <footer class="modal-footer">
+          <div class="btn-container">
+            <button id="confirmBtn" class="warning-btn">
+              확인
+            </button>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <div class="modal-color"></div>
+  </div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
@@ -233,8 +247,8 @@
     const $diaryTitle = $('input[name=diaryTitle]');
     const $summernote = $('#summernote');
     const $saveBtn = $('#saveBtn');
-    const $confirmModal =  $('#confirmModal');
-    const $imageVerifyModal =  $('#imageVerifyModal');
+    const $confirmModal = $('#confirmModal');
+    const $imageVerifyModal = $('#imageVerifyModal');
     const $yesBtn = $('#yesBtn');
     const $noBtn = $('#noBtn');
     const $confirmBtn = $('#confirmBtn');
@@ -243,13 +257,13 @@
     console.log([[${diary.diaryNumber}]]);
 
     // 파일 업로드
-    $file.on('change', function(){
+    $file.on('change', function () {
         let formData = new FormData();
         let file = this.files[0];
         // 업로드한 파일이 이미지 파일이 아니면 모달창을 띄운다.
         var extension = $(this).val().split(".")[1];
-        if( extension == 'gif' || extension == 'png' || extension == 'bmp' || extension == 'dib'
-            || extension == 'jfif' || extension == 'pjpeg' || extension == 'pjp' || extension == 'jpg'){
+        if (extension == 'gif' || extension == 'png' || extension == 'bmp' || extension == 'dib'
+            || extension == 'jfif' || extension == 'pjpeg' || extension == 'pjp' || extension == 'jpg') {
 
             // Ajax 방식으로 파일을 controller로 전송한다.
             // Ajax가 성공하면 showUploadResult 함수를 실행한다.
@@ -277,7 +291,7 @@
         }
     });
 
-    function showUploadError(error){
+    function showUploadError(error) {
         console.log(error);
     }
 
@@ -289,7 +303,7 @@
         $imageInputBox.css('border', 'none');
 
         let text = "";
-        text += `<div class="thumbnail-container" data-file-size="` +  fileDiaryVO.fileSize + `" data-file-name="` + fileDiaryVO.fileName + `" data-file-upload-path="` + fileDiaryVO.fileUploadPath + `" data-file-uuid="` + fileDiaryVO.fileUuid + `" data-file-image-check="` + fileDiaryVO.fileImageCheck + `">`;
+        text += `<div class="thumbnail-container" data-file-size="` + fileDiaryVO.fileSize + `" data-file-name="` + fileDiaryVO.fileName + `" data-file-upload-path="` + fileDiaryVO.fileUploadPath + `" data-file-uuid="` + fileDiaryVO.fileUuid + `" data-file-image-check="` + fileDiaryVO.fileImageCheck + `">`;
         text += '<span>';
         text += '<img src="/images/diary/close.svg">';
         text += '</span>';
@@ -301,7 +315,6 @@
         $('#imageInputStatus').hide();
         $imageInputBox.append(text);
     };
-
 
 
     // x를 누르면 업로드 되었던 파일을 삭제한다.
@@ -319,7 +332,7 @@
             url: "/fileDiary/delete",
             type: "post",
             data: {fileUploadPath: fileUploadPath, fileName: fileName, fileImageCheck: fileImageCheck},
-            success: function(){
+            success: function () {
                 $div.remove();
                 $('#imageInputStatus').show();
                 $imageInputBox.css('border', '1px dashed #bfbfbf');
@@ -332,7 +345,6 @@
     dateSelector.flatpickr();
 
 
-
     flatpickr.localize(flatpickr.l10ns.ko);
     flatpickr(dateSelector);
 
@@ -343,32 +355,32 @@
         local: 'ko',
         inline: true,
         defaultDate: diaryWriteDate,
-        enable:[
+        enable: [
             diaryWriteDate
         ],
-                // enable:[
-                //     "2022-11-21"
-                // ],
-                // maxDate: "2022-11-22",
+        // enable:[
+        //     "2022-11-21"
+        // ],
+        // maxDate: "2022-11-22",
 
-        onChange: function(selectedDates, dateStr, instance){
+        onChange: function (selectedDates, dateStr, instance) {
             selectedDate = dateStr;
 
-            console.log("select"+selectedDate);
+            console.log("select" + selectedDate);
         },
-        onReady: function(selectedDates, dateStr, instance){
+        onReady: function (selectedDates, dateStr, instance) {
             var date = new Date();
             console.log(date);
             var year = date.getFullYear();
 
             var month = date.getMonth();
             month += 1;
-            if (month <= 9){
+            if (month <= 9) {
                 month = "0" + month;
             }
 
             var day = date.getDate();
-            if (day <= 9){
+            if (day <= 9) {
                 day = "0" + day;
             }
 
@@ -376,7 +388,7 @@
             console.log(today);
             selectedDate = today;
 
-            console.log("today"+selectedDate);
+            console.log("today" + selectedDate);
             // console.log(selectedDates);
             // console.log(dateStr);
             // console.log(instance);
@@ -414,7 +426,7 @@
         toolbar: [
             ['style', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
             ['fontsize', ['fontsize']],
-            ['color', ['forecolor','backcolor', 'clear']],
+            ['color', ['forecolor', 'backcolor', 'clear']],
             ['para', ['ul', 'ol', 'paragraph']],
             ['view', ['help']]
         ],
@@ -423,13 +435,13 @@
 
     // input[type='file'] 마우스 올렸을 때 색 변화
     $imageInputBox.on('mouseover', function () {
-        if(!$file.val()) {
+        if (!$file.val()) {
             $imageInputBox.css('border-color', '#7a29fa');
         }
     })
 
     $imageInputBox.on('mouseout', function () {
-        if(!$file.val()) {
+        if (!$file.val()) {
             $imageInputBox.css('border-color', '#bfbfbf');
         }
     })
@@ -438,7 +450,7 @@
     let flag = true;
 
     $diaryTitle.on('focus', function () {
-        if(flag){
+        if (flag) {
             $(this).css('border-color', '#7a29fa');
             $(this).next().children().css('border-color', '#7a29fa');
         }
@@ -446,13 +458,14 @@
 
     // 유효성 검사
     $diaryTitle.on('blur', function () {
-        if(!$(this).val()){
+        if (!$(this).val()) {
             $(this).parent().next().show();
             $(this).css('border-color', '#eb385e');
             $(this).next().children().css('border-color', '#eb385e');
             flag = false;
-        } else{
-            $(this).parent().next().hide();$(this).css('border-color', '#ddd');
+        } else {
+            $(this).parent().next().hide();
+            $(this).css('border-color', '#ddd');
             $(this).next().children().css('border-color', '#ddd');
             flag = true;
         }
@@ -460,17 +473,17 @@
 
     $saveBtn.on('click', function () {
 
-        if(!$file.val()){
+        if (!$file.val()) {
             alert('이미지를 넣어주세요.');
             return;
-        }else if(!$diaryTitle.val()){
+        } else if (!$diaryTitle.val()) {
             alert('제목을 작성해주세요.');
             $diaryTitle.focus();
             return;
-        }else if ($summernote.summernote('isEmpty')) {
+        } else if ($summernote.summernote('isEmpty')) {
             alert('일기 내용을 작성해주세요.');
             return;
-        }else {
+        } else {
             confirmModal();
         }
     });

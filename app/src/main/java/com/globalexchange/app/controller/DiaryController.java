@@ -30,6 +30,7 @@ public class DiaryController {
         if(criteria.getPage() == 0){
             criteria.create(1, 10);
         }
+//        model.addAttribute("members", diaryService.showAllPartner(criteria));
         model.addAttribute("diaries", diaryService.showAll(criteria));
 //        model.addAttribute("diary", diaryService.show(diaryNumber));
         model.addAttribute("pagination",new PageDTO().createPageDTO(criteria, diaryService.getTotal()));
@@ -48,6 +49,7 @@ public class DiaryController {
     @GetMapping(value={"/detail", "/update"})
     public void detail(HttpServletRequest request, Long memberNumber, Long diaryNumber, Criteria criteria, Model model){
         model.addAttribute("diary", diaryService.show(diaryNumber));
+//        model.addAttribute("diaries", diaryService.showAll(criteria));
 
 //        if(request.getSession().getAttribute("memberNumber") != null){
 //            Long memberNumber1 = (Long) request.getSession().getAttribute("memberNumber");
