@@ -1,9 +1,6 @@
 package com.globalexchange.app.repository;
 
-import com.globalexchange.app.domain.vo.Criteria;
-import com.globalexchange.app.domain.vo.DiaryDTO;
-import com.globalexchange.app.domain.vo.DiaryVO;
-import com.globalexchange.app.domain.vo.MemberVO;
+import com.globalexchange.app.domain.vo.*;
 import com.globalexchange.app.mapper.DiaryMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -42,6 +39,16 @@ public class DiaryDAO {
   //    파트너 조회
   public List<Long> findPartner(Long memberNumber){
     return diaryMapper.diaryPartnerSelect(memberNumber);
+  }
+
+  // 파트너 신청
+  public void saveDiaryPartner(Long memberNumber, Long diaryPartnerNumber){
+    diaryMapper.diaryPartnerInsert(memberNumber, diaryPartnerNumber);
+  }
+
+  // 파트너 유무 확인
+  public int diaryPartnerCheck(Long memberNumber, Long diaryPartnerNumber){
+    return diaryMapper.diaryPartnerCheck(memberNumber, diaryPartnerNumber);
   }
 
 }

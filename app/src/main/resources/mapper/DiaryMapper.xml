@@ -52,4 +52,16 @@
         WHERE MEMBER_NUMBER= #{memberNumber}
     </select>
 
+    <insert id="diaryPartnerInsert">
+        INSERT ALL
+            INTO TBL_DIARY_PARTNER (MEMBER_NUMBER, DIARY_PARTNER_NUMBER) values (#{memberNumber}, #{diaryPartnerNumber})
+        INTO TBL_DIARY_PARTNER (MEMBER_NUMBER, DIARY_PARTNER_NUMBER) values (#{diaryPartnerNumber}, #{memberNumber})
+        SELECT * FROM DUAL
+    </insert>
+
+    <select id="diaryPartnerCheck" resultType="_int">
+        SELECT COUNT(MEMBER_NUMBER)
+        FROM TBL_DIARY_PARTNER
+        WHERE MEMBER_NUMBER = #{memberNumber} AND DIARY_PARTNER_NUMBER = #{diaryPartnerNumber}
+    </select>
 </mapper>

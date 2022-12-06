@@ -22,6 +22,15 @@ class DiaryMapperTest {
     diaryDTO.setDiaryTitle("업데이트테스트");
     diaryDTO.setDiaryContent("업데이트테스트");
     diaryMapper.diaryUpdate(diaryDTO);
+  }
 
+  @Test
+  void diaryPartnerInsert() {
+    diaryMapper.diaryPartnerInsert(1L, 4L);
+  }
+
+  @Test
+  void diaryPartnerCheck() {
+    diaryMapper.diaryPartnerCheck(1L, 4L);
   }
 }
