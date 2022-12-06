@@ -19,7 +19,6 @@
             <div th:replace="/main/header.html::topHeader(memberNumber = ${session.memberNumber}, memberNickname = ${session.memberNickname})"></div>
             <div th:replace="/main/header.html:: header "></div>
 
-<!--            <th:block th:if-->
             <!-- main -->
             <div class="wrapper">
                 <div class="header">
@@ -29,10 +28,10 @@
                 </div>
                 <div class="category-filter-wrapper">
                     <div class="category-list-wrapper">
-                        <a class="category">
+                        <a class="category not-selected-category">
                             내가 작성
                         </a>
-                        <a class="category not-selected-category">
+                        <a class="category">
                             파트너가 작성
                         </a>
                         <a class="category not-selected-category write">
