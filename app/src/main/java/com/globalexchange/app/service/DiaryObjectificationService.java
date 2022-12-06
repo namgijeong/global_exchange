@@ -119,17 +119,6 @@ public class DiaryObjectificationService implements DiaryService {
   }
 
   @Override
-  public MemberDTO showPartnerDetail(Long memberNumber) {
-
-    MemberDTO memberDTO = new MemberDTO();
-    memberDTO.create(memberDAO.findByMemberNumber(memberNumber), memberDAO.myPageProfile(memberNumber)
-            , memberDAO.diaryTotalPost(memberNumber), (memberDAO.meetPost(memberNumber) + memberDAO.lodgingPost(memberNumber))
-            , (memberDAO.meetAnswer(memberNumber) + memberDAO.lodgingAnswer(memberNumber)));
-
-    return memberDTO;
-  }
-
-  @Override
   public List<MemberDTO> showPartner(Long memberNumber){
 //    List<Long> memberVOList = diaryDAO.findPartner(memberNumber);
 //    log.info("memberNumber:"+memberNumber);
@@ -159,5 +148,26 @@ public class DiaryObjectificationService implements DiaryService {
     return memberDTOList;
 
 
+  }
+
+  @Override
+  public MemberDTO showPartnerDetail(Long memberNumber) {
+
+    MemberDTO memberDTO = new MemberDTO();
+    memberDTO.create(memberDAO.findByMemberNumber(memberNumber), memberDAO.myPageProfile(memberNumber)
+            , memberDAO.diaryTotalPost(memberNumber), (memberDAO.meetPost(memberNumber) + memberDAO.lodgingPost(memberNumber))
+            , (memberDAO.meetAnswer(memberNumber) + memberDAO.lodgingAnswer(memberNumber)));
+
+    return memberDTO;
+  }
+
+  @Override
+  public void registerPartner(Long memberNumber, Long diaryPartnerNumber) {
+    diaryDAO.saveDiaryPartner(memberNumber, diaryPartnerNumber);
+  }
+
+  @Override
+  public int diaryPartnerCheck(Long memberNumber, Long diaryPartnerNumber) {
+    return diaryDAO.diaryPartnerCheck(memberNumber, diaryPartnerNumber);
   }
 }

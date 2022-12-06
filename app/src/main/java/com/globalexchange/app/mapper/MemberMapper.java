@@ -47,7 +47,8 @@ public interface MemberMapper {
 
 
    //   파트너 삭제
-   void deletePartner(Long diaryPartnerNumber);
+   void deletePartner(Long diaryPartnerNumber, Long memberNumber);
+   void deletePartner2(Long diaryPartnerNumber, Long memberNumber);
 
 
    //   마이페이지 상세보기
@@ -60,7 +61,7 @@ public interface MemberMapper {
    //    마이페이지 수정 완료
    void myPageImageUpdate(FileProfileVO fileProfileVO);
 
-   //
+   // 멤버 조회
    public MemberVO select(Long memberNumber);
 
    // 멤버 전체 조회

@@ -96,7 +96,12 @@
 
     <delete id="deletePartner">
         DELETE FROM tbl_diary_partner
-        WHERE DIARY_PARTNER_NUMBER= #{diaryPartnerNumber}
+        WHERE DIARY_PARTNER_NUMBER= #{diaryPartnerNumber} and MEMBER_NUMBER = #{memberNumber}
+    </delete>
+
+    <delete id="deletePartner2">
+        DELETE FROM tbl_diary_partner
+        WHERE DIARY_PARTNER_NUMBER= #{memberNumber} and MEMBER_NUMBER= #{diaryPartnerNumber}
     </delete>
 
     <select id="myPageDetail" resultType="memberVO">
@@ -148,23 +153,5 @@
                 MEMBER_TEACHING_LANG = #{memberTeachingLang}
             </if>
         </where>
-    </select>
-
-    <select id="getTotalWrittenDiary">
-        SELECT COUNT(DIARY.DIARY_NUMBER)
-        FROM TBL_MEMBER MEMBER
-        JOIN TBL_DIARY DIARY
-        ON MEMBER.MEMBER_NUMBER = DIARY.MEMBER_NUMBER
-        WHERE MEMBER.MEMBER_NUMBER = #{memberNumber}
-    </select>
-
-    <select id="getTotalWrittenPost">
-        SELECT COUNT(*)
-        FROM TBL_MEMBER MEMBER
-        LEFT JOIN TBL_DIARY DIARY
-        ON MEMBER.MEMBER_NUMBER = DIARY.MEMBER_NUMBER
-        RIGHT JOIN TBL_MEET MEET
-        ON MEMBER.MEMBER_NUMBER = MEET.MEMBER_NUMBER
-        WHERE MEMBER.MEMBER_NUMBER = ${memberNumber}
     </select>
 </mapper>
