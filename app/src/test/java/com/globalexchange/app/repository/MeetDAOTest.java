@@ -36,4 +36,21 @@ class MeetDAOTest {
     void findCountAll() {
         log.info("count : " + memberDAO.findCountAll(new Criteria().create(1, 10)));
     }
+
+    @Test
+    void meetSelectAll() {
+        for(MeetVO meetVO : meetDAO.meetSelectAll(new Criteria().create(1, 10))) {
+            log.info("meetVO : " + meetVO);
+        }
+    }
+
+    @Test
+    void selectMeetRequest() {
+        log.info("meetVO : " + meetDAO.selectMeetRequest(1L));
+    }
+
+    @Test
+    void removeMeet() {
+        meetDAO.removeMeet(36L);
+    }
 }

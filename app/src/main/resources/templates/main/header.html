@@ -16,10 +16,14 @@
                 <span class="top-header-button" id="login" onclick="location.href='/member/login'">로그인</span>
             </th:block>
             <th:block th:unless="${memberNumber == null}">
-                    <span class="top-header-button" id="memberNickname" th:onclick="|location.href='@{/member/mypage}'|">
+                    <span class="top-header-button" id="admin" th:onclick="|location.href='@{/admin/memberList}'|" th:if="${memberNumber == 1}">
+                        <span class="memberNickname-style">관리자 페이지</span>
+                    </span>
+                    <!--<form th:action="@{/admin/memberList}" method="post" id="adminForm" hidden></form>-->
+                    <span class="top-header-button" id="memberNickname" th:onclick="|location.href='@{/member/mypage}'|" th:unless="${memberNumber == 1}">
                         <span class="memberNickname-style" th:text="${memberNickname}"></span>님
                     </span>
-                <span class="top-header-button" id="logout" th:onclick="|location.href='@{/member/logout}'|">
+                    <span class="top-header-button" id="logout" th:onclick="|location.href='@{/member/logout}'|">
                         <button class="logout-btn">로그아웃</button>
                     </span>
             </th:block>
@@ -67,6 +71,8 @@
     const $notice = $('#notice');
     const $question = $('#question');
     let $memberNumber = [[${member.memberNumber}]];
+    /*const $admin = $('#admin');
+    const $adminForm = $('form#adminForm');*/
 
     $joinMember.on('click', function () {
         alert("눌림");
@@ -92,5 +98,11 @@
     $question.on('click', function () {
         location.href = "/question/question";
     });
+
+    // 관리자 페이지로 이동
+    /*$admin.on('click', function () {
+        console.log('들어옴');
+        $adminForm.submit();
+    })*/
 </script>
 </html>

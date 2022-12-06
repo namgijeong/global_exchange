@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
           rel="stylesheet">
 
-    <link href="/css/admin/memberDetail.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/admin/meetDetail.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="logobox">
@@ -62,67 +62,46 @@
     <div id="subnavigation_result">
         <div id="subnavigation_result_header">
             <div id="subnavigation_result_title">
-                <h2>회원 상세보기</h2>
-                <span>회원 상세보기 입니다</span>
+                <h2>만남과 도움 게시글 상세보기</h2>
+                <span>만남과 도움 게시글 상세보기 입니다</span>
             </div>
         </div>
         <div id="subnavigation_result_body">
-            <form method="get" th:action="@{/admin/memberDelete}" th:object="${member}" id="deleteForm">
+            <form method="get" th:action="@{/admin/meetDelete}" th:object="${meet}" id="deleteForm">
                 <div id="subnavigation_list">
                     <div class="subnavigation_list_detail">
-                        <span>아이디</span>
-                        <input type="text" th:field="*{memberId}" readonly>
+                        <span>번호</span>
+                        <input type="text" th:field="*{meetNumber}" readonly>
                     </div>
                     <div class="subnavigation_list_detail">
-                        <span>닉네임</span>
+                        <span>제목</span>
+                        <input type="text" th:field="*{meetTitle}" readonly>
+                    </div>
+                    <div class="subnavigation_list_detail">
+                        <span>작성자 닉네임</span>
                         <input type="text" th:field="*{memberNickname}" readonly>
                     </div>
                     <div class="subnavigation_list_detail">
-                        <span>성별</span>
-                        <th:block th:if="${member.memberGender == M}">
-                            <input type="text"  th:value="남자" readonly>
-                        </th:block>
-                        <th:block th:unless="${member.memberGender == M}">
-                            <input type="text"  th:value="여자" readonly>
-                        </th:block>
-                    </div>
-                    <div class="subnavigation_list_detail">
-                        <span class="warning">신고 횟수</span>
-                        <input class="warning" type="text" th:field="*{reportCount}" readonly>
-                    </div>
-                    <div class="subnavigation_list_detail">
-                        <span>익숙한 언어</span>
+                        <span>작성자가 익숙한 언어</span>
                         <input type="text" th:field="*{memberTeachingLang}" readonly>
                     </div>
                     <div class="subnavigation_list_detail">
-                        <span>배우고 싶은 언어</span>
-                        <input type="text" th:field="*{memberLearningLang}" readonly>
-                    </div>
-                    <div class="subnavigation_list_detail">
-                        <span>관심사</span>
-                        <input type="text" th:field="*{memberInteresting}" readonly>
-                    </div>
-                    <div class="subnavigation_list_detail">
-                        <span>전화번호</span>
-                        <input type="text" th:field="*{memberPhoneNum}" readonly>
-                    </div>
-                    <div class="subnavigation_list_detail">
-                        <span>생년월일</span>
-                        <input type="text" th:text="${#strings.substring(member.memberBirthdate, 0, 10)}" readonly>
+                        <span>작성자가 도움을 원하는 언어</span>
+                        <input type="text" th:field="*{meetLearningLang}" readonly>
                     </div>
                     <div class="subnavigation_list_detail content-style">
-                        <span>자기소개</span>
-                        <pre th:text="*{memberIntroduce}"></pre>
+                        <span>내용</span>
+                        <pre th:text="*{meetContent}"></pre>
                     </div>
                 </div>
                 <ul class="button-conatiner">
                     <div class="button-wrapper">
                         <li>
                             <input type="button" class="button-style" value="목록으로"
-                                   th:onclick="|location.href='@{/admin/memberList(page = ${criteria.page}, amount = ${criteria.amount})}'|">
+                                   th:onclick="|location.href='@{/admin/meetList(page = ${criteria.page}, amount = ${criteria.amount})}'|">
                         </li>
                         <li>
-                            <input type="submit" class="button-style" value="회원 삭제">
+                            <input type="submit" class="button-style" value="게시글 삭제">
                         </li>
                     </div>
                 </ul>
@@ -131,14 +110,14 @@
     </div>
 </div>
 
-<!-- 회원 삭제 모달창 -->
+<!-- 게시글 삭제 모달창 -->
 <div class="modal-container modal-overlay">
     <div class="modal-flex">
         <div class="modal-wrapper">
             <div class="modal-body">
-                <h2 class="modal-title">회원을 삭제 하시겠습니까?</h2>
+                <h2 class="modal-title">게시글을 삭제 하시겠습니까?</h2>
                 <div >
-                    회원을 삭제합니다.
+                    게시글을 삭제합니다.
                 </div>
             </div>
             <footer class="modal-footer">
@@ -159,14 +138,13 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
 <script th:inline="javascript">
-    let $queryString = [[${criteria.queryString}]];
     const $delete = $('input[type=submit]');
 
     // 모달창
     const $yesBtn = $('#yesBtn');
     const $noBtn = $('#noBtn');
     const modalContainer = document.querySelector(".modal-container");
-    let $memberNumber = [[${member.memberNumber}]];
+    let $meetNumber = [[${meet.meetNumber}]];
 
     function openModal() {
         document.body.style.overflow = "hidden";
@@ -182,14 +160,14 @@
         openModal();
     })
 
-    // 회원 삭제 버튼 클릭 시
+    // 게시글 삭제 버튼 클릭 시
     $yesBtn.on('click', function () {
-        location.href = "/admin/memberDelete?memberNumber=" + $memberNumber;
+        location.href = "/admin/meetDelete?meetNumber=" + $meetNumber;
         modalContainer.style.display = "none";
         closeModal();
     });
 
-    // 회원 삭제 취소 클릭 시
+    // 게시글 삭제 취소 클릭 시
     $noBtn.on('click', function () {
         modalContainer.style.display = "none";
         closeModal();

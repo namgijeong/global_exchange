@@ -1,6 +1,7 @@
 package com.globalexchange.app.service;
 
 import com.globalexchange.app.domain.vo.Criteria;
+import com.globalexchange.app.domain.vo.MeetDTO;
 import com.globalexchange.app.domain.vo.NoticeVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -45,5 +46,18 @@ public class AdminServiceTest {
     @Test
     void getTotal() {
         adminService.getTotal();
+    }
+
+    @Test
+    void showAllMeetTest() {
+        for(MeetDTO meetDTO : adminService.showAllMeet(new Criteria().create(1, 10))) {
+            log.info("meetTitle : " + meetDTO.getMeetTitle());
+        }
+
+    }
+
+    @Test
+    void showMeetDetail() {
+        log.info("meetDTO : " + adminService.showMeetDetail(1L));
     }
 }

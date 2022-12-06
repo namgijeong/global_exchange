@@ -62,9 +62,9 @@
     </insert>
 
     <select id="selectMeetRequest" resultType="meetVO">
-        SELECT *
-        FROM tbl_meet
-        WHERE meet_number= #{meetNumber}
+        SELECT MEET_NUMBER, MEET_LEARNING_LANG, MEET_TITLE, MEET_CONTENT, MEET_WRITE_DATE, MEET_UPDATE_DATE, MEET_ADDRESS, MEET_DETAIL_ADDRESS, MEMBER_NUMBER
+        FROM TBL_MEET
+        WHERE MEET_NUMBER = #{meetNumber}
     </select>
 
     <update id="updateRequest">
@@ -183,6 +183,11 @@
     <delete id="meetCommentRemove" >
         DELETE FROM  tbl_meet_answer_comment
         WHERE meet_answer_comment_number = #{meetAnswerCommentNumber}
+    </delete>
+
+    <delete id="deleteMeet">
+        DELETE FROM TBL_MEET
+        WHERE MEET_NUMBER = #{meetNumber}
     </delete>
 
 </mapper>

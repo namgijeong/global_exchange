@@ -61,4 +61,14 @@ class MemberMapperTest {
     void lodgingAnswer() {
         log.info("total lodging answer count : " + memberMapper.lodgingAnswer(1L));
     }
+
+    @Test
+    void deleteMember() {
+        memberMapper.deleteMember(4L);
+    }
+
+    @Test
+    void testSelect() {
+        log.info("member : " + memberMapper.select(84L));
+    }
 }

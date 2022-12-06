@@ -182,4 +182,8 @@ public class MemberDAO {
         return memberMapper.getTotal(criteria);
     }
 
+    // 멤버 삭제
+    public void removeMember(Long memberNumber) {
+        memberMapper.deleteMember(memberNumber);
+    }
 }

@@ -31,4 +31,11 @@ class DiaryControllerTest {
         log.info("members : " + mockMvc.perform(MockMvcRequestBuilders.get("/diary/partnerList")
         ).andReturn().getModelAndView().getModelMap());
     }
+
+    @Test
+    void partnerDetail() throws Exception{
+        log.info("partner : " + mockMvc.perform(MockMvcRequestBuilders.get("/diary/partnerDetail")
+                .param("memberNumber", "84")
+        ).andReturn().getModelAndView().getModelMap());
+    }
 }
