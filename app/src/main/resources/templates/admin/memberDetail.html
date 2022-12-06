@@ -108,7 +108,7 @@
                     </div>
                     <div class="subnavigation_list_detail">
                         <span>생년월일</span>
-                        <input type="text" th:text="${#strings.substring(member.memberBirthdate, 0, 10)}" readonly>
+                        <input type="text" th:value="${#strings.substring(member.memberBirthdate, 0, 10)}" readonly>
                     </div>
                     <div class="subnavigation_list_detail content-style">
                         <span>자기소개</span>
