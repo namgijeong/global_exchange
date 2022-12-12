@@ -1,22 +1,48 @@
 package com.globalexchange.app.controller;
 
+import com.globalexchange.app.domain.vo.Criteria;
+import com.globalexchange.app.domain.vo.PageDTO;
+import com.globalexchange.app.service.LodgingObjectificationService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 @Controller
 @RequestMapping("/needLodging/*")
+@RequiredArgsConstructor
+@Slf4j
 public class NeedLodgingController {
+    private final LodgingObjectificationService lodgingObjectificationService;
+
+    // 숙소가 필요해 목록 페이지
+    @GetMapping("/list")
+    public void list(Criteria criteria, Model model){
+        if(criteria.getPage() == 0){
+            criteria.create(1, 10);
+        }
+        model.addAttribute("boards", lodgingObjectificationService.lodgingSelectAll(criteria));
+        model.addAttribute("pagination",new PageDTO().createPageDTO(criteria,lodgingObjectificationService.getTotal()));
+    }
+
+    // 모달창을 선택하여 골랐을때
+    @GetMapping("/categorylist")
+    public void categorylist(Criteria criteria, String nation2, Model model){
+        if(criteria.getPage() == 0){
+            criteria.create(1, 10);
+        }
+        model.addAttribute("nation2", nation2);
+        model.addAttribute("boards", lodgingObjectificationService.categoryLodgingSelectAll(criteria,nation2));
+        model.addAttribute("pagination",new PageDTO().createPageDTO(criteria,lodgingObjectificationService.categoryGetTotal(nation2)));
+        log.info("" + lodgingObjectificationService.categoryLodgingSelectAll(criteria,nation2));
+    }
 
     // 숙소가 필요해 상세 페이지
     @GetMapping("/detail")
     public void detail(){
-
-    }
-
-    // 숙소가 필요해 목록 페이지
-    @GetMapping("/list")
-    public void list(){
 
     }
 

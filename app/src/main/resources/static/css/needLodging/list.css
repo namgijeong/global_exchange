@@ -374,3 +374,8 @@ button:disabled {
   color: rgb(51, 151, 255);
   font-weight: bold;
 }
+
+.list-title a.read{
+  width: 100%;
+  height: 100%;
+}
