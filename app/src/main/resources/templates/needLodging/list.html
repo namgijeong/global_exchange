@@ -376,5 +376,17 @@
       //location.href="/needLodging/categorylist?page=1&amount=10&nation2="+nation2;
       location.href="/needLodging/categorylist?nation2="+nation2;
     });
+
+    $("a.read").on("click",function(e){
+      e.preventDefault();
+      let lodgingNumber=$(this).attr("href");
+      location.href="/needLodging/detail?lodgingNumber="+lodgingNumber;
+
+    })
+
+    $("button.post-button").on("click",function(e){
+      e.preventDefault();
+      location.href="/needLodging/write";
+    });
 </script>
 </html>

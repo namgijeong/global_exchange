@@ -1,14 +1,18 @@
 package com.globalexchange.app.controller;
 
-import com.globalexchange.app.domain.vo.Criteria;
-import com.globalexchange.app.domain.vo.PageDTO;
+import com.globalexchange.app.domain.vo.*;
 import com.globalexchange.app.service.LodgingObjectificationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -42,38 +46,64 @@ public class NeedLodgingController {
 
     // 숙소가 필요해 상세 페이지
     @GetMapping("/detail")
-    public void detail(){
+    public void detail(Long lodgingNumber, Model model){
+
+        LodgingDTO lodgingDTO = lodgingObjectificationService.detailLodgingBody(lodgingNumber);
+        Long answerCount = lodgingObjectificationService.lodgingAnswerCount(lodgingNumber);
+        model.addAttribute("lodgingDTO",lodgingDTO);
+        model.addAttribute("answerCount",answerCount);
 
     }
 
     // 숙소가 필요해 작성 페이지
     @GetMapping("/write")
-    public void write(){
+    public String write(HttpServletRequest request,Model model){
+        HttpSession session = request.getSession();
+        Long memberNumber = (Long)session.getAttribute("memberNumber");
 
+        if(memberNumber == null){
+
+        }
+
+        MemberVO memberVO;
+        FileProfileVO fileProfileVO;
+        memberVO = lodgingObjectificationService.writerInfo(memberNumber);
+        fileProfileVO = lodgingObjectificationService.getMeetWriterImage(memberNumber);
+
+        model.addAttribute("memberVO", memberVO);
+        model.addAttribute("file",fileProfileVO);
+
+        return "/needLodging/write";
     }
 
     // 숙소가 필요해 작성 페이지 완료
-    @GetMapping("/writeOk")
-    public void writeOk(){
+    @PostMapping("/writeOk")
+    public RedirectView writeOk(LodgingDTO lodgingDTO){
 
+        log.info("1111"+ lodgingDTO);
+        lodgingObjectificationService.insertLodgingBody(lodgingDTO);
+        return new RedirectView("/needLodging/list");
     }
 
     // 숙소가 필요해 수정 페이지 이동
     @GetMapping("/writeUpdate")
-    public void writeUpdate(){
-
+    public void writeUpdate(Long lodgingNumber,Model model){
+        LodgingDTO lodgingDTO = lodgingObjectificationService.goModifyPage(lodgingNumber);
+        model.addAttribute("lodgingDTO",lodgingDTO );
     }
 
     // 숙소가 필요해 수정 완료
-    @GetMapping("/writeUpdateOk")
-    public void writeUpdateOk(){
-
+    @PostMapping("/writeUpdateOk")
+    public RedirectView writeUpdateOk(LodgingDTO lodgingDTO){
+        lodgingObjectificationService.updateLodgingBody(lodgingDTO);
+        return new RedirectView("/needLodging/detail?lodgingNumber=" + lodgingDTO.getLodgingNumber());
     }
 
     // 숙소가 필요해 삭제
     @GetMapping("/writeRemove")
-    public void writeRemove(){
-
+    public RedirectView writeRemove(Long lodgingNumber){
+        lodgingObjectificationService.deleteRequest(lodgingNumber);
+        return new RedirectView("/needLodging/list");
     }
 
 //    // 숙소가 필요해 답글 쓰기 페이지 이동

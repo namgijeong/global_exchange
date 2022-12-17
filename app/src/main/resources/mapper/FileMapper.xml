@@ -51,5 +51,25 @@
         WHERE DIARY_NUMBER = #{diaryNumber}
     </select>
 
+    <select id="getLodgingWriterImage" resultType="fileProfileVO">
+        SELECT * FROM tbl_file_profile
+        WHERE MEMBER_NUMBER=#{memberNumber}
+    </select>
+
+    <select id="getLodgingFile" resultType="fileLodgingVO">
+        SELECT FILE_NUMBER, FILE_NAME, FILE_UPLOAD_PATH, FILE_UUID, FILE_IMAGE_CHECK, FILE_SIZE, LODGING_NUMBER
+        FROM TBL_FILE_LODGING
+        WHERE LODGING_NUMBER = #{lodging_number}
+    </select>
+
+    <insert id="insertLodgingFile">
+        INSERT INTO tbl_file_lodging(FILE_NUMBER, FILE_NAME, FILE_UPLOAD_PATH, FILE_UUID, FILE_IMAGE_CHECK, FILE_SIZE, lodging_number)
+        VALUES(file_lodging_seq.NEXTVAL, #{fileName}, #{fileUploadPath}, #{fileUuid}, #{fileImageCheck}, #{fileSize}, #{lodgingNumber})
+    </insert>
+
+    <delete id="deleteLodgingFile">
+        DELETE FROM tbl_file_lodging
+        WHERE lodging_number=#{lodgingNumber}
+    </delete>
 
 </mapper>

@@ -1,10 +1,7 @@
 package com.globalexchange.app.repository;
 
 
-import com.globalexchange.app.domain.vo.Criteria;
-import com.globalexchange.app.domain.vo.FileDiaryVO;
-import com.globalexchange.app.domain.vo.FileMeetVO;
-import com.globalexchange.app.domain.vo.FileProfileVO;
+import com.globalexchange.app.domain.vo.*;
 import com.globalexchange.app.mapper.FileMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -60,4 +57,23 @@ public class FileDAO {
         return fileMapper.diarySelect(diaryNumber);
     }
 
+    //lodging 게시글 파일 불러오기
+    public FileLodgingVO getLodgingFile(Long lodging_number){
+        return fileMapper.getLodgingFile(lodging_number);
+    }
+
+    // lodging 게시글 이미지 불러오기
+    public FileProfileVO getLodgingWriterImage(Long memberNumber){
+        return fileMapper.getLodgingWriterImage(memberNumber);
+    }
+
+    // lodging 게시글 등록
+    public void insertLodgingFile(FileLodgingVO fileLodgingVO){
+        fileMapper.insertLodgingFile(fileLodgingVO);
+    }
+
+    // lodging 게시글 이미지 update
+    public void deleteLodgingFile(Long lodgingNumber){
+        fileMapper.deleteLodgingFile(lodgingNumber);
+    }
 }

@@ -46,30 +46,42 @@ public class LodgingObjectificationService implements LodgingService {
     public int categoryGetTotal(String lodgingLearningLang){
         return lodgingDAO.categoryGetTotal(lodgingLearningLang);
     }
-    /*
 
-
-
-
+    // 숙소가 필요해 상세보기
     @Override
-    public List<MeetVO> categoryMeetSelectAll(Criteria criteria, String meetLearningLang) {
-        return meetDAO.categoryMeetSelectAll(criteria, meetLearningLang);
+    public LodgingDTO detailLodgingBody(Long lodgingNumber){
+        LodgingVO lodgingVO = lodgingDAO.selectLodgingRequest(lodgingNumber);
+        FileLodgingVO fileLodgingVO = fileDAO.getLodgingFile(lodgingNumber);
+
+        MemberVO memberVO = lodgingDAO.writerInfo(lodgingVO.getMemberNumber());
+        FileProfileVO fileProfileVO = fileDAO.getLodgingWriterImage(lodgingVO.getMemberNumber());
+
+        LodgingDTO lodgingDTO = new LodgingDTO();
+        lodgingDTO.setLodgingNumber(lodgingNumber);
+        lodgingDTO.setLodgingTitle(lodgingVO.getLodgingTitle());
+        lodgingDTO.setMemberNumber(lodgingVO.getMemberNumber());
+        lodgingDTO.setLodgingLearningLang(lodgingVO.getLodgingLearningLang());
+        lodgingDTO.setLodgingContent(lodgingVO.getLodgingContent());
+        lodgingDTO.setLodgingWriteDate(lodgingVO.getLodgingWriteDate());
+        lodgingDTO.setLodgingUpdateDate(lodgingVO.getLodgingUpdateDate());
+        lodgingDTO.setLodgingAddress(lodgingVO.getLodgingAddress());
+        lodgingDTO.setLodgingDetailAddress(lodgingVO.getLodgingDetailAddress());
+
+        lodgingDTO.setMemberTeachingLang(memberVO.getMemberTeachingLang());
+        lodgingDTO.setMemberNickname(memberVO.getMemberNickname());
+
+        lodgingDTO.setFileLodgingVO(fileLodgingVO);
+        lodgingDTO.setFileProfileVO(fileProfileVO);
+        return lodgingDTO;
     }
 
-    @Override
-    public int getTotal() {
-        return meetDAO.getTotal();
-    }
 
-    @Override
-    public int categoryGetTotal(String meetLearningLang) {
-        return meetDAO.categoryGetTotal(meetLearningLang);
-    }
+
 
     //작성자 정보 가져오기
     @Override
     public MemberVO writerInfo(Long memberNumber) {
-        return meetDAO.writerInfo(memberNumber);
+        return lodgingDAO.writerInfo(memberNumber);
     }
 
     //작성자 프로필이미지 가져오기
@@ -78,221 +90,192 @@ public class LodgingObjectificationService implements LodgingService {
         return fileDAO.getMeetWriterImage(memberNumber);
     }
 
-    //meet 게시글 등록
+    //lodging 게시글 등록
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void insertMeetBody(MeetDTO meetDTO) {
-        meetDAO.insertRequest(meetDTO);
-        FileMeetVO file = meetDTO.getFileMeetVO();
+    public void insertLodgingBody(LodgingDTO lodgingDTO) {
+        lodgingDAO.insertRequest(lodgingDTO);
+        FileLodgingVO file = lodgingDTO.getFileLodgingVO();
 //        Optional : 검증
         Optional.ofNullable(file).ifPresent(file1 -> {
-            file1.setMeetNumber(meetDTO.getMeetNumber());
-            fileDAO.insertMeetFile(file1);
+            file1.setLodgingNumber(lodgingDTO.getLodgingNumber());
+            fileDAO.insertLodgingFile(file1);
 
         });
     }
 
-    // meet 게시글 detail 정보 불러오기
+
+    //lodging 게시글 수정페이지에서 글과 작성자 정보 불러오기
     @Override
-    public MeetDTO detailMeetBody(Long meetNumber) {
-        MeetVO meetVO = meetDAO.selectMeetRequest(meetNumber);
-        FileMeetVO fileMeetVO = fileDAO.getMeetFile(meetNumber);
+    public LodgingDTO goModifyPage(Long lodgingNumber){
 
-        MemberVO memberVO = meetDAO.writerInfo(meetVO.getMemberNumber());
-        FileProfileVO fileProfileVO = fileDAO.getMeetWriterImage(meetVO.getMemberNumber());
-        log.info("" + memberVO);
-        log.info("" + meetVO);
-        MeetDTO meetDTO = new MeetDTO();
-        meetDTO.setMeetNumber(meetNumber);
-        meetDTO.setMeetTitle(meetVO.getMeetTitle());
-        meetDTO.setMemberNumber(meetVO.getMemberNumber());
-        meetDTO.setMeetLearningLang(meetVO.getMeetLearningLang());
-        meetDTO.setMeetContent(meetVO.getMeetContent());
-        meetDTO.setMeetWriteDate(meetVO.getMeetWriteDate());
-        meetDTO.setMeetUpdateDate(meetVO.getMeetUpdateDate());
-        meetDTO.setMeetAddress(meetVO.getMeetAddress());
-        meetDTO.setMeetDetailAddress(meetVO.getMeetDetailAddress());
+            LodgingVO lodgingVO = lodgingDAO.selectLodgingRequest(lodgingNumber);
 
-        meetDTO.setMemberTeachingLang(memberVO.getMemberTeachingLang());
-        meetDTO.setMemberNickname(memberVO.getMemberNickname());
+            MemberVO memberVO = lodgingDAO.writerInfo(lodgingVO.getMemberNumber());
+            FileProfileVO fileProfileVO = fileDAO.getMeetWriterImage(lodgingVO.getMemberNumber());
 
-        meetDTO.setFileMeetVO(fileMeetVO);
-        meetDTO.setFileProfileVO(fileProfileVO);
+        LodgingDTO lodgingDTO = new LodgingDTO();
+        lodgingDTO.setLodgingNumber(lodgingNumber);
+        lodgingDTO.setLodgingTitle(lodgingVO.getLodgingTitle());
+        lodgingDTO.setMemberNumber(lodgingVO.getMemberNumber());
+        lodgingDTO.setLodgingLearningLang(lodgingVO.getLodgingLearningLang());
+        lodgingDTO.setLodgingContent(lodgingVO.getLodgingContent());
+        lodgingDTO.setLodgingAddress(lodgingVO.getLodgingAddress());
+        lodgingDTO.setLodgingDetailAddress(lodgingVO.getLodgingDetailAddress());
 
-        log.info("" + meetDTO);
-        return meetDTO;
+        lodgingDTO.setMemberTeachingLang(memberVO.getMemberTeachingLang());
+        lodgingDTO.setMemberNickname(memberVO.getMemberNickname());
+
+        lodgingDTO.setFileProfileVO(fileProfileVO);
+
+            return lodgingDTO;
+
     }
 
-    //meet 게시글 수정페이지에서 글과 작성자 정보 불러오기
-    @Override
-    public MeetDTO goModifyPage(Long meetNumber) {
-        MeetVO meetVO = meetDAO.selectMeetRequest(meetNumber);
-
-        MemberVO memberVO = meetDAO.writerInfo(meetVO.getMemberNumber());
-        FileProfileVO fileProfileVO = fileDAO.getMeetWriterImage(meetVO.getMemberNumber());
-
-        MeetDTO meetDTO = new MeetDTO();
-        meetDTO.setMeetNumber(meetNumber);
-        meetDTO.setMeetTitle(meetVO.getMeetTitle());
-        meetDTO.setMemberNumber(meetVO.getMemberNumber());
-        meetDTO.setMeetLearningLang(meetVO.getMeetLearningLang());
-        meetDTO.setMeetContent(meetVO.getMeetContent());
-        meetDTO.setMeetAddress(meetVO.getMeetAddress());
-        meetDTO.setMeetDetailAddress(meetVO.getMeetDetailAddress());
-
-        meetDTO.setMemberTeachingLang(memberVO.getMemberTeachingLang());
-        meetDTO.setMemberNickname(memberVO.getMemberNickname());
-
-        meetDTO.setFileProfileVO(fileProfileVO);
-
-        return meetDTO;
-    }
-
-    //meet 게시글 수정완료해서 글은 디비에 넣고, 원래있던 디비파일정보삭제하고(수정페이지에 원래있던 파일정보를 주는게 아니라서 파일번호모름) 디비파일정보 새로 넣음
+    //lodging 게시글 수정완료해서 글은 디비에 넣고, 원래있던 디비파일정보삭제하고(수정페이지에 원래있던 파일정보를 주는게 아니라서 파일번호모름) 디비파일정보 새로 넣음
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void updateMeetBody(MeetDTO meetDTO) {
-        meetDAO.updateRequest(meetDTO);
-        fileDAO.deleteMeetFile(meetDTO.getMeetNumber());
+    public void updateLodgingBody(LodgingDTO lodgingDTO) {
+        lodgingDAO.updateRequest(lodgingDTO);
+        fileDAO.deleteLodgingFile(lodgingDTO.getLodgingNumber());
 
-        FileMeetVO file = meetDTO.getFileMeetVO();
+        FileLodgingVO file = lodgingDTO.getFileLodgingVO();
 //        Optional : 검증
         Optional.ofNullable(file).ifPresent(file1 -> {
-            file1.setMeetNumber(meetDTO.getMeetNumber());
-            fileDAO.insertMeetFile(file1);
+            file1.setLodgingNumber(lodgingDTO.getLodgingNumber());
+            fileDAO.insertLodgingFile(file1);
 
         });
     }
 
-    //meet 게시글 삭제
-    @Override
-    public void deleteMeetBody(Long meetNumber) {
-        meetDAO.deleteRequest(meetNumber);
+    // lodging 게시글 delete
+    public void deleteRequest(Long lodgingNumber) {
+        lodgingDAO.deleteRequest(lodgingNumber);
+
     }
 
     //meet 답글 목록 보여주면서 페이지네이션
     @Override
-    public List<MeetAnswerDTO> meetAnswerSelectAll(Long meetNumber, Criteria criteria) {
-        List<MeetAnswerVO> meetAnswerVOList = meetDAO.meetAnswerSelectAll(meetNumber, criteria);
-        List<MeetAnswerDTO> meetAnswerDTOList = new ArrayList<>();
-        meetAnswerVOList.forEach(meetAnswerVO -> {
-            MemberVO memberVO = meetDAO.writerInfo(meetAnswerVO.getMemberNumber());
-            FileProfileVO fileProfileVO = fileDAO.getMeetWriterImage(meetAnswerVO.getMemberNumber());
+    public List<LodgingAnswerDTO> lodgingAnswerSelectAll(Long lodgingNumber, Criteria criteria) {
+        List<LodgingAnswerVO> lodgingAnswerVOList = lodgingDAO.lodgingAnswerSelectAll(lodgingNumber, criteria);
+        List<LodgingAnswerDTO> lodgingAnswerDTOList = new ArrayList<>();
+        lodgingAnswerVOList.forEach(lodgingAnswerVO -> {
+            MemberVO memberVO = lodgingDAO.writerInfo(lodgingAnswerVO.getMemberNumber());
+            FileProfileVO fileProfileVO = fileDAO.getLodgingWriterImage(lodgingAnswerVO.getMemberNumber());
 
-            MeetAnswerDTO meetAnswerDTO = new MeetAnswerDTO();
-            meetAnswerDTO.setMemberNumber(memberVO.getMemberNumber());
-            meetAnswerDTO.setMemberNickname(memberVO.getMemberNickname());
-            meetAnswerDTO.setMeetNumber(meetAnswerVO.getMeetNumber());
-            meetAnswerDTO.setMeetAnswerWriteDate(meetAnswerVO.getMeetAnswerWriteDate());
-            meetAnswerDTO.setMeetAnswerUpdateDate(meetAnswerVO.getMeetAnswerUpdateDate());
-            meetAnswerDTO.setMeetAnswerNumber(meetAnswerVO.getMeetAnswerNumber());
-            meetAnswerDTO.setMeetAnswerContent(meetAnswerVO.getMeetAnswerContent());
+            LodgingAnswerDTO lodgingAnswerDTO = new LodgingAnswerDTO();
+            lodgingAnswerDTO.setMemberNumber(memberVO.getMemberNumber());
+            lodgingAnswerDTO.setMemberNickname(memberVO.getMemberNickname());
+            lodgingAnswerDTO.setLodgingNumber(lodgingAnswerVO.getLodgingNumber());
+            lodgingAnswerDTO.setLodgingAnswerWriteDate(lodgingAnswerVO.getLodgingAnswerWriteDate());
+            lodgingAnswerDTO.setLodgingAnswerUpdateDate(lodgingAnswerVO.getLodgingAnswerUpdateDate());
+            lodgingAnswerDTO.setLodgingAnswerNumber(lodgingAnswerVO.getLodgingAnswerNumber());
+            lodgingAnswerDTO.setLodgingAnswerContent(lodgingAnswerVO.getLodgingAnswerContent());
             if (fileProfileVO != null) {
-                meetAnswerDTO.setFileImageCheck(fileProfileVO.isFileImageCheck());
-                meetAnswerDTO.setFileName(fileProfileVO.getFileName());
-                meetAnswerDTO.setFileUuid(fileProfileVO.getFileUuid());
-                meetAnswerDTO.setFileUploadPath(fileProfileVO.getFileUploadPath());
-                meetAnswerDTO.setFileSize(fileProfileVO.getFileSize());
-                meetAnswerDTO.setFileNumber(fileProfileVO.getFileNumber());
+                lodgingAnswerDTO.setFileImageCheck(fileProfileVO.isFileImageCheck());
+                lodgingAnswerDTO.setFileName(fileProfileVO.getFileName());
+                lodgingAnswerDTO.setFileUuid(fileProfileVO.getFileUuid());
+                lodgingAnswerDTO.setFileUploadPath(fileProfileVO.getFileUploadPath());
+                lodgingAnswerDTO.setFileSize(fileProfileVO.getFileSize());
+                lodgingAnswerDTO.setFileNumber(fileProfileVO.getFileNumber());
             }
 
-           *//* meetAnswerDTO.setFileImageCheck(fileProfileVO.isFileImageCheck());
-            meetAnswerDTO.setFileName(fileProfileVO.getFileName());
-            meetAnswerDTO.setFileUuid(fileProfileVO.getFileUuid());
-            meetAnswerDTO.setFileUploadPath(fileProfileVO.getFileUploadPath());
-            meetAnswerDTO.setFileSize(fileProfileVO.getFileSize());
-            meetAnswerDTO.setFileNumber(fileProfileVO.getFileNumber());*//*
             else{
-                meetAnswerDTO.setFileImageCheck(false);
-                meetAnswerDTO.setFileName(null);
-                meetAnswerDTO.setFileUuid(null);
-                meetAnswerDTO.setFileUploadPath(null);
-                meetAnswerDTO.setFileSize(null);
-                meetAnswerDTO.setFileNumber(null);
+                lodgingAnswerDTO.setFileImageCheck(false);
+                lodgingAnswerDTO.setFileName(null);
+                lodgingAnswerDTO.setFileUuid(null);
+                lodgingAnswerDTO.setFileUploadPath(null);
+                lodgingAnswerDTO.setFileSize(null);
+                lodgingAnswerDTO.setFileNumber(null);
             }
 
 
-            meetAnswerDTOList.add(meetAnswerDTO);
+            lodgingAnswerDTOList.add(lodgingAnswerDTO);
         });
 
-        return meetAnswerDTOList;
+        return lodgingAnswerDTOList;
     }
 
-    //meet 답글 갯수 세기
+    // 숙소가 필요해 답글 갯수
     @Override
-    public long meetAnswerCount(Long meetNumber) {
-        return meetDAO.meetAnswerCount(meetNumber);
+    public Long lodgingAnswerCount(Long lodgingNumber){
+        return lodgingDAO.lodgingAnswerCount(lodgingNumber);
     }
-    //meet 답글 업데이트
+
+    // 숙소가 필요해 답글 수정
     @Override
-    public void  meetAnswerUpdate(MeetAnswerVO meetAnswerVO){
-        meetDAO.meetAnswerUpdate(meetAnswerVO);
+    public void lodgingAnswerUpdate(LodgingAnswerVO lodgingAnswerVO){
+         lodgingDAO.lodgingAnswerUpdate(lodgingAnswerVO);
     }
-    //meet 답글 쓰기 인서트
+
+    // 숙소가 필요해 답글 추가
     @Override
-    public void meetAnswerInsert(MeetAnswerVO meetAnswerVO){
-        meetDAO.meetAnswerInsert(meetAnswerVO);
+    public void lodgingAnswerInsert(LodgingAnswerVO lodgingAnswerVO){
+         lodgingDAO.lodgingAnswerInsert(lodgingAnswerVO);
     }
+
+    // 숙소가 필요해 답글 삭제
+    @Override
+    public void lodgingAnswerRemove(Long lodgingAnswerNumber){
+        lodgingDAO.lodgingAnswerRemove(lodgingAnswerNumber);
+    }
+    
     //meet 답글 코멘트 전체 불러오기
     @Override
-    public List<MeetAnswerCommentDTO> meetAnswerCommentSelectAll(Long meetAnswerNumber) {
-        List<MeetAnswerCommentVO> meetAnswerCommentVOList = meetDAO.meetAnswerCommentSelectAll(meetAnswerNumber);
-        List<MeetAnswerCommentDTO> meetAnswerCommentDTOList = new ArrayList<>();
-        log.info(""+meetAnswerCommentVOList);
-        meetAnswerCommentVOList.forEach(meetAnswerCommentVO -> {
-            MemberVO memberVO = meetDAO.writerInfo(meetAnswerCommentVO.getMemberNumber());
-            FileProfileVO fileProfileVO = fileDAO.getMeetWriterImage(meetAnswerCommentVO.getMemberNumber());
+    public List<LodgingAnswerCommentDTO> lodgingAnswerCommentSelectAll(Long lodgingAnswerNumber) {
+        List<LodgingAnswerCommentVO> lodgingAnswerCommentVOList = lodgingDAO.lodgingAnswerCommentSelectAll(lodgingAnswerNumber);
+        List<LodgingAnswerCommentDTO> lodgingAnswerCommentDTOList = new ArrayList<>();
+        log.info(""+lodgingAnswerCommentVOList);
+        lodgingAnswerCommentVOList.forEach(lodgingAnswerCommentVO -> {
+            MemberVO memberVO = lodgingDAO.writerInfo(lodgingAnswerCommentVO.getMemberNumber());
+            FileProfileVO fileProfileVO = fileDAO.getMeetWriterImage(lodgingAnswerCommentVO.getMemberNumber());
 
-            MeetAnswerCommentDTO meetAnswerCommentDTO = new MeetAnswerCommentDTO();
+            LodgingAnswerCommentDTO lodgingAnswerCommentDTO = new LodgingAnswerCommentDTO();
 
-            meetAnswerCommentDTO.setMemberNumber(memberVO.getMemberNumber());
-            meetAnswerCommentDTO.setMemberNickname(memberVO.getMemberNickname());
-            meetAnswerCommentDTO.setMeetCommentWriteDate(meetAnswerCommentVO.getMeetCommentWriteDate());
-            meetAnswerCommentDTO.setMeetCommentUpdateDate(meetAnswerCommentVO.getMeetCommentUpdateDate());
-            meetAnswerCommentDTO.setMeetAnswerNumber(meetAnswerCommentVO.getMeetAnswerNumber());
-            meetAnswerCommentDTO.setMeetAnswerCommentNumber(meetAnswerCommentVO.getMeetAnswerCommentNumber());
-            meetAnswerCommentDTO.setMeetAnswerCommentContent(meetAnswerCommentVO.getMeetAnswerCommentContent());
+            lodgingAnswerCommentDTO.setMemberNumber(memberVO.getMemberNumber());
+            lodgingAnswerCommentDTO.setMemberNickname(memberVO.getMemberNickname());
+            lodgingAnswerCommentDTO.setLodgingCommentWriteDate(lodgingAnswerCommentVO.getLodgingCommentWriteDate());
+            lodgingAnswerCommentDTO.setLodgingCommentUpdateDate(lodgingAnswerCommentVO.getLodgingCommentUpdateDate());
+            lodgingAnswerCommentDTO.setLodgingAnswerNumber(lodgingAnswerCommentVO.getLodgingAnswerNumber());
+            lodgingAnswerCommentDTO.setLodgingAnswerCommentNumber(lodgingAnswerCommentVO.getLodgingAnswerCommentNumber());
+            lodgingAnswerCommentDTO.setLodgingAnswerCommentContent(lodgingAnswerCommentVO.getLodgingAnswerCommentContent());
             if (fileProfileVO != null) {
-                meetAnswerCommentDTO.setFileImageCheck(fileProfileVO.isFileImageCheck());
-                meetAnswerCommentDTO.setFileName(fileProfileVO.getFileName());
-                meetAnswerCommentDTO.setFileUuid(fileProfileVO.getFileUuid());
-                meetAnswerCommentDTO.setFileUploadPath(fileProfileVO.getFileUploadPath());
-                meetAnswerCommentDTO.setFileSize(fileProfileVO.getFileSize());
-                meetAnswerCommentDTO.setFileNumber(fileProfileVO.getFileNumber());
+                lodgingAnswerCommentDTO.setFileImageCheck(fileProfileVO.isFileImageCheck());
+                lodgingAnswerCommentDTO.setFileName(fileProfileVO.getFileName());
+                lodgingAnswerCommentDTO.setFileUuid(fileProfileVO.getFileUuid());
+                lodgingAnswerCommentDTO.setFileUploadPath(fileProfileVO.getFileUploadPath());
+                lodgingAnswerCommentDTO.setFileSize(fileProfileVO.getFileSize());
+                lodgingAnswerCommentDTO.setFileNumber(fileProfileVO.getFileNumber());
             }
             else{
-                meetAnswerCommentDTO.setFileImageCheck(false);
-                meetAnswerCommentDTO.setFileName(null);
-                meetAnswerCommentDTO.setFileUuid(null);
-                meetAnswerCommentDTO.setFileUploadPath(null);
-                meetAnswerCommentDTO.setFileSize(null);
-                meetAnswerCommentDTO.setFileNumber(null);
+                lodgingAnswerCommentDTO.setFileImageCheck(false);
+                lodgingAnswerCommentDTO.setFileName(null);
+                lodgingAnswerCommentDTO.setFileUuid(null);
+                lodgingAnswerCommentDTO.setFileUploadPath(null);
+                lodgingAnswerCommentDTO.setFileSize(null);
+                lodgingAnswerCommentDTO.setFileNumber(null);
             }
 
 
 
-            meetAnswerCommentDTOList.add(meetAnswerCommentDTO);
+            lodgingAnswerCommentDTOList.add(lodgingAnswerCommentDTO);
         });
-        return meetAnswerCommentDTOList;
+        return lodgingAnswerCommentDTOList;
     }
 
-    //meet 답글 삭제
+    // lodging 댓글 추가
     @Override
-    public void meetAnswerRemove(Long meetAnswerNumber){
-        meetDAO.meetAnswerRemove(meetAnswerNumber);
+    public void lodgingCommentInsert(LodgingAnswerCommentVO lodgingAnswerCommentVO){
+        lodgingDAO.lodgingCommentInsert(lodgingAnswerCommentVO);
     }
 
-    //meet 댓글 코멘트 등록
-    @Override
-    public void meetCommentInsert(MeetAnswerCommentVO meetAnswerCommentVO){
-         meetDAO.meetCommentInsert(meetAnswerCommentVO);
+    // lodging 댓글 수정
+    public void lodgingCommentUpdate(LodgingAnswerCommentVO lodgingAnswerCommentVO){
+        lodgingDAO.lodgingCommentUpdate(lodgingAnswerCommentVO);
     }
-    //meet 댓글 코멘트 업데이트
-    public void meetCommentUpdate(MeetAnswerCommentVO meetAnswerCommentVO){
-        meetDAO.meetCommentUpdate(meetAnswerCommentVO);
+
+    // lodging 댓글 삭제
+    public void lodgingCommentRemove(Long lodgingAnswerNumber){
+        lodgingDAO.lodgingCommentRemove(lodgingAnswerNumber);
     }
-    //meet 댓글 코멘트 삭제
-    public void meetCommentRemove(Long meetAnswerCommentNumber){
-        meetDAO.meetCommentRemove(meetAnswerCommentNumber);
-    }*/
 }
