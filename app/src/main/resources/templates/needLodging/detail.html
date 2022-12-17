@@ -21,36 +21,63 @@
   <div class="detail-page">
     <div class="detail-page-container">
       <div class="header-section">
-        <div class="header-image-section">
-          <img src="https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_375/1706_masteringdrum_main2_1498628756023_1499650725964"
-               class="header-image" alt="상세 헤더 이미지">
+        <div class="header-image-section" th:object="${lodgingDTO}">
+          <!--<img src="https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_375/1706_masteringdrum_main2_1498628756023_1499650725964"
+               class="header-image" alt="상세 헤더 이미지">-->
+          <th:block th:if="${not #strings.isEmpty(lodgingDTO.fileLodgingVO)}">
+            <!--<h1>파일안비어있지롱</h1>
+            <h1 th:text="${meetDTO.fileMeetVO.fileUploadPath} + '/' + ${meetDTO.fileMeetVO.fileUuid} + '_' + ${meetDTO.fileMeetVO.fileName}"></h1>-->
+            <img th:if="${lodgingDTO.fileLodgingVO.fileImageCheck}" th:src="@{/fileLodging/display(fileName=${lodgingDTO.fileLodgingVO.fileUploadPath} + '/' + ${lodgingDTO.fileLodgingVO.fileUuid} + '_' + ${lodgingDTO.fileLodgingVO.fileName})}" class="profile-image" />
+            <img th:unless="${lodgingDTO.fileLodgingVO.fileImageCheck}" src="/images/noImage/no-image.jpg" class="profile-image" />
+          </th:block>
+          <th:block th:unless="${not #strings.isEmpty(lodgingDTO.fileLodgingVO)}">
+            <!-- <h1>파일비어있지롱</h1>-->
+            <img src="/images/noImage/no-image.jpg"  class="profile-image">
+          </th:block>
         </div>
         <div class="header-info">
           <div class="header-info-basic">
             <div class="header-info-title">
-              <h1 class="title-content">숙소가 필요해 제목</h1>
+              <!--<h1 class="title-content">숙소가 필요해 제목</h1>-->
+              <h1 class="title-content" th:text="${lodgingDTO.lodgingTitle}"></h1>
             </div>
             <div class="header-info-date">
-              <p class="date-content">2022.11.18 4:56</p>
+              <!--<p class="date-content" >2022.11.18 4:56</p>-->
+              <p class="date-content" th:text="${lodgingDTO.lodgingUpdateDate}"></p>
             </div>
             <div class="post-button-wrapper">
-              <button class="post-button">수정</button>
-              <button class="post-button">삭제</button>
+              <th:block th:if="${session.memberNumber == lodgingDTO.memberNumber}">
+                <button class="post-button" id="updateButton">수정</button>
+                <button class="post-button" id="removeButton">삭제</button>
+              </th:block>
+
+              <th:block th:unless="${session.memberNumber == lodgingDTO.memberNumber}">
+
+              </th:block>
             </div>
           </div>
           <div class="select-box">
-            <h1 class="title-content2 select-box-title">내가 익숙한 언어 : 한국어</h1>
+            <!--<h1 class="title-content2 select-box-title">내가 익숙한 언어 : 한국어</h1>-->
+            <h1 class="title-content2 select-box-title" th:text="'내가 익숙한 언어 : '+${lodgingDTO.memberTeachingLang}"></h1>
           </div>
           <div class="select-box">
-            <h1 class="title-content2 select-box-title">도움을 원하는 언어 : 프랑스어</h1>
+            <!--<h1 class="title-content2 select-box-title">도움을 원하는 언어 : 프랑스어</h1>-->
+            <h1 class="title-content2 select-box-title" th:text="'도움을 원하는 언어 : '+${lodgingDTO.lodgingLearningLang}"></h1>
           </div>
           <div class="header-info-profile">
             <div class="profile-content-section">
               <div class="profile-image-section">
                 <a href="#">
                   <div class="profile-image-wrapper">
-                    <img src="https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_56/576_blueguitar_1476154324950"
-                         class="profile-image" alt="프로필 이미지">
+                    <!--<img src="https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_56/576_blueguitar_1476154324950"
+                         class="profile-image" alt="프로필 이미지">-->
+                    <th:block th:if="${not #strings.isEmpty(lodgingDTO.fileProfileVO)}">
+                      <img th:if="${lodgingDTO.fileProfileVO.fileImageCheck}" th:src="@{/fileProfile/display(fileName=${lodgingDTO.fileProfileVO.fileUploadPath} + '/' + ${lodgingDTO.fileProfileVO.fileUuid} + '_' + ${lodgingDTO.fileProfileVO.fileName})}" class="profile-image" />
+                      <img th:unless="${lodgingDTO.fileProfileVO.fileImageCheck}" src="/images/noImage/no-image.jpg" class="profile-image" />
+                    </th:block>
+                    <th:block th:unless="${not #strings.isEmpty(lodgingDTO.fileProfileVO)}">
+                      <img src="/images/noImage/no-image.jpg"  class="profile-image">
+                    </th:block>
                   </div>
                 </a>
               </div>
@@ -58,12 +85,16 @@
                 <div class="profile-name">
                   <a href="#">
                       <span class="profile-name-content">
-                        <span>블루기타</span>
+                        <!--<span>블루기타</span>-->
+                        <span  th:if="${lodgingDTO.memberNickname}" th:text="${lodgingDTO.memberNickname}"></span>
+                        <span  th:unless="${lodgingDTO.memberNickname}" >블루기타</span>
                         <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3E %3Cpath stroke='%23333' stroke-linecap='round' stroke-width='1.5' d='M6 3l5 5-5 5'/%3E %3C/svg%3E" alt="">
                       </span>
                   </a>
                 </div>
-                <span class="profile-plus">작성자 나라..?</span>
+                <!--<span class="profile-plus">작성자 나라..?</span>-->
+                <span class="profile-plus"  th:if="${lodgingDTO.memberTeachingLang}" th:text="${lodgingDTO.memberTeachingLang}"></span>
+                <span class="profile-plus"  th:unless="${lodgingDTO.memberTeachingLang}" >작성자 나라..?</span>
               </div>
             </div>
           </div>
@@ -74,10 +105,11 @@
         <article>
           <h2 class="article-title">내용</h2>
           <div class="article-content">
-            <div>후기를 보시면 아시겠지만 프립에서 대원들로부터 상당히 만족도가 높은 클래스랍니다 ^^* ( 후기 써주신 대원님들 감사해요! )
+            <!--<div>후기를 보시면 아시겠지만 프립에서 대원들로부터 상당히 만족도가 높은 클래스랍니다 ^^* ( 후기 써주신 대원님들 감사해요! )
               후기를 보시면 아시겠지만 프립에서 대원들로부터 상당히 만족도가 높은 클래스랍니다 ^^* ( 후기 써주신 대원님들 감사해요! )
               후기를 보시면 아시겠지만 프립에서 대원들로부터 상당히 만족도가 높은 클래스랍니다 ^^* ( 후기 써주신 대원님들 감사해요! )
-              후기를 보시면 아시겠지만 프립에서 대원들로부터 상당히 만족도가 높은 클래스랍니다 ^^* ( 후기 써주신 대원님들 감사해요! )</div>
+              후기를 보시면 아시겠지만 프립에서 대원들로부터 상당히 만족도가 높은 클래스랍니다 ^^* ( 후기 써주신 대원님들 감사해요! )</div>-->
+            <div th:text="${lodgingDTO.lodgingContent}"></div>
           </div>
         </article>
       </section>
@@ -88,7 +120,8 @@
           <div id="map" style="width:100%;height:150px;"></div>
           <div class="map-info">
             <div class="map-info-wrapper">
-              <strong class="map-info-content">서울시 영등포구 당산로30길 6 3층 블루기타 실용음악학원</strong>
+              <!--<strong class="map-info-content">서울시 영등포구 당산로30길 6 3층 블루기타 실용음악학원</strong>-->
+              <strong class="map-info-content" th:text="${lodgingDTO.lodgingAddress}+${lodgingDTO.lodgingDetailAddress}"></strong>
             </div>
           </div>
         </div>
@@ -96,16 +129,16 @@
 
       <section class="section">
         <article>
-          <h2 class="article-title">답글 10개</h2>
+          <h2 class="article-title" th:text="'답글 :' +${answerCount}"></h2>
           <div class="comment-reg-section">
-            <textarea class="comment-reg" placeholder="답글을 입력하세요"></textarea>
+            <textarea class="comment-reg" id="inputWriteAnswer" placeholder="답글을 입력하세요"></textarea>
             <div class="comment-button">
-              <button class="post-button">등록</button>
+              <button class="post-button" id="firstWriteAnswer">등록</button>
             </div>
           </div>
-          <div>
+          <div id="answerBody">
 
-            <div class="comment-section">
+            <!--<div class="comment-section">
               <div class="profile-content-section">
                 <div class="profile-image-section comment-profile-image-section">
                   <a href="#">
@@ -143,171 +176,13 @@
                     </div>
                   </div>
 
-                  <div class="reply-content">
-                    <div class="profile-content-section">
-                      <div class="profile-image-section comment-profile-image-section">
-                        <a href="#">
-                          <div class="profile-image-wrapper">
-                            <img src="https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_56/576_blueguitar_1476154324950"
-                                 class="profile-image" alt="프로필 이미지">
-                          </div>
-                        </a>
-                      </div>
-                      <div class="profile-content">
-                        <div class="profile-name">
-                          <a href="#">
-                              <span class="comment-name profile-name-content">
-                              <span>블루기타</span>
-                              </span>
-                          </a>
-                        </div>
-                        <span class="comment-date">2022년 10월 22일 0:15 작성</span>
-                        <div class="post-button-wrapper comment-button">
-                          <button class="post-button" style="margin-right: 4px;">수정</button>
-                          <button class="post-button">삭제</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      후기 넘 감사드립니다 :) 유튜브만 보고 그렇게 잘 칠 수있는건지 새롭게 알았네요ㅎㅎ 영상 정성스럽게 찍었으니 잘활용하시구요 ㅎㅎ 혹시나 등록하시려면 원데이 킥베리에이션 했다고 알려주심 좋으니 참고하세요^^
-                    </div>
-                  </div>
-
-                  <div class="reply-content">
-                    <div class="profile-content-section">
-                      <div class="profile-image-section comment-profile-image-section">
-                        <a href="#">
-                          <div class="profile-image-wrapper">
-                            <img src="https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_56/576_blueguitar_1476154324950"
-                                 class="profile-image" alt="프로필 이미지">
-                          </div>
-                        </a>
-                      </div>
-                      <div class="profile-content">
-                        <div class="profile-name">
-                          <a href="#">
-                              <span class="comment-name profile-name-content">
-                              <span>블루기타</span>
-                              </span>
-                          </a>
-                        </div>
-                        <span class="comment-date">2022년 10월 22일 0:15 작성</span>
-                        <div class="post-button-wrapper comment-button">
-                          <button class="post-button" style="margin-right: 4px;">수정</button>
-                          <button class="post-button">삭제</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      후기 넘 감사드립니다 :) 유튜브만 보고 그렇게 잘 칠 수있는건지 새롭게 알았네요ㅎㅎ 영상 정성스럽게 찍었으니 잘활용하시구요 ㅎㅎ 혹시나 등록하시려면 원데이 킥베리에이션 했다고 알려주심 좋으니 참고하세요^^
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-
-            <div class="comment-section">
-              <div class="profile-content-section">
-                <div class="profile-image-section comment-profile-image-section">
-                  <a href="#">
-                    <div class="profile-image-wrapper">
-                      <img src="https://res.cloudinary.com/frientrip/image/fetch/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_48/https://k.kakaocdn.net/dn/O9FAs/btrNYVcBVpk/y8Gfya3OiNsAWmSNkhysI1/img_110x110.jpg"
-                           class="profile-image" alt="프로필 이미지">
-                    </div>
-                  </a>
-                </div>
-                <div class="profile-content">
-                  <div class="profile-name">
-                    <a href="#">
-                        <span class="comment-name profile-name-content">
-                          <span>류시명</span>
-                        </span>
-                    </a>
-                  </div>
-                  <span class="comment-date">2022년 10월 22일 0:15 작성</span>
-                  <div class="post-button-wrapper comment-button">
-                    <button class="post-button" style="margin-right: 4px;">수정</button>
-                    <button class="post-button">삭제</button>
-                  </div>
-                </div>
-              </div>
-              <div class="comment-content">원데이 클래쓰를 처음 가봤는데 왜 이제야 가봤나 싶을 정도로 정말 재밌었습니다. 드럼 기본기 부터 꼼꼼히 가르쳐주셔서 누구나 따라할 수 있을 것 같아요! 연습할 수 있는 시간을 충분히 주셔서 살짝 변형 리듬도 치니 스스로 드럼 잘 치는 사람 같은 기분도 들더라구요ㅎㅎㅎ👍👍 또 영상도 정성들여 찍어주셨는데 카메라 무빙이 장난 아니셔서 보면서 웃었습니다^_^ 이제 맨날 치고 싶어질 것 같아요...ㅠ</div>
-              <div class="comment-button">
-                <button class="post-button reply-register">댓글</button>
-              </div>
-              <div class="comment-reply">
-                <div class="reply-section">
-                  <div class="comment-reg-section reply-toggle">
-                    <textarea class="comment-reg" placeholder="댓글을 입력하세요"></textarea>
-                    <div class="comment-button">
-                      <button class="post-button">등록</button>
-                    </div>
-                  </div>
-                  <div class="reply-content">
-                    <div class="profile-content-section">
-                      <div class="profile-image-section comment-profile-image-section">
-                        <a href="#">
-                          <div class="profile-image-wrapper">
-                            <img src="https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_56/576_blueguitar_1476154324950"
-                                 class="profile-image" alt="프로필 이미지">
-                          </div>
-                        </a>
-                      </div>
-                      <div class="profile-content">
-                        <div class="profile-name">
-                          <a href="#">
-                              <span class="comment-name profile-name-content">
-                              <span>블루기타</span>
-                              </span>
-                          </a>
-                        </div>
-                        <span class="comment-date">2022년 10월 22일 0:15 작성</span>
-                        <div class="post-button-wrapper comment-button">
-                          <button class="post-button" style="margin-right: 4px;">수정</button>
-                          <button class="post-button">삭제</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      후기 넘 감사드립니다 :) 유튜브만 보고 그렇게 잘 칠 수있는건지 새롭게 알았네요ㅎㅎ 영상 정성스럽게 찍었으니 잘활용하시구요 ㅎㅎ 혹시나 등록하시려면 원데이 킥베리에이션 했다고 알려주심 좋으니 참고하세요^^
-                    </div>
-                  </div>
-                  <div class="reply-content">
-                    <div class="profile-content-section">
-                      <div class="profile-image-section comment-profile-image-section">
-                        <a href="#">
-                          <div class="profile-image-wrapper">
-                            <img src="https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_56/576_blueguitar_1476154324950"
-                                 class="profile-image" alt="프로필 이미지">
-                          </div>
-                        </a>
-                      </div>
-                      <div class="profile-content">
-                        <div class="profile-name">
-                          <a href="#">
-                              <span class="comment-name profile-name-content">
-                              <span>블루기타</span>
-                              </span>
-                          </a>
-                        </div>
-                        <span class="comment-date">2022년 10월 22일 0:15 작성</span>
-                        <div class="post-button-wrapper comment-button">
-                          <button class="post-button" style="margin-right: 4px;">수정</button>
-                          <button class="post-button">삭제</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      후기 넘 감사드립니다 :) 유튜브만 보고 그렇게 잘 칠 수있는건지 새롭게 알았네요ㅎㅎ 영상 정성스럽게 찍었으니 잘활용하시구요 ㅎㅎ 혹시나 등록하시려면 원데이 킥베리에이션 했다고 알려주심 좋으니 참고하세요^^
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                  -->
 
           </div>
         </article>
+        <div class="paging">
+
+        </div>
       </section>
     </div>
   </div>
@@ -316,75 +191,455 @@
 <footer th:replace="/main/footer.html :: #footerFirst"></footer>
 
 </body>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2dedcb5b9a8bf1a8785a7e1907f9c2bd&libraries=services"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2dedcb5b9a8bf1a8785a7e1907f9c2bd"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2dedcb5b9a8bf1a8785a7e1907f9c2bd&libraries=services"></script>
-<!--<script>-->
-<!--    var mapContainer = document.getElementById('map'), // 지도를 표시할 div-->
-<!--        mapOption = {-->
-<!--            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표-->
-<!--            level: 3 // 지도의 확대 레벨-->
-<!--        };-->
-
-<!--    // 지도를 생성합니다-->
-<!--    var map = new kakao.maps.Map(mapContainer, mapOption);-->
-
-<!--    // 주소-좌표 변환 객체를 생성합니다-->
-<!--    var geocoder = new kakao.maps.services.Geocoder();-->
-
-<!--    // 주소로 좌표를 검색합니다-->
-<!--    geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {-->
-
-<!--        // 정상적으로 검색이 완료됐으면-->
-<!--        if (status === kakao.maps.services.Status.OK) {-->
-
-<!--            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);-->
-
-<!--            // 결과값으로 받은 위치를 마커로 표시합니다-->
-<!--            var marker = new kakao.maps.Marker({-->
-<!--                map: map,-->
-<!--                position: coords-->
-<!--            });-->
-
-<!--            // // 인포윈도우로 장소에 대한 설명을 표시합니다-->
-<!--            // var infowindow = new kakao.maps.InfoWindow({-->
-<!--            //     content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'-->
-<!--            // });-->
-<!--            // infowindow.open(map, marker);-->
-
-<!--            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다-->
-<!--            map.setCenter(coords);-->
-<!--        }-->
-<!--    });-->
-<!--</script>-->
-<script>
+<script src="/js/lodging/lodgingAnswerAjax.js"></script>
+<script src="/js/lodging/lodgingAnswerCommentAjax.js"></script>
+<script th:inline="javascript">
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
             level: 3 // 지도의 확대 레벨
         };
 
-    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+    // 지도를 생성합니다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
 
-    // 마커가 표시될 위치입니다
-    var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667);
+    // 주소-좌표 변환 객체를 생성합니다
+    var geocoder = new kakao.maps.services.Geocoder();
 
-    // 마커를 생성합니다
-    var marker = new kakao.maps.Marker({
-        position: markerPosition
+    let lodgingAddress = [[${lodgingDTO.lodgingAddress}]];
+    let lodgingDetailAddress = [[${lodgingDTO.lodgingDetailAddress}]];
+    let lodgingFullAddress = lodgingAddress + lodgingDetailAddress;
+    console.log(lodgingFullAddress);
+
+    // 주소로 좌표를 검색합니다
+    geocoder.addressSearch(lodgingFullAddress, function(result, status) {
+
+        // 정상적으로 검색이 완료됐으면
+        if (status === kakao.maps.services.Status.OK) {
+
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: coords
+            });
+
+            // // 인포윈도우로 장소에 대한 설명을 표시합니다
+            // var infowindow = new kakao.maps.InfoWindow({
+            //     content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+            // });
+            // infowindow.open(map, marker);
+
+            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+            map.setCenter(coords);
+        }
     });
 
-    // 마커가 지도 위에 표시되도록 설정합니다
-    marker.setMap(map);
+    let lodgingNumber=[[${lodgingDTO.lodgingNumber}]];
+    $("button#updateButton").on("click",function(){
+      location.href='/needLodging/writeUpdate?lodgingNumber='+lodgingNumber;
+    });
+    $("button#removeButton").on("click",function(){
+      location.href='/needLodging/writeRemove?lodgingNumber='+lodgingNumber;
+    });
+</script>
+<script th:inline="javascript">
+  globalThis.page = 1;
+  getList();
 
-    // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-    // marker.setMap(null);
+  function getList() {
+    lodgingAnswerAjax.getList({
+      lodgingNumber: lodgingNumber,
+      page: globalThis.page
+    },showList);
+  }
+
+  function showList(answers){
+    let answertext="";
+    answers.lodgingAnswerDTOList.forEach(lodgingAnswerDTO=>{
+      console.log("파일업로드패스"+lodgingAnswerDTO.fileUploadPath);
+      console.log("파일유유아이디"+lodgingAnswerDTO.fileUuid);
+      console.log("파일네임"+lodgingAnswerDTO.fileName);
+      answertext+='<div class="comment-section">';
+      answertext+='<div class="profile-content-section">';
+      answertext+='<div class="profile-image-section comment-profile-image-section">';
+      answertext+='<a href="#">';
+      answertext+='<div class="profile-image-wrapper">';
+      answertext+='<img src="/fileProfile/display?fileName='+lodgingAnswerDTO.fileUploadPath + '/s_' + lodgingAnswerDTO.fileUuid + '_' + lodgingAnswerDTO.fileName+'"';
+      answertext+='class="profile-image" alt="프로필 이미지">';
+      /*answertext+='<img src="/images/noImage/noImgLittleProfile.png"';
+      answertext+='class="profile-image" alt="프로필 이미지"/>';*/
+      /* answertext+='<th:block th:if="${meetAnswerDTO.fileUploadPath != null}">';
+       answertext+='<img th:if="${meetAnswerDTO.fileImageCheck}" th:src="@{/fileProfile/display(fileName=${meetAnswerDTO.fileUploadPath}+ `/s_`+ ${meetAnswerDTO.fileUuid}+ `_` +${meetAnswerDTO.fileName})}" class="profile-image" />';
+       answertext+='<img th:unless="${meetAnswerDTO.fileImageCheck}" src="/images/nation/america.png" class="profile-image" />';
+       answertext+='</th:block>';
+       answertext+='<th:block th:unless="${meetAnswerDTO.fileUploadPath != null}">';
+       answertext+='<img src="/images/nation/america.png"  class="profile-image" >';
+       answertext+= '</th:block>';*/
+      answertext+='</div>';
+      answertext+='</a>';
+      answertext+='</div>';
+      answertext+='<div class="profile-content">';
+      answertext+='<div class="profile-name">';
+      answertext+='<a href="#">';
+      answertext+='<span class="comment-name profile-name-content">';
+      answertext+='<span>'+lodgingAnswerDTO.memberNickname+'</span>';
+      answertext+='</span>';
+      answertext+='</a>';
+      answertext+='</div>';
+      answertext+='<span class="comment-date">'+lodgingAnswerDTO.lodgingAnswerUpdateDate +'작성</span>';
+      answertext+='<div class="post-button-wrapper comment-button">';
+      answertext+='<button class="post-button '+lodgingAnswerDTO.lodgingAnswerNumber+' answerUpdate '+lodgingAnswerDTO.memberNumber+'" style="margin-right: 4px;">수정</button>';
+      answertext+='<button class="post-button '+lodgingAnswerDTO.lodgingAnswerNumber+' answerRemove '+lodgingAnswerDTO.memberNumber+'">삭제</button>';
+      answertext+='</div>';
+      answertext+='</div>';
+      answertext+='</div>';
+      answertext+='<div class="comment-content comment-content'+lodgingAnswerDTO.lodgingAnswerNumber+'">'+lodgingAnswerDTO.lodgingAnswerContent+'</div>';
+      //여기서부터는 다른구역
+      answertext+='<div class="comment-button">';
+      answertext+='<button class="post-button reply-register  '+lodgingAnswerDTO.lodgingAnswerNumber+'">댓글</button>';
+      answertext+='</div>';
+      answertext+='<div class="comment-reply">';
+      //replysection
+      answertext+='<div class="reply-section" id="answer'+lodgingAnswerDTO.lodgingAnswerNumber+'">';
+      answertext+='<div class="comment-reg-section reply-toggle'+lodgingAnswerDTO.lodgingAnswerNumber+' reply-toggle">';
+      answertext+='<textarea class="comment-reg" placeholder="댓글을 입력하세요"></textarea>';
+      answertext+='<div class="comment-button">';
+      answertext+='<button class="post-button  '+lodgingAnswerDTO.lodgingAnswerNumber+' commentWriteButton ">등록</button>';
+      answertext+='</div>';
+      answertext+='</div>';
+      //댓글구역
+      //꽂아넣을곳
+      //answertext+='<div class="reply-content">';
+
+      /*answertext+='<div class="profile-content-section">';
+      answertext+='<div class="profile-image-section comment-profile-image-section">';
+      answertext+='<a href="#">';
+      answertext+='<div class="profile-image-wrapper">';
+      answertext+='<img src="https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_56/576_blueguitar_1476154324950"';
+      answertext+='class="profile-image" alt="프로필 이미지">';
+      answertext+='</div>';
+      answertext+='</a>';
+      answertext+='</div>';
+      answertext+='<div class="profile-content">';
+      answertext+='<div class="profile-name">';
+      answertext+='<a href="#">';
+      answertext+='<span class="comment-name profile-name-content">';
+      answertext+='<span>블루기타</span>';
+      answertext+='</span>';
+      answertext+='</a>';
+      answertext+='</div>';
+      answertext+='<span class="comment-date">2022년 10월 22일 0:15 작성</span>';
+      answertext+='<div class="post-button-wrapper comment-button">';
+      answertext+='<button class="post-button" style="margin-right: 4px;">수정</button>';
+      answertext+='<button class="post-button">삭제</button>';
+      answertext+='</div>';
+      answertext+='</div>';*/
+      //profilecontent 끝
+      //answertext+='</div>';
+      //replycontent  끝
+      //answertext+='<div>';
+
+      //answertext+='후기 넘 감사드립니다 :) 유튜브만 보고 그렇게 잘 칠 수있는건지 새롭게 알았네요ㅎㅎ 영상 정성스럽게 찍었으니 잘활용하시구요 ㅎㅎ 혹시나 등록하시려면 원데이 킥베리에이션 했다고 알려주심 좋으니 참고하세요^^';
+      //answertext+='</div>';
+      //꽂아넣을곳 끝
+      //answertext+='</div>';
+      //replysection 끝
+
+      //댓글구역 끝
+
+      answertext+='</div>';
+      answertext+='</div>';
+      answertext+='</div>';
+
+      //나머지 구역 끝
+
+      commentGetList(lodgingAnswerDTO.lodgingAnswerNumber);
+
+    });
+    $("#answerBody").html(answertext);
+    showAnswerPagenation(answers.lodgingAnswerCount);
+
+  }
+
+  function showAnswerPagenation(answerCount){
+    let endNumber = Math.ceil(globalThis.page / 2) * 2;
+    let startNumber = endNumber - 1;
+    let realEnd = Math.ceil(answerCount / 2);
+
+    if(endNumber > realEnd){
+      endNumber = realEnd == 0 ? '1' : realEnd;
+    }
+
+    let prev = startNumber > 1;
+    let next = endNumber < realEnd;
+
+    let text = "";
+    if(prev){
+      text += `<a class="changePage" href="` + (startNumber - 1) + `"><code>PREV</code></a>`
+    }
+    for (let i=startNumber; i<=endNumber; i++){
+      if(globalThis.page == i){
+        text += `<code>` + i + `</code>`
+        continue;
+      }
+      text += `<a class="changePage" href="` + i + `"><code>` + i + `</code></a>`
+    }
+    if(next){
+      text += `<a class="changePage" href="` + (endNumber + 1) + `"><code>NEXT</code></a>`
+    }
+    $("div.paging").html(text);
+  }
+
+
+  $("div.paging").on("click", "a.changePage", function(e){
+    e.preventDefault();
+    globalThis.page = $(this).attr("href");
+    getList();
+  });
+
+
+  function commentGetList(lodgingAnswerNumber){
+    lodgingCommentAjax.getList(
+            lodgingAnswerNumber,
+            commentshowList,
+            function(a, b, c){
+              if(error){
+                error(a, b, c);
+              }
+            }
+    );
+    console.log("commentGetList들어옴");
+    console.log(""+lodgingAnswerNumber);
+  }
+  function error(a,b,c){
+    console.log(a,b,c);
+  }
+  function commentshowList(lodgingAnswerCommentDTOList){
+    console.log(""+lodgingAnswerCommentDTOList);
+    let commenttext="";
+    let currentIndex;
+    lodgingAnswerCommentDTOList.forEach(lodgingAnswerCommentDTO=>{
+      console.log("파일업로드패스"+lodgingAnswerCommentDTO.fileUploadPath);
+      console.log("파일유유아이디"+lodgingAnswerCommentDTO.fileUuid);
+      console.log("파일네임"+lodgingAnswerCommentDTO.fileName);
+      commenttext+='<div class="reply-content"  id="comment">';
+      commenttext+='<div class="profile-content-section">';
+      commenttext+='<div class="profile-image-section comment-profile-image-section">';
+      commenttext+='<a href="#">';
+      commenttext+='<div class="profile-image-wrapper">';
+      commenttext+='<img src="/fileProfile/display?fileName='+lodgingAnswerCommentDTO.fileUploadPath + '/s_' + lodgingAnswerCommentDTO.fileUuid + '_' + lodgingAnswerCommentDTO.fileName+'"';
+      commenttext+='class="profile-image" alt="프로필 이미지">';
+      commenttext+='</div>';
+      commenttext+='</a>';
+      commenttext+='</div>';
+      commenttext+='<div class="profile-content">';
+      commenttext+='<div class="profile-name">';
+      commenttext+='<a href="#">';
+      commenttext+='<span class="comment-name profile-name-content">';
+      commenttext+='<span>'+lodgingAnswerCommentDTO.memberNickname+'</span>';
+      commenttext+='</span>';
+      commenttext+='</a>';
+      commenttext+='</div>';
+      commenttext+='<span class="comment-date">'+lodgingAnswerCommentDTO.lodgingCommentUpdateDate+'</span>';
+      commenttext+='<div class="post-button-wrapper comment-button">';
+      commenttext+='<button class="post-button '+lodgingAnswerCommentDTO.lodgingAnswerCommentNumber+ ' commentUpdateButton '+lodgingAnswerCommentDTO.memberNumber+'" style="margin-right: 4px;">수정</button>';
+      commenttext+='<button class="post-button '+lodgingAnswerCommentDTO.lodgingAnswerCommentNumber+ ' commentRemoveButton '+lodgingAnswerCommentDTO.memberNumber+'">삭제</button>';
+      commenttext+='</div>';
+      commenttext+='</div>';
+      commenttext+='</div>';
+      commenttext+='<div class="comment-text  comment-text'+lodgingAnswerCommentDTO.lodgingAnswerCommentNumber+'">';
+      commenttext+=lodgingAnswerCommentDTO.lodgingAnswerCommentContent;
+      commenttext+='</div>';
+      commenttext+='</div>';
+
+      currentIndex=lodgingAnswerCommentDTO.lodgingAnswerNumber;
+    });
+
+    $('#answer'+currentIndex).append(commenttext);
+    console.log(commenttext);
+  }
+
 </script>
-<script>
-    $(function () {
-        $(".reply-register").click(function () {
-            $(".reply-toggle").toggle();
-        })
-    })
+<script th:inline="javascript">
+  let flagRegister=true;
+  let answerModifyCheck=true;
+  let currentModifyingAnswerNumber=0;
+  let writeAnswerLodgingNumber=[[${lodgingDTO.lodgingNumber}]];
+  let commentModifyCheck=true;
+  let currentModifyingCommentNumber=0;
+  let sessionMemberNumber=[[${session.memberNumber}]];
+
+  $(document).ready(function () {
+    $("#answerBody").on("click", ".reply-register", function () {
+      console.log("리플라이리지스터들어감");
+      let registerClickNumber = this.classList[2];
+      //$('.reply-toggle'+registerClickNumber).toggle();
+      //console.log($("#answerBody.reply-toggle"));
+      if (flagRegister) {
+        $('.reply-toggle' + registerClickNumber).show();
+        flagRegister = false;
+      } else {
+        $('.reply-toggle' + registerClickNumber).hide();
+        flagRegister = true;
+      }
+    });
+
+
+    //답글 수정버튼 누르면
+    $("#answerBody").on("click", ".answerUpdate", function () {
+      if(sessionMemberNumber!=this.classList[3]){
+        alert("작성자가 아니므로 수정 못합니다");
+      }
+      else if (answerModifyCheck == false && currentModifyingAnswerNumber != this.classList[1]) {
+        alert("수정중인 답글이 있습니다.");
+        return;
+      }
+      else if (currentModifyingAnswerNumber == 0) {
+        currentModifyingAnswerNumber = this.classList[1];
+
+        answerModifyCheck = false;
+
+
+        $(".comment-content" + currentModifyingAnswerNumber).replaceWith("<textarea  style='resize:none;'  class='comment-content  comment-content" + currentModifyingAnswerNumber + "'>" + $(".comment-content" + currentModifyingAnswerNumber).text() + "</textarea>");
+      } else {
+        lodgingAnswerAjax.modify({
+          lodgingAnswerNumber: currentModifyingAnswerNumber,
+          lodgingAnswerContent: $("textarea.comment-content" + currentModifyingAnswerNumber).val()
+        }, function () {
+          getList();
+          answerModifyCheck = true;
+        });
+
+        currentModifyingAnswerNumber = 0;
+      }
+
+    });
+    //답글 쓰기버튼
+    $("#firstWriteAnswer").on("click", function () {
+      console.log("firstwriteanswer들어옴");
+      let lodgingAnswerContent = $("#inputWriteAnswer").val();
+      console.log($("#inputWriteAnswer").val());
+      console.log(lodgingAnswerContent);
+
+      if(lodgingAnswerContent==''){
+        alert("입력한 내용이 아무것도 없습니다");
+        return;
+      }
+      else {
+        lodgingAnswerAjax.add({
+                  lodgingNumber: writeAnswerLodgingNumber,
+                  lodgingAnswerContent: lodgingAnswerContent
+                },
+                function () {
+                  $("#inputWriteAnswer").val("");
+                  getList();
+                }
+        );
+      }
+
+    });
+
+    //답글 삭제버튼
+    $("#answerBody").on("click", ".answerRemove", function () {
+      if(sessionMemberNumber!=this.classList[3]){
+        alert("작성자가 아니므로 삭제 못합니다");
+      }
+      else {
+        console.log("answerRemove들어옴");
+        let lodgingAnswerNumber = this.classList[1];
+        console.log(this.classList[1]);
+       lodgingAnswerAjax.remove(
+               lodgingAnswerNumber,
+                function () {
+                  getList();
+                }
+        );
+      }
+    });
+
+    //댓글 쓰기등록버튼
+    $("#answerBody").on("click", ".commentWriteButton", function () {
+
+
+
+
+      commentWriteCheck=false;
+      let lodgingAnswerNumber = this.classList[1];
+
+      let lodgingAnswerCommentContent=$(this).parent().prev().val();
+      console.log("댓글쓰기 등록버튼"+lodgingAnswerCommentContent);
+      if(lodgingAnswerCommentContent==''){
+        alert("입력한 내용이 아무것도 없습니다.");
+        return;
+      }
+      else {
+        lodgingCommentAjax.add(
+                {
+                  lodgingAnswerNumber: lodgingAnswerNumber,
+                  lodgingAnswerCommentContent: lodgingAnswerCommentContent
+                },
+                function () {
+                  getList();
+                  $(this).parent().prev().val("");
+                }
+        );
+      }
+    });
+
+    $("#answerBody").on("click",".commentUpdateButton",function(){
+      if(sessionMemberNumber!=this.classList[3]){
+        alert("작성자가 아니므로 수정 못합니다");
+      }
+      else if(commentModifyCheck==false && currentModifyingCommentNumber!=this.classList[1]){
+        alert("수정중인 답글이 있습니다.");
+        return;
+      }
+      else if(currentModifyingCommentNumber==0){
+        currentModifyingCommentNumber=this.classList[1];
+        let lodgingAnswerCommentNumber = this.classList[1];
+        commentModifyCheck=false;
+        $(".comment-text" + lodgingAnswerCommentNumber).replaceWith("<textarea  style='resize:none;'  class='comment-text comment-text" + lodgingAnswerCommentNumber + "'>" + $(".comment-text" + lodgingAnswerCommentNumber).text() + "</textarea>");
+      }
+      else{
+        lodgingCommentAjax.modify({
+          lodgingAnswerCommentNumber:  currentModifyingCommentNumber,
+          lodgingAnswerCommentContent: $("textarea.comment-text" + currentModifyingCommentNumber).val()
+        }, function () {
+          getList();
+          commentModifyCheck = true;
+        });
+
+        currentModifyingCommentNumber = 0;
+      }
+    });
+
+    $("#answerBody").on("click",".commentRemoveButton",function(){
+      if(sessionMemberNumber!=this.classList[3]){
+        alert("작성자가 아니므로 삭제 못합니다");
+      }
+      else {
+        let lodgingAnswerCommentNumber = this.classList[1];
+
+        lodgingCommentAjax.remove(
+                lodgingAnswerCommentNumber,
+                function () {
+                  getList();
+                }
+        )
+      }
+
+    });
+
+  });
 </script>
+
+
+
+
+
 </html>

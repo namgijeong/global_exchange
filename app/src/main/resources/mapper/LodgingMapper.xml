@@ -87,4 +87,100 @@
         SELECT COUNT(lodging_number) FROM tbl_lodging
         WHERE lodging_learning_lang = #{lodgingLearningLang}
     </select>
+
+    <select id="writerInfo" resultType="memberVO">
+        SELECT member_number,member_teaching_lang,member_nickname
+        FROM tbl_member
+        WHERE member_number=#{memberNumber}
+    </select>
+
+    <select id="selectLodgingRequest" resultType="lodgingVO">
+        SELECT LODGING_NUMBER, LODGING_LEARNING_LANG, LODGING_TITLE, LODGING_CONTENT, LODGING_WRITE_DATE, LODGING_UPDATE_DATE, LODGING_ADDRESS, LODGING_DETAIL_ADDRESS, MEMBER_NUMBER
+        FROM TBL_LODGING
+        WHERE LODGING_NUMBER = #{lodgingNumber}
+    </select>
+
+    <select id="lodgingAnswerCount" resultType="long">
+        SELECT count(lodging_answer_number)
+        FROM  tbl_lodging_answer
+        WHERE lodging_number = #{lodgingNumber}
+    </select>
+
+    <insert id="insertRequest">
+        <selectKey keyProperty="lodgingNumber" order="BEFORE" resultType="long">
+            SELECT LODGING_SEQ.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO tbl_lodging(lodging_number, lodging_title, member_number, lodging_learning_lang,lodging_content,lodging_address,lodging_detail_address)
+        VALUES(#{lodgingNumber}, #{lodgingTitle}, #{memberNumber}, #{lodgingLearningLang},#{lodgingContent},#{lodgingAddress},#{lodgingDetailAddress})
+    </insert>
+
+    <update id="updateRequest">
+        UPDATE tbl_lodging
+        SET lodging_title=#{lodgingTitle},lodging_learning_lang= #{lodgingLearningLang},lodging_content=#{lodgingContent},lodging_address=#{lodgingAddress},lodging_detail_address=#{lodgingDetailAddress},lodging_update_date=SYSDATE
+        WHERE lodging_number=#{lodgingNumber}
+    </update>
+
+    <delete id="deleteRequest">
+        DELETE
+        FROM tbl_lodging
+        WHERE lodging_number=#{lodgingNumber}
+    </delete>
+
+    <select id="lodgingAnswerSelectAll" resultType="lodgingAnswerVO">
+        SELECT lodging_answer_number,member_number,lodging_answer_content,lodging_answer_write_date,lodging_answer_update_date,lodging_number
+        FROM
+        (
+            SELECT ROWNUM R, lodging_answer_number,member_number,lodging_answer_content,lodging_answer_write_date,lodging_answer_update_date,lodging_number
+            FROM
+            (
+                SELECT lodging_answer_number,member_number,lodging_answer_content,lodging_answer_write_date,lodging_answer_update_date,lodging_number
+                FROM tbl_lodging_answer
+                WHERE lodging_number = #{lodgingNumber}
+                ORDER BY lodging_answer_number DESC
+            )
+    <![CDATA[
+            WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+        )
+        WHERE R > (#{criteria.page} - 1) * #{criteria.amount}
+    ]]>
+    </select>
+
+    <update id="lodgingAnswerUpdate" >
+        UPDATE tbl_lodging_answer
+        SET lodging_answer_content = #{lodgingAnswerContent} , lodging_answer_update_date = SYSDATE
+        WHERE lodging_answer_number = #{lodgingAnswerNumber}
+    </update>
+
+    <insert id="lodgingAnswerInsert">
+        INSERT INTO tbl_lodging_answer(lodging_answer_number,member_number,lodging_answer_content,lodging_number)
+        VALUES(lodging_answer_seq.NEXTVAL,#{memberNumber},#{lodgingAnswerContent},#{lodgingNumber})
+    </insert>
+
+    <delete id="lodgingAnswerRemove" >
+        DELETE FROM tbl_lodging_answer
+        WHERE lodging_answer_number = #{lodgingAnswerNumber}
+    </delete>
+
+    <select id="lodgingAnswerCommentSelectAll" resultType="lodgingAnswerCommentVO">
+        SELECT *
+        FROM tbl_lodging_answer_comment
+        WHERE lodging_answer_number = #{lodgingAnswerNumber}
+        ORDER BY lodging_answer_comment_number
+    </select>
+
+    <insert id="lodgingCommentInsert">
+        INSERT INTO tbl_lodging_answer_comment(lodging_answer_comment_number,member_number,lodging_answer_comment_content,lodging_answer_number)
+        VALUES(lodging_answer_comment_seq.NEXTVAL,#{memberNumber},#{lodgingAnswerCommentContent},#{lodgingAnswerNumber})
+    </insert>
+
+    <update id="lodgingCommentUpdate" >
+        UPDATE tbl_lodging_answer_comment
+        SET lodging_answer_comment_content = #{lodgingAnswerCommentContent} , lodging_comment_update_date = SYSDATE
+        WHERE lodging_answer_comment_number = #{lodgingAnswerCommentNumber}
+    </update>
+
+    <delete id="lodgingCommentRemove" >
+        DELETE FROM  tbl_lodging_answer_comment
+        WHERE lodging_answer_comment_number = #{lodgingAnswerCommentNumber}
+    </delete>
 </mapper>

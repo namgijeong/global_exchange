@@ -1,9 +1,6 @@
 package com.globalexchange.app.mapper;
 
-import com.globalexchange.app.domain.vo.Criteria;
-import com.globalexchange.app.domain.vo.FileDiaryVO;
-import com.globalexchange.app.domain.vo.FileMeetVO;
-import com.globalexchange.app.domain.vo.FileProfileVO;
+import com.globalexchange.app.domain.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -30,4 +27,15 @@ public interface FileMapper {
     //    일기 파일 조회
     public FileDiaryVO diarySelect(Long diaryNumber);
 
+    //lodging 게시글 파일 불러오기
+    public FileLodgingVO getLodgingFile(Long lodging_number);
+
+    // lodging 게시글 이미지 불러오기
+    public FileProfileVO getLodgingWriterImage(Long memberNumber);
+
+    // lodging 게시글 이미지 넣기
+    public void insertLodgingFile(FileLodgingVO fileLodgingVO);
+
+    // lodging 게시글 이미지 update
+    public void deleteLodgingFile(Long lodgingNumber);
 }
