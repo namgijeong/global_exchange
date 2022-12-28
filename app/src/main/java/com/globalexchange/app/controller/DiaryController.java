@@ -26,39 +26,81 @@ public class DiaryController {
 
     // 일기 목록 페이지
     @GetMapping("/list")
-    public void list(HttpServletRequest request, Long diaryNumber, Criteria criteria, Model model){
+    public void list(HttpServletRequest request, Criteria criteria, Model model){
         if(criteria.getPage() == 0){
             criteria.create(1, 10);
         }
-//        model.addAttribute("members", diaryService.showAllPartner(criteria));
-        model.addAttribute("diaries", diaryService.showAll(criteria));
-//        model.addAttribute("diary", diaryService.show(diaryNumber));
-        model.addAttribute("pagination",new PageDTO().createPageDTO(criteria, diaryService.getTotal()));
+        if(request.getSession().getAttribute("memberNumber") != null){
+            Long memberNumber = (Long) request.getSession().getAttribute("memberNumber");
+            model.addAttribute("diaries", diaryService.myDiarySelectAll(criteria, memberNumber));
+            model.addAttribute("pagination",new PageDTO().createPageDTO(criteria, diaryService.myDiaryGetTotal(memberNumber)));
+            model.addAttribute("partners", diaryService.showPartner(memberNumber));
+            log.info("멤버넘버: "+memberNumber);
+        }
 
-//        if(request.getSession().getAttribute("memberNumber") != null){
-//            Long memberNumber = (Long) request.getSession().getAttribute("memberNumber");
-////            Long diaryPartnerNumber = (Long)request.getSession().getAttribute("diaryPartnerNumber");
-////            model.addAttribute("partner", memberObjectificationService.show(diaryPartnerNumber));
-//            model.addAttribute("member", memberObjectificationService.show(memberNumber));
-//            log.info("멤버넘버: "+memberNumber);
-////            log.info("파트너넘버: "+diaryPartnerNumber);
-//        }
+
+    }
+    @GetMapping("/categoryList")
+    public void categoryList(HttpServletRequest request, Criteria criteria, Model model, Long diaryPartnerNumber){
+        if(criteria.getPage() == 0){
+            criteria.create(1, 10);
+        }
+        if(request.getSession().getAttribute("memberNumber") != null){
+            Long memberNumber = (Long) request.getSession().getAttribute("memberNumber");
+            model.addAttribute("diaries", diaryService.myPartnerSelectAll(memberNumber, diaryPartnerNumber, criteria));
+            model.addAttribute("diaryPartnerNumber", diaryPartnerNumber);
+//        model.addAttribute("diary", diaryService.show(diaryNumber));
+            model.addAttribute("pagination",new PageDTO().createPageDTO(criteria, diaryService.categoryGetTotal(memberNumber, diaryPartnerNumber)));
+            model.addAttribute("partners", diaryService.showPartner(memberNumber));
+            log.info("멤버DTO"+diaryService.myPartnerSelectAll(memberNumber, diaryPartnerNumber, criteria));
+        }
+//        model.addAttribute("members", diaryService.showAllPartner(criteria));
+
+    }
+
+    @GetMapping("/listWrittenByPartner")
+    public void listWrittenByPartner(HttpServletRequest request, Long diaryNumber, Criteria criteria, Model model){
+        if(criteria.getPage() == 0){
+            criteria.create(1, 10);
+        }
+        if(request.getSession().getAttribute("memberNumber") != null){
+            Long memberNumber = (Long) request.getSession().getAttribute("memberNumber");
+            model.addAttribute("diaries", diaryService.toMeDiarySelectAll(criteria, memberNumber));
+            model.addAttribute("pagination",new PageDTO().createPageDTO(criteria, diaryService.toMeDiaryGetTotal(memberNumber)));
+            model.addAttribute("partners", diaryService.showPartner(memberNumber));
+        }
+    }
+
+    @GetMapping("/categoryListWrittenByPartner")
+    public void categoryListWrittenByPartner(HttpServletRequest request, Criteria criteria, Model model, Long diaryPartnerNumber){
+        if(criteria.getPage() == 0){
+            criteria.create(1, 10);
+        }
+        if(request.getSession().getAttribute("memberNumber") != null){
+            Long memberNumber = (Long) request.getSession().getAttribute("memberNumber");
+            model.addAttribute("diaries", diaryService.toMeFromPartnerDiarySelectAll(criteria, memberNumber, diaryPartnerNumber));
+            model.addAttribute("diaryPartnerNumber", diaryPartnerNumber);
+            model.addAttribute("pagination",new PageDTO().createPageDTO(criteria, diaryService.toMeFromPartnerDiaryGetTotal(memberNumber, diaryPartnerNumber)));
+            model.addAttribute("partners", diaryService.showPartner(memberNumber));
+        }
     }
 
     // 일기 상세 페이지, 일기 수정 페이지
     @GetMapping(value={"/detail", "/update"})
     public void detail(HttpServletRequest request, Long memberNumber, Long diaryNumber, Criteria criteria, Model model){
         model.addAttribute("diary", diaryService.show(diaryNumber));
-//        model.addAttribute("diaries", diaryService.showAll(criteria));
-
-//        if(request.getSession().getAttribute("memberNumber") != null){
-//            Long memberNumber1 = (Long) request.getSession().getAttribute("memberNumber");
-//            log.info("멤버:"+memberNumber1);
-//            model.addAttribute("members", diaryService.showPartner(memberNumber1));
-//            model.addAttribute("member", memberObjectificationService.show(memberNumber1));
-//            log.info("파트너:"+diaryService.showPartner(memberNumber1));
-//        }
     }
+
+    @GetMapping(value={"/detailWrittenByPartner", "/updateWrittenByPartner"})
+    public void detailWrittenByPartner(HttpServletRequest request, Long memberNumber, Long diaryNumber, Criteria criteria, Model model){
+        model.addAttribute("diary", diaryService.showWrittenByPartner(diaryNumber));
+    }
+//
+//    @GetMapping(value={"/updateWrittenByPartner"})
+//    public void updateWrittenByPartner(HttpServletRequest request, Long memberNumber, Long diaryNumber, Criteria criteria, Model model){
+//        model.addAttribute("diary", diaryService.showWrittenByPartner(diaryNumber));
+//    }
+
 
     // 일기 작성 페이지 이동
     @GetMapping("/write")
@@ -113,6 +155,13 @@ public class DiaryController {
     public RedirectView delete(Long diaryNumber){
         diaryService.remove(diaryNumber);
         return new RedirectView("/diary/list");
+    }
+
+    @PostMapping("/updateWrittenByPartner")
+    public RedirectView updateWrittenByPartner(DiaryDTO diaryDTO, RedirectAttributes redirectAttributes){
+        diaryService.modify(diaryDTO);
+        redirectAttributes.addAttribute("diaryNumber", diaryDTO.getDiaryNumber());
+        return new RedirectView("/diary/detailWrittenByPartner");
     }
 
 //    // 일기 코멘트 작성

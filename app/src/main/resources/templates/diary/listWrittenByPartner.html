@@ -28,10 +28,10 @@
                 </div>
                 <div class="category-filter-wrapper">
                     <div class="category-list-wrapper">
-                        <a class="category">
+                        <a class="category not-selected-category writtenByMe">
                             내가 작성
                         </a>
-                        <a class="category not-selected-category writtenByPartner">
+                        <a class="category">
                             파트너가 작성
                         </a>
                         <a class="category not-selected-category write">
@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="member-text-wrapper">
                                     <a href="javscript:void(0)">
-                                        To. <p class="name" th:text="*{diaryPartnerNickname}"></p>
+                                        From. <p class="name" th:text="*{diaryPartnerNickname}"></p>
                                     </a>
 
 <!--                                    <div class="time" th:text="${#temporals.format(diaryWriteDate, 'yyyy-MM-dd')}"></div>-->
@@ -176,7 +176,7 @@
                         <code>></code>
                     </a>
                 </div>
-                <form th:action="@{/diary/list}" th:object="${criteria}" name="pageForm">
+                <form th:action="@{/diary/listWrittenByPartner}" th:object="${criteria}" name="pageForm">
                     <input type="hidden" th:field="*{page}">
                     <input type="hidden" th:field="*{amount}">
                 </form>
@@ -250,6 +250,15 @@
                                         </label>
                                     </div>
                                 </th:block>
+<!--                                <div class="include-filter">-->
+<!--                                    <label for="partnerNickname1" class="input-label">-->
+<!--                                        John-->
+<!--                                        <label for="partnerNickname1" class="checkbox-item-wrapper">-->
+<!--                                            <div class="checkbox-item-box"></div>-->
+<!--                                            <input type="checkbox" id="partnerNickname1" name="partnerNickname" value="John" class="checkbox-item" checked>-->
+<!--                                        </label>-->
+<!--                                    </label>-->
+<!--                                </div>-->
 <!--                                <div class="include-filter">-->
 <!--                                    <label for="partnerNickname2" class="input-label">-->
 <!--                                        Tom Cruse-->
@@ -360,30 +369,12 @@
 
 
     // 파트너 이름 체크박스
-    // let checkboxes = $('input[name="partnerNickname"]');
-    // let checkbox1 = $('input[name="partnerNickname"]')[1].value;
-    // console.log(checkbox1);
-    // const $checkboxItemBoxes = $('.checkbox-item-box');
-    //
-    // $checkboxItemBoxes.css("background-image", 'url(/images/modal/checkboxFull.svg)');
-    //
-    // checkboxes.on("change", function () {
-    //     $.each(checkboxes, function (index, item) {
-    //         if($(item).prop('checked')){
-    //             $(item).prev().css("background-image", 'url(/images/modal/checkboxFull.svg)');
-    //         } else{
-    //             $(item).prev().css("background-image", 'url(/images/modal/checkboxEmpty.svg)');
-    //         }
-    //     });
-    // });
     const $checkboxes = $('input[name=partnerNickname]');
     const $checkboxItemBoxes = $('.checkbox-item-box');
-
 
     $checkboxItemBoxes.css("background-image", 'url(/images/modal/checkboxEmpty.svg)');
 
     $checkboxes.on("change", function () {
-        console.log($(this).val());
         $checkboxes.each(function (index, item) {
             if($(item).prop('checked')){
                 $(item).prev().css("background-image", 'url(/images/modal/checkboxFull.svg)');
@@ -394,10 +385,10 @@
     });
 
 //  페이지 이동
-    $("a.writtenByPartner").on("click",function(e){
+    $(".writtenByMe").on("click", function (e) {
         e.preventDefault();
-        location.href="/diary/listWrittenByPartner";
-    });
+        location.href="/diary/list";
+    })
 
     $("a.write").on("click",function(e){
         e.preventDefault();
@@ -418,7 +409,7 @@
     //현재 페이지 기억 -> write컨트롤러 criteria 필요
     $detail.on("click", function(e){
         e.preventDefault();
-        location.href = "/diary/detail" + queryString + "&diaryNumber=" + $(this).attr("href");
+        location.href = "/diary/detailWrittenByPartner" + queryString + "&diaryNumber=" + $(this).attr("href");
     });
 
     $("a.write").on("click", function(e){
@@ -428,9 +419,8 @@
 
     $(".modal-footer-btn").on("click", function (e) {
         let partnerNumber = $('input[name="partnerNickname"]:checked').val();
-        location.href = "/diary/categoryList?diaryPartnerNumber=" + partnerNumber;
+        location.href = "/diary/categoryListWrittenByPartner?diaryPartnerNumber=" + partnerNumber;
     })
-
 </script>
 </html>
 

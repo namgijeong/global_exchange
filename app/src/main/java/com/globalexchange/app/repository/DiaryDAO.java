@@ -31,10 +31,49 @@ public class DiaryDAO {
   public List<DiaryDTO> findAll(Criteria criteria){
     return diaryMapper.diarySelectAll(criteria);
   }
+
+  // 내가 쓴 일기 전체 조회
+  public List<DiaryDTO> myDiarySelectAll(Criteria criteria, Long memberNumber){
+    return diaryMapper.myDiarySelectAll(criteria, memberNumber);
+  }
+  // 나와 특정 파트너의 일기 내용
+  public List<DiaryDTO> myPartnerSelectAll(Long memberNumber, Long diaryPartnerNumber, Criteria criteria) {
+    return diaryMapper.myPartnerSelectAll(memberNumber, diaryPartnerNumber, criteria);
+  }
+
+  //  파트너가 나에게 쓴 일기 전체 조회
+  public List<DiaryDTO> toMeDiarySelectAll(Criteria criteria, Long memberNumber){
+    return diaryMapper.toMeDiarySelectAll(criteria, memberNumber);
+  }
+  //  특정 파트너가 나에게 쓴 일기 전체 조회
+  public List<DiaryDTO> toMeFromPartnerDiarySelectAll(Criteria criteria, Long memberNumber, Long diaryPartnerNumber){
+    return diaryMapper.toMeFromPartnerDiarySelectAll(criteria, memberNumber, diaryPartnerNumber);
+  }
+
   //    전체 개수
   public int findCountAll(){
     return diaryMapper.getTotal();
   }
+
+  // 내가 쓴 일기 전체 개수
+  public int myDiaryGetTotal(Long memberNumber){
+    return diaryMapper.myDiaryGetTotal(memberNumber);
+  }
+
+  // 나와 특정 파트너의 일기 수
+  public int categoryGetTotal(Long memberNumber, Long diaryPartnerNumber){
+    return diaryMapper.categoryGetTotal(memberNumber, diaryPartnerNumber);
+  }
+
+  //  파트너가 나에게 쓴 일기 전체 개수
+  public int toMeDiaryGetTotal(Long memberNumber){
+    return diaryMapper.toMeDiaryGetTotal(memberNumber);
+  }
+  //  특정 파트너가 나에게 쓴 일기 전체 개수
+  public int toMeFromPartnerDiaryGetTotal(Long memberNumber, Long diaryPartnerNumber){
+    return diaryMapper.toMeFromPartnerDiaryGetTotal(memberNumber, diaryPartnerNumber);
+  }
+
 
   //    파트너 조회
   public List<Long> findPartner(Long memberNumber){
@@ -50,5 +89,6 @@ public class DiaryDAO {
   public int diaryPartnerCheck(Long memberNumber, Long diaryPartnerNumber){
     return diaryMapper.diaryPartnerCheck(memberNumber, diaryPartnerNumber);
   }
+
 
 }
