@@ -34,7 +34,6 @@ public class DiaryController {
         model.addAttribute("diaries", diaryService.showAll(criteria));
 //        model.addAttribute("diary", diaryService.show(diaryNumber));
         model.addAttribute("pagination",new PageDTO().createPageDTO(criteria, diaryService.getTotal()));
-
 //        if(request.getSession().getAttribute("memberNumber") != null){
 //            Long memberNumber = (Long) request.getSession().getAttribute("memberNumber");
 ////            Long diaryPartnerNumber = (Long)request.getSession().getAttribute("diaryPartnerNumber");
