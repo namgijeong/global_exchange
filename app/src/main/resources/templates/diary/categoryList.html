@@ -176,9 +176,10 @@
                         <code>></code>
                     </a>
                 </div>
-                <form th:action="@{/diary/list}" th:object="${criteria}" name="pageForm">
+                <form th:action="@{/diary/categoryList}" th:object="${criteria}" name="pageForm">
                     <input type="hidden" th:field="*{page}">
                     <input type="hidden" th:field="*{amount}">
+                    <input type="hidden" th:field="${diaryPartnerNumber}">
                 </form>
             </div>
 
