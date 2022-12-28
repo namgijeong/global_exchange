@@ -61,7 +61,7 @@
                                                 <div class="profile-content">
                                                     <div class="partner-name-wrapper">
                                                         <a href="javascript:void(0)">
-                                                            To. <span class="partner-nickname" th:text="${diary.diaryPartnerNickname}"></span>
+                                                            From. <span class="partner-nickname" th:text="${diary.diaryPartnerNickname}"></span>
                                                         </a>
                                                     </div>
                                                     <span class="partner-nation" th:text="${diary.memberTeachingLang}"></span>
@@ -205,7 +205,7 @@
     let queryString = [[${criteria.queryString}]];
 
     function goUpdate(){
-        location.href = "/diary/update" + queryString + "&diaryNumber=" + diaryNumber;
+        location.href = "/diary/updateWrittenByPartner" + queryString + "&diaryNumber=" + diaryNumber;
     }
 
 

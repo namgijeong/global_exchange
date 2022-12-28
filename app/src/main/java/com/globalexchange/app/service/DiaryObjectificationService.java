@@ -67,6 +67,18 @@ public class DiaryObjectificationService implements DiaryService {
     return diaryDTO;
   }
 
+  @Override
+  public DiaryDTO showWrittenByPartner(Long diaryNumber) {
+    DiaryDTO diaryDTO = new DiaryDTO();
+    diaryDTO.create(diaryDAO.findById(diaryNumber));
+    diaryDTO.setFileDiaryVO(fileDAO.diaryFind(diaryNumber));
+    diaryDTO.setDiaryPartnerNickname(memberDAO.diaryPartnerNickname(diaryDTO.getMemberNumber()).getMemberNickname());
+    diaryDTO.setFilePartnerProfileVO(memberDAO.myPageProfile(diaryDTO.getMemberNumber()));
+    diaryDTO.setMemberNationUrl(memberDAO.myPageDetail(diaryDTO.getMemberNumber()).getMemberNationUrl());
+    diaryDTO.setMemberTeachingLang(memberDAO.myPageDetail(diaryDTO.getMemberNumber()).getMemberTeachingLang());
+    return diaryDTO;
+  }
+
 
   @Override
   public List<DiaryDTO> showAll(Criteria criteria) {
@@ -94,8 +106,100 @@ public class DiaryObjectificationService implements DiaryService {
   }
 
   @Override
+  public List<DiaryDTO> myDiarySelectAll(Criteria criteria, Long memberNumber){
+    List<DiaryDTO> list = diaryDAO.myDiarySelectAll(criteria, memberNumber);
+    List<DiaryDTO> list2 = new ArrayList<>();
+
+    for(DiaryDTO diaryDTO : list) {
+      {
+        diaryDTO.create(diaryDAO.findById(diaryDTO.getDiaryNumber()));
+        diaryDTO.setFileDiaryVO(fileDAO.diaryFind(diaryDTO.getDiaryNumber()));
+        diaryDTO.setDiaryPartnerNickname(memberDAO.diaryPartnerNickname(diaryDTO.getDiaryPartnerNumber()).getMemberNickname());
+        log.info("내가쓴일기의 파트너:"+memberDAO.diaryPartnerNickname(diaryDTO.getDiaryPartnerNumber()).getMemberNickname());
+        diaryDTO.setFilePartnerProfileVO(memberDAO.myPageProfile(diaryDTO.getDiaryPartnerNumber()));
+        list2.add(diaryDTO);
+      }
+    }
+    return list2;
+  }
+
+  @Override
+  public List<DiaryDTO> myPartnerSelectAll(Long memberNumber, Long diaryPartnerNumber, Criteria criteria){
+    List<DiaryDTO> list = diaryDAO.myPartnerSelectAll(memberNumber, diaryPartnerNumber, criteria);
+    List<DiaryDTO> list2 = new ArrayList<>();
+
+    for(DiaryDTO diaryDTO : list) {
+      {
+        diaryDTO.create(diaryDAO.findById(diaryDTO.getDiaryNumber()));
+
+        diaryDTO.setFileDiaryVO(fileDAO.diaryFind(diaryDTO.getDiaryNumber()));
+        diaryDTO.setDiaryPartnerNickname(memberDAO.diaryPartnerNickname(diaryDTO.getDiaryPartnerNumber()).getMemberNickname());
+        diaryDTO.setFilePartnerProfileVO(memberDAO.myPageProfile(diaryDTO.getDiaryPartnerNumber()));
+        list2.add(diaryDTO);
+
+      }
+    }
+    return list2;
+  }
+
+  @Override
+  public List<DiaryDTO> toMeDiarySelectAll(Criteria criteria, Long memberNumber){
+    List<DiaryDTO> list = diaryDAO.toMeDiarySelectAll(criteria, memberNumber);
+    List<DiaryDTO> list2 = new ArrayList<>();
+
+    for(DiaryDTO diaryDTO : list) {
+      {
+        diaryDTO.create(diaryDAO.findById(diaryDTO.getDiaryNumber()));
+        diaryDTO.setFileDiaryVO(fileDAO.diaryFind(diaryDTO.getDiaryNumber()));
+        diaryDTO.setDiaryPartnerNickname(memberDAO.diaryPartnerNickname(diaryDTO.getMemberNumber()).getMemberNickname());
+        log.info("파트너가 쓴 일기의 파트너:"+memberDAO.diaryPartnerNickname(diaryDTO.getMemberNumber()).getMemberNickname());
+        diaryDTO.setFilePartnerProfileVO(memberDAO.myPageProfile(diaryDTO.getMemberNumber()));
+        list2.add(diaryDTO);
+      }
+    }
+    return list2;
+  }
+
+  @Override
+  public List<DiaryDTO> toMeFromPartnerDiarySelectAll(Criteria criteria, Long memberNumber, Long diaryPartnerNumber){
+    List<DiaryDTO> list = diaryDAO.toMeFromPartnerDiarySelectAll(criteria, memberNumber, diaryPartnerNumber);
+    List<DiaryDTO> list2 = new ArrayList<>();
+
+    for(DiaryDTO diaryDTO : list) {
+      {
+        diaryDTO.create(diaryDAO.findById(diaryDTO.getDiaryNumber()));
+        diaryDTO.setFileDiaryVO(fileDAO.diaryFind(diaryDTO.getDiaryNumber()));
+        diaryDTO.setDiaryPartnerNickname(memberDAO.diaryPartnerNickname(diaryDTO.getMemberNumber()).getMemberNickname());
+        diaryDTO.setFilePartnerProfileVO(memberDAO.myPageProfile(diaryDTO.getMemberNumber()));
+        list2.add(diaryDTO);
+      }
+    }
+    return list2;
+  }
+
+  @Override
   public int getTotal() {
     return diaryDAO.findCountAll();
+  }
+
+  @Override
+  public int myDiaryGetTotal(Long memberNumber){
+    return diaryDAO.myDiaryGetTotal(memberNumber);
+  }
+
+  @Override
+  public int categoryGetTotal(Long memberNumber, Long diaryPartnerNumber) {
+    return diaryDAO.categoryGetTotal(memberNumber, diaryPartnerNumber);
+  }
+
+  @Override
+  public int toMeDiaryGetTotal(Long memberNumber){
+    return diaryDAO.toMeDiaryGetTotal(memberNumber);
+  }
+
+  @Override
+  public int toMeFromPartnerDiaryGetTotal(Long memberNumber, Long diaryPartnerNumber){
+    return diaryDAO.toMeFromPartnerDiaryGetTotal(memberNumber, diaryPartnerNumber);
   }
 
   @Override
@@ -177,4 +281,7 @@ public class DiaryObjectificationService implements DiaryService {
   public void registerReport(Long reportingMemberNumber, Long reportedMemberNumber) {
     memberReportDAO.saveReport(reportingMemberNumber, reportedMemberNumber);
   }
+
+
+
 }

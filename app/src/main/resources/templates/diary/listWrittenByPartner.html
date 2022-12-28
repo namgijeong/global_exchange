@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>diary list</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <link href="/css/main/header.css" rel="stylesheet" type="text/css" />
+    <link href="/css/main/footer.css" rel="stylesheet" type="text/css" />
+    <link href="/css/diary/list.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="app">
+        <div class="appWrapper">
+            <!-- header -->
+            <div th:replace="/main/header.html::topHeader(memberNumber = ${session.memberNumber}, memberNickname = ${session.memberNickname})"></div>
+            <div th:replace="/main/header.html:: header "></div>
+
+            <!-- main -->
+            <div class="wrapper">
+                <div class="header">
+                    <span class="title">
+                        교환 일기
+                    </span>
+                </div>
+                <div class="category-filter-wrapper">
+                    <div class="category-list-wrapper">
+                        <a class="category not-selected-category writtenByMe">
+                            내가 작성
+                        </a>
+                        <a class="category">
+                            파트너가 작성
+                        </a>
+                        <a class="category not-selected-category write">
+                            교환 일기 작성
+                        </a>
+                        <a class="category not-selected-category partner-list">
+                            교환 일기 파트너
+                        </a>
+                    </div>
+                    <div class="filter-button-wrapper">
+                        <div class="filter-open-button-wrapper">
+                            <button class="filter-button">
+                                필터
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="diary-list-wrapper">
+                    <div th:each="diary:${diaries}" th:object="${diary}">
+                        <div class="profile-wrapper">
+                            <div class="partner-profile-wrapper">
+                                <div class="profile-image-wrapper">
+                                    <a href="javascript:void(0)">
+<!--                                        <img src="/images/member/sample4.png" alt="교환일기 파트너 프로필 사진" class="profile-image">-->
+                                        <th:block th:if="${not #strings.isEmpty(diary.filePartnerProfileVO)}">
+                                            <img class="profile-image" th:if="${diary.filePartnerProfileVO.fileImageCheck}"
+                                                 th:src="@{/fileMeet/display(fileName=${diary.filePartnerProfileVO.fileUploadPath} + '/s_' + ${diary.filePartnerProfileVO.fileUuid} + '_' + ${diary.filePartnerProfileVO.fileName})}">
+                                            <img class="profile-image" th:unless="${diary.filePartnerProfileVO.fileImageCheck}" src="/images/member/defaultProfileImg.png"/>
+                                        </th:block>
+                                        <th:block th:unless="${not #strings.isEmpty(diary.filePartnerProfileVO)}">
+                                            <img class="profile-image" src="/images/member/defaultProfileImg.png">
+                                        </th:block>
+                                    </a>
+                                </div>
+                                <div class="member-text-wrapper">
+                                    <a href="javscript:void(0)">
+                                        From. <p class="name" th:text="*{diaryPartnerNickname}"></p>
+                                    </a>
+
+<!--                                    <div class="time" th:text="${#temporals.format(diaryWriteDate, 'yyyy-MM-dd')}"></div>-->
+                                    <div class="time" th:text="${#strings.substring(diary.diaryWriteDate, 0, 10)}"></div>
+<!--                                    <div class="time" th:text="${#dates.format(diaryWriteDate, 'yyyy-MM-dd')}"></div>-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="image-banner-wrapper" th:object="${diary}">
+                            <th:block th:if="${not #strings.isEmpty(diary.fileDiaryVO)}">
+                                <img class="diary-image" th:if="*{fileDiaryVO.fileImageCheck}" th:src="@{/fileDiary/display(fileName=*{fileDiaryVO.fileUploadPath} + '/s_' + *{fileDiaryVO.fileUuid} + '_' + *{fileDiaryVO.fileName})}">
+                                <img class="diary-image" th:unless="*{fileDiaryVO.fileImageCheck}" th:src="@{/images/diary/bread.jpg}" width="375">
+                            </th:block>
+                            <th:block th:unless="${not #strings.isEmpty(diary.fileDiaryVO)}">
+                                <img class="diary-image" src="/images/noImage/no-image.jpg" width="375">
+                            </th:block>
+                        </div>
+
+<!--                        <div class="image-banner-wrapper">-->
+<!--                            <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">-->
+<!--                        </div>-->
+
+                        <a th:href="*{diaryNumber}" class="diary-title-wrapper detail">
+                            <div class="diary-title-container diaryTitle" th:text="*{diaryTitle}">
+
+                            </div>
+                        </a>
+<!--                        <div class="diary-content-wrapper">-->
+<!--                            <span class="diary-content diaryContent" th:text="*{diaryContent}"></span>-->
+<!--                            <button class="expand-button">-->
+<!--                                더보기-->
+<!--                            </button>-->
+<!--                        </div>-->
+                    </div>
+<!--                    <div>-->
+<!--                        <div class="profile-wrapper">-->
+<!--                            <div class="partner-profile-wrapper">-->
+<!--                                <div class="profile-image-wrapper">-->
+<!--                                    <a href="javascript:void(0)">-->
+<!--                                        <img src="/images/member/sample4.png" alt="교환일기 파트너 프로필 사진" class="profile-image">-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!--                                <div class="member-text-wrapper">-->
+<!--                                    <a href="javscript:void(0)">-->
+<!--                                        <p class="name">John</p>-->
+<!--                                    </a>-->
+<!--                                    <div class="time">2022-11-20</div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="image-banner-wrapper">-->
+<!--                            <img src="/images/diary/bread.jpg" alt="일기 대표 사진" class="diary-image">-->
+<!--                        </div>-->
+<!--                        <a href="javascript:void(0)" class="diary-title-wrapper">-->
+<!--                            <div class="diary-title-container">-->
+<!--                                No Bread Day-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                        <div class="diary-content-wrapper">-->
+<!--                            <span class="diary-content">-->
+<!--                                Today I woke up early in the morning. I went to buy some breads from my favorite bakery, called 'Seoul Baguette'. When I arrived the bakery, I found there were no bread left. So I had to came back with empty hands. It was sad day : (-->
+<!--                            </span>-->
+<!--                            <button class="expand-button">-->
+<!--                                더보기-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+                </div>
+                <div class="pagination-wrapper" th:object="${pagination}">
+                    <a class="change-page" th:href="*{startPage - 1}" th:if="*{prev}"><code><</code></a>
+                    <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                        <a class="change-page page-number" th:href="${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+                        <code th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
+                    </th:block>
+<!--                    <a class="change-page page-number not-selected" href="javascript:void(0)">-->
+<!--                        <code>2</code>-->
+<!--                    </a>-->
+<!--                    <a class="change-page page-number not-selected" href="javascript:void(0)">-->
+<!--                        <code>3</code>-->
+<!--                    </a>-->
+<!--                    <a class="change-page page-number not-selected" href="javascript:void(0)">-->
+<!--                        <code>4</code>-->
+<!--                    </a>-->
+<!--                    <a class="change-page page-number not-selected" href="javascript:void(0)">-->
+<!--                        <code>5</code>-->
+<!--                    </a>-->
+<!--                    <a class="change-page page-number not-selected" href="javascript:void(0)">-->
+<!--                        <code>6</code>-->
+<!--                    </a>-->
+<!--                    <a class="change-page page-number not-selected" href="javascript:void(0)">-->
+<!--                        <code>7</code>-->
+<!--                    </a>-->
+<!--                    <a class="change-page page-number not-selected" href="javascript:void(0)">-->
+<!--                        <code>8</code>-->
+<!--                    </a>-->
+<!--                    <a class="change-page page-number not-selected" href="javascript:void(0)">-->
+<!--                        <code>9</code>-->
+<!--                    </a>-->
+<!--                    <a class="change-page page-number not-selected" href="javascript:void(0)">-->
+<!--                        <code>10</code>-->
+<!--                    </a>-->
+                    <a class="change-page" th:href="*{endPage + 1}" th:if="*{next}">
+                        <code>></code>
+                    </a>
+                </div>
+                <form th:action="@{/diary/listWrittenByPartner}" th:object="${criteria}" name="pageForm">
+                    <input type="hidden" th:field="*{page}">
+                    <input type="hidden" th:field="*{amount}">
+                </form>
+            </div>
+
+            <!-- footer -->
+            <div th:replace="/main/footer.html:: footerFirst"></div>
+        </div>
+    </div>
+
+    <div class="modal-container modal-overlay">
+        <div class="modal-flex">
+            <div class="modal-wrapper">
+                <header class="modal-header-wrapper">
+                    <div class="modal-country-header">
+                        <span class="modal-title">필터</span>
+                    </div>
+                    <button class="close-btn">
+                        <img src="/images/modal/modalCloseBtn.svg" alt="닫기 버튼">
+                    </button>
+                </header>
+                <div class="modal-div-wrapper">
+                    <div class="modal-country-section">
+                        <div class="modal-country-select">
+                            <div>
+                                <div class="modal-country-name">정렬</div>
+                                <div class="modal-country-box">
+                                    <div class="modal-radio-input-wrapper">
+                                        <div class="modal-radio-input">
+                                            <label for="radioLatest" class="modal-label">
+                                                최신순
+                                                <div class="modal-radio">
+                                                    <div class="modal-radio-circle"></div>
+                                                </div>
+                                                <input name="filter" value="latest" type="radio" class="modal-input" id="radioLatest" checked>
+                                            </label>
+                                        </div>
+                                        <div class="modal-radio-input">
+                                            <label for="radioOldest" class="modal-label">
+                                                오래된순
+                                                <div class="modal-radio">
+                                                    <div class="modal-radio-circle"></div>
+                                                </div>
+                                                <input name="filter" value="oldest" type="radio" class="modal-input" id="radioOldest">
+                                            </label>
+                                        </div>
+                                        <div class="modal-radio-input">
+                                            <label for="radioComments" class="modal-label">
+                                                코멘트 많은 순
+                                                <div class="modal-radio">
+                                                    <div class="modal-radio-circle"></div>
+                                                </div>
+                                                <input name="filter" value="comments" type="radio" class="modal-input" id="radioComments">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="filter-title">
+                                    교환일기 파트너명
+                                </div>
+                                <th:block th:each="partner:${partners}">
+                                    <div class="include-filter">
+                                        <label th:for="'partnerNickname'+${partner.memberNumber}" class="input-label">
+                                            <div th:text="${partner.memberNickname}"></div>
+                                            <label th:for="'partnerNickname'+${partner.memberNumber}" class="checkbox-item-wrapper">
+                                                <div class="checkbox-item-box"></div>
+                                                <input type="radio" th:id="'partnerNickname'+${partner.memberNumber}" name="partnerNickname" th:value="${partner.memberNumber}" class="checkbox-item">
+                                            </label>
+                                        </label>
+                                    </div>
+                                </th:block>
+<!--                                <div class="include-filter">-->
+<!--                                    <label for="partnerNickname1" class="input-label">-->
+<!--                                        John-->
+<!--                                        <label for="partnerNickname1" class="checkbox-item-wrapper">-->
+<!--                                            <div class="checkbox-item-box"></div>-->
+<!--                                            <input type="checkbox" id="partnerNickname1" name="partnerNickname" value="John" class="checkbox-item" checked>-->
+<!--                                        </label>-->
+<!--                                    </label>-->
+<!--                                </div>-->
+<!--                                <div class="include-filter">-->
+<!--                                    <label for="partnerNickname2" class="input-label">-->
+<!--                                        Tom Cruse-->
+<!--                                        <label for="partnerNickname2" class="checkbox-item-wrapper">-->
+<!--                                            <div class="checkbox-item-box"></div>-->
+<!--                                            <input type="checkbox" id="partnerNickname2" name="partnerNickname" value="Tom Cruse" class="checkbox-item" checked>-->
+<!--                                        </label>-->
+<!--                                    </label>-->
+<!--                                </div>-->
+<!--                                <div class="include-filter">-->
+<!--                                    <label for="partnerNickname3" class="input-label">-->
+<!--                                        Alisa Brown-->
+<!--                                        <label for="partnerNickname3" class="checkbox-item-wrapper">-->
+<!--                                            <div class="checkbox-item-box"></div>-->
+<!--                                            <input type="checkbox" id="partnerNickname3" name="partnerNickname" value="Alisa Brown" class="checkbox-item" checked>-->
+<!--                                        </label>-->
+<!--                                    </label>-->
+<!--                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="modal-footer-wrapper">
+                    <button class="modal-footer-btn">적용하기</button>
+                </footer>
+            </div>
+        </div>
+        <div class="modal-color"></div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script th:inline="javascript">
+    let diaryNumber = [[${diaryNumber}]];
+    let $pages = $("a.change-page");
+    let queryString = [[${pagination.criteria.queryString}]];
+    const $detail = $("a.detail");
+    // let $diaryContentWrapper = $('.diary-content-wrapper');
+    // let $diaryContent = $('#diaryContent');
+    // $diaryContentWrapper.html($diaryContent.prev().text());
+
+    // 더보기 버튼 클릭시 일기 전체 내용 보이기
+    const $expandButtons = $('.expand-button');
+
+    $expandButtons.on('click', function () {
+        var content = $(this).prev().text();
+        var wrapper = $(this).closest('div');
+
+        wrapper.html(content);
+    });
+
+
+
+    // 페이지네이션 마우스 올렸을 때 이벤트
+    const $pagenationAtags = $('.change-page');
+
+    $pagenationAtags.hover(function () {
+        $(this).css("background-color", 'rgb(229, 231, 234)');
+    }, function () {
+        $(this).css("background-color", 'transparent');
+    });
+
+
+    // 모달창
+    const modalContainer = document.querySelector(".modal-container");
+    const btnModal = document.querySelector(".filter-button");
+    const btnsRadio=document.querySelectorAll(".modal-input");
+    const CirclesRadio=document.querySelectorAll(".modal-radio-circle");
+
+    // 부모스크롤 비활성화
+    const openModal = () => {
+        document.body.style.overflow = "hidden";
+    };
+
+    // 부모스크롤 활성화
+    const closeModal = () => {
+        document.body.style.overflow = "unset";
+    };
+
+    btnModal.addEventListener("click", e => {
+        modalContainer.style.display = "flex";
+        openModal();
+    });
+
+    const closeBtn = modalContainer.querySelector(".close-btn")
+    closeBtn.addEventListener("click", e => {
+        modalContainer.style.display = "none";
+        closeModal();
+    });
+
+
+    // 필터 라디오
+    CirclesRadio[0].style.backgroundColor="#3377FF";
+
+    let prev;
+    btnsRadio.forEach((btnRadio,index)=>{
+        btnRadio.addEventListener("click",function(){
+
+            CirclesRadio[0].style.backgroundColor="white";
+
+            if(prev!=null){
+                prev.style.backgroundColor="white";
+            }
+
+            CirclesRadio[index].style.backgroundColor="#3377FF";
+            prev=CirclesRadio[index];
+        });
+    });
+
+
+    // 파트너 이름 체크박스
+    const $checkboxes = $('input[name=partnerNickname]');
+    const $checkboxItemBoxes = $('.checkbox-item-box');
+
+    $checkboxItemBoxes.css("background-image", 'url(/images/modal/checkboxEmpty.svg)');
+
+    $checkboxes.on("change", function () {
+        $checkboxes.each(function (index, item) {
+            if($(item).prop('checked')){
+                $(item).prev().css("background-image", 'url(/images/modal/checkboxFull.svg)');
+            } else{
+                $(item).prev().css("background-image", 'url(/images/modal/checkboxEmpty.svg)');
+            }
+        });
+    });
+
+//  페이지 이동
+    $(".writtenByMe").on("click", function (e) {
+        e.preventDefault();
+        location.href="/diary/list";
+    })
+
+    $("a.write").on("click",function(e){
+        e.preventDefault();
+        location.href="/diary/write";
+    });
+
+    $("a.partner-list").on("click",function(e){
+        e.preventDefault();
+        location.href="/diary/partnerList";
+    });
+
+    $pages.on("click", function(e){
+        e.preventDefault();
+        $(document.pageForm.page).val($(this).attr("href"));
+        document.pageForm.submit();
+    });
+
+    //현재 페이지 기억 -> write컨트롤러 criteria 필요
+    $detail.on("click", function(e){
+        e.preventDefault();
+        location.href = "/diary/detailWrittenByPartner" + queryString + "&diaryNumber=" + $(this).attr("href");
+    });
+
+    $("a.write").on("click", function(e){
+        e.preventDefault();
+        location.href = "/diary/write" + queryString;
+    });
+
+    $(".modal-footer-btn").on("click", function (e) {
+        let partnerNumber = $('input[name="partnerNickname"]:checked').val();
+        location.href = "/diary/categoryListWrittenByPartner?diaryPartnerNumber=" + partnerNumber;
+    })
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

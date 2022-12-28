@@ -43,8 +43,100 @@
         ]]>
     </select>
 
+    <select id="myDiarySelectAll" resultType="diaryDTO"> <!--페이징처리-->
+        SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE, member_number, diary_partner_number
+        FROM
+        (
+        SELECT ROWNUM R, DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE, member_number, diary_partner_number
+        FROM
+        (
+        SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE, member_number, diary_partner_number
+        FROM TBL_DIARY
+        WHERE MEMBER_NUMBER = #{memberNumber}
+        ORDER BY DIARY_NUMBER DESC
+        ) D2
+        <![CDATA[
+            WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+        ) WHERE R > (#{criteria.page} - 1) * #{criteria.amount}
+        ]]>
+    </select>
+
+    <select id="myPartnerSelectAll" resultType="diaryDTO"> <!--페이징처리-->
+        SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE, member_number, diary_partner_number
+        FROM
+        (
+        SELECT ROWNUM R, DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE, member_number, diary_partner_number
+        FROM
+        (
+        SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE, member_number, diary_partner_number
+        FROM TBL_DIARY
+        WHERE MEMBER_NUMBER = #{memberNumber} AND DIARY_PARTNER_NUMBER = #{diaryPartnerNumber}
+        ORDER BY DIARY_NUMBER DESC
+        ) D2
+        <![CDATA[
+            WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+        ) WHERE R > (#{criteria.page} - 1) * #{criteria.amount}
+        ]]>
+    </select>
+
+    <select id="toMeDiarySelectAll" resultType="diaryDTO"> <!--페이징처리-->
+        SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE, member_number, diary_partner_number
+        FROM
+        (
+        SELECT ROWNUM R, DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE, member_number, diary_partner_number
+        FROM
+        (
+        SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE, member_number, diary_partner_number
+        FROM TBL_DIARY
+        WHERE DIARY_PARTNER_NUMBER = #{memberNumber}
+        ORDER BY DIARY_NUMBER DESC
+        ) D2
+        <![CDATA[
+            WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+        ) WHERE R > (#{criteria.page} - 1) * #{criteria.amount}
+        ]]>
+    </select>
+
+    <select id="toMeFromPartnerDiarySelectAll" resultType="diaryDTO"> <!--페이징처리-->
+        SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE, member_number, diary_partner_number
+        FROM
+        (
+        SELECT ROWNUM R, DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE, member_number, diary_partner_number
+        FROM
+        (
+        SELECT DIARY_NUMBER, DIARY_TITLE, DIARY_CONTENT, DIARY_WRITE_DATE, DIARY_UPDATE_DATE, member_number, diary_partner_number
+        FROM TBL_DIARY
+        WHERE DIARY_PARTNER_NUMBER = #{memberNumber} AND MEMBER_NUMBER = #{diaryPartnerNumber}
+        ORDER BY DIARY_NUMBER DESC
+        ) D2
+        <![CDATA[
+            WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+        ) WHERE R > (#{criteria.page} - 1) * #{criteria.amount}
+        ]]>
+    </select>
+
     <select id="getTotal" resultType="_int">
         SELECT COUNT(DIARY_NUMBER) FROM TBL_DIARY
+    </select>
+
+    <select id="myDiaryGetTotal" resultType="_int">
+        SELECT COUNT(DIARY_NUMBER) FROM TBL_DIARY
+        WHERE MEMBER_NUMBER = #{memberNumber}
+    </select>
+
+    <select id="categoryGetTotal" resultType="_int">
+        SELECT COUNT(DIARY_NUMBER) FROM TBL_DIARY
+        WHERE MEMBER_NUMBER = #{memberNumber} AND DIARY_PARTNER_NUMBER = #{diaryPartnerNumber}
+    </select>
+
+    <select id="toMeDiaryGetTotal" resultType="_int">
+        SELECT COUNT(DIARY_NUMBER) FROM TBL_DIARY
+        WHERE DIARY_PARTNER_NUMBER = #{memberNumber}
+    </select>
+
+    <select id="toMeFromPartnerDiaryGetTotal" resultType="_int">
+        SELECT COUNT(DIARY_NUMBER) FROM TBL_DIARY
+        WHERE DIARY_PARTNER_NUMBER = #{memberNumber} AND MEMBER_NUMBER = #{diaryPartnerNumber}
     </select>
 
     <select id="diaryPartnerSelect" resultType="long">
@@ -64,4 +156,5 @@
         FROM TBL_DIARY_PARTNER
         WHERE MEMBER_NUMBER = #{memberNumber} AND DIARY_PARTNER_NUMBER = #{diaryPartnerNumber}
     </select>
+
 </mapper>
