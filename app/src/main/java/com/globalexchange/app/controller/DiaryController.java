@@ -87,15 +87,24 @@ public class DiaryController {
 
     // 일기 상세 페이지, 일기 수정 페이지
     @GetMapping(value={"/detail", "/update"})
-    public void detail(HttpServletRequest request, Long memberNumber, Long diaryNumber, Criteria criteria, Model model){
+    public void detail(HttpServletRequest request, Long diaryNumber, Criteria criteria, Model model){
         model.addAttribute("diary", diaryService.show(diaryNumber));
+        if(request.getSession().getAttribute("memberNumber") != null){
+            Long memberNumber = (Long) request.getSession().getAttribute("memberNumber");
+            model.addAttribute("member", memberObjectificationService.getMypageProfile(memberNumber));
+        }
+
     }
 
     @GetMapping(value={"/detailWrittenByPartner", "/updateWrittenByPartner"})
-    public void detailWrittenByPartner(HttpServletRequest request, Long memberNumber, Long diaryNumber, Criteria criteria, Model model){
+    public void detailWrittenByPartner(HttpServletRequest request, Long diaryNumber, Criteria criteria, Model model){
         model.addAttribute("diary", diaryService.showWrittenByPartner(diaryNumber));
+        if(request.getSession().getAttribute("memberNumber") != null){
+            Long memberNumber = (Long) request.getSession().getAttribute("memberNumber");
+            model.addAttribute("member", memberObjectificationService.getMypageProfile(memberNumber));
+        }
     }
-//
+
 //    @GetMapping(value={"/updateWrittenByPartner"})
 //    public void updateWrittenByPartner(HttpServletRequest request, Long memberNumber, Long diaryNumber, Criteria criteria, Model model){
 //        model.addAttribute("diary", diaryService.showWrittenByPartner(diaryNumber));
@@ -164,11 +173,11 @@ public class DiaryController {
         return new RedirectView("/diary/detailWrittenByPartner");
     }
 
-//    // 일기 코멘트 작성
-//    @GetMapping("/commentWrite")
-//    public void commentWrite(){
-//
-//    }
+    // 일기 코멘트 작성
+    @GetMapping("/commentWrite")
+    public void commentWrite(){
+
+    }
 
     // 일기 코멘트 작성 완료
     @GetMapping("/commentWriteOk")

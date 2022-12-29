@@ -1,9 +1,6 @@
 package com.globalexchange.app.mapper;
 
-import com.globalexchange.app.domain.vo.Criteria;
-import com.globalexchange.app.domain.vo.DiaryVO;
-import com.globalexchange.app.domain.vo.DiaryDTO;
-import com.globalexchange.app.domain.vo.MemberVO;
+import com.globalexchange.app.domain.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -45,15 +42,6 @@ public interface DiaryMapper {
   //  특정 파트너가 나에게 쓴 일기 전체 개수
   public int toMeFromPartnerDiaryGetTotal(@Param("memberNumber") Long memberNumber, @Param("diaryPartnerNumber") Long diaryPartnerNumber);
 
-
-//    코멘트 추가
-
-//    코멘트 수정
-
-//    코멘트 삭제
-  
-//    코멘트 조회
-
   //  파트너 조회
   public List<Long> diaryPartnerSelect(Long memberNumber);
 
@@ -65,5 +53,17 @@ public interface DiaryMapper {
 
 
 
+//    코멘트 조회
+  public List<DiaryCommentVO> diaryCommentSelectAll(@Param("criteria") Criteria criteria, @Param("diaryNumber") Long diaryNumber);
+//    코멘트 개수
+  public int diaryCommentCount(Long diaryNumber);
 
+  //    코멘트 추가
+  public void diaryCommentInsert(DiaryCommentVO diaryCommentVO);
+
+  //    코멘트 수정
+  public void diaryCommentUpdate(DiaryCommentVO diaryCommentVO);
+
+  //    코멘트 삭제
+  public void diaryCommentDelete(Long diaryCommentNumber);
 }

@@ -121,65 +121,77 @@
                                     </div>
                                 </form>
                             </div>
-<!--                            <div class="section-title">-->
-<!--                                <h2>코멘트</h2>-->
-<!--                            </div>-->
-<!--                            <div class="comment-wrapper">-->
-<!--                                <form name="commentForm">-->
-<!--                                    <div class="comment-form-wrapper">-->
-<!--                                        <div class="comment-header">-->
-<!--                                            <div class="comment-profile-image-wrapper">-->
-<!--                                                <img src="/images/member/sample5.png" alt="답글 프로필 사진" class="comment-profile-image-style">-->
-<!--                                            </div>-->
-<!--                                            <div class="comment-profile-metadata">-->
-<!--                                                <div class="comment-nickname">-->
-<!--                                                    Jason Me-->
-<!--                                                </div>-->
-<!--                                                <div class="comment-created-date">-->
-<!--                                                    2022-10-10 15:30-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <textarea name="commentContent" class="comment-body" placeholder="코멘트를 입력해주세요." wrap="soft" maxlength="500"></textarea>-->
-<!--                                        <div class="comment-btn-wrapper">-->
-<!--                                            <input type="button" value="코멘트 작성하기" class="frip-btn">-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </form>-->
-<!--                                &lt;!&ndash; 아래코드는 controller에서 가져온 코멘트 리스트를 뿌릴 때 사용한다. &ndash;&gt;-->
-<!--                                <form id="comments" action="javascript:void(0)">-->
-<!--                                    <div class="comment-form-wrapper">-->
-<!--                                        <div class="comment-header">-->
-<!--                                            <div class="comment-profile-image-wrapper">-->
-<!--                                                <img src="/images/member/sample2.png" alt="답글 프로필 사진" class="comment-profile-image-style">-->
-<!--                                            </div>-->
-<!--                                            <div class="comment-profile-metadata">-->
-<!--                                                <div class="comment-nickname">-->
-<!--                                                    Tom Cruise-->
-<!--                                                </div>-->
-<!--                                                <div class="comment-created-date">-->
-<!--                                                    2022-09-30 12:30-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <pre class="comment-body">-->
-<!--Hey Jason Me!-->
-<!--Your English is very good!-->
-<!--Be Confident!-->
-<!--                                        </pre>-->
-<!--                                        &lt;!&ndash; 수정 시 textaera로 변경한다. &ndash;&gt;-->
-<!--&lt;!&ndash;                                        <textarea name="commentContent" class="comment-body" placeholder="코멘트를 입력해주세요." wrap="soft" maxlength="300" disabled>Hey Jason Me!-->
-<!--Your English is very good!-->
-<!--Be Confident!-->
-<!--                                        </textarea>&ndash;&gt;-->
-<!--                                        <div class="comment-btn-wrapper">-->
-<!--                                            <input type="button" value="코멘트 수정하기" class="frip-btn">-->
-<!--                                            <input type="button" value="코멘트 삭제하기" class="frip-btn">-->
-<!--                                            <input type="button" value="취소" class="frip-btn">-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </form>-->
-<!--                            </div>-->
+                          <div class="section-title">
+                            <h2>코멘트</h2>
+                          </div>
+                          <div class="comment-wrapper">
+                            <form name="commentForm">
+                              <div class="comment-form-wrapper">
+                                <div class="comment-header">
+                                  <div class="comment-profile-image-wrapper" th:object="${member}">
+                                    <!--                                                <img src="/images/member/sample5.png" alt="답글 프로필 사진" class="comment-profile-image-style">-->
+                                    <!--                                                            <img class="partner-profile-img-style" src="/images/member/sample2.png">-->
+                                    <th:block th:if="${not #strings.isEmpty(member.fileProfileVO)}">
+                                      <img class="partner-profile-img-style" th:if="${member.fileProfileVO.fileImageCheck}"
+                                           th:src="@{/fileMeet/display(fileName=${member.fileProfileVO.fileUploadPath} + '/s_' + ${member.fileProfileVO.fileUuid} + '_' + ${member.fileProfileVO.fileName})}">
+                                      <img class="partner-profile-img-style" th:unless="${member.fileProfileVO.fileImageCheck}" src="/images/member/defaultProfileImg.png"/>
+                                    </th:block>
+                                    <th:block th:unless="${not #strings.isEmpty(member.fileProfileVO)}">
+                                      <img class="partner-profile-img-style" src="/images/member/defaultProfileImg.png">
+                                    </th:block>
+                                  </div>
+                                  <div class="comment-profile-metadata">
+                                    <div class="comment-nickname" th:text="${member.memberNickname}">
+
+                                    </div>
+                                    <!--                                                <div class="comment-created-date">-->
+                                    <!--                                                    2022-10-10 15:30-->
+                                    <!--                                                </div>-->
+                                  </div>
+                                </div>
+                                <textarea name="commentContent" id="comment-write" class="comment-body" placeholder="코멘트를 입력해주세요." wrap="soft" maxlength="500"></textarea>
+                                <div class="comment-btn-wrapper">
+                                  <input type="button" id="comment-write-button" value="코멘트 작성하기" class="frip-btn">
+                                </div>
+                              </div>
+                            </form>
+                            <div id="comment-list">
+                              <!-- 아래코드는 controller에서 가져온 코멘트 리스트를 뿌릴 때 사용한다. -->
+                              <!--                                <form id="comments" action="javascript:void(0)">-->
+                              <!--                                    <div class="comment-form-wrapper">-->
+                              <!--                                        <div class="comment-header">-->
+                              <!--                                            <div class="comment-profile-image-wrapper">-->
+                              <!--                                                <img src="/images/member/sample2.png" alt="답글 프로필 사진" class="comment-profile-image-style">-->
+                              <!--                                            </div>-->
+                              <!--                                            <div class="comment-profile-metadata">-->
+                              <!--                                                <div class="comment-nickname">-->
+                              <!--                                                    Tom Cruise-->
+                              <!--                                                </div>-->
+                              <!--                                                <div class="comment-created-date">-->
+                              <!--                                                    2022-09-30 12:30-->
+                              <!--                                                </div>-->
+                              <!--                                            </div>-->
+                              <!--                                        </div>-->
+                              <!--                                        <pre class="comment-body">-->
+                              <!--Hey Jason Me!-->
+                              <!--Your English is very good!-->
+                              <!--Be Confident!-->
+                              <!--                                        </pre>-->
+                              <!--                                        &lt;!&ndash; 수정 시 textaera로 변경한다. &ndash;&gt;-->
+                              <!--&lt;!&ndash;                                        <textarea name="commentContent" class="comment-body" placeholder="코멘트를 입력해주세요." wrap="soft" maxlength="300" disabled>Hey Jason Me!-->
+                              <!--Your English is very good!-->
+                              <!--Be Confident!-->
+                              <!--                                        </textarea>&ndash;&gt;-->
+                              <!--                                        <div class="comment-btn-wrapper">-->
+                              <!--                                            <input type="button" value="코멘트 수정하기" class="frip-btn">-->
+                              <!--                                            <input type="button" value="코멘트 삭제하기" class="frip-btn">-->
+                              <!--                                            <input type="button" value="취소" class="frip-btn">-->
+                              <!--                                        </div>-->
+                              <!--                                    </div>-->
+                              <!--                                </form>-->
+                            </div>
+                          </div>
+                          <div id="pageButton"></div>
                         </section>
                     </div>
                 </div>
@@ -199,10 +211,13 @@
 
 <!-- summernote -->
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script src = "/js/diary/diaryCommentAjax.js"></script>
 
 <script th:inline="javascript">
     let diaryNumber = [[${diary.diaryNumber}]];
     let queryString = [[${criteria.queryString}]];
+    let commentModifyCheck = true;
+    let currentModifyingCommentNumber = 0;
 
     function goUpdate(){
         location.href = "/diary/updateWrittenByPartner" + queryString + "&diaryNumber=" + diaryNumber;
@@ -278,5 +293,168 @@
     }*/
 
     // $('#summernote').summernote('reset');
+
+    // 코멘트
+    globalThis.page = 1;
+    getList();
+
+    function getList() {
+        diaryCommentAjax.getList({
+            diaryNumber: diaryNumber,
+            page: globalThis.page
+        }, showList);
+    }
+
+    function showList(comments) {
+        let commentText="";
+        comments.diaryCommentDTOList.forEach(diaryCommentDTO=>{
+            console.log("파일업로드패스:"+diaryCommentDTO.fileUploadPath);
+            console.log("파일uuid:"+diaryCommentDTO.fileUuid);
+            console.log("파일이름:"+diaryCommentDTO.fileName);
+            commentText+='<form class="comments" action="javascript:void(0)">';
+            commentText+='<div class="comment-form-wrapper">';
+            commentText+='<div class="comment-header">';
+            commentText+='<div class="comment-profile-image-wrapper">';
+            commentText+='<img src="/fileProfile/display?fileName=' + diaryCommentDTO.fileUploadPath + '/s_' + diaryCommentDTO.fileUuid + '_' + diaryCommentDTO.fileName + '" alt="답글 프로필 사진" class="comment-profile-image-style">';
+            commentText+='</div>';
+            commentText+='<div class="comment-profile-metadata">';
+            commentText+='<div class="comment-nickname">';
+            commentText+=diaryCommentDTO.memberNickname;
+            commentText+='</div>';
+            commentText+='<div class="comment-created-date">';
+            commentText+=diaryCommentDTO.diaryCommentUpdateDate;
+            commentText+='</div>';
+            commentText+='</div>';
+            commentText+='</div>';
+            commentText+='<pre class="comment-body comment-body'+ diaryCommentDTO.diaryCommentNumber +'" placeholder="코멘트를 입력해주세요." wrap="soft" maxlength="300">';
+            commentText+= diaryCommentDTO.diaryCommentContent;
+            commentText+='</pre>';
+            // commentText+='<div name="commentContent" class="comment-body comment-hidden comment-body'+ diaryCommentDTO.diaryCommentNumber +'" placeholder="코멘트를 입력해주세요." wrap="soft" maxlength="300" disabled>';
+            // commentText+='</div>';
+            commentText+='<div class="comment-btn-wrapper">';
+            commentText+='<input type="button" value="코멘트 수정하기" class="frip-btn update-btn '+ diaryCommentDTO.diaryCommentNumber +' '+ diaryCommentDTO.memberNumber +'">';
+            commentText+='<input type="button" value="코멘트 삭제하기" class="frip-btn remove-btn '+ diaryCommentDTO.diaryCommentNumber +' '+ diaryCommentDTO.memberNumber +'">';
+            commentText+='<input type="button" value="취소" class="frip-btn cancel-btn '+ diaryCommentDTO.diaryCommentNumber +' '+ diaryCommentDTO.memberNumber +'">';
+            commentText+='</div>';
+            commentText+='</div>';
+            commentText+='</form>';
+        });
+
+        $('#comment-list').html(commentText);
+        showCommentPagenation(comments.diaryCommentCount);
+
+    }
+
+    function showCommentPagenation(commentCount) {
+        let endNumber = Math.ceil(globalThis.page / 2) * 2;
+        let startNumber = endNumber - 1;
+        let realEnd = Math.ceil(commentCount / 2);
+
+        if(endNumber > realEnd){
+            endNumber = realEnd == 0 ? '1' : realEnd;
+        }
+
+        let prev = startNumber > 1;
+        let next = endNumber < realEnd;
+
+        let text = "";
+        if(prev){
+            text += `<a class="changePage" href="` + (startNumber - 1) + `"><code>PREV</code></a>`
+        }
+        for (let i=startNumber; i<=endNumber; i++){
+            if(globalThis.page == i){
+                text += `<code>` + i + `</code>`
+                continue;
+            }
+            text += `<a class="changePage" href="` + i + `"><code>` + i + `</code></a>`
+        }
+        if(next){
+            text += `<a class="changePage" href="` + (endNumber + 1) + `"><code>NEXT</code></a>`
+        }
+        $("div#pageButton").html(text);
+    };
+
+    $("div#pageButton").on("click", "a.changePage", function(e){
+        e.preventDefault();
+        globalThis.page = $(this).attr("href");
+        getList();
+    });
+
+    // 코멘트 작성
+    $("#comment-write-button").on("click", function () {
+        let commentContent = $("#comment-write").val();
+        if(commentContent==''){
+            alert("코멘트를 작성해주세요");
+            return;
+        }
+        else{
+            diaryCommentAjax.add({
+                    diaryNumber: diaryNumber,
+                    diaryCommentContent: commentContent
+                },
+                function () {
+                    $("#comment-write").val("");
+                    getList();
+                }
+            );
+        }
+    });
+
+    let sessionMemberNumber = [[${session.memberNumber}]];
+    // 코멘트 수정
+    $("#comment-list").on("click", ".update-btn", function(){
+        if(sessionMemberNumber!=this.classList[3]){
+            alert("작성자가 아니므로 수정할 수 없습니다.");
+        }
+        else if(commentModifyCheck==false && currentModifyingCommentNumber!=this.classList[2]){
+            alert("수정 중인 코멘트가 있습니다.");
+            return;
+        }
+        else if(currentModifyingCommentNumber==0){
+            currentModifyingCommentNumber=this.classList[2];
+            let diaryCommentNumber = this.classList[2];
+            commentModifyCheck=false;
+            $(".comment-body"+diaryCommentNumber).replaceWith('<textarea class="comment-body comment-update comment-body'+diaryCommentNumber+'" placeholder="코멘트를 입력해주세요." wrap="soft" maxlength="300">'
+                +$(".comment-body"+diaryCommentNumber).text()+'</textarea>'
+            );
+        }
+        else{
+            console.log($("textarea.comment-body"+currentModifyingCommentNumber).val());
+            diaryCommentAjax.modify({
+                diaryCommentNumber: currentModifyingCommentNumber,
+                diaryCommentContent: $("textarea.comment-body"+currentModifyingCommentNumber).val()
+            }, function () {
+                getList();
+                commentModifyCheck=true;
+            });
+            currentModifyingCommentNumber = 0;
+        }
+    });
+
+    // 코멘트 취소
+    $("#comment-list").on("click", ".cancel-btn", function(){
+        let diaryCommentCancel = this.classList[2];
+        $("textarea.comment-body"+diaryCommentCancel).replaceWith('<div class="comment-body comment-body'+diaryCommentCancel+'" placeholder="코멘트를 입력해주세요." wrap="soft" maxlength="300">'
+            +$(".comment-body"+diaryCommentCancel).text()+'</div>');
+        commentModifyCheck=true;
+        currentModifyingCommentNumber=0;
+    });
+
+    // 코멘트 삭제
+    $("#comment-list").on("click", ".remove-btn", function(){
+        if(sessionMemberNumber!=this.classList[3]){
+            alert("작성자가 아니므로 삭제할 수 없습니다.");
+        }
+        else{
+            let diaryCommentRemove = this.classList[2];
+
+            diaryCommentAjax.remove(
+                diaryCommentRemove,
+                function(){
+                    getList();
+                }
+            )
+        };
+    });
 </script>
 </html>

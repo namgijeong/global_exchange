@@ -282,6 +282,62 @@ public class DiaryObjectificationService implements DiaryService {
     memberReportDAO.saveReport(reportingMemberNumber, reportedMemberNumber);
   }
 
+  @Override
+  public List<DiaryCommentDTO> diaryCommentSelectAll(Criteria criteria, Long diaryNumber){
+    List<DiaryCommentVO> diaryCommentVOList = diaryDAO.diaryCommentSelectAll(criteria, diaryNumber);
+    List<DiaryCommentDTO> diaryCommentDTOList = new ArrayList<>();
+    diaryCommentVOList.forEach(diaryCommentVO -> {
+      MemberVO memberVO = memberDAO.findByMemberNumber(diaryCommentVO.getMemberNumber());
+      FileProfileVO fileProfileVO = memberDAO.myPageProfile(diaryCommentVO.getMemberNumber());
 
+      DiaryCommentDTO diaryCommentDTO = new DiaryCommentDTO();
+      diaryCommentDTO.setMemberNumber(diaryCommentVO.getMemberNumber());
+      diaryCommentDTO.setMemberNickname(memberVO.getMemberNickname());
+      diaryCommentDTO.setDiaryNumber(diaryCommentVO.getDiaryNumber());
+      diaryCommentDTO.setDiaryCommentNumber(diaryCommentVO.getDiaryCommentNumber());
+      diaryCommentDTO.setDiaryCommentContent(diaryCommentVO.getDiaryCommentContent());
+      diaryCommentDTO.setDiaryCommentWriteDate(diaryCommentVO.getDiaryCommentWriteDate());
+      diaryCommentDTO.setDiaryCommentUpdateDate(diaryCommentVO.getDiaryCommentUpdateDate());
 
+      if(fileProfileVO != null){
+        diaryCommentDTO.setFileImageCheck(fileProfileVO.isFileImageCheck());
+        diaryCommentDTO.setFileNumber(fileProfileVO.getFileNumber());
+        diaryCommentDTO.setFileName(fileProfileVO.getFileName());
+        diaryCommentDTO.setFileUploadPath(fileProfileVO.getFileUploadPath());
+        diaryCommentDTO.setFileUuid(fileProfileVO.getFileUuid());
+        diaryCommentDTO.setFileSize(fileProfileVO.getFileSize());
+      }
+      else{
+        diaryCommentDTO.setFileImageCheck(false);
+        diaryCommentDTO.setFileNumber(null);
+        diaryCommentDTO.setFileName(null);
+        diaryCommentDTO.setFileUploadPath(null);
+        diaryCommentDTO.setFileUuid(null);
+        diaryCommentDTO.setFileSize(null);
+      }
+
+      diaryCommentDTOList.add(diaryCommentDTO);
+    });
+    return diaryCommentDTOList;
+  }
+
+  @Override
+  public int diaryCommentCount(Long diaryNumber){
+    return diaryDAO.diaryCommentCount(diaryNumber);
+  }
+
+  @Override
+  public void diaryCommentInsert(DiaryCommentVO diaryCommentVO){
+    diaryDAO.diaryCommentInsert(diaryCommentVO);
+  }
+
+  @Override
+  public void diaryCommentUpdate(DiaryCommentVO diaryCommentVO){
+    diaryDAO.diaryCommentUpdate(diaryCommentVO);
+  }
+
+  @Override
+  public void diaryCommentDelete(Long diaryCommentNumber){
+    diaryDAO.diaryCommentDelete(diaryCommentNumber);
+  }
 }
