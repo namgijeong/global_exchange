@@ -17,6 +17,8 @@
         <typeAlias type="com.globalexchange.app.domain.vo.DiaryVO" alias="diaryVO"/>
         <typeAlias type="com.globalexchange.app.domain.vo.DiaryDTO" alias="diaryDTO"/>
         <typeAlias type="com.globalexchange.app.domain.vo.FileDiaryVO" alias="fileDiaryVO"/>
+        <typeAlias type="com.globalexchange.app.domain.vo.DiaryCommentVO" alias="diaryCommentVO"/>
+        <typeAlias type="com.globalexchange.app.domain.vo.DiaryCommentDTO" alias="diaryCommentDTO"/>
 
         <typeAlias type="com.globalexchange.app.domain.vo.LodgingVO" alias="lodgingVO"/>
         <typeAlias type="com.globalexchange.app.domain.vo.FileLodgingVO" alias="fileLodgingVO"/>

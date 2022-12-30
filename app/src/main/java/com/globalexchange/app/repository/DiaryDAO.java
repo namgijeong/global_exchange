@@ -90,5 +90,28 @@ public class DiaryDAO {
     return diaryMapper.diaryPartnerCheck(memberNumber, diaryPartnerNumber);
   }
 
+  // 코멘트 조회
+  public List<DiaryCommentVO> diaryCommentSelectAll(Criteria criteria, Long diaryNumber){
+    return diaryMapper.diaryCommentSelectAll(criteria, diaryNumber);
+  }
 
+  // 코멘트 개수
+  public int diaryCommentCount(Long diaryNumber){
+    return diaryMapper.diaryCommentCount(diaryNumber);
+  }
+
+  // 코멘트 추가
+  public void diaryCommentInsert(DiaryCommentVO diaryCommentVO){
+    diaryMapper.diaryCommentInsert(diaryCommentVO);
+  }
+
+  // 코멘트 수정
+  public void diaryCommentUpdate(DiaryCommentVO diaryCommentVO){
+    diaryMapper.diaryCommentUpdate(diaryCommentVO);
+  }
+
+  // 코멘트 삭제
+  public void diaryCommentDelete(Long diaryCommentNumber){
+    diaryMapper.diaryCommentDelete(diaryCommentNumber);
+  }
 }

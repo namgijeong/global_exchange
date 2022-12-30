@@ -202,40 +202,40 @@
                 <div class="modal-div-wrapper">
                     <div class="modal-country-section">
                         <div class="modal-country-select">
-                            <div>
-                                <div class="modal-country-name">정렬</div>
-                                <div class="modal-country-box">
-                                    <div class="modal-radio-input-wrapper">
-                                        <div class="modal-radio-input">
-                                            <label for="radioLatest" class="modal-label">
-                                                최신순
-                                                <div class="modal-radio">
-                                                    <div class="modal-radio-circle"></div>
-                                                </div>
-                                                <input name="filter" value="latest" type="radio" class="modal-input" id="radioLatest" checked>
-                                            </label>
-                                        </div>
-                                        <div class="modal-radio-input">
-                                            <label for="radioOldest" class="modal-label">
-                                                오래된순
-                                                <div class="modal-radio">
-                                                    <div class="modal-radio-circle"></div>
-                                                </div>
-                                                <input name="filter" value="oldest" type="radio" class="modal-input" id="radioOldest">
-                                            </label>
-                                        </div>
-                                        <div class="modal-radio-input">
-                                            <label for="radioComments" class="modal-label">
-                                                코멘트 많은 순
-                                                <div class="modal-radio">
-                                                    <div class="modal-radio-circle"></div>
-                                                </div>
-                                                <input name="filter" value="comments" type="radio" class="modal-input" id="radioComments">
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<!--                            <div>-->
+<!--                                <div class="modal-country-name">정렬</div>-->
+<!--                                <div class="modal-country-box">-->
+<!--                                    <div class="modal-radio-input-wrapper">-->
+<!--                                        <div class="modal-radio-input">-->
+<!--                                            <label for="radioLatest" class="modal-label">-->
+<!--                                                최신순-->
+<!--                                                <div class="modal-radio">-->
+<!--                                                    <div class="modal-radio-circle"></div>-->
+<!--                                                </div>-->
+<!--                                                <input name="filter" value="latest" type="radio" class="modal-input" id="radioLatest" checked>-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                        <div class="modal-radio-input">-->
+<!--                                            <label for="radioOldest" class="modal-label">-->
+<!--                                                오래된순-->
+<!--                                                <div class="modal-radio">-->
+<!--                                                    <div class="modal-radio-circle"></div>-->
+<!--                                                </div>-->
+<!--                                                <input name="filter" value="oldest" type="radio" class="modal-input" id="radioOldest">-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                        <div class="modal-radio-input">-->
+<!--                                            <label for="radioComments" class="modal-label">-->
+<!--                                                코멘트 많은 순-->
+<!--                                                <div class="modal-radio">-->
+<!--                                                    <div class="modal-radio-circle"></div>-->
+<!--                                                </div>-->
+<!--                                                <input name="filter" value="comments" type="radio" class="modal-input" id="radioComments">-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
                             <div>
                                 <div class="filter-title">
                                     교환일기 파트너명
@@ -351,22 +351,22 @@
 
 
     // 필터 라디오
-    CirclesRadio[0].style.backgroundColor="#3377FF";
-
-    let prev;
-    btnsRadio.forEach((btnRadio,index)=>{
-        btnRadio.addEventListener("click",function(){
-
-            CirclesRadio[0].style.backgroundColor="white";
-
-            if(prev!=null){
-                prev.style.backgroundColor="white";
-            }
-
-            CirclesRadio[index].style.backgroundColor="#3377FF";
-            prev=CirclesRadio[index];
-        });
-    });
+    // CirclesRadio[0].style.backgroundColor="#3377FF";
+    //
+    // let prev;
+    // btnsRadio.forEach((btnRadio,index)=>{
+    //     btnRadio.addEventListener("click",function(){
+    //
+    //         CirclesRadio[0].style.backgroundColor="white";
+    //
+    //         if(prev!=null){
+    //             prev.style.backgroundColor="white";
+    //         }
+    //
+    //         CirclesRadio[index].style.backgroundColor="#3377FF";
+    //         prev=CirclesRadio[index];
+    //     });
+    // });
 
 
     // 파트너 이름 체크박스
