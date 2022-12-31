@@ -475,10 +475,10 @@ button {
     overflow-x: hidden;
 }
 
-.modal-country-select {
-    padding-top: 30px;
-    padding-bottom: 10px;
-}
+/*.modal-country-select {*/
+/*    padding-top: 30px;*/
+/*    padding-bottom: 10px;*/
+/*}*/
 
 .modal-country-name {
     padding-bottom: 20px;

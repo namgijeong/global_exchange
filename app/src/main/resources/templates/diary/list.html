@@ -190,7 +190,7 @@
 <!--                    </a>-->
                     <a class="change-page" th:href="*{endPage + 1}" th:if="*{next}">
                         <code>></code>
->>>>>>> 0aed4a27dd54f69082032a940e933b317a0641e6
+
                     </a>
                 </div>
                 <div class="filter-button-wrapper">
@@ -199,6 +199,7 @@
                             필터
                         </button>
                     </div>
+
                 </div>
             </div>
             <div class="diary-list-wrapper">
@@ -419,6 +420,49 @@
                                     </label>
                                 </label>
 
+
+                    <button class="close-btn">
+                        <img src="/images/modal/modalCloseBtn.svg" alt="닫기 버튼">
+                    </button>
+                </header>
+                <div class="modal-div-wrapper">
+                    <div class="modal-country-section">
+                        <div class="modal-country-select">
+<!--                            <div>-->
+<!--                                <div class="modal-country-name">정렬</div>-->
+<!--                                <div class="modal-country-box">-->
+<!--                                    <div class="modal-radio-input-wrapper">-->
+<!--                                        <div class="modal-radio-input">-->
+<!--                                            <label for="radioLatest" class="modal-label">-->
+<!--                                                최신순-->
+<!--                                                <div class="modal-radio">-->
+<!--                                                    <div class="modal-radio-circle"></div>-->
+<!--                                                </div>-->
+<!--                                                <input name="filter" value="latest" type="radio" class="modal-input" id="radioLatest" checked>-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                        <div class="modal-radio-input">-->
+<!--                                            <label for="radioOldest" class="modal-label">-->
+<!--                                                오래된순-->
+<!--                                                <div class="modal-radio">-->
+<!--                                                    <div class="modal-radio-circle"></div>-->
+<!--                                                </div>-->
+<!--                                                <input name="filter" value="oldest" type="radio" class="modal-input" id="radioOldest">-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                        <div class="modal-radio-input">-->
+<!--                                            <label for="radioComments" class="modal-label">-->
+<!--                                                코멘트 많은 순-->
+<!--                                                <div class="modal-radio">-->
+<!--                                                    <div class="modal-radio-circle"></div>-->
+<!--                                                </div>-->
+<!--                                                <input name="filter" value="comments" type="radio" class="modal-input" id="radioComments">-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
                             <div>
                                 <div class="filter-title">
                                     교환일기 파트너명
@@ -503,7 +547,7 @@
     const btnModal = document.querySelector(".filter-button");
     const btnsRadio=document.querySelectorAll(".modal-input");
     const CirclesRadio=document.querySelectorAll(".modal-radio-circle");
-<<<<<<< HEAD
+
 
     // 부모스크롤 비활성화
     const openModal = () => {
@@ -563,7 +607,7 @@
     });
 
     //  페이지 이동
-=======
+
 
     // 부모스크롤 비활성화
     const openModal = () => {
@@ -588,22 +632,22 @@
 
 
     // 필터 라디오
-    CirclesRadio[0].style.backgroundColor="#3377FF";
-
-    let prev;
-    btnsRadio.forEach((btnRadio,index)=>{
-        btnRadio.addEventListener("click",function(){
-
-            CirclesRadio[0].style.backgroundColor="white";
-
-            if(prev!=null){
-                prev.style.backgroundColor="white";
-            }
-
-            CirclesRadio[index].style.backgroundColor="#3377FF";
-            prev=CirclesRadio[index];
-        });
-    });
+    // CirclesRadio[0].style.backgroundColor="#3377FF";
+    //
+    // let prev;
+    // btnsRadio.forEach((btnRadio,index)=>{
+    //     btnRadio.addEventListener("click",function(){
+    //
+    //         CirclesRadio[0].style.backgroundColor="white";
+    //
+    //         if(prev!=null){
+    //             prev.style.backgroundColor="white";
+    //         }
+    //
+    //         CirclesRadio[index].style.backgroundColor="#3377FF";
+    //         prev=CirclesRadio[index];
+    //     });
+    // });
 
 
     // 파트너 이름 체크박스
@@ -646,7 +690,7 @@
         location.href="/diary/listWrittenByPartner";
     });
 
->>>>>>> 0aed4a27dd54f69082032a940e933b317a0641e6
+
     $("a.write").on("click",function(e){
         e.preventDefault();
         location.href="/diary/write";

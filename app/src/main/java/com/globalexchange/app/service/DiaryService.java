@@ -65,7 +65,20 @@ public interface DiaryService {
     // 파트너 신고
     public void registerReport(Long reportingMemberNumber, Long reportedMemberNumber);
 
+    // 코멘트 조회
+    public List<DiaryCommentDTO> diaryCommentSelectAll(Criteria criteria, Long diaryNumber);
 
+    // 코멘트 개수
+    public int diaryCommentCount(Long diaryNumber);
+
+    // 코멘트 추가
+    public void diaryCommentInsert(DiaryCommentVO diaryCommentVO);
+
+    // 코멘트 수정
+    public void diaryCommentUpdate(DiaryCommentVO diaryCommentVO);
+
+    // 코멘트 삭제
+    public void diaryCommentDelete(Long diaryCommentNumber);
 }
 
 
