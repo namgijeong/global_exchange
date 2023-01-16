@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name ="google-signin-client_id" content="373673855497-8p67tihs4dtqcn7vvkfheuvurao2o7i1.apps.googleusercontent.com">
+    <meta name ="google-signin-client_id" content="647764938341-9f894h7dc0kv8dspj2ltma9h4vg62el5.apps.googleusercontent.com">
     <title>로그인</title>
     <link href="/css/main/header.css" rel="stylesheet" type="text/css" />
     <link href="/css/main/footer.css" rel="stylesheet" type="text/css" />
@@ -23,8 +23,9 @@
         </div>
         <div id="otherLoginInfo">
             <p>다른방식으로 로그인</p>
-<!--            <div><button id="goRealGoogleLogin" onclick="init()"><img src="/images/member/googleLoginIcon.png"/></button></div>-->
-            <div><button id="goRealGoogleLogin" onclick="javascript:alert('아직 개발 중 입니다')"><img src="/images/member/googleLoginIcon.png"/></button></div>
+            <div><button id="goRealGoogleLogin" onclick="goGoogleOauth()"><img src="/images/member/googleLoginIcon.png"/></button></div>
+            <!--<div><button id="goRealGoogleLogin" onclick="init()"><img src="/images/member/googleLoginIcon.png"/></button></div>-->
+            <!--<div><button id="goRealGoogleLogin" onclick="javascript:alert('아직 개발 중 입니다')"><img src="/images/member/googleLoginIcon.png"/></button></div>-->
         </div>
     </section>
     <form th:action="@{/member/emailLogin}" method="post">

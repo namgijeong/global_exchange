@@ -26,7 +26,7 @@
                     <div class="header-section-wrapper" th:object="${partner}">
                         <div class="image-wrapper">
                             <th:block th:if="${not #strings.isEmpty(partner.fileProfileVO)}">
-                                <img class="header-image" th:if="*{fileProfileVO.fileImageCheck}" th:src="@{/fileDiary/display(fileName=*{fileProfileVO.fileUploadPath} + '/s_' + *{fileProfileVO.fileUuid} + '_' + *{fileDiaryVO.fileName})}">
+                                <img class="header-image" th:if="*{fileProfileVO.fileImageCheck}" th:src="@{/fileDiary/display(fileName=*{fileProfileVO.fileUploadPath} + '/s_' + *{fileProfileVO.fileUuid} + '_' + *{fileProfileVO.fileName})}">
                                 <img class="header-image" th:unless="*{fileProfileVO.fileImageCheck}" th:src="@{/images/member/defaultProfileImg.png}" width="375">
                             </th:block>
                             <th:block th:unless="${not #strings.isEmpty(partner.fileProfileVO)}">
@@ -72,7 +72,8 @@
                                     <div class="img-wrapper">
                                         <div th:text="*{memberTeachingLang}">
                                         </div>
-                                        <img class="nation-img-style" src="/images/noImage/no-image.jpg">
+                                        <!--<img class="nation-img-style" src="/images/noImage/no-image.jpg">-->
+                                        <img class="nation-img-style"  th:src="@{*{memberNationUrl}}" width="375">
                                     </div>
                                 </div>
                                 <div class="partner-profile-wrapper">
@@ -83,7 +84,8 @@
                                         <div th:text="*{memberLearningLang}">
                                             ENGLISH
                                         </div>
-                                        <img class="nation-img-style" src="/images/noImage/no-image.jpg">
+                                        <!--<img class="nation-img-style" src="/images/noImage/no-image.jpg">-->
+                                        <img class="nation-img-style"  th:src="@{*{memberLearningUrl}}" width="375">
                                     </div>
                                 </div>
                             </section>

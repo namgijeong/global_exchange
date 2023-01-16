@@ -17,6 +17,24 @@
         WHERE MEMBER_ID = #{memberId} and MEMBER_PASSWORD = #{memberPassword}
     </select>
 
+    <select id="findByEmail" resultType="memberVO">
+        SELECT MEMBER_NUMBER, MEMBER_ID ,MEMBER_NICKNAME
+        FROM TBL_MEMBER
+        WHERE MEMBER_ID=#{memberId}
+    </select>
+    <update id="updateByEmail">
+        UPDATE TBL_MEMBER
+        SET MEMBER_NICKNAME=#{memberNickname}
+        WHERE MEMBER_ID=#{memberId}
+    </update>
+    <insert id="insertByEmail">
+        <selectKey keyProperty="memberNumber" order="BEFORE" resultType="long">
+            SELECT MEMBER_SEQ.NEXTVAL FROM DUAL
+        </selectKey>
+        insert into tbl_member(member_number, member_id, member_nickname, member_password, member_teaching_lang, member_learning_lang, member_interesting, member_gender, member_nation_url, MEMBER_LEARNING_URL)
+        values(#{memberNumber}, #{memberId}, #{memberNickname}, #{memberPassword}, #{memberTeachingLang}, #{memberLearningLang}, #{memberInteresting}, #{memberGender}, #{memberNationUrl} , #{memberLearningUrl})
+    </insert>
+
     <insert id="joinForm">
         <selectKey keyProperty="memberNumber" order="BEFORE" resultType="long">
             SELECT MEMBER_SEQ.NEXTVAL FROM DUAL
@@ -36,6 +54,10 @@
     <select id="currentJoinMemberNum" resultType="long">
         SELECT LAST_NUMBER FROM all_SEQUENCES
         WHERE SEQUENCE_NAME = 'MEMBER_SEQ'
+    </select>
+
+    <select id="currentJoinMemberNum2" resultType="long">
+        SELECT (MEMBER_SEQ.NEXTVAL-1) FROM DUAL
     </select>
 
     <insert id="profileDefaultInsert">

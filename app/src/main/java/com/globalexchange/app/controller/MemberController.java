@@ -7,6 +7,7 @@ import com.globalexchange.app.domain.vo.MemberVO;
 import com.globalexchange.app.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.SpringBootVersion;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -112,23 +113,27 @@ public class MemberController {
     }
 
     //구글 회원가입
-//    @GetMapping("/joinGoogle")
-//    @RequestMapping(value = "/googleJoin")
-//    public String joinGoogle(MemberVO memberVO){
+ //   @GetMapping("/joinGoogle")
+    @RequestMapping(value = "/googleJoin")
+    public void joinGoogle(MemberVO memberVO){
 //        memberService.googleJoin(memberVO);
 //
-//        return "/main/main";
-//    }
+
+        //return new RedirectView("/main/main");
+    }
 
 
     //로그인 선택 페이지 이동
     @GetMapping("/login")
     public void login(){
+        log.info("스프링현재버전"+org.springframework.core.SpringVersion.getVersion());
+        log.info("스프링부트현재버전"+ SpringBootVersion.getVersion());
     }
 
 
     //    이메일 로그인
-    @PostMapping(value = "/emailLogin")
+    //@PostMapping(value = "/emailLogin")
+    @RequestMapping(value = "/emailLogin")
     public RedirectView emailLogin(MemberVO memberVO, HttpServletRequest request, RedirectAttributes redirectAttributes) {
         HttpSession session = request.getSession();
 
@@ -146,17 +151,22 @@ public class MemberController {
         }
     }
 
-    @GetMapping("/logout")
+    //@Mapping("/logout")
+    @RequestMapping("/logout")
     public RedirectView logout(HttpServletRequest request){
         HttpSession session = request.getSession();
         session.invalidate();
+        // Google logout
+       /* GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build();
+        GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(getContext(), gso);
+        googleSignInClient.signOut();*/
         return new RedirectView("/main/main");
     }
 
-    //구글 로그인
-//    @RequestMapping(value = "/googleLogin")
-//    public String googleLogin(MemberVO memberVO, HttpServletRequest request){
-//        HttpSession session = request.getSession();
+    //구글 로그인 페이지
+    @RequestMapping(value = "/googleLogin")
+    public RedirectView googleLogin(MemberVO memberVO, HttpServletRequest request){
+        HttpSession session = request.getSession();
 //
 //        Long memberNumber = memberService.googleLogin(memberVO);
 //
@@ -167,9 +177,29 @@ public class MemberController {
 //        }else {
 //            session.setAttribute("memberNumber" , memberNumber);
 //
-//            return "/main/main";
+        return new RedirectView("/main/main");
+        //return new RedirectView("/member/googleLoginProcessing");
+        //return "/member/googleLogin";
 //        }
-//    }
+    }
+    //구글 로그인 진행 url
+    @RequestMapping(value = "/googleLoginProcessing")
+    public void googleLoginProcessing(MemberVO memberVO, HttpServletRequest request){
+        HttpSession session = request.getSession();
+//
+//        Long memberNumber = memberService.googleLogin(memberVO);
+//
+//        if(memberNumber == null){
+//
+//            return "member/login";
+//
+//        }else {
+//            session.setAttribute("memberNumber" , memberNumber);
+//
+        //return new RedirectView("/main/main");
+        //return "/member/googleLogin";
+//        }
+    }
 
     // 마이페이지 메인
     @RequestMapping(value = "/mypage")

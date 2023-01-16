@@ -51,6 +51,19 @@ public class MemberDAO {
 
     }
 
+    //oauth할때 이메일로 멤버가 가입되어있는지 찾기
+    public MemberVO findByEmail(String memberId){
+        return memberMapper.findByEmail(memberId);
+
+    }
+    //oauth할때 이메일로 멤버가 가입되어 있으면 email은 같지만 닉네임이 업데이트된채로 로그인할수 있으므로 닉네임 업데이트
+    public void updateByEmail(String memberId){
+        memberMapper.updateByEmail(memberId);
+    }
+    //oauth할때 이메일로 멤버가 가입되어 있지 않으면 회원가입으로 db에 추가
+    public void insertByEmail(MemberVO memberVO){
+        memberMapper.insertByEmail(memberVO);
+    }
 
     public MemberVO findByMemberNumber(Long memberNumber) {
         return memberMapper.select(memberNumber);
@@ -61,6 +74,11 @@ public class MemberDAO {
     public Long currentJoinMemberNum(){
 
         return memberMapper.currentJoinMemberNum();
+    }
+
+    //google oauth할때 currentJoinMemberNum이 원래 시퀀스랑 오류나서 새로 만듬
+    public Long currentJoinMemberNum2(){
+        return memberMapper.currentJoinMemberNum2();
     }
 
     public void profileDefaultInsert(FileProfileVO fileProfileVO){

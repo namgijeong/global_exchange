@@ -99,7 +99,7 @@
             <version>1.4.7</version>
         </dependency>
         <!--spring security-->
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
             <version>4.2.2.RELEASE</version>
@@ -108,7 +108,39 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
             <version>4.2.2.RELEASE</version>
+        </dependency>-->
+
+        <!--spring boot security-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+
+        <!--spring boot security oauth2 쓰기위해서 추가-->
+        <dependency>
+
+            <groupId>org.springframework.security.oauth.boot</groupId>
+
+            <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+
+            <version>2.0.0.RELEASE</version>
+
+        </dependency>
+        <!--<dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2:2.4.2.RELEASE</artifactId>
+        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-client</artifactId>
+        </dependency>
+
+        <!--spring data jpa-->
+        <!--<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>-->
+
     </dependencies>
 
     <build>

@@ -42,12 +42,33 @@ public class MemberObjectificationService implements MemberService{
          memberDAO.joinForm(memberVO);
     }
 
+    //oauth할때 이메일로 멤버가 가입되어있는지 찾기
+    @Override
+    public MemberVO findByEmail(String memberId){
+        return memberDAO.findByEmail(memberId);
+
+    }
+    //oauth할때 이메일로 멤버가 가입되어 있으면 email은 같지만 닉네임이 업데이트된채로 로그인할수 있으므로 닉네임 업데이트
+    @Override
+    public void updateByEmail(String memberId){
+        memberDAO.updateByEmail(memberId);
+    }
+    //oauth할때 이메일로 멤버가 가입되어 있지 않으면 회원가입으로 db에 추가
+    @Override
+    public void insertByEmail(MemberVO memberVO){
+            memberDAO.insertByEmail(memberVO);
+    }
+
     @Override
     public  Long currentJoinMemberNum(){
 
        return memberDAO.currentJoinMemberNum();
     }
 
+    //google oauth할때 currentJoinMemberNum이 원래 시퀀스랑 오류나서 새로 만듬
+    public Long currentJoinMemberNum2(){
+        return memberDAO.currentJoinMemberNum2();
+    }
 
     @Override
     public void profileDefaultInsert(FileProfileVO fileProfileVO){

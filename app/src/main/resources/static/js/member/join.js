@@ -1,4 +1,4 @@
-function init() {
+/*function init() {
     gapi.load('auth2', function() {
         gapi.auth2.init();
         options = new gapi.auth2.SigninOptionsBuilder();
@@ -31,7 +31,7 @@ function onSignIn(googleUser) {
 }
 function onSignInFailure(t){
     console.log(t);
-}
+}*/
 
 
 // $("#memberId").on("blur", function(){checkId($(this).val());});
@@ -57,4 +57,9 @@ function onSignInFailure(t){
 // }
 //
 //
+
+function goGoogleOauth(){
+    location.href="http://localhost:22222/member/googleLogin";
+}
+
 
