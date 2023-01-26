@@ -316,10 +316,10 @@
       </button>-->
     </div>
 
-    <form th:action="@{/needLodging/categorylist}" th:object="${criteria}" name="pageForm">
+    <form th:action="@{/needLodging/list}" th:object="${criteria}" name="pageForm">
       <input type="hidden" th:field="*{page}">
       <input type="hidden" th:field="*{amount}">
-      <input type="hidden" name="nation2" th:value="${nation2}">
+
     </form>
 
   </div>

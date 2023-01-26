@@ -26,5 +26,7 @@
         <typeAlias type="com.globalexchange.app.domain.vo.LodgingAnswerCommentVO" alias="lodgingAnswerCommentVO"/>
 
         <typeAlias type="com.globalexchange.app.domain.vo.NoticeVO" alias="noticeVO"/>
+
+
     </typeAliases>
 </configuration>
