@@ -266,12 +266,12 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script th:inline="javascript">
-    const modalContainer = document.querySelector(".modal-container");
+    /*const modalContainer = document.querySelector(".modal-container");
     const btnModal = document.querySelector('.filter-button');
     const btnsRadio = document.querySelectorAll(".modal-input");
     const CirclesRadio=document.querySelectorAll(".modal-radio-circle");
     const $modalFooterBtn = $('.modal-footer-btn');
-    const $inputs = $('input[name=language]');
+    const $inputs = $('input[name=language]');*/
     const $read = $('.read');
     /*let $chosenLang = "";*/
 
@@ -303,32 +303,65 @@
         }
     });
 
+    //검색어 input 태그 부분 값 유지
+    $('input[name=searchKeyWord]').val(searchKeyWord);
+
+    //검색어 부분 하이라이터
+    let search = searchKeyWord;
+    $(".preview-content-main:contains('"+search+"')").each(function () {
+        //‘플래그’는 정규 표현식의 옵션으로서, 검색 방식을 설정하기 위해 사용한다.
+        //g 가 있는 표현식은 모든 검색 결과를 배열로 반환한다.
+        //‘영어 대소문자를 구분하지 않겠다’는 의미이다.
+        //자바스크립트 정규식 생성법
+        let regex = new RegExp(search,'gi');
+
+        //replace() 함수는 문자열에서 변경하려는 문자열이 여러 번 반복될 경우, 첫 번째로 발견한 문자열만 치환
+        //불행하게도 Javascript에는 replaceAll() 이라는 함수는 없습니다.
+        //replace 함수와 정규식(regular expression)을 사용하여 대소문자 구분없이, 모든 문자열을 치환하는 방법
+        $(this).html( $(this).text().replace(regex, "<span class='text-purple'>"+search+"</span>") );
+    });
+    /*window.onload=function(){
+        let search = searchKeyWord;
+        $(".preview-content-main:contains('"+search+"')").each(function () {
+            let regex = new RegExp(search,'gi');
+            $(this).html( $(this).text().replace(regex, "<span class='text-purple'>"+search+"</span>") );
+        });
+    };*/
+    /*$('input[name=searchKeyWord]').keyup(function () {
+        let search = searchKeyWord;
+        $(".preview-content-main:contains('"+search+"')").each(function () {
+            let regex = new RegExp(search,'gi');
+            $(this).html( $(this).text().replace(regex, "<span class='text-purple'>"+search+"</span>") );
+        });
+    });*/
+
+
     // 부모스크롤 비활성화
-    const openModal = () => {
+    /*const openModal = () => {
         document.body.style.overflow = "hidden";
-    };
+    };*/
 
     // 부모스크롤 활성화
-    const closeModal = () => {
+    /*const closeModal = () => {
         document.body.style.overflow = "unset";
-    };
+    };*/
 
-    btnModal.addEventListener("click", e => {
+    /*btnModal.addEventListener("click", e => {
         modalContainer.style.display = "flex";
         openModal();
-    });
+    });*/
 
-    const closeBtn = modalContainer.querySelector(".close-btn")
+    /*const closeBtn = modalContainer.querySelector(".close-btn")
     closeBtn.addEventListener("click", e => {
         modalContainer.style.display = "none";
         closeModal();
-    });
+    });*/
 
 
     // 필터 라디오
-    CirclesRadio[0].style.backgroundColor="#3377FF";
+   /* CirclesRadio[0].style.backgroundColor="#3377FF";*/
 
-    let prev;
+    /*let prev;
     btnsRadio.forEach((btnRadio,index)=>{
         btnRadio.addEventListener("click",function(){
 
@@ -340,10 +373,10 @@
             CirclesRadio[index].style.backgroundColor="#3377FF";
             prev=CirclesRadio[index];
         });
-    });
+    });*/
 
     // 적용 버튼을 눌렀을 때
-    $modalFooterBtn.on('click', function () {
+   /* $modalFooterBtn.on('click', function () {
         $inputs.each(function (index, item) {
             if($(item).prop('checked')){
                 $chosenLang = $(this).val();
@@ -352,25 +385,25 @@
         modalContainer.style.display = "none";
         closeModal();
         location.href = "/diary/partnerList?page=1&amount=16&memberTeachingLang=" + $chosenLang;
-    })
+    })*/
 
     // 페이지네이션 마우스 올렸을 때 이벤트
-    const $pagenationAtags = $('.change-page');
+    /*const $pagenationAtags = $('.change-page');
 
     $pagenationAtags.hover(function () {
         $(this).css("background-color", 'rgb(229, 231, 234)');
     }, function () {
         $(this).css("background-color", 'transparent');
     });
-
+*/
     // 페이지 버튼을 눌렀을 때 해당 페이지로 이동
-    let $pages = $('.change-page');
+    /*let $pages = $('.change-page');
 
     $pages.on('click', function (e) {
         e.preventDefault();
         $(document.pageForm.page).val($(this).attr('href'));
-        /*$(document.pageForm.memberTeachingLang).val($);*/
+        /!*$(document.pageForm.memberTeachingLang).val($);*!/
         document.pageForm.submit();
-    })
+    })*/
 </script>
 </html>

@@ -121,17 +121,15 @@
 }
 
 #diary, #meetAndHelp, #guestHouse{
-    width:80px;
+    width:70px;
     height:51px;
+    margin-left:10px;
+
+    text-align:center;
 }
-#diary{
-    margin-left:20px;
-}
-#meetAndHelp{
-    margin-left:20px;
-}
+
 .header-icon{
-    width:64px;
+    width:48px;
     height:34px;
 
     margin-left:8px;
@@ -140,7 +138,7 @@
 
 .header-icon>img{
 
-    width:64px;
+    width:48px;
     height:34px;
     background-size:contain;
 }

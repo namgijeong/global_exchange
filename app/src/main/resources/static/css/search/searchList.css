@@ -767,3 +767,7 @@ button {
     cursor: pointer !important;
     pointer-events: auto !important;
 }
+
+.text-purple{
+    color:purple;
+}

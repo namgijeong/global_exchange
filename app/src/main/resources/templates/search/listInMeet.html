@@ -257,9 +257,43 @@
         console.log($(this).data('postType'));
     });
 
-    //전체보기 눌렀을때 각 게시글 종류 성격에 맞춰서 리스트 이동
+
     let searchKeyWord=[[${searchKeyWord}]];
     console.log("searchKeyWord 출력"+searchKeyWord);
+
+    //검색어 input 태그 부분 값 유지
+    $('input[name=searchKeyWord]').val(searchKeyWord);
+
+    //검색어 부분 하이라이터
+    let search = searchKeyWord;
+    $(".preview-content-main:contains('"+search+"')").each(function () {
+        //‘플래그’는 정규 표현식의 옵션으로서, 검색 방식을 설정하기 위해 사용한다.
+        //g 가 있는 표현식은 모든 검색 결과를 배열로 반환한다.
+        //‘영어 대소문자를 구분하지 않겠다’는 의미이다.
+        //자바스크립트 정규식 생성법
+        let regex = new RegExp(search,'gi');
+
+        //replace() 함수는 문자열에서 변경하려는 문자열이 여러 번 반복될 경우, 첫 번째로 발견한 문자열만 치환
+        //불행하게도 Javascript에는 replaceAll() 이라는 함수는 없습니다.
+        //replace 함수와 정규식(regular expression)을 사용하여 대소문자 구분없이, 모든 문자열을 치환하는 방법
+        $(this).html( $(this).text().replace(regex, "<span class='text-purple'>"+search+"</span>") );
+    });
+    /*window.onload=function(){
+        let search = searchKeyWord;
+        $(".preview-content-main:contains('"+search+"')").each(function () {
+            let regex = new RegExp(search,'gi');
+            $(this).html( $(this).text().replace(regex, "<span class='text-purple'>"+search+"</span>") );
+        });
+    };*/
+    /*$('input[name=searchKeyWord]').keyup(function () {
+        let search = searchKeyWord;
+        $(".preview-content-main:contains('"+search+"')").each(function () {
+            let regex = new RegExp(search,'gi');
+            $(this).html( $(this).text().replace(regex, "<span class='text-purple'>"+search+"</span>") );
+        });
+    });*/
+
+    //전체보기 눌렀을때 각 게시글 종류 성격에 맞춰서 리스트 이동
     /*let searchKeyWord=[[${searchKeyWord}]];
     $(".previewContentsHeaderTitleTextTotalGo").on('click',function(e){
         e.preventDefault();
