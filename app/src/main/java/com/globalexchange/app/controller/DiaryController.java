@@ -26,15 +26,15 @@ public class DiaryController {
 
     // 일기 목록 페이지
     @GetMapping("/list")
-    public void list(HttpServletRequest request, Criteria criteria, Model model){
+    public String list(HttpServletRequest request, Criteria criteria, Model model){
         if(criteria.getPage() == 0){
             criteria.create(1, 10);
         }
 
 //        model.addAttribute("members", diaryService.showAllPartner(criteria));
-        model.addAttribute("diaries", diaryService.showAll(criteria));
+       // model.addAttribute("diaries", diaryService.showAll(criteria));
 //        model.addAttribute("diary", diaryService.show(diaryNumber));
-        model.addAttribute("pagination",new PageDTO().createPageDTO(criteria, diaryService.getTotal()));
+        //model.addAttribute("pagination",new PageDTO().createPageDTO(criteria, diaryService.getTotal()));
 //        if(request.getSession().getAttribute("memberNumber") != null){
 //            Long memberNumber = (Long) request.getSession().getAttribute("memberNumber");
 ////            Long diaryPartnerNumber = (Long)request.getSession().getAttribute("diaryPartnerNumber");
@@ -50,6 +50,11 @@ public class DiaryController {
             model.addAttribute("pagination",new PageDTO().createPageDTO(criteria, diaryService.myDiaryGetTotal(memberNumber)));
             model.addAttribute("partners", diaryService.showPartner(memberNumber));
             log.info("멤버넘버: "+memberNumber);
+            log.info("다이어리 리스트 페이지네이션: "+new PageDTO().createPageDTO(criteria, diaryService.myDiaryGetTotal(memberNumber)));
+            return "/diary/list";
+        }
+        else{
+            return "/member/login";
         }
 
 

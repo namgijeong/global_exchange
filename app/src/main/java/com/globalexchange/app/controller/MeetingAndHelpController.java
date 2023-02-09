@@ -24,13 +24,15 @@ public class MeetingAndHelpController {
 
     // 만남과 도움 목록 페이지
     @GetMapping("/list")
-    public void list(Criteria criteria, Model model){
+    public void list(HttpServletRequest request,Criteria criteria, Model model){
 
         if(criteria.getPage() == 0){
             criteria.create(1, 10);
         }
-        model.addAttribute("boards",  meetObjectificationService.meetSelectAll(criteria));
-        model.addAttribute("pagination",new PageDTO().createPageDTO(criteria, meetObjectificationService.getTotal()));
+
+            model.addAttribute("boards", meetObjectificationService.meetSelectAll(criteria));
+            model.addAttribute("pagination", new PageDTO().createPageDTO(criteria, meetObjectificationService.getTotal()));
+
     }
     //모달창을 선택하여 골랐을때
     @GetMapping("/categorylist")
@@ -72,7 +74,7 @@ public class MeetingAndHelpController {
             //return "/member/login";
 
 
-            MemberVO memberVO;
+            /*MemberVO memberVO;
             FileProfileVO fileProfileVO;
             memberVO=meetObjectificationService.writerInfo(1L);
 
@@ -81,7 +83,8 @@ public class MeetingAndHelpController {
             session.setAttribute("memberNumber",1L);
             model.addAttribute("memberVO",memberVO);
             model.addAttribute("file",fileProfileVO);
-            return "/meetingAndHelp/write";
+            return "/meetingAndHelp/write";*/
+
         }
 
         MemberVO memberVO;

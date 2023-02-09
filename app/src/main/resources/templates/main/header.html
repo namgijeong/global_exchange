@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>header</title>
     <link href="/css/main/header.css" rel="stylesheet" type="text/css" />
+
+
 </head>
 <body>
 <div id="topHeader" th:fragment="topHeader(memberNumber, memberNickname)">
@@ -14,19 +16,24 @@
             <th:block th:if="${memberNumber == null}">
                 <span class="top-header-button" id="joinMember" onclick="location.href='/member/join'">회원가입</span>
                 <span class="top-header-button" id="login" onclick="location.href='/member/login'">로그인</span>
+
             </th:block>
             <th:block th:unless="${memberNumber == null}">
+                <!-- |를 앞 뒤로 써주면 +연산자를 사용하지 않아도, 사용한 것과 같은 효과, 복잡한 이스케이프 문자를 안쓰기 위해서 -->
                     <span class="top-header-button" id="admin" th:onclick="|location.href='@{/admin/memberList}'|" th:if="${memberNumber == 0}">
                         <span class="memberNickname-style">관리자 페이지</span>
                     </span>
                     <!--<form th:action="@{/admin/memberList}" method="post" id="adminForm" hidden></form>-->
+                <!-- |를 앞 뒤로 써주면 +연산자를 사용하지 않아도, 사용한 것과 같은 효과, 복잡한 이스케이프 문자를 안쓰기 위해서 -->
                     <span class="top-header-button" id="memberNickname" th:onclick="|location.href='@{/member/mypage}'|" th:unless="${memberNumber == 0}">
                         <span class="memberNickname-style" th:text="${memberNickname}"></span>님
                     </span>
+                <!-- |를 앞 뒤로 써주면 +연산자를 사용하지 않아도, 사용한 것과 같은 효과, 복잡한 이스케이프 문자를 안쓰기 위해서 -->
                     <span class="top-header-button" id="logout" th:onclick="|location.href='@{/member/logout}'|">
                         <button class="logout-btn">로그아웃</button>
                     </span>
             </th:block>
+            <!-- |를 앞 뒤로 써주면 +연산자를 사용하지 않아도, 사용한 것과 같은 효과, 복잡한 이스케이프 문자를 안쓰기 위해서 -->
             <span id="notice" class="top-header-button" th:onclick="|location.href='@{/notice/list}'|">공지사항</span>
             <span id="question" class="top-header-button"th:onclick="|location.href='@{/question/question}'|" >문의사항</span>
         </div>
@@ -38,8 +45,11 @@
             <a id="logo" th:href="@{/main/main}">
                 <img src="/images/main/logo.png"/>
             </a>
+            <!--<img id="searchGo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23AAA' stroke-width='2' d='M11 17c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zM15 15l4.95 4.95'/%3E %3C/svg%3E"/>-->
             <form id="searchSection" name="searchSectionForm" th:action="@{/search/list}">
-                <img id="searchGo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23AAA' stroke-width='2' d='M11 17c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zM15 15l4.95 4.95'/%3E %3C/svg%3E"/>
+<!--                <a th:href="">-->
+                    <img id="searchGo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23AAA' stroke-width='2' d='M11 17c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zM15 15l4.95 4.95'/%3E %3C/svg%3E"/>
+<!--                </a>-->
                 <input name="searchKeyWord" placeholder="어떤 게시글을 찾으시나요?"/>
             </form>
             <a id="diary" th:href="@{/diary/list}">
@@ -65,8 +75,9 @@
     </div>
 
 </body>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script th:inline="javascript">
+
+<!--<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>-->
+<!--<script th:inline="javascript">
     const $joinMember = $('#joinMember');
     const $login = $('#login');
     const $memberNickname = $('#memberNickname');
@@ -77,8 +88,10 @@
     /*const $admin = $('#admin');
     const $adminForm = $('form#adminForm');*/
 
+    alert("들어옴");
+
     $joinMember.on('click', function () {
-        alert("눌림");
+        // alert("눌림");
         location.href = "/member/joinForm";
     });
 
@@ -110,14 +123,41 @@
 
     //돋보기 이미지 누르면 검색결과 페이지로 이동
 
-    $("#searchGo").on('click',function(){
+    $('#searchGo').on('click',function(){
         //form submit
         console.log("submit버튼 누름");
 
         //$("#searchSection").submit();
-        console.log("submit버튼 누름");
-        document.searchSectionForm.submit();
+        //console.log("submit버튼 누름");
+        //document.searchSectionForm.submit();
     });
 
+   /* window.onload = function() {
+        $("#searchGo").on('click',function(){
+            console.log("submit버튼 누름");
+            //document.searchSectionForm.submit();
+
+        });
+    };*/
+    /*function clickSearch(){
+        console.log("submit버튼 누름");
+    }*/
+
+    /*window.onload = function(){
+        function clickSearch(){
+            console.log("submit버튼 누름");
+        }
+    };*/
+</script>-->
+<!--js를 따로 분리한 이유: th fragment는 순수 html만 뽑아오고 그 밑에 스크립트는 포함을 안해서 따로 js파일을 만들어 일일이 넣어줘야한다-->
+<!--<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script th:inline="javascript">
+
+    //let memberNumber = [[${member.memberNumber}]];
+    let memberNumber=[[${session.memberNumber}]];
+    //let memberNumber=[[${memberNumber}]];
+
+
 </script>
+<script src="/js/main/header.js" ></script>-->
 </html>

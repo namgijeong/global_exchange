@@ -346,7 +346,7 @@
 <footer th:replace="/main/footer.html :: #footerFirst"></footer>
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script>
+<script th:inline="javascript">
     const modalContainer = document.querySelector(".modal-container");
     const btnModal = document.querySelector("#mainFilter>button");
     // const btnsRadio1=document.querySelectorAll(".modal-input1");
@@ -418,9 +418,16 @@
       location.href="/meetingAndHelp/categorylist?nation2="+nation2;
     });
 
+    let memberNumber=[[${session.memberNumber}]];
     $("button.post-button").on("click",function(e){
       e.preventDefault();
-      location.href="/meetingAndHelp/write";
+      if(memberNumber!=null){
+        location.href="/meetingAndHelp/write";
+      }
+      else{
+        alert("로그인후 이용하세요.");
+      }
+
     });
     $("a.read").on("click",function(e){
       e.preventDefault();
@@ -429,4 +436,16 @@
 
     })
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script th:inline="javascript">
+
+
+  let memberNumber=[[${session.memberNumber}]];
+
+
+
+</script>
+<script src="/js/main/header.js" ></script>
+
 </html>

@@ -121,7 +121,7 @@
           <div class="map-info">
             <div class="map-info-wrapper">
               <!--<strong class="map-info-content">서울시 영등포구 당산로30길 6 3층 블루기타 실용음악학원</strong>-->
-              <strong class="map-info-content" th:text="${lodgingDTO.lodgingAddress}+${lodgingDTO.lodgingDetailAddress}"></strong>
+              <strong class="map-info-content" th:text="${lodgingDTO.lodgingAddress}+' '+${lodgingDTO.lodgingDetailAddress}"></strong>
             </div>
           </div>
         </div>
@@ -191,6 +191,7 @@
 <footer th:replace="/main/footer.html :: #footerFirst"></footer>
 
 </body>
+<!--geocoder 인식을 위해 반드시 libraries=services를 맨위에 넣는다.-->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2dedcb5b9a8bf1a8785a7e1907f9c2bd&libraries=services"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2dedcb5b9a8bf1a8785a7e1907f9c2bd"></script>
@@ -215,7 +216,8 @@
     console.log(lodgingFullAddress);
 
     // 주소로 좌표를 검색합니다
-    geocoder.addressSearch(lodgingFullAddress, function(result, status) {
+    //상세 주소는 애매하니까 빼고 확실한 주소를 geocoder에 넣어야 맵에 정상적으로 나옴
+    geocoder.addressSearch(lodgingAddress, function(result, status) {
 
         // 정상적으로 검색이 완료됐으면
         if (status === kakao.maps.services.Status.OK) {
@@ -640,6 +642,15 @@
 
 
 
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script th:inline="javascript">
 
+
+  let memberNumber=[[${session.memberNumber}]];
+
+
+
+</script>
+<script src="/js/main/header.js" ></script>
 
 </html>

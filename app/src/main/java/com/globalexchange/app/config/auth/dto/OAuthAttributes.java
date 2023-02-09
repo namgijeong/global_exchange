@@ -1,3 +1,4 @@
+/*
 
 package com.globalexchange.app.config.auth.dto;
 
@@ -51,3 +52,4 @@ public class OAuthAttributes {
 
 }
 
+*/

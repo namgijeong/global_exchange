@@ -1,0 +1,132 @@
+1.원하는 버튼 누르면 로그인은 됨
+하지만 로그아웃 시 다른 버튼 누르면 상태가 유지되는 버그 발생
+//만약 deprecated되면  authorizeHttpRequests()
+        http
+                .csrf().disable()
+                .headers().frameOptions().disable()
+
+                .and()
+                .authorizeRequests()
+                .antMatchers("/","/css/**","/images/**","/js/**","/h2-console/**").permitAll()
+                //단순 이 한줄 때문에 /member/login에서 지멋대로 실행되던게, googleLogin에서 oauth 페이지가 실행된다??????
+                .antMatchers("/member/login").permitAll()
+                .antMatchers("/member/join").permitAll()
+                //.antMatchers("/member/googleJoin").permitAll()
+                //.antMatchers("/member/googleLogin").permitAll()
+                .anyRequest().authenticated()
+                //이렇게했더니 안먹힘
+                //.anyRequest().permitAll()
+
+                //로그인 경로
+                //formLogin()
+                //loginPage("/member/googleLogin")
+                //loginProcessingUrl("/member/googleLogin")
+                //.permitAll()
+                //.and()
+                //.formLogin()
+                //.loginPage("/member/googleLogin")
+                //.loginProcessingUrl("/main/main")
+                //.loginPage("http://localhost:22222/member/googleLogin")
+                //.loginProcessingUrl("http://localhost:22222/member/googleLogin")
+                //.defaultSuccessUrl("/diary/list")
+                //.failureUrl("/member/login")
+
+
+                //로그아웃 경로
+                .and()
+                .logout()
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+                .invalidateHttpSession(true).deleteCookies("JSESSIONID").deleteCookies("SESSION")
+                .logoutSuccessUrl("/main/main")
+
+                .permitAll()
+
+             
+
+2. 로그인 선택 페이지 이동 벗 로그인이 안됨
+
+ http
+                .csrf().disable()
+                .headers().frameOptions().disable()
+
+                .and()
+                .authorizeRequests()
+                .antMatchers("/","/css/**","/images/**","/js/**","/h2-console/**").permitAll()
+                //단순 이 한줄 때문에 /member/login에서 지멋대로 실행되던게, googleLogin에서 oauth 페이지가 실행된다??????
+                .antMatchers("/member/login").permitAll()
+                .antMatchers("/member/join").permitAll()
+                //.antMatchers("/member/googleJoin").permitAll()
+                .antMatchers("/member/googleLogin").permitAll()
+                .anyRequest().authenticated()
+                //이렇게했더니 안먹힘
+                //.anyRequest().permitAll()
+
+                //로그인 경로
+                //formLogin()
+                //loginPage("/member/googleLogin")
+                //loginProcessingUrl("/member/googleLogin")
+                //.permitAll()
+                .and()
+                .formLogin()
+                .loginPage("/member/googleLogin")
+                //.loginProcessingUrl("/main/main")
+                //.loginPage("http://localhost:22222/member/googleLogin")
+                //.loginProcessingUrl("http://localhost:22222/member/googleLogin")
+                .defaultSuccessUrl("/diary/list")
+                .failureUrl("/member/login")
+
+
+                //로그아웃 경로
+                .and()
+                .logout()
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+                .invalidateHttpSession(true).deleteCookies("JSESSIONID").deleteCookies("SESSION")
+                .logoutSuccessUrl("/main/main")
+
+                .permitAll()
+       
+
+3. localhost에서 리디렉션한 횟수가 너무 많습니다
+
+ http
+                .csrf().disable()
+                .headers().frameOptions().disable()
+
+                .and()
+                .authorizeRequests()
+                .antMatchers("/","/css/**","/images/**","/js/**","/h2-console/**").permitAll()
+                //단순 이 한줄 때문에 /member/login에서 지멋대로 실행되던게, googleLogin에서 oauth 페이지가 실행된다??????
+                .antMatchers("/member/login").permitAll()
+                .antMatchers("/member/join").permitAll()
+                //.antMatchers("/member/googleJoin").permitAll()
+                //.antMatchers("/member/googleLogin").permitAll()
+                .anyRequest().authenticated()
+                //이렇게했더니 안먹힘
+                //.anyRequest().permitAll()
+
+                //로그인 경로
+                //formLogin()
+                //loginPage("/member/googleLogin")
+                //loginProcessingUrl("/member/googleLogin")
+                //.permitAll()
+                .and()
+                .formLogin()
+                .loginPage("/member/googleLogin")
+                //.loginProcessingUrl("/main/main")
+                //.loginPage("http://localhost:22222/member/googleLogin")
+                //.loginProcessingUrl("http://localhost:22222/member/googleLogin")
+                .defaultSuccessUrl("/diary/list")
+                .failureUrl("/member/login")
+
+
+                //로그아웃 경로
+                .and()
+                .logout()
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+                .invalidateHttpSession(true).deleteCookies("JSESSIONID").deleteCookies("SESSION")
+                .logoutSuccessUrl("/main/main")
+
+                .permitAll()

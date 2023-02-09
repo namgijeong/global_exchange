@@ -136,7 +136,7 @@
             <div class="map-info">
               <div class="map-info-wrapper">
                 <!--<strong class="map-info-content" th:text="${meetDTO.meetAddress}+${meetDTO.meetDetailAddress}">서울시 영등포구 당산로30길 6 3층 블루기타 실용음악학원</strong>-->
-                <strong class="map-info-content" th:text="${meetDTO.meetAddress}+${meetDTO.meetDetailAddress}"></strong>
+                <strong class="map-info-content" th:text="${meetDTO.meetAddress}+' '+${meetDTO.meetDetailAddress}"></strong>
               </div>
             </div>
           </div>
@@ -341,53 +341,60 @@
   <footer th:replace="/main/footer.html :: #footerFirst"></footer>
 
 </body>
+<!--geocoder 인식을 위해 반드시 libraries=services를 맨위에 넣는다.-->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2dedcb5b9a8bf1a8785a7e1907f9c2bd&libraries=services"></script>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2dedcb5b9a8bf1a8785a7e1907f9c2bd"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script th:inline="javascript">
+  var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+          mapOption = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+          };
+
+  // 지도를 생성합니다
+  var map = new kakao.maps.Map(mapContainer, mapOption);
+
+  // 주소-좌표 변환 객체를 생성합니다
+  var geocoder = new kakao.maps.services.Geocoder();
+  //html에서 받아온값
+  let meetAddress=[[${meetDTO.meetAddress}]];
+  let meetDetailAddress=[[${meetDTO.meetDetailAddress}]];
+  let meetFullAddress=meetAddress+meetDetailAddress;
+  console.log(meetFullAddress);
+  // 주소로 좌표를 검색합니다
+  //상세 주소는 애매하니까 빼고 확실한 주소를 geocoder에 넣어야 맵에 정상적으로 나옴
+  geocoder.addressSearch(meetAddress, function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면
+    if (status === kakao.maps.services.Status.OK) {
+
+      var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+      // 결과값으로 받은 위치를 마커로 표시합니다
+      var marker = new kakao.maps.Marker({
+        map: map,
+        position: coords
+      });
+
+      // // 인포윈도우로 장소에 대한 설명을 표시합니다
+      // var infowindow = new kakao.maps.InfoWindow({
+      //     content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+      // });
+      // infowindow.open(map, marker);
+
+      // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+      map.setCenter(coords);
+    }
+  });
+</script>
+
 <script src="/js/meet/meetAnswerAjax.js"></script>
 <script src="/js/meet/meetAnswerCommentAjax.js"></script>
 <script th:inline="javascript">
-    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-        mapOption = {
-            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-            level: 3 // 지도의 확대 레벨
-        };
 
-    // 지도를 생성합니다
-    var map = new kakao.maps.Map(mapContainer, mapOption);
-
-    // 주소-좌표 변환 객체를 생성합니다
-    var geocoder = new kakao.maps.services.Geocoder();
-    //html에서 받아온값
-    let meetAddress=[[${meetDTO.meetAddress}]];
-    let meetDetailAddress=[[${meetDTO.meetDetailAddress}]];
-    let meetFullAddress=meetAddress+meetDetailAddress;
-    console.log(meetFullAddress);
-    // 주소로 좌표를 검색합니다
-    geocoder.addressSearch(meetFullAddress, function(result, status) {
-
-        // 정상적으로 검색이 완료됐으면
-        if (status === kakao.maps.services.Status.OK) {
-
-            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-            // 결과값으로 받은 위치를 마커로 표시합니다
-            var marker = new kakao.maps.Marker({
-                map: map,
-                position: coords
-            });
-
-            // // 인포윈도우로 장소에 대한 설명을 표시합니다
-            // var infowindow = new kakao.maps.InfoWindow({
-            //     content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-            // });
-            // infowindow.open(map, marker);
-
-            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-            map.setCenter(coords);
-        }
-    });
 
 
     let meetNumber=[[${meetDTO.meetNumber}]];
@@ -817,4 +824,15 @@
   });
 
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script th:inline="javascript">
+
+
+  let memberNumber=[[${session.memberNumber}]];
+
+
+
+</script>
+<script src="/js/main/header.js" ></script>
 </html>

@@ -1,3 +1,4 @@
+/*
 package com.globalexchange.app.config.auth;
 
 import com.globalexchange.app.config.auth.dto.OAuthAttributes;
@@ -80,3 +81,4 @@ public class CustomOAuth2UserService implements OAuth2UserService {
 
     }
 }
+*/

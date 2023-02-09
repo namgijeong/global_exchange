@@ -1,3 +1,4 @@
+/*
 package com.globalexchange.app.config.auth;
 
 import lombok.RequiredArgsConstructor;
@@ -74,6 +75,7 @@ public class SecurityConfig  {
     }
 //WebSecurityConfigurerAdapter 지원했을때의 방식
 
+*/
 /*@Override
     protected void configure(HttpSecurity http) throws Exception{
         http
@@ -94,6 +96,9 @@ public class SecurityConfig  {
                     .oauth2Login()
                         .userInfoEndpoint()
                             .userService(customOAuth2UserService);
-    }*/
+    }*//*
+
+
 
 }
+*/

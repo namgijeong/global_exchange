@@ -61,7 +61,7 @@ public class MainService {
 
             lodgingDTO.create(lodgingVO);
             lodgingDTO.setLodgingAnswerCount(lodgingAnswerDAO.findCount(lodgingVO.getLodgingNumber()));
-            /*lodgingDTO.setFileLodgingVO(fileLodgingDAO.getLodgingFile(lodgingVO.getLodgingNumber()));*/
+            lodgingDTO.setFileLodgingVO(fileDAO.getLodgingFile(lodgingVO.getLodgingNumber()));
 
             lodgingDTOList.add(lodgingDTO);
         }
@@ -78,7 +78,7 @@ public class MainService {
 
             lodgingDTO.create(lodgingVO);
             lodgingDTO.setLodgingAnswerCount(lodgingAnswerDAO.findCount(lodgingVO.getLodgingNumber()));
-            /*lodgingDTO.setFileLodgingVO(fileLodgingDAO.getLodgingFile(lodgingVO.getLodgingNumber()));*/
+            lodgingDTO.setFileLodgingVO(fileDAO.getLodgingFile(lodgingVO.getLodgingNumber()));
 
             lodgingDTOList.add(lodgingDTO);
         }

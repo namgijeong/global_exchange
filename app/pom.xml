@@ -111,13 +111,13 @@
         </dependency>-->
 
         <!--spring boot security-->
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+        </dependency>-->
 
         <!--spring boot security oauth2 쓰기위해서 추가-->
-        <dependency>
+        <!--<dependency>
 
             <groupId>org.springframework.security.oauth.boot</groupId>
 
@@ -126,14 +126,11 @@
             <version>2.0.0.RELEASE</version>
 
         </dependency>
-        <!--<dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2:2.4.2.RELEASE</artifactId>
-        </dependency>-->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-oauth2-client</artifactId>
-        </dependency>
+        </dependency>-->
 
         <!--spring data jpa-->
         <!--<dependency>

@@ -24,12 +24,14 @@ public class NeedLodgingController {
 
     // 숙소가 필요해 목록 페이지
     @GetMapping("/list")
-    public void list(Criteria criteria, Model model){
+    public void list(HttpServletRequest request,Criteria criteria, Model model){
         if(criteria.getPage() == 0){
             criteria.create(1, 10);
         }
-        model.addAttribute("boards", lodgingObjectificationService.lodgingSelectAll(criteria));
-        model.addAttribute("pagination",new PageDTO().createPageDTO(criteria,lodgingObjectificationService.getTotal()));
+
+            model.addAttribute("boards", lodgingObjectificationService.lodgingSelectAll(criteria));
+            model.addAttribute("pagination", new PageDTO().createPageDTO(criteria, lodgingObjectificationService.getTotal()));
+
     }
 
     // 모달창을 선택하여 골랐을때
@@ -61,9 +63,6 @@ public class NeedLodgingController {
         HttpSession session = request.getSession();
         Long memberNumber = (Long)session.getAttribute("memberNumber");
 
-        if(memberNumber == null){
-
-        }
 
         MemberVO memberVO;
         FileProfileVO fileProfileVO;

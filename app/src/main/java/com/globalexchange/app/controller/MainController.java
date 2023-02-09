@@ -29,6 +29,7 @@ public class MainController {
         model.addAttribute("latestNotAnsweredMeetList", mainService.showAllLatestNotAnsweredMeet());
         model.addAttribute("latestAnsweredLodgingList", mainService.showAllLatestAnsweredLodging());
         model.addAttribute("latestNotAnsweredLodgingList", mainService.showAllLatestNotAnsweredLodging());
+        log.info("latestNotAnsweredLodgingList"+mainService.showAllLatestNotAnsweredLodging());
     }
 
 }

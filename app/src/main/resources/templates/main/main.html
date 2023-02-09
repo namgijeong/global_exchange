@@ -13,10 +13,17 @@
 <body>
         <!-- header -->
         <div th:replace="/main/header.html::topHeader(memberNumber = ${session.memberNumber}, memberNickname = ${session.memberNickname})"></div>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <script th:inline="javascript">
+            $('#joinMember').on('click', function () {
+                // alert("눌림");
+                location.href = "/member/joinForm";
+            });
+        </script>
         <div th:replace="/main/header.html::header"></div>
 
         <!-- home -->
-        
+
         <div id="home" style="">
             <section class="container">
                 <div class="arrow prev">&lt;</div>
@@ -148,7 +155,7 @@
                     </div>
                 </div>
             </section>
-            <!--<section class="previewContents">
+            <section class="previewContents">
                 <div class="previewContentsHeader">
                     <div class="previewContentsHeaderTitle"><h2 class="previewContentsHeaderTitleText">숙소가 필요해 최신글</h2></div>
                     <a class="previewContentsLink" th:href="@{/needLodging/list}">전체보기</a>
@@ -176,8 +183,8 @@
                         </a>
                     </div>
                 </div>
-            </section>-->
-            <!--<section class="previewContents">
+            </section>
+            <section class="previewContents">
                 <div class="previewContentsHeader">
                     <div class="previewContentsHeaderTitle"><h2 class="previewContentsHeaderTitleText">숙소가 필요해 답변이 필요한 글</h2></div>
                     <a class="previewContentsLink" th:href="@{/needLodging/list}">전체보기</a>
@@ -202,14 +209,23 @@
                         </a>
                     </div>
                 </div>
-            </section>-->
+            </section>
         </div>
 
         <!-- footer -->
         <div th:replace="/main/footer.html:: footerFirst"></div>
 </body>
 <script src="/js/main/main.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script th:inline="javascript">
+
+
+    let memberNumber=[[${session.memberNumber}]];
+
+
+
 </script>
+<script src="/js/main/header.js" ></script>
 </html>
 
