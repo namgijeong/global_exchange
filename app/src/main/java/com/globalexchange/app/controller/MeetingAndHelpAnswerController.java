@@ -40,6 +40,8 @@ public class MeetingAndHelpAnswerController {
 //    }
 
     // 만남과 도움 답글 쓰기 완료
+    //클라이언트에서 서버로 필요한 데이터를 요청하기 위해 JSON 데이터를 요청 본문에 담아서 서버로 보내면, 서버에서는 @RequestBody 어노테이션을 사용하여 HTTP 요청 본문에 담긴 값들을 자바객체로 변환시켜, 객체에 저장한다.
+    //서버에서 클라이언트로 응답 데이터를 전송하기 위해 @ResponseBody 어노테이션을 사용하여 자바 객체를 HTTP 응답 본문의 객체로 변환하여 클라이언트로 전송한다.
     @PostMapping("/answerWriteOk")
     public void answerWriteOk(@RequestBody MeetAnswerVO meetAnswerVO , HttpServletRequest request){
         //로그인한 멤버정보를 vo에 같이 담아서 보내준다.

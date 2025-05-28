@@ -342,10 +342,11 @@
 
 </body>
 <!--geocoder 인식을 위해 반드시 libraries=services를 맨위에 넣는다.-->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2dedcb5b9a8bf1a8785a7e1907f9c2bd&libraries=services"></script>
-
-
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2dedcb5b9a8bf1a8785a7e1907f9c2bd"></script>
+<!--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2dedcb5b9a8bf1a8785a7e1907f9c2bd&libraries=services"></script>-->
+<!--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2dedcb5b9a8bf1a8785a7e1907f9c2bd&libraries=LIBRARY"></script>-->
+<!--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2dedcb5b9a8bf1a8785a7e1907f9c2bd&libraries=services,clusterer,drawing"></script>-->
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=9b2d65bb3bb867415258338ab4712f3e&libraries=services,drawing"></script>
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=9b2d65bb3bb867415258338ab4712f3e&libraries=LIBRARY"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script th:inline="javascript">
   var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -355,7 +356,7 @@
           };
 
   // 지도를 생성합니다
-  var map = new kakao.maps.Map(mapContainer, mapOption);
+  var map = new window.kakao.maps.Map(mapContainer, mapOption);
 
   // 주소-좌표 변환 객체를 생성합니다
   var geocoder = new kakao.maps.services.Geocoder();

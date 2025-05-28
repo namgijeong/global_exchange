@@ -156,46 +156,46 @@ function pwDoubleCheck(memberDoublePw){
 }
 
 
-if($('input[name="memberTeachingLang"]').val() == "ENGLISH") {
+if($('select[name="memberTeachingLang"]').val() == "ENGLISH") {
 
-    $('input[name="memberTeachingLang"]').val("/images/nation/america.png");
+    $('input[name="memberNationUrl"]').val("/images/nation/america.png");
 }
 
-if($('input[name="memberTeachingLang"]').val() == "SPANISH") {
+if($('select[name="memberTeachingLang"]').val() == "SPANISH") {
 
-    $('input[name="memberTeachingLang"]').val("/images/nation/spain.png");
+    $('input[name="memberNationUrl"]').val("/images/nation/spain.png");
 }
-if($('input[name="memberTeachingLang"]').val() == "FRENCH") {
+if($('select[name="memberTeachingLang"]').val() == "FRENCH") {
 
-    $('input[name="memberTeachingLang"]').val("/images/nation/france.png");
+    $('input[name="memberNationUrl"]').val("/images/nation/france.png");
 }
-if($('input[name="memberTeachingLang"]').val() == "GERMAN") {
+if($('select[name="memberTeachingLang"]').val() == "GERMAN") {
 
-    $('input[name="memberTeachingLang"]').val("/images/nation/germany.png");
+    $('input[name="memberNationUrl"]').val("/images/nation/germany.png");
 }
-if($('input[name="memberTeachingLang"]').val() == "ITALIAN") {
+if($('select[name="memberTeachingLang"]').val() == "ITALIAN") {
 
-    $('input[name="memberTeachingLang"]').val("/images/nation/italy.png");
+    $('input[name="memberNationUrl"]').val("/images/nation/italy.png");
 }
-if($('input[name="memberTeachingLang"]').val() == "PORTUGUESE") {
+if($('select[name="memberTeachingLang"]').val() == "PORTUGUESE") {
 
-    $('input[name="memberTeachingLang"]').val("/images/nation/portugal.png");
+    $('input[name="memberNationUrl"]').val("/images/nation/portugal.png");
 }
-if($('input[name="memberTeachingLang"]').val() == "RUSSIAN") {
+if($('select[name="memberTeachingLang"]').val() == "RUSSIAN") {
 
-    $('input[name="memberTeachingLang"]').val("/images/nation/russia.png");
+    $('input[name="memberNationUrl]').val("/images/nation/russia.png");
 }
-if($('input[name="memberTeachingLang"]').val() == "JAPANESE") {
+if($('select[name="memberTeachingLang"]').val() == "JAPANESE") {
 
-    $('input[name="memberTeachingLang"]').val("/images/nation/japan.png");
+    $('input[name="memberNationUrl"]').val("/images/nation/japan.png");
 }
-if($('input[name="memberTeachingLang"]').val() == "CHINESE") {
+if($('select[name="memberTeachingLang"]').val() == "CHINESE") {
 
-    $('input[name="memberTeachingLang"]').val("/images/nation/china.png");
+    $('input[name="memberNationUrl"]').val("/images/nation/china.png");
 }
-if($('input[name="memberTeachingLang"]').val() == "KOREAN") {
+if($('select[name="memberTeachingLang"]').val() == "KOREAN") {
 
-    $('input[name="memberTeachingLang"]').val("/images/nation/southKorea.png");
+    $('input[name="memberNationUrl"]').val("/images/nation/southKorea.png");
 }
 
 
